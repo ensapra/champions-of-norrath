@@ -17,13 +17,558 @@
  },
  "compiler_ranges": [
   {
-   "start": 2969600,
-   "end": 3055616,
-   "toolchain": "mwcps2-3.0.1",
+   "start": 1293120,
+   "end": 1293288,
+   "toolchain": "ee-gcc-2.96",
    "flags": [
     "-O2",
-    "-sdatathreshold",
-    "8"
+    "-G8",
+    "-mno-check-zero-division"
+   ]
+  },
+  {
+   "start": 1352860,
+   "end": 1353404,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1368336,
+   "end": 1368988,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1372576,
+   "end": 1373208,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1381996,
+   "end": 1382364,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8",
+    "-mno-check-zero-division"
+   ]
+  },
+  {
+   "start": 1384276,
+   "end": 1384456,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1385508,
+   "end": 1386228,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1386332,
+   "end": 1386760,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1387748,
+   "end": 1394616,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1395052,
+   "end": 1395384,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1404520,
+   "end": 1405860,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1411904,
+   "end": 1412528,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1425644,
+   "end": 1426120,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1427720,
+   "end": 1432860,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1440816,
+   "end": 1440968,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1453600,
+   "end": 1454076,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1462892,
+   "end": 1464112,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1464720,
+   "end": 1465548,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1496872,
+   "end": 1497496,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1504012,
+   "end": 1504956,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1548296,
+   "end": 1548628,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1549128,
+   "end": 1549372,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1564888,
+   "end": 1565552,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G0"
+   ]
+  },
+  {
+   "start": 1567416,
+   "end": 1567952,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1578680,
+   "end": 1578976,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8",
+    "-falign-loops=8"
+   ]
+  },
+  {
+   "start": 1616544,
+   "end": 1617432,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1626160,
+   "end": 1626944,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G0"
+   ]
+  },
+  {
+   "start": 1652872,
+   "end": 1653592,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1654368,
+   "end": 1654900,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1660676,
+   "end": 1661012,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-O2",
+    "-G8",
+    "-mno-check-zero-division",
+    "-falign-jumps=1"
+   ]
+  },
+  {
+   "start": 1677216,
+   "end": 1686784,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-Os",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1736816,
+   "end": 1737340,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1764852,
+   "end": 1765084,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1767224,
+   "end": 1767280,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1772264,
+   "end": 1773008,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1793368,
+   "end": 1794008,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G0"
+   ]
+  },
+  {
+   "start": 1797776,
+   "end": 1798280,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 1802168,
+   "end": 1802444,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 2289992,
+   "end": 2290936,
+   "toolchain": "ee-gcc-2.96",
+   "flags": [
+    "-O2",
+    "-G8",
+    "-mno-check-zero-division"
+   ]
+  },
+  {
+   "start": 2953208,
+   "end": 2954500,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 2960320,
+   "end": 2961344,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 2961592,
+   "end": 2961784,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 2963888,
+   "end": 2964420,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 2965728,
+   "end": 2966504,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 2966864,
+   "end": 2967368,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 2968416,
+   "end": 2968640,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 2974256,
+   "end": 2975848,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G0"
+   ]
+  },
+  {
+   "start": 2980808,
+   "end": 2986740,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 3004184,
+   "end": 3004372,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 3005600,
+   "end": 3005880,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 3006848,
+   "end": 3007116,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G0"
+   ]
+  },
+  {
+   "start": 3008704,
+   "end": 3010652,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 3013096,
+   "end": 3013568,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 3026496,
+   "end": 3026916,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 3032832,
+   "end": 3034076,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 3035056,
+   "end": 3035764,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 3036432,
+   "end": 3036880,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 3037488,
+   "end": 3038012,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 3038160,
+   "end": 3038556,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 3038760,
+   "end": 3039296,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
+   ]
+  },
+  {
+   "start": 3039968,
+   "end": 3040144,
+   "toolchain": "ee-gcc-2.9-991111",
+   "flags": [
+    "-O2",
+    "-G8"
    ]
   }
  ],
