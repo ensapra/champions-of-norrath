@@ -1,21 +1,29 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
 extern void *D_00480430;
 
-f32 func_0017FD24(s32 arg0) {
-    M2C_FIELD(D_00480430, f32 *, 0x3C) = (f32) M2C_ERROR(/* Read from unset register $f1 */);
-    M2C_FIELD(D_00480430, s32 *, 0x18) = 1;
-    return (f32) arg0;
+void func_0017FCEC(s32 a, s32 b)
+{
+    void *p;
+    p = D_00480430;
+    *(f32 *)((s8 *)p + 0x60) = a;
+    p = D_00480430;
+    *(f32 *)((s8 *)p + 0x64) = b;
+}
+
+void func_0017FD10(f32 a, f32 b)
+{
+    void *p;
+    p = D_00480430;
+    *(f32 *)((s8 *)p + 0x60) = a;
+    p = D_00480430;
+    *(f32 *)((s8 *)p + 0x64) = b;
+}
+
+void func_0017FD24(s32 a)
+{
+    void *p;
+    f32 t = a;
+    p = D_00480430;
+    *(s32 *)((s8 *)p + 0x3C) = t;
+    p = D_00480430;
+    *(s32 *)((s8 *)p + 0x18) = 1;
 }

@@ -1,53 +1,34 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct DNode { struct DNode *next; struct DNode *prev; struct Item *item; } DNode;
+typedef struct Item { u8 pad[0xAC]; s32 f_ac; s32 f_b0; s32 f_b4; } Item;
+void func_0011B9E0(DNode *, DNode *);
+void func_0014B8E0(Item *, u8 *);
 
-M2C_UNK func_0011B9E0(void *, void *);              /* extern */
-M2C_UNK func_0014B8E0(void *, void *);              /* extern */
-
-void func_0014F86C(void *arg0) {
-    s32 temp_19;
-    void **temp_3;
-    void *temp_17;
-    void *temp_2;
-    void *temp_4;
-    void *temp_5;
-    void *var_16;
-
-    temp_19 = arg0 + 0x9B4;
-    var_16 = M2C_FIELD(arg0, void **, 0x9B4);
-    if (var_16 != temp_19) {
+void func_0014F86C(u8 *arg0) {
+    DNode *head = (DNode *)(arg0 + 0x9B4);
+    DNode *p = head->next;
+    DNode *nx;
+    DNode *cur;
+    Item *it;
+    if (p != head) {
         do {
-            temp_17 = M2C_FIELD(var_16, void **, 8);
-            temp_5 = M2C_FIELD(var_16, void **, 0);
-            if ((M2C_FIELD(temp_17, s32 *, 0xAC) != 0) && (M2C_FIELD(temp_17, s32 *, 0xB4) == 0)) {
-                temp_4 = var_16;
-                if (M2C_FIELD(temp_17, s32 *, 0xB0) != 0) {
-                    M2C_FIELD(temp_5, void ***, 4) = (void **) M2C_FIELD(var_16, void ***, 4);
-                    temp_3 = M2C_FIELD(var_16, void ***, 4);
-                    temp_2 = M2C_FIELD(var_16, void **, 0);
-                    var_16 = temp_5;
-                    *temp_3 = temp_2;
-                    func_0011B9E0(temp_4, temp_5);
-                    func_0014B8E0(temp_17, arg0);
+            it = p->item;
+            nx = p->next;
+            if (it->f_ac != 0 && it->f_b4 == 0) {
+                cur = p;
+                if (it->f_b0 != 0) {
+                    nx->prev = p->prev;
+                    p->prev->next = p->next;
+                    p = nx;
+                    func_0011B9E0(cur, nx);
+                    func_0014B8E0(it, arg0);
                 } else {
-                    M2C_FIELD(temp_17, s32 *, 0xB0) = 1;
-                    goto block_6;
+                    it->f_b0 = 1;
+                    goto next;
                 }
             } else {
-block_6:
-                var_16 = temp_5;
+next:
+                p = nx;
             }
-        } while (var_16 != temp_19);
+        } while (p != head);
     }
 }

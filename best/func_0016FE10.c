@@ -1,52 +1,52 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern u8 jtbl_004C006C[];
+void _LoadExecPS2(char *, s32, char **);
+char *func_001B6150(char *);
+void func_001B6268(void);
+void func_001B62E0(char *name, s32 argc)
+{
+    char *path = func_001B6150(name);
+    func_001B6268();
+    _LoadExecPS2(path, argc, *(char ***)(jtbl_004C006C + 0x5284) + 1);
+}
 
-void func_0016FE10(void *arg0, s32 arg1, s32 arg2, s64 arg3, s64 arg4, s64 arg5, s64 arg6, s64 arg7, f32 fparg0, f32 fparg1, f32 fparg2, f32 fparg3, f32 fparg4, f32 fparg5, f32 fparg6, f32 fparg7) {
-    f32 sp8;
-    f32 spC;
-    f32 sp10;
-    f32 sp14;
-    f32 sp18;
-    f32 sp1C;
-    f32 sp20;
-    f32 sp24;
-    s64 sp28;
-    s32 var_6;
-    s64 *temp_2;
-    s64 *var_7;
-    s64 temp_4;
+typedef struct {
+    s32 a;
+    s32 b;
+    u64 regs;
+} GifTag;
 
-    var_7 = &sp28;
-    sp28 = arg7;
-    sp8 = fparg0;
-    var_6 = 0;
-    spC = fparg1;
-    sp10 = fparg2;
-    sp14 = fparg3;
-    sp18 = fparg4;
-    sp1C = fparg5;
-    sp20 = fparg6;
-    sp24 = fparg7;
-    M2C_FIELD(arg0, s64 *, 0) = (s64) (arg1 | (arg2 << 0xF) | ((arg5 << 0x3A) | (arg4 << 0x2F)) | ((arg3 << 0x2E) | (arg6 << 0x3C)));
-    M2C_FIELD(arg0, s64 *, 8) = 0;
-    if (arg6 > 0) {
-        do {
-            temp_2 = var_7;
-            var_7 += 8;
-            temp_4 = var_6 * 4;
-            var_6 += 1;
-            M2C_FIELD(arg0, s64 *, 8) = (s64) (M2C_FIELD(arg0, s64 *, 8) | ((s64) *temp_2 << temp_4));
-        } while (var_6 < arg6);
+s32 D_0048041C;
+s32 func_00170480(GifTag *);
+void func_0017048C(GifTag *, s32);
+
+GifTag *func_001704BC(GifTag *t, u32 reg)
+{
+    s32 n = func_00170480(t);
+    if (reg & 0x80) {
+        reg = (reg & ~0x80) + D_0048041C;
+    }
+    t->regs |= (u64)reg << (n * 4);
+    func_0017048C(t, n + 1);
+    return t;
+}
+
+void func_001704AC(GifTag *t)
+{
+    t->regs = 0;
+    t->b = 0;
+    t->a = 0;
+}
+
+void func_0016FE10(u64 *tag, s32 nloop, s32 eop, s32 pre, s32 prim, s32 flg, s32 nreg, ...)
+{
+    char *ap;
+    s32 i;
+
+    ap = (char *)__builtin_next_arg(nreg);
+    tag[0] = (nloop | (eop << 15)) | ((u64)flg << 58) | ((u64)prim << 47) | ((u64)pre << 46) | ((u64)nreg << 60);
+    tag[1] = 0;
+    for (i = 0; i < nreg; i++) {
+        tag[1] |= (u64)*(u32 *)ap << (i * 4);
+        ap += 8;
     }
 }

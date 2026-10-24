@@ -1,17 +1,17 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct { s32 a; u32 flags; u8 pad[0x1C]; } Ent24;
 
-s32 func_0015AD80(void *arg0, s32 arg1) {
-    return (M2C_FIELD(((arg1 * 0x24) + M2C_FIELD(arg0, s32 *, 0xB80)), s32 *, 4) & 4) != 0;
+s32 func_0015AD80(u8 *p, s32 i)
+{
+    Ent24 *e = *(Ent24 **)(p + 0xB80);
+    e += i;
+    if (e->flags & 4)
+        return 1;
+    return 0;
+}
+
+s32 func_0015AD5C(u8 *p, s32 i)
+{
+    Ent24 *e = &(*(Ent24 **)(p + 0xB80))[i];
+    u32 f = e->flags & 2;
+    return f != 0;
 }

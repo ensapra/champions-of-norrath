@@ -1,45 +1,68 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern u8 func_001C8098[];
+extern s32 func_0014D328(s32, s32);
+extern s32 func_0014CA30(s32);
+extern void func_001640C0(void *);
+extern s32 func_0016FB28(s32);
+extern void func_0016386C(void *, s32);
+void func_00164064(void *arg0);
+void func_00164538(void *arg0);
 
-M2C_UNK func_0014CA30(s32);                         /* extern */
-M2C_UNK func_00164064();                            /* extern */
-extern M2C_UNK func_001C8098;
+typedef struct {
+    char pad0[0x920];
+    s32 f920, f924, f928, f92C, f930, f934, f938, f93C;
+    char pad1[4];
+    s32 f944, f948, f94C;
+} S;
 
-void func_00163E3C(void *arg0) {
-    func_00164064();
-    M2C_FIELD(&func_001C8098, M2C_UNK (**)(void *), 0x12C4)(arg0);
-    if (M2C_FIELD(arg0, s32 *, 0x94C) == 0) {
-        if (M2C_FIELD(arg0, s32 *, 0x944) == 0) {
-            return;
-        }
-        /* Duplicate return node #4. Try simplifying control flow for better match */
-        func_0014CA30(M2C_FIELD(arg0, s32 *, 0x92C));
-        func_0014CA30(M2C_FIELD(arg0, s32 *, 0x920));
-        func_0014CA30(M2C_FIELD(arg0, s32 *, 0x924));
-        func_0014CA30(M2C_FIELD(arg0, s32 *, 0x928));
-        func_0014CA30(M2C_FIELD(arg0, s32 *, 0x930));
-        func_0014CA30(M2C_FIELD(arg0, s32 *, 0x934));
-        func_0014CA30(M2C_FIELD(arg0, s32 *, 0x938));
-        func_0014CA30(M2C_FIELD(arg0, s32 *, 0x93C));
+s32 func_00163F2C(S *p, s32 arg1) {
+    (*(void (**)(S *, s32))((char *)func_001C8098 + 0x1350))(p, arg1);
+    func_0014D328(p->f92C, arg1);
+    func_0014D328(p->f920, arg1);
+    func_0014D328(p->f924, arg1);
+    func_0014D328(p->f928, arg1);
+    func_0014D328(p->f930, arg1);
+    func_0014D328(p->f934, arg1);
+    func_0014D328(p->f938, arg1);
+    return func_0014D328(p->f93C, arg1);
+}
+
+void func_00163E3C(S *p) {
+    func_00164064(p);
+    (*(void (**)(S *))((char *)func_001C8098 + 0x12C4))(p);
+    if (p->f94C != 0 || p->f944 != 0) {
+        func_0014CA30(p->f92C);
+        func_0014CA30(p->f920);
+        func_0014CA30(p->f924);
+        func_0014CA30(p->f928);
+        func_0014CA30(p->f930);
+        func_0014CA30(p->f934);
+        func_0014CA30(p->f938);
+        func_0014CA30(p->f93C);
+    }
+}
+
+void func_00164064(void *arg0) {
+    S *p = arg0;
+    switch (p->f94C) {
+    case 0:
+        break;
+    case 1:
+        func_001640C0(p);
+        break;
+    default:
+        func_00164538(p);
+        break;
+    }
+}
+
+void func_00164538(void *arg0) {
+    S *p = arg0;
+    s32 t = p->f948;
+    if (func_0016FB28((s32)p + 0x950) != 0) {
+        p->f94C = 0;
+        func_0016386C(p, t);
         return;
     }
-    func_0014CA30(M2C_FIELD(arg0, s32 *, 0x92C));
-    func_0014CA30(M2C_FIELD(arg0, s32 *, 0x920));
-    func_0014CA30(M2C_FIELD(arg0, s32 *, 0x924));
-    func_0014CA30(M2C_FIELD(arg0, s32 *, 0x928));
-    func_0014CA30(M2C_FIELD(arg0, s32 *, 0x930));
-    func_0014CA30(M2C_FIELD(arg0, s32 *, 0x934));
-    func_0014CA30(M2C_FIELD(arg0, s32 *, 0x938));
-    func_0014CA30(M2C_FIELD(arg0, s32 *, 0x93C));
+    p->f94C = 0;
+    func_0016386C(p, t);
 }

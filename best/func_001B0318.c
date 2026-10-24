@@ -1,19 +1,8 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 func_001AFD10(M2C_UNK, void *, M2C_UNK, s32, s32, s32); /* extern */
-
-s32 func_001B0318(void *arg3) {
-    return (func_001AFD10(0x80000008, arg3, 0x40, M2C_FIELD(arg3, s32 *, 0x24), M2C_FIELD(arg3, s32 *, 0x28), M2C_FIELD(arg3, s32 *, 0x2C)) != 0) ? 0 : 0x800;
-}
+void func_001ADF70(u32,u32);void func_001AE098(u32 a,u32 b){func_001ADF70(a&0xFFFFFFC0,b&0xFFFFFFC0);}
+s32 func_001B01D8(void*,s32);
+s64 func_001B0208(void*p,s32 n){s32*r=p;if(n>=0 && n<r[8])return r[7]+(n<<6);return func_001B01D8(p,n);}
+s32 func_001AFD10(u32,void*,s32,s32,s32,s32);
+s32 func_001B0318(s32 a,s32 b,s32 c,void*p){s32*q=p;return func_001AFD10(0x80000008,p,64,q[9],q[10],q[11])?0:0x800;}
+typedef struct Item {s32 id;u8 pad[52];struct Item*next;} Item;
+typedef struct Group {s32 a,b;Item*head;s32 d,e;struct Group*next;} Group;
+Item*func_001B0580(s32 id,void*p){Group*g=*(Group**)((u8*)p+40);for(;g;g=g->next){Item*i;for(i=g->head;i;i=i->next){if(i->id==id)return i;}}return 0;}

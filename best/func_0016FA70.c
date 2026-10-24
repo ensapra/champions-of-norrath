@@ -1,29 +1,57 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+s32 D_00480404;
+s32 D_00480408;
+s32 D_0048040C;
+s32 D_00480410;
 
-s32 func_0011B9A8(s32);                             /* extern */
-M2C_UNK func_001A24AC(s32, s32, s32);               /* extern */
-s32 func_001A444C();                                /* extern */
+void func_0016FACC(s32 *a, s32 *b, s32 *c, s32 *d) {
+    *a = D_00480404;
+    *b = D_00480408;
+    *c = D_0048040C;
+    *d = D_00480410;
+}
 
-s32 func_0016FA70(s32 arg0) {
-    s32 temp_18;
-    s32 temp_2;
+s32 func_001A444C();
+void *func_0011B9A8(s32);
+void func_001A24AC(void *, void *, s32);
 
-    temp_18 = func_001A444C() + 1;
-    temp_2 = func_0011B9A8(temp_18);
-    if (temp_2 != 0) {
-        func_001A24AC(temp_2, arg0, temp_18);
+void *func_0016FA70(void *s) {
+    s32 n = func_001A444C() + 1;
+    void *p = func_0011B9A8(n);
+    if (p != NULL) {
+        func_001A24AC(p, s, n);
     }
-    return temp_2;
+    return p;
+}
+
+typedef struct {
+    s32 type;
+    s64 p;
+} Item;
+
+s32 func_0014CBF4(s32, Item *, s32);
+
+void func_0016F828(u8 *o) {
+    Item it[5];
+    s64 a, b, c;
+    s32 w;
+
+    if (*(s32 *)(o + 0x988) == 0) {
+        w = *(s32 *)(o + 0x984);
+        if (*(s32 *)(o + 0x918) != 0) {
+            a = (s32)(o + 0x9C0);
+            b = (s32)(o + 0x9E0);
+            c = (s32)(o + 0xA00);
+        } else {
+            a = (s32)(o + 0x9D0);
+            b = (s32)(o + 0x9F0);
+            c = (s32)(o + 0x960);
+        }
+        it[0].type = 0x6A;
+        it[0].p = a;
+        it[1].type = 0x39;
+        it[1].p = b;
+        it[4].type = 0xC8;
+        it[4].p = c;
+        func_0014CBF4(w, it, 2);
+    }
 }

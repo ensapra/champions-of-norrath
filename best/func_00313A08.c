@@ -1,51 +1,9 @@
-/* Function declarations */
-extern void func_002FD348(s32 *, char *, s32 *);
-extern void func_002FD368(s32 *, char *);
-extern s32 func_001671F8(char *);
-extern void func_00190E20(s32, s32, f32, f32, f32, f32, f32, f32, f32, f32);
-
-/* Data declarations */
-extern s32 D_008EB2F8[4];
-s32 D_00486DD0[2];
-extern char D_00483EE8[];
-extern char D_00463330[];
-extern char D_00463368[];
-extern char D_00463388[];
-
-s32 *func_00313A58(void) {
-    if (D_008EB2F8[0] == 0) {
-        if (D_00486DD0[0] == 0) {
-            func_002FD368(D_00486DD0, D_00483EE8);
-        }
-        func_002FD348(D_008EB2F8, D_00463330, D_00486DD0);
-    }
-    return D_008EB2F8;
-}
-
-void func_00313A08(void *arg0) {
-    s16 *ptr_zero = (s16 *)((u8 *)arg0 + 0xE);
-    f32 *ptr_float = (f32 *)((u8 *)arg0 + 0x24);
-    s16 *ptr_one = (s16 *)((u8 *)arg0 + 0x18);
-    s32 i = 0;
-    do {
-        i++;
-        *ptr_zero = 0;
-        *ptr_float = 2.0f;
-        *ptr_one = 1;
-        ptr_one++;
-        ptr_float++;
-        ptr_zero++;
-    } while (i < 5);
-}
-
-void func_00313AC0(s32 arg0, s32 arg1, s32 arg2) {
-    s32 temp = 0;
-    if (arg2 > 0) {
-        temp = arg2 * 5 + 10;
-    }
-    func_00190E20(arg0, func_001671F8(D_00463368), (f32)temp, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-}
-
-void func_00313CA0(s32 arg0, s32 arg1, s32 arg2) {
-    func_00190E20(arg1, func_001671F8(D_00463388), (f32)(arg2 * 5), 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-}
+extern char D_00460DD8[],D_00460DE8[],D_00463388[];
+extern s32 D_008EAB78[],D_008EABD8[],D_008EB008[];
+void func_002FD348(s32*,char*,s32*); void func_0030D510(void);
+s32 *func_0030EE98(void){s32 *p=D_008EB008; s32 *q; if(!*p){q=D_008EABD8;if(*q==0){func_0030D510();func_002FD348(q,D_00460DD8,D_008EAB78);}func_002FD348(p,D_00460DE8,q);}return D_008EB008;}
+typedef struct VE {s16 d,i; s32 (*f)();} VE;
+void func_00313700(u8 *o,s32 a,s32 b,u8 **p){u8 *q=*p;VE *v;if(q && (*(s32*)(*(u8**)(q+12)+12)&64)){v=*(VE**)(o+0x60)+11;{s16 d=v->d; s32 (*fn)()=v->f;fn(o+d,a,b);}}else {v=*(VE**)(o+0x60)+12;v->f(o+v->d,a,b);}}
+void func_00313A08(u8 *p){f32 *f=(f32*)(p+36);s16 *o=(s16*)(p+24);s16 *z=(s16*)(p+14);s32 i=0; do {i++;*z=0;*f=2.0f;*o=1;o++;f++;z++;}while((u32)i<5);}
+s32 func_001671F8(char*); s32 func_00190E20(s32,s32,f32,f32,f32,f32,f32,f32,f32,f32);
+s64 func_00313CA0(s32 a,s32 b,s32 c){return func_00190E20(b,func_001671F8(D_00463388),(f32)(c*5),0.f,0.f,0.f,0.f,0.f,0.f,0.f);}

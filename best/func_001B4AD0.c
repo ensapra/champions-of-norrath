@@ -1,27 +1,24 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 func_001B08B0(void *, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, void *, M2C_UNK, M2C_UNK, s32); /* extern */
-extern M2C_UNK func_01109848;
-extern M2C_UNK jtbl_004C006C;
-
-s32 func_001B4AD0(void) {
-    if (M2C_FIELD(&jtbl_004C006C, s32 *, 0x3F48) < 0) {
-        return 0;
-    }
-    if (func_001B08B0(&func_01109848 + 0x17B8, 7, 0, 0, 0, &func_01109848 + 0x17F8, 4, 0, 0) >= 0) {
-        return M2C_FIELD(&func_01109848, s32 *, 0x17F8);
-    }
-    return 0xFFFFFFFF;
+extern s32 jtbl_004C006C[];
+extern u8 D_0110B000[];
+extern s32 D_0110B040[];
+extern s32 D_0110B080[];
+s32 func_001B08B0(void *, s32, s32, void *, s32, void *, s32, s32, s32);
+u32 func_001B4AD0(void) {
+    if (jtbl_004C006C[0x3F48 / 4] < 0) return 0;
+    if (func_001B08B0(D_0110B000, 7, 0, 0, 0, D_0110B040, 4, 0, 0) < 0) return 0xFFFFFFFF;
+    return D_0110B040[0];
 }
+u32 func_001B4B40(s32 a) {
+    if (jtbl_004C006C[0x3F48 / 4] < 0) return 0;
+    D_0110B080[0] = a;
+    if (func_001B08B0(D_0110B000, 8, 0, D_0110B080, 4, D_0110B040, 4, 0, 0) < 0) return 0xFFFFFFFF;
+    return D_0110B040[0];
+}
+u32 func_001B4BC0(s32 a) {
+    if (jtbl_004C006C[0x3F48 / 4] < 0) return 0;
+    D_0110B080[0] = a;
+    if (func_001B08B0(D_0110B000, 9, 0, D_0110B080, 4, D_0110B040, 4, 0, 0) < 0) return 0xFFFFFFFF;
+    return D_0110B040[0];
+}
+typedef struct{s32 size;s32 count;u8 *rd;u8 *wr;u8 data[1];}Ring;
+void func_001AE898(Ring *r){ r->count++; r->wr++; if (r->wr == r->data + r->size) r->wr = r->data; }

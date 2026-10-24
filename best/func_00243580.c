@@ -1,63 +1,59 @@
-// func_002684F0
-extern f32 D_00482084;
-extern f32 D_00482088;
-extern s32 D_00485C80;
-extern s32 func_002FB320(void);
-extern s32 func_002F0860(s32);
-extern void func_002FBB50(s32);
+typedef struct N { struct N *next; s32 pad[3]; } N;
+extern N D_008E4140[];
+extern N *D_008E4540[];
 
-void func_002684F0(f32 arg0) {
-    if ((D_00482084 < arg0) || (arg0 < D_00482088)) {
-        D_00485C80 = 1;
-    }
-    s32 x = func_002FB320();
-    x = func_002F0860(x);
-    func_002FBB50(x);
+s32 func_002DF208(void) {
+    s32 i;
+    D_008E4540[0] = D_008E4140;
+    for (i = 63; i >= 0; i--)
+        D_008E4140[i].next = &D_008E4140[i + 1];
+    D_008E4140[63].next = 0;
+    return 0;
 }
 
-// func_00246F10
-extern s32 func_001119D8(void);
-
-s32 func_00246F10(void *src, s32 *dst) {
-    s32 offset = func_001119D8();
-    s32 *base = dst;
-    dst = (s32 *)((char *)dst + offset);
-    *dst++ = *(s32 *)((char *)src + 0x3CC);
-    *dst++ = *(s32 *)((char *)src + 0x3D0);
-    *dst++ = *(s32 *)((char *)src + 0x3E0);
-    *dst++ = *(s32 *)((char *)src + 0xD0);
-    return (char *)dst - (char *)base;
-}
-
-// func_00243628
-extern s32 func_00113618(void);
 extern char D_0034B988[];
-extern char D_00473798[];
-extern f32 D_00483F48;
+extern char D_004732A8[];
+extern char D_004732B8[];
+s32 D_00483F48;
+s32 func_00153FA8(void *);
+void func_0024AF80(s32);
+void func_00303EB8(void *, void *, s32);
+void func_0024EED0(void *, s32);
 
-void func_00243628(void *arg0) {
-    func_00113618();
-    *(s32 *)((char *)&D_0034B988 + 8) = *(s32 *)((char *)&D_00473798 + 8);
-    D_00483F48 = 0.5f;
-    f32 val1 = *(f32 *)((char *)arg0 + 0x230);
-    f32 val2 = *(f32 *)((char *)arg0 + 0x234) * 0.5f;
-    s32 val3 = *(s32 *)((char *)arg0 + 0x3F0);
-    if ((val1 < val2) && (val3 == 0)) {
-        void *temp_2 = *(void **)((char *)arg0 + 0x48);
-        s32 (*fp)(void *, s32, s32) = *(s32 (**)(void *, s32, s32))((char *)temp_2 + 4);
-        fp((char *)arg0 + *(s16 *)((char *)temp_2 + 0xB8), 0x15, 0x14);
-        *(s32 *)((char *)arg0 + 0x3F0) = 1;
+void func_0023F8F8(void *arg0) {
+    char buf[32];
+    s32 n;
+    __builtin_memcpy(D_0034B988, D_004732A8, 13);
+    D_00483F48 = (s32)*(f32 *)((char *)arg0 + 0x230);
+    func_0024AF80(0);
+    n = func_00153FA8(arg0);
+    func_00303EB8(buf, D_004732B8, (n & 3) + 1);
+    func_0024EED0(buf, 0x103);
+}
+
+extern char D_0044F9A8[];
+void func_00180468(s32);
+void func_00141658(void *, s32);
+void func_001447D8(void *);
+
+void func_0023C0E0(void *arg0, s32 arg1) {
+    *(void **)((char *)arg0 + 0x48) = D_0044F9A8;
+    func_00180468(*(s32 *)((char *)arg0 + 0x54));
+    func_00141658(arg0, 0);
+    if (arg1 & 1) {
+        func_001447D8(arg0);
     }
 }
 
-// func_00243580
-extern f32 D_00481EB0;
-extern f32 D_00481EB4;
+f32 D_00481EB0;
+f32 D_00481EB4;
 extern u8 D_007D7F20[];
-extern void func_00180D78(void *, s32, s32, s32, s32, s32, s32, s32, f32, f32, f32, s32, s32, s32, s32, s32);
+void func_00180D78(u8 *, s32, s32, s32, s32, s32, s32, s32, f32, f32, f32, s32, s32, s32, s32, s32);
 
 void func_00243580(s32 arg0, s32 arg1) {
-    if ((arg1 == 0xFFFF) && (arg0 == 1)) {
-        func_00180D78(D_007D7F20, 1, 1, 1, 0xC8, 1, 1, 1, 0x41780000, D_00481EB0, D_00481EB4, 0x14, 2, 0, 6, 0);
+    if (arg1 == 0xFFFF) {
+        if (arg0 == 1) {
+            func_00180D78(D_007D7F20, 1, 1, 1, 0xC8, 1, 1, 1, 15.5f, D_00481EB0, D_00481EB4, 0x14, 2, 0, 6, 0);
+        }
     }
 }

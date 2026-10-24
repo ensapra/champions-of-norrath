@@ -1,19 +1,5 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-M2C_UNK iSignalSema_2();                            /* extern */
-
-void func_002E0DE0(void) {
-    iSignalSema_2();
-}
+extern s32 D_00483F30;typedef struct{s8 b0,b1,b2,b3,b4;s8 pad[7];} S88B8;extern volatile S88B8 D_008D88B8;extern s8 D_008D8938[1008];void*func_003021B0(void*,s32,s32);
+void func_002CB388(void){s8*p;s32 i;if(!D_00483F30){func_003021B0(D_008D8938,0,0x3F0);D_008D88B8.b4=0;D_008D88B8.b1=0;D_008D88B8.b0=1;D_008D88B8.b3=32;p=&D_008D8938[0x374];for(i=7;i>=0;i--){*p=-2;p-=0x7e;}}}
+s32 func_002DDD80(s32*d,s32*s,u32 n){u32 i=0;n>>=2;if(n)do{s32 v=*s;i++;s++;*d=v;d++;}while(i<n);return 0;}
+s32 func_002DFB88(s32*d,s32*s,u32 n){u32 i=0;n>>=2;if(n)do{s32 v=*s;i++;s++;*d=v;d++;}while(i<n);return 0;}
+extern s32 D_00446078[];void iSignalSema_2(s32);void func_002E0DE0(void){iSignalSema_2(D_00446078[0]);}

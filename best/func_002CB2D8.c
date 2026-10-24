@@ -1,46 +1,10 @@
-void func_002CBE98(void);
-void func_002CBF30(void *);
-extern char D_008D86A0[];
-void func_002CB360(void) {
-    func_002CBE98();
-    func_002CBF30(D_008D86A0);
-}
-extern u8 D_008D88B8[12];
-void func_002CB338(void) {
-    D_008D88B8[0] = 1;
-    D_008D88B8[3] = 0x20;
-    D_008D88B8[4] = 0;
-    D_008D88B8[1] = 0;
-}
-extern s32 D_00483F30;
-extern u8 D_008D88B8_2[12];
-extern u8 D_008D8938[1008];
-void func_003021B0(void *, s32, s32);
-void func_002CB388(void) {
-    s8 *p;
-    s32 i;
-    if (D_00483F30 == 0) {
-        p = (s8*)(D_008D8938 + 0x374);
-        func_003021B0(D_008D8938, 0, 0x3F0);
-        D_008D88B8_2[4] = 0;
-        D_008D88B8_2[1] = 0;
-        D_008D88B8_2[0] = 1;
-        D_008D88B8_2[3] = 0x20;
-        i = 7;
-        do {
-            i--;
-            *p = -2;
-            p -= 0x7E;
-        } while (i >= 0);
-    }
-}
-s32 func_00301F68(void *, void *, s32, void *);
-s32 func_002CB2D8(u8 *arg0, u8 *arg1) {
+s32 func_00301F68(void *, void *, s32);
+s32 func_002CB2D8(u8 *a, u8 *b) {
     s32 ret = 0;
-    if ((s8)arg0[2] == (s8)arg1[2]) {
-        if ((arg0[0] == arg1[0]) && (arg0[1] == arg1[1])) {
-            ret = func_00301F68(arg0 + 3, arg1 + 3, arg0[0] + 1, arg0) == 0;
-        }
+    if ((s8)a[2] == (s8)b[2]) {
+        if (a[0] != b[0]) return 0;
+        if (a[1] != b[1]) return 0;
+        ret = func_00301F68(a + 3, b + 3, a[0] + 1) == 0;
     }
     return ret;
 }

@@ -1,30 +1,55 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+s32 SignalSema(s32);
 
-M2C_UNK SignalSema(s32);                            /* extern */
+typedef struct { s32 from; s32 to; } Pair19C;
+typedef struct { s32 key; Pair19C *list; s32 count; } Ent19C;
+extern s32 D_003642DC[];
+extern u8 *D_004804D0;
+extern u8 jtbl_004C006C[];
 
-void func_0019C714(void *arg0) {
-    if ((M2C_FIELD(arg0, s32 *, 0) != 0) && ((M2C_FIELD(arg0, s32 *, 0x1C) - M2C_FIELD(arg0, s32 *, 8)) >= M2C_FIELD(arg0, s32 *, 0))) {
-        M2C_FIELD(arg0, s32 *, 0) = 0;
-        SignalSema(M2C_FIELD(arg0, s32 *, 0x14));
+s32 func_0019C8A8(s32 *key)
+{
+    s32 n = D_003642DC[0];
+    s32 *arr = *(s32 **)(D_004804D0 + 0x54);
+    s32 i, j;
+
+    if (n == 0) {
+        return 0;
     }
-    if (M2C_FIELD(arg0, s32 *, 4) == 0) {
-        return;
+    for (i = 0; i < 4; i++) {
+        Ent19C *e = &((Ent19C *)(jtbl_004C006C + 0xF6DC))[i];
+        if (*key == e->key) {
+            for (j = 0; j < e->count; j++) {
+                Pair19C *pr = &e->list[j];
+                s32 *dst = &arr[n - 1];
+                if (pr->from == *dst) {
+                    *dst = pr->to;
+                    return 1;
+                }
+            }
+        }
     }
-    if (M2C_FIELD(arg0, s32 *, 8) < M2C_FIELD(arg0, s32 *, 4)) {
-        return;
+    return 0;
+}
+
+typedef struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
+    s32 sema14;
+    s32 sema18;
+    s32 unk1C;
+} S19C714;
+
+void func_0019C714(volatile S19C714 *p)
+{
+    if (p->unk0 != 0 && p->unk1C - p->unk8 >= p->unk0) {
+        p->unk0 = 0;
+        SignalSema(p->sema14);
     }
-    M2C_FIELD(arg0, s32 *, 4) = 0;
-    SignalSema(M2C_FIELD(arg0, s32 *, 0x18));
+    if (p->unk4 != 0 && p->unk8 >= p->unk4) {
+        p->unk4 = 0;
+        SignalSema(p->sema18);
+    }
 }

@@ -1,31 +1,46 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern u8 func_001C8098[];
+void func_00160784(void *);
+void func_00161438(void *);
+void func_001605E0(void *);
+void func_00171AE0(void *);
+s32 func_0014BA30(u8 *, u8 *);
 
-s32 func_0014BA30(s32, s32);                        /* extern */
-extern M2C_UNK func_001C8098;
+void func_0015FD3C(u8 *arg0)
+{
+    u8 *p = func_001C8098;
+    p = *(u8 **)(p + 0xD68);
+    ((void (*)(void))p)();
+    func_00171AE0(arg0 + 0x910 + (*(s32 *)(arg0 + 0x4EC) ^ 1) * 0x19C0);
+}
 
-s32 func_0015FDE4(void *arg0, void *arg1, s32 arg2) {
-    s32 temp_19;
-    s32 var_2;
+void func_0015FD80(void)
+{
+    u8 *p = func_001C8098;
+    p = *(u8 **)(p + 0xD68);
+    ((void (*)(void))p)();
+}
 
-    temp_19 = M2C_FIELD(&func_001C8098, s32 (**)(), 0xDB8)();
-    var_2 = temp_19;
-    if (func_0014BA30(arg1 + 0x3CB0, arg2 + 0x3CB0) == 0) {
-        M2C_FIELD(arg0, s32 *, 0x98) = 2;
-        M2C_FIELD(arg0, s64 *, 0x3CB0) = (s64) M2C_FIELD(arg1, s64 *, 0x3CB0);
-        M2C_FIELD(arg0, s64 *, 0x3CB8) = (s64) M2C_FIELD(arg1, s64 *, 0x3CB8);
-        var_2 = 1;
+void func_0015FDA4(void *arg0)
+{
+    u8 *p = func_001C8098;
+    p = *(u8 **)(p + 0xD70);
+    ((void (*)(void))p)();
+    func_00160784(arg0);
+    func_00161438(arg0);
+    func_001605E0(arg0);
+}
+
+s32 func_0015FDE4(u8 *a, u8 *b, u8 *c)
+{
+    u8 *p = func_001C8098;
+    s32 r;
+    p = *(u8 **)(p + 0xDB8);
+    r = ((s32 (*)(void))p)();
+    if (func_0014BA30(b + 0x3CB0, c + 0x3CB0) == 0) {
+        *(s32 *)(a + 0x98) = 2;
+        r = 1;
+        *(u64 *)(a + 0x3CB0) = *(u64 *)(b + 0x3CB0);
+        *(u64 *)(a + 0x3CB8) = *(u64 *)(b + 0x3CB8);
     }
-    return var_2;
+    return r;
 }

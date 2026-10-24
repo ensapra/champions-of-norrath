@@ -1,23 +1,10 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-extern M2C_UNK D_003642D0;
-
-void func_0019C00C(s32 arg0) {
-    if (arg0 == 1) {
-        M2C_FIELD(&D_003642D0, s32 *, 8) = 0;
-        return;
-    }
-    M2C_FIELD(&D_003642D0, s32 *, 8) = 1;
+typedef struct{s32 size;s32 count;u8 *rd;u8 *wr;u8 data[1];}Ring;
+void func_001AE898(Ring *r){ r->count++; r->wr++; if (r->wr == r->data + r->size) r->wr = r->data; }
+typedef struct { s32 a; s32 b; s32 flag; s32 c; s32 cnt; } G;
+extern G D_003642D0;
+G *func_0019C00C(s32 a) {
+    G *g = &D_003642D0;
+    if (a != 1) { g->flag = 1; return g; }
+    g->flag = 0;
+    return g;
 }

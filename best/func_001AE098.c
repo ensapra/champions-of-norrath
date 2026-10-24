@@ -1,19 +1,26 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+void func_001ADF70(u32, u32);
+void func_001AE098(u32 a, u32 b) {
+    func_001ADF70(a & 0xFFFFFFC0, b & 0xFFFFFFC0);
+}
 
-M2C_UNK func_001ADF70(s32);                         /* extern */
+typedef struct Q_1AE870 {
+    s32 unk0;
+    s32 unk4;
+    void *unk8;
+    void *unkC;
+    s32 unk10;
+} Q_1AE870;
+extern Q_1AE870 D_01107840;
+Q_1AE870 *func_001AE870(s32 arg0) {
+    Q_1AE870 *q = &D_01107840;
+    q->unk0 = arg0;
+    q->unk8 = &q->unk10;
+    q->unk4 = 0;
+    q->unkC = &q->unk10;
+    return q;
+}
 
-void func_001AE098(s32 arg1) {
-    func_001ADF70(arg1 & 0xFFFFFFC0);
+s32 _iEnableIntc(s32);
+void func_001AE3A0(s32 a) {
+    _iEnableIntc(a);
 }

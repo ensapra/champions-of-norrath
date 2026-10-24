@@ -1,40 +1,16 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern u8 D_010B6800[];
+extern void func_0011AD68(s32);
 
-M2C_UNK func_0011AD68(s32);                         /* extern */
-extern M2C_UNK func_01000000;
-
-void func_00105440(s32 arg0) {
-    M2C_UNK (*temp_2)(s32, void *);
-    s32 *temp_16_2;
-    s32 temp_16;
-    s32 temp_3;
-    void *temp_17;
-    void *temp_5;
-
-    temp_5 = &func_01000000 + 0xB6800;
-    temp_16 = arg0 * 0xB4;
-    temp_17 = temp_16 + temp_5;
-    temp_2 = M2C_FIELD(temp_17, M2C_UNK (**)(s32, void *), 0xB0);
-    if (temp_2 != NULL) {
-        temp_2(M2C_FIELD(temp_17, s32 *, 0), temp_17);
+void func_00105440(s32 i) {
+    s32 off = i * 0xB4;
+    u8 *e = D_010B6800 + off;
+    s32 *q;
+    void (*cb)(s32, void *) = *(void (**)(s32, void *))(e + 0xB0);
+    if (cb) cb(*(s32 *)e, e);
+    q = (s32 *)(D_010B6800 + (off + 0x30));
+    if (*q >= 0) {
+        func_0011AD68(*q);
+        *q = -1;
     }
-    temp_16_2 = temp_16 + 0x30 + temp_5;
-    temp_3 = *temp_16_2;
-    if (temp_3 >= 0) {
-        func_0011AD68(temp_3);
-        *temp_16_2 = -1;
-    }
-    M2C_FIELD(temp_17, s32 *, 0) = 0;
+    *(s32 *)e = 0;
 }

@@ -1,35 +1,51 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct { u32 spdifMode : 1; u32 screenType : 2; u32 videoOutput : 1; u32 japLanguage : 1; u32 ps1drvConfig : 8; u32 version : 3; u32 language : 5; u32 timezoneOffset : 11; } OsdConfigParam;
+extern u8 func_001D1C80[];
+s32 func_0017DCF0(void);
+void GetOsdConfigParam(OsdConfigParam *);
+s32 func_0017DDF0(void) {
+    OsdConfigParam c;
+    if (func_0017DCF0()) return func_001D1C80[0x44D];
+    GetOsdConfigParam(&c);
+    return c.spdifMode;
+}
 
-M2C_UNK func_001AE780(M2C_UNK);                     /* extern */
-M2C_UNK func_001AF710(void *);                      /* extern */
-s32 func_001B0AA8(void *);                          /* extern */
-extern M2C_UNK func_001CE218;
-extern M2C_UNK func_001D1C80;
-extern M2C_UNK jtbl_004C006C;
+extern s32 D_001D04E8, D_001D04EC;
+extern u8 D_001D0540[], D_001D05C0[], D_001D1690[], D_001D16C0[], D_001D1B00[], D_001D2040[];
+s32 func_0017C698(u32 id, s32 *out) {
+    s32 v;
+    if (id == 0x8001) v = D_001D04E8;
+    else if (id == 0x8003) v = (s32)D_001D0540;
+    else if (id == 0x8002) v = (s32)D_001D05C0;
+    else if (id == 0x8004) v = (s32)D_001D1690;
+    else if (id == 0x8011) { *out = D_001D04EC; return 1; }
+    else if (id == 0x8013) v = (s32)D_001D16C0;
+    else if (id == 0x8012) v = (s32)D_001D1B00;
+    else if (id == 0x8014) v = (s32)D_001D2040;
+    else v = 0;
+    *out = v;
+    return 1;
+}
 
-s32 func_0017C4B8(s32 arg0) {
-    if (arg0 == 0) {
-        if (M2C_FIELD(&func_001CE218, s32 *, 0x22B8) > 0) {
-            func_001AF710(&jtbl_004C006C + 0xC4F4);
-        }
-loop_5:
-        if (func_001B0AA8(&func_001D1C80 + 0x3C0) != 0) {
-            func_001AE780(0xFA0);
-            goto loop_5;
-        }
+extern s32 D_001D04D0, D_001D04DC;
+extern u8 D_004CC560[], D_004CC550[];
+s32 func_001AE780(s32);
+s32 func_001AF710(void *);
+s32 func_001B0AA8(void *);
+s32 func_0017C4B8(s32 a) {
+    if (a == 0) {
+        if (D_001D04D0 > 0) func_001AF710(D_004CC560);
+        while (func_001B0AA8(D_001D2040) != 0) func_001AE780(4000);
         return 0;
     }
-    return func_001B0AA8(&func_001D1C80 + 0x3C0);
+    return func_001B0AA8(D_001D2040);
+}
+
+s32 func_0017C418(s32 a) {
+    if (a == 0) {
+        if (D_001D04D0 > 0) func_001AF710(D_004CC550);
+        while (D_001D04DC != 0 || func_001B0AA8(D_001D1690) != 0) func_001AE780(4000);
+        return 0;
+    }
+    if (D_001D04DC != 0 || func_001B0AA8(D_001D1690) != 0) return 1;
+    return 0;
 }

@@ -1,14 +1,16 @@
-void func_001428E8(void *, void *);
-
-void func_001429B8(void *arg0, void *arg1) {
-    s32 idx = *(s32 *)((char*)arg0 + 0xC);
-    s32 cap = *(s32 *)((char*)arg0 + 0x4);
-    if (idx >= cap) {
-        func_001428E8(arg0, arg1);
-        idx = *(s32 *)((char*)arg0 + 0xC);
+typedef struct Vec { s32 *data; s32 size; s32 unk8; s32 count; } Vec;
+void func_001428E8(Vec *v);
+void func_001429B8(Vec *v, s32 *value) {
+    s32 *d;
+    s32 val;
+    s32 count = v->count;
+    if (count >= v->size) {
+        func_001428E8(v);
+        count = v->count;
     }
-    s32 base = *(s32 *)arg0;
-    s32 val = *(s32 *)arg1;
-    *(s32 *)((char*)arg0 + 0xC) = idx + 1;
-    *(s32 *)(base + idx * 4) = val;
+    d = v->data;
+    val = *value;
+    count++;
+    v->count = count;
+    d[count - 1] = val;
 }

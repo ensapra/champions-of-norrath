@@ -1,36 +1,39 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct S9070 { u8 pad[0xE]; s16 e; s16 f10; u8 pad2[6]; s16 f18; s16 f1a; u8 pad3[8]; f32 f24; f32 f28; } S9070;
+void func_002A9070(volatile S9070 *a) {
+    a->f18 = 13;
+    a->f28 = 5.0f;
+    a->f24 = 1.0f;
+    a->f10 = 1;
+    a->f1a = 5;
+    a->e = 1;
+}
 
-s32 func_00143A58(s32);                             /* extern */
-extern M2C_UNK D_00438EF8;
-
-s32 func_002A91A8(void *arg1) {
-    s32 var_2;
-    u32 temp_2;
-
-    var_2 = 0;
-    if (M2C_FIELD(arg1, s32 *, 0xC) & 0x40) {
-        temp_2 = M2C_FIELD(arg1, u32 *, 0x3C0);
-        if (temp_2 >= 4U) {
-            return 0;
+extern void *D_00438EF8[4];
+s32 func_00143A58(void *p);
+s32 func_002A91A8(void *unused, void *p) {
+    u32 t;
+    if (*(s32 *)((char *)p + 0xC) & 0x40) {
+        t = *(u32 *)((char *)p + 0x3C0);
+        if (t < 4) {
+            if (!func_00143A58(D_00438EF8[t])) return 1;
         }
-        if (func_00143A58(*(&D_00438EF8 + (temp_2 * 4))) != 0) {
-            return 0;
-        }
-        var_2 = 1;
-        /* Duplicate return node #8. Try simplifying control flow for better match */
-        return var_2;
     }
-    return var_2;
+    return 0;
+}
+
+typedef struct Vec3 { f32 x, y, z; } Vec3;
+void func_001DBBB0(s32, void *, Vec3 *, s32, void *, u32, f32, f32, f32);
+void func_002A85F8(void *unused, u8 *o) {
+    Vec3 v;
+    Vec3 *pv = &v;
+    *(s16 *)(o + 0x8E) = 0x30;
+    *(s16 *)(o + 0x90) = 0xBE;
+    *(s16 *)(o + 0x96) = 0x30;
+    *(s16 *)(o + 0x98) = 0xBE;
+    *(s16 *)(o + 0x8C) = 0x2C;
+    *(s16 *)(o + 0x9A) = 0x29;
+    *(s16 *)(o + 0x94) = 0x2C;
+    *(s16 *)(o + 0x92) = 0x29;
+    *pv = *(Vec3 *)(o + 0x10);
+    func_001DBBB0(*(s32 *)(o + 0x534), o + 0x120, pv, *(s16 *)(o + 0x38), o + 0x338, 0x5E808080, 1.0f, 1.0f, 0.0f);
 }

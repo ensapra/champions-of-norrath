@@ -1,23 +1,46 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern s8 func_001D1C80[];
+extern u8 D_010EE084[];
+extern u8 jtbl_004C006C[];
+void func_0017DC80(void);
 
-M2C_UNK func_0017DC80();                            /* extern */
-extern M2C_UNK func_001D1C80;
-
-s32 func_0017DCF0(void) {
-    if (M2C_FIELD(&func_001D1C80, s8 *, 0x450) == 0) {
+s32 func_0017DCF0(void)
+{
+    s8 *p = func_001D1C80 + 0x450;
+    if (p[0] == 0)
         func_0017DC80();
+    return p[4] == 0x54;
+}
+
+u8 func_0017DFE8(u8 a)
+{
+    return a - (a >> 4) * 6;
+}
+
+s32 func_0017F3F8(s32 idx, volatile u16 *out)
+{
+    u8 *e = *(u8 **)D_010EE084 + idx * 0x38;
+    u8 *q = e + 0x10;
+    volatile s32 *cnt = (volatile s32 *)(e + 0x30);
+    s32 r;
+    if (*(s32 *)(q + 0x24) <= 0)
+        return -1;
+    r = *cnt;
+    *out = *(u16 *)(e + r * 2 + 0x22);
+    *cnt = r + 1;
+    if (*(s32 *)(q + 0x20) >= 4)
+        *(s32 *)(q + 0x20) = 0;
+    *(s32 *)(q + 0x24) = *(s32 *)(q + 0x24) - 1;
+    return 0;
+}
+
+u32 func_0017F708(u32 sel, u32 ch)
+{
+    u8 *tab = jtbl_004C006C + 0xD43C + (sel & 1) * 0x54;
+    u32 i;
+    ch &= 0xFF;
+    for (i = 0; i < 0x15; i++) {
+        if (tab[i * 4] == ch)
+            return *(u16 *)(tab + i * 4 + 2) | 0x4000;
     }
-    return M2C_FIELD((&func_001D1C80 + 0x450), s8 *, 4) == 0x54;
+    return ch;
 }

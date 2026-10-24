@@ -1,37 +1,19 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 func_0018DFB8(void *arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s32 arg6, s32 arg7, u8 arg_sp0, u8 arg_sp8, u32 arg_sp10) {
-    s64 temp_3;
-
-    temp_3 = (s64) arg_sp10 << 0x20;
-    M2C_FIELD(arg0, s64 *, 0x10) = 6;
-    M2C_FIELD(arg0, s64 *, 0x28) = 1;
-    M2C_FIELD(arg0, s64 *, 0x20) = (s64) ((arg6 & 0xFF) | (0xFE00 << 0x2E) | (((s64) arg_sp0 << 0x10) | ((arg7 & 0xFF) << 8)) | ((s64) arg_sp8 << 0x18));
-    M2C_FIELD(arg0, s64 *, 0x30) = (s64) ((arg2 * 0x10) | ((arg3 * 0x10) << 0x10) | temp_3);
-    M2C_FIELD(arg0, s64 *, 0x48) = 5;
-    M2C_FIELD(arg0, s64 *, 0x40) = (s64) (((arg2 + arg4) * 0x10) | (((arg3 + arg5) * 0x10) << 0x10) | temp_3);
-    M2C_FIELD(arg0, s64 *, 0x58) = 0x47;
-    M2C_FIELD(arg0, s64 *, 8) = 0x47;
-    M2C_FIELD(arg0, s64 *, 0) = 0x30000;
-    M2C_FIELD(arg0, s64 *, 0x18) = 0;
-    M2C_FIELD(arg0, s64 *, 0x38) = 5;
-    if (arg1 != 0) {
-        M2C_FIELD(arg0, s64 *, 0x50) = (s64) (((arg1 & 3) << 0x11) | 0x10000);
-    } else {
-        M2C_FIELD(arg0, s64 *, 0x50) = 0x30000;
-    }
-    M2C_SYNC();
+s32 func_0018DFB8(s64 *p, s16 mode, s16 x, s16 y, s16 w, s16 h, u8 r, u8 g, u8 b, u8 a, u32 z)
+{
+    p[0] = 0x30000;
+    p[1] = 0x47;
+    p[2] = 6;
+    p[3] = 0;
+    p[4] = (s64)r | ((s64)0xFE00 << 46) | ((u64)g << 8) | ((u64)b << 16) | ((u64)a << 24);
+    p[5] = 1;
+    p[6] = (s64)(x << 4) | ((s64)(y << 4) << 16) | ((u64)z << 32);
+    p[7] = 5;
+    p[8] = (s64)((x + w) << 4) | ((s64)((y + h) << 4) << 16) | ((u64)z << 32);
+    p[9] = 5;
+    if (mode != 0)
+        p[10] = ((s64)(mode & 3) << 17) | 0x10000;
+    else
+        p[10] = 0x30000;
+    p[11] = 0x47;
     return 6;
 }

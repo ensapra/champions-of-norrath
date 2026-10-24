@@ -1,25 +1,10 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-M2C_UNK _ExecPS2(s32, s32, s32, s32);               /* extern */
-M2C_UNK func_001B6150(void *, s32, s32);            /* extern */
-M2C_UNK func_001B6268();                            /* extern */
-extern M2C_UNK jtbl_004C006C;
-extern M2C_UNK jtbl_00503023;
-
-void func_001B6270(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    func_001B6150(&jtbl_00503023 + 0x463D, arg2, arg3);
+extern u8 D_00507660[];
+extern s32 D_004C52F0[];
+void func_001B6150(void *, s32, s32);
+void func_001B6268(void);
+s32 _ExecPS2(void *, void *, s32, char **);
+s64 func_001B6270(void *entry, void *gp, s32 argc, char **argv){
+    func_001B6150(D_00507660, argc, (s32)argv);
     func_001B6268();
-    _ExecPS2(arg0, arg1, arg2, M2C_FIELD(&jtbl_004C006C, s32 *, 0x5284) + 4);
+    return _ExecPS2(entry, gp, argc, (char **)(D_004C52F0[0] + 4));
 }

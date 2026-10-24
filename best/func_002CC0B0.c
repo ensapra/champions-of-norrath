@@ -1,41 +1,24 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 func_002CC0B0(void *arg0, void *arg1) {
-    s32 temp_2;
-    s32 temp_3_2;
-    s32 var_6;
-    void *temp_3;
-    void *temp_3_3;
-
-    var_6 = 0;
-    if (M2C_FIELD(arg0, s32 *, 0xC) != 0) {
-        temp_3 = M2C_FIELD(arg0, void **, 8);
-        M2C_FIELD(arg1, s8 *, 0) = (s8) M2C_FIELD(temp_3, s8 *, 0);
-        M2C_FIELD(arg1, s8 *, 1) = (s8) M2C_FIELD(temp_3, s8 *, 1);
-        temp_2 = M2C_FIELD(arg0, s32 *, 0xC) - 1;
-        M2C_FIELD(arg0, s32 *, 0xC) = temp_2;
-        if (temp_2 > 0) {
-loop_3:
-            temp_3_2 = var_6 * 2;
-            var_6 += 1;
-            temp_3_3 = temp_3_2 + M2C_FIELD(arg0, void **, 8);
-            M2C_FIELD(temp_3_3, s8 *, 0) = (s8) M2C_FIELD(temp_3_3, s8 *, 2);
-            M2C_FIELD(temp_3_3, s8 *, 1) = (s8) M2C_FIELD(temp_3_3, s8 *, 3);
-            if (var_6 < M2C_FIELD(arg0, s32 *, 0xC)) {
-                goto loop_3;
-            }
+typedef struct { s32 a; s32 b; s8 *buf; s32 n; } Q;
+s32 func_002CC0B0(Q *p, s8 *out) {
+    s32 i = 0;
+    s8 *d;
+    s32 x, y;
+    if (p->n != 0) {
+        d = p->buf;
+        x = d[0];
+        y = d[1];
+        out[0] = x;
+        out[1] = y;
+        p->n = p->n - 1;
+        if (p->n > 0) {
+            do {
+                d = p->buf + i * 2;
+                i++;
+                x = d[2];
+                y = d[3];
+                d[0] = x;
+                d[1] = y;
+            } while (i < p->n);
         }
         return 1;
     }

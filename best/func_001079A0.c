@@ -1,52 +1,32 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct {
+    s32 key;
+    s32 pad[5];
+    s32 f18;
+} E;
 
-extern M2C_UNK func_01000000;
+extern u8 D_010C1E80[];
 
-void func_001079A0(s32 arg0) {
-    s32 *var_3;
-    s32 var_11;
-    s32 var_12;
-    s32 var_6;
-    s32 var_9;
-    void *temp_2;
-    void *temp_7;
-    void *temp_8;
-    void *var_5;
-
-    temp_2 = &func_01000000 + 0xC1E80;
-    var_12 = 0;
-    var_3 = temp_2 + 0xC;
-    var_11 = 1;
+void func_001079A0(s32 v) {
+    s32 off = 0;
+    s32 *cnt = (s32 *)(D_010C1E80 + 0xC);
+    s32 k = 1;
     do {
-        var_9 = 0;
-        if (*var_3 > 0) {
-            temp_7 = var_12 + temp_2;
-            var_6 = 0;
-            temp_8 = M2C_FIELD(temp_7, void **, 0);
-            var_5 = temp_8;
+        s32 i = 0;
+        if (*cnt > 0) {
+            u8 *q = D_010C1E80 + off;
+            s32 o = 0;
+            E *items = *(E **)q;
+            E *e = items;
             do {
-                var_6 += 0x1C;
-                if (M2C_FIELD(var_5, s32 *, 0) == arg0) {
-                    M2C_FIELD(var_5, s32 *, 0x18) = 1;
-                }
-                var_9 += 1;
-                var_5 = temp_8 + var_6;
-            } while (var_9 < M2C_FIELD(temp_7, s32 *, 0xC));
+                o += 0x1C;
+                if (e->key == v)
+                    e->f18 = 1;
+                i++;
+                e = (E *)((u8 *)items + o);
+            } while (i < *(s32 *)(q + 0xC));
         }
-        var_11 -= 1;
-        var_12 += 0x14;
-        var_3 += 0x14;
-    } while (var_11 >= 0);
+        k--;
+        off += 0x14;
+        cnt += 5;
+    } while (k >= 0);
 }

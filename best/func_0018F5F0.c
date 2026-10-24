@@ -1,32 +1,44 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern s32 D_00362D80[];
+extern u8 jtbl_004C006C[];
+void func_001AF710(void *);
+void func_0018FD18(void *);
 
-M2C_UNK func_0018FD18(void *);                      /* extern */
-M2C_UNK func_001AF710(void *);                      /* extern */
-extern M2C_UNK jtbl_004C006C;
+typedef struct { s32 pad[4]; u32 qwc; } Dma;
 
-void func_0018F5F0(void *arg0, u32 arg1, s32 arg2) {
-    s32 var_16;
+u32 func_0018F678(u32 a)
+{
+    if ((a >> 28) == 7)
+        a = (a & 0x0FFFFFFF) | 0x80000000;
+    return a;
+}
 
-    if ((u32) M2C_FIELD(arg0, u32 *, 0x10) < arg1) {
-        var_16 = ((arg2 != 0) ? arg2 : 0x01000000) - 1;
+void func_0018F6A0(s8 *p, s32 n)
+{
+    s32 i;
+    if (n != 0) {
+        i = n - 1;
         do {
-            if (var_16 < 0) {
-                func_001AF710(&jtbl_004C006C + 0xEA34);
-                func_0018FD18(arg0);
-            }
-            var_16 -= 1;
-        } while ((u32) M2C_FIELD(arg0, u32 *, 0x10) < arg1);
+            *p = 0;
+            i--;
+            p++;
+        } while (i != -1);
+    }
+}
+
+s32 func_0018F6D8(u32 i)
+{
+    if (i < 10)
+        return D_00362D80[i];
+    return 0;
+}
+
+void func_0018F5F0(volatile Dma *d, u32 n, s32 timeout)
+{
+    s32 i = timeout ? timeout : 0x1000000;
+    while (d->qwc < n) {
+        if (--i < 0) {
+            func_001AF710(jtbl_004C006C + 0xEA34);
+            func_0018FD18((void *)d);
+        }
     }
 }

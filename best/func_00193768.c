@@ -1,42 +1,24 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern u8 D_004CECB8[];
+extern u8 D_004CED20[];
+extern u8 D_004CED30[];
+void *D_00480488;
+void func_001A1568(void *, s32, void *);
+s32 func_001936A8(s32 a, s32 n);
+typedef struct { s32 *data; s32 count; s32 cap; s32 pad; s32 grow; } Vec;
 
-s32 func_001936A8(s32, s32);                        /* extern */
-M2C_UNK func_001A1568(void *, M2C_UNK, void *);     /* extern */
-extern void *D_00480488;
-extern M2C_UNK jtbl_004C006C;
-
-void func_00193768(void *arg0) {
-    s32 temp_2;
-    s32 temp_3;
-    s32 temp_5;
-    s32 var_2;
-
-    if (M2C_FIELD(arg0, s32 *, 0x10) <= 0) {
-        func_001A1568(&jtbl_004C006C + 0xEC4C, 0x56, &jtbl_004C006C + 0xECC4);
+void func_00193768(Vec *v) {
+    s32 n, sz;
+    s32 d;
+    if (*(volatile s32 *)&v->grow <= 0) func_001A1568(D_004CECB8, 0x56, D_004CED30);
+    d = (s32)v->data;
+    n = v->count + v->grow;
+    v->count = n;
+    sz = n * 8;
+    if (d != 0) v->data = (s32 *)func_001936A8(d, sz);
+    else {
+        void *p = D_00480488;
+        p = *(void **)((u8 *)p + 0x104);
+        v->data = (s32 *)((s32 (*)(s32, s32))p)(0x10, sz);
     }
-    temp_5 = M2C_FIELD(arg0, s32 *, 0);
-    temp_2 = M2C_FIELD(arg0, s32 *, 4) + M2C_FIELD(arg0, s32 *, 0x10);
-    M2C_FIELD(arg0, s32 *, 4) = temp_2;
-    temp_3 = temp_2 * 8;
-    if (temp_5 != 0) {
-        var_2 = func_001936A8(temp_5, temp_3);
-    } else {
-        var_2 = M2C_FIELD(D_00480488, s32 (**)(M2C_UNK, s32), 0x104)(0x10, temp_3);
-    }
-    M2C_FIELD(arg0, s32 *, 0) = var_2;
-    if (M2C_FIELD(arg0, s32 *, 0) == 0) {
-        func_001A1568(&jtbl_004C006C + 0xEC4C, 0x56, &jtbl_004C006C + 0xECB4);
-    }
+    if (v->data == 0) func_001A1568(D_004CECB8, 0x56, D_004CED20);
 }

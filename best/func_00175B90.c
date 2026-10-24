@@ -1,32 +1,19 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern u32 D_001D0290[];
+extern u32 D_001D0294[];
 
-extern M2C_UNK func_001CE218;
-
-u32 func_00175B90(s32 arg0, s32 arg1) {
-    u32 var_2;
-
-    if (arg1 != -1) {
-        if (arg1 != 1) {
-            return 0U;
-        }
-        var_2 = ((u32) (M2C_FIELD(&func_001CE218, u32 *, 0x207C) - arg0) >> 5) << 5;
-        /* Duplicate return node #5. Try simplifying control flow for better match */
-        *(&func_001CE218 + 0x207C) = var_2;
-        return ((u32) M2C_FIELD(&func_001CE218, u32 *, 0x207C) >= (u32) M2C_FIELD(&func_001CE218, u32 *, 0x2078)) ? var_2 : M2C_FIELD(&func_001CE218, u32 *, 0x2078);
+u32 func_00175B90(u32 n, s32 mode) {
+    u32 v;
+    u32 *p = D_001D0294;
+    switch (mode) {
+    case -1:
+        v = *p - n;
+        break;
+    case 1:
+        v = ((*p - n) >> 5) << 5;
+        break;
+    default:
+        return 0;
     }
-    var_2 = M2C_FIELD(&func_001CE218, u32 *, 0x207C) - arg0;
-    *(&func_001CE218 + 0x207C) = var_2;
-    return ((u32) M2C_FIELD(&func_001CE218, u32 *, 0x207C) >= (u32) M2C_FIELD(&func_001CE218, u32 *, 0x2078)) ? var_2 : M2C_FIELD(&func_001CE218, u32 *, 0x2078);
+    *p = v;
+    return (D_001D0294[0] < D_001D0290[0]) ? D_001D0290[0] : v;
 }

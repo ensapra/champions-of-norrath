@@ -1,45 +1,43 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern void func_001B64E0(u32, s32);
+void func_001B6560(s32 a) { func_001B64E0(0xB0001010, a); }
 
-s32 func_001B5C80();                                /* extern */
-M2C_UNK func_001B5CD8();                            /* extern */
-M2C_UNK func_001B6560(s32);                         /* extern */
-M2C_UNK func_001B68D0(s32);                         /* extern */
-s32 func_001B6DC0();                                /* extern */
+extern u8 jtbl_004C006C[];
+u32 func_001B6790(void)
+{
+    if (*(s32 *)(jtbl_004C006C + 0x4EEC) < 0) {
+        return 0x80008001;
+    }
+    return *(volatile u32 *)0x10001010 & 3;
+}
 
-s32 func_001B67C0(void) {
-    s32 temp_16;
-    s32 temp_2;
-    s32 var_2;
-
-    temp_16 = func_001B5C80();
-    temp_2 = *(s32 *)0x10001010;
-    if (temp_2 & 0x80) {
-        var_2 = 1;
-        if (temp_16 != 0) {
+s32 func_001B5C80(void);
+void func_001B5CD8(void);
+void func_001B68D0(s32);
+s32 func_001B6DC0(void);
+s32 func_001B67C0(void)
+{
+    s32 di = func_001B5C80();
+    u32 v = *(volatile u32 *)0x10001010;
+    if (v & 0x80) {
+        if (di) {
             func_001B5CD8();
-            return 1;
         }
-        /* Duplicate return node #5. Try simplifying control flow for better match */
-        return var_2;
+        return 1;
     }
-    func_001B6560((temp_2 & 0xFFFFF3FF) | 0x80);
+    func_001B6560((v & 0xFFFFF3FF) | 0x80);
     func_001B68D0(func_001B6DC0());
-    var_2 = 0;
-    if (temp_16 != 0) {
+    if (di) {
         func_001B5CD8();
-        var_2 = 0;
     }
-    return var_2;
+    return 0;
+}
+
+void _LoadExecPS2(char *, s32, char **);
+char *func_001B6150(char *);
+void func_001B6268(void);
+void func_001B62E0(char *name, s32 argc)
+{
+    char *path = func_001B6150(name);
+    func_001B6268();
+    _LoadExecPS2(path, argc, *(char ***)(jtbl_004C006C + 0x5284) + 1);
 }

@@ -1,63 +1,119 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct {
+    u8 pad0[0x980];
+    s32 *list;
+    u8 pad984[0x8];
+    u8 sub98C[0x38];
+    s32 count;
+} Obj16D;
 
-void func_0016B020(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, void *arg6) {
-    s16 temp_2;
-    s16 temp_4;
-    s32 var_13;
-    s32 var_14;
-    s32 var_5;
-    u16 temp_11;
-    u16 temp_12;
-    void *temp_10;
-    void *temp_10_2;
-    void *var_10;
+void func_00151788(void *, s32);
+void func_0014B7F0(s32, s32);
 
-    var_14 = 1;
-    var_13 = -1;
-    if (arg1 != 1) {
-        var_14 = -1;
-        if (arg1 >= 2) {
-            var_13 = 1;
-            if (arg1 != 2) {
-                if (arg1 != 3) {
-                    var_13 = -1;
-                } else {
-                    var_14 = 1;
-                }
-            }
-        }
+void func_0016D728(Obj16D *o, s32 arg)
+{
+    s32 i;
+    func_00151788(o->sub98C, 1);
+    for (i = 0; i < o->count; i++) {
+        func_0014B7F0(o->list[i], arg);
     }
-    temp_12 = M2C_FIELD(arg0, u16 *, 0x4E0);
-    var_5 = 7;
-    temp_11 = M2C_FIELD(arg0, u16 *, 0x4DC);
-    M2C_FIELD(arg6, s16 *, 0x12) = (s16) (temp_12 + arg3);
-    M2C_FIELD(arg6, s16 *, 0x10) = (s16) (temp_11 + arg2);
-    var_10 = arg6 + 0x20;
-    do {
-        var_5 -= 1;
-        M2C_FIELD(var_10, s64 *, 0x10) = (s64) M2C_FIELD(var_10, s64 *, -0x10);
-        var_10 += 0x20;
-    } while (var_5 >= 0);
-    temp_2 = temp_12 + ((var_13 * arg5) + arg3);
-    M2C_FIELD(var_10, s16 *, 0x12) = temp_2;
-    M2C_FIELD(var_10, s16 *, 0x10) = (s16) (temp_11 + arg2);
-    temp_10 = var_10 + 0x20;
-    temp_4 = temp_11 + ((var_14 * arg4) + arg2);
-    M2C_FIELD(temp_10, s16 *, 0x12) = temp_2;
-    M2C_FIELD(temp_10, s16 *, 0x10) = temp_4;
-    temp_10_2 = temp_10 + 0x20;
-    M2C_FIELD(temp_10_2, s16 *, 0x12) = (s16) (temp_12 + arg3);
-    M2C_FIELD(temp_10_2, s16 *, 0x10) = temp_4;
+}
+
+typedef union {
+    u64 d;
+    struct {
+        s16 x;
+        s16 y;
+    } s;
+} Pos16B;
+
+typedef struct {
+    u8 pad[0x10];
+    Pos16B p;
+    u64 pad18;
+} Vtx16B;
+
+typedef struct {
+    u8 pad[0x4DC];
+    u16 x;
+    u16 pad4DE;
+    u16 y;
+} Obj16B;
+
+void func_0016B020(Obj16B *o, s32 dir, s32 x, s32 y, s32 w, s32 h, Vtx16B *v)
+{
+    s32 sx, sy;
+    s32 i;
+    u16 oy, ox;
+
+    switch (dir) {
+    case 1:
+        sx = 1;
+        sy = -1;
+        break;
+    case 2:
+        sx = -1;
+        sy = 1;
+        break;
+    case 3:
+        sx = 1;
+        sy = 1;
+        break;
+    case 0:
+    default:
+        sx = -1;
+        sy = -1;
+        break;
+    }
+    oy = o->y;
+    ox = o->x;
+    v->p.s.x = ox + x;
+    v->p.s.y = oy + y;
+    v++;
+    for (i = 7; i >= 0; i--) {
+        v->p.d = v[-1].p.d;
+        v++;
+    }
+    v->p.s.x = ox + x;
+    v->p.s.y = oy + (sy * h + y);
+    v++;
+    v->p.s.x = ox + (sx * w + x);
+    v->p.s.y = oy + (sy * h + y);
+    v++;
+    v->p.s.x = ox + (sx * w + x);
+    v->p.s.y = oy + y;
+}
+
+typedef struct {
+    u64 lo : 6;
+    u64 bit : 1;
+    u64 rest : 57;
+} BF160;
+
+typedef struct {
+    u8 pad[0x4B0];
+    BF160 a;
+    u8 pad4B8[0x118];
+    BF160 b;
+    u8 pad5D8[0x19C0 - 0x5D8];
+} Sub160;
+
+typedef struct {
+    u8 hdr[0x10];
+    Sub160 subs[2];
+    u8 pad[0x30];
+    s32 flag;
+} Inner160;
+
+typedef struct {
+    u8 pad[0x4EC];
+    s32 idx;
+    u8 pad4F0[0x910 - 0x4F0];
+    Inner160 in;
+} Obj160;
+
+void func_001606A0(Obj160 *o)
+{
+    Inner160 *in = &o->in;
+    Sub160 *s = &in->subs[o->idx];
+    s->a.bit = s->b.bit = in->flag;
 }

@@ -1,17 +1,16 @@
-extern s32 func_002FF8C0(s32,s64,s32,s32,s32);
-struct FABEntry { s32 x[8]; s64 link; };
-s32 func_002FAB30(s32 start, struct FABEntry *array, s32 arg5) {
-    s64 index = start;
-    s8 state;
-    s32 *flag = (s32 *)((char *)array + 0x3FC);
-    state = *(s8 *)((char *)array + 0x3FC + index);
-    if (state == 2) {
+s32 func_002FF8C0(s32, void *, s32, s32, void *);
+s32 func_002FAB30(s32 idx, u8 *a) {
+    u8 *b = a + 0xC;
+    s32 off = idx + 0x3F0;
+    s8 st = b[off];
+    if (st == 2) {
         do {
-            index = (s32)array[index].link;
-            state = *(s8 *)((char *)array + 0x3FC + index);
-        } while (state == 2);
+            idx = (s32)*(s64 *)(a + idx * 8 + 0x20);
+            off = idx + 0x3F0;
+            st = b[off];
+        } while (st == 2);
     }
-    if (state == 1)
-        return array[0].x[0] + (s32)array[index].link;
-    return func_002FF8C0(1, index, (s32)(index + 0x3F0), (s32)((char *)array + 0xC), arg5);
+    if (st == 1)
+        return *(s32 *)a + *(s32 *)(a + idx * 8 + 0x20);
+    return func_002FF8C0(1, a, idx, off, b);
 }

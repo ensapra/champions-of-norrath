@@ -1,33 +1,6 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 func_002E4E48(M2C_UNK, s32 *, M2C_UNK, s32);    /* extern */
-s32 func_002E4F58(s32, s32, s32 *, M2C_UNK, s32);   /* extern */
-
-s32 func_002E59D8(s32 arg0, s32 *arg1, s32 arg2, s32 arg3) {
-    s32 var_2;
-
-    *arg1 = arg3;
-    if (func_002E4E48(0xA, arg1, 4, (arg3 * 0x48) | 4) >= 0) {
-        var_2 = *arg1;
-        if (var_2 >= 0) {
-            var_2 = func_002E4F58(arg0, arg2, arg1, 1, var_2 * 0x48);
-            if (var_2 >= 0) {
-                var_2 = *arg1;
-            }
-        }
-        return var_2;
-    }
-    return -0x21E;
-}
+typedef struct {s32 x[7];} Entry; extern Entry D_008DD8D0[][4];u8*func_002D39B0(s32,s32);
+u8 func_002D3CE0(s32 a,s32 b){if(D_008DD8D0[a][b].x[4])return func_002D39B0(a,b)[113];return 0;}
+s32 func_002E4E48(s32,s32,void*,s32,s32);s32 func_002E4F58(s32,s32,void*,s32,s32);
+s32 func_002E59D8(s32 a,s32*p,s32 b,s32 c){s32 r;*p=c;r=func_002E4E48(a,10,p,4,(c*72)|4);if(r<0)return -542;r=*p;if(r<0)return r;{r=func_002E4F58(a,b,p,1,r*72);if(r<0)return r;r=*p;}return r;}
+s32 func_002E5A70(s32 a,s32*p,s32 b,s32 c){s32 r;*p=c;r=func_002E4E48(a,11,p,4,(c*16)|4);if(r<0)return -542;r=*p;if(r>=0){r=func_002E4F58(a,b,p,1,(u32)r<<4);if(r>=0)r=*p;}return r;}
+s32 func_002E5AF8(s32 a,s32*p,s32 b){s32 r;*p=b;r=func_002E4E48(a,12,p,4,4);if(r<0)r=-542;else r=*p;return r;}

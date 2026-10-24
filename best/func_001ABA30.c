@@ -1,22 +1,10 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 func_001ABA30(s64 arg0) {
-    s32 temp_4;
-    s64 temp_3;
-
-    temp_3 = (s64) (arg0 << 0x20) >> 0x20;
-    temp_4 = 0x7FF00000 - (((arg0 >> 0x20) & 0x7FFFFFFF) | ((u32) (temp_3 | -temp_3) >> 0x1F));
-    return 1 - ((u32) (temp_4 | -temp_4) >> 0x1F);
+typedef union { f64 d; struct { u32 lo, hi; } w; } DU;
+#define EXTRACT_WORDS(ix0,ix1,d_) do{DU u_;u_.d=(d_);(ix0)=u_.w.hi;(ix1)=u_.w.lo;}while(0)
+s32 func_001ABA30(f64 x) {
+ s32 hx, lx;
+ EXTRACT_WORDS(hx, lx, x);
+ hx &= 0x7fffffff;
+ hx |= (u32)(lx | -lx) >> 31;
+ hx = 0x7ff00000 - hx;
+ return 1 - (s32)((u32)(hx | -hx) >> 31);
 }

@@ -1,70 +1,9 @@
-extern char D_00451910[];
-extern char D_004862B0[];
-
-void func_002A2B38(void *arg0) {
-    *(s16 *)((char *)arg0 + 0xC) = 0x1E;
-    *(s32 *)((char *)arg0 + 0x8) = 3;
-    *(void **)((char *)arg0 + 0x60) = (void *)D_00451910;
-    *(void **)((char *)arg0 + 0x0) = (void *)D_004862B0;
-    *(s32 *)((char *)arg0 + 0x4) = 0;
-}
-
-extern f32 D_00482D44;
-extern f32 D_00482D48;
-
-void func_002B2D08(void *arg0) {
-    *(s16 *)((char *)arg0 + 0x18) = 0x12;
-    *(f32 *)((char *)arg0 + 0x2C) = 0.25f;
-    *(f32 *)((char *)arg0 + 0x24) = D_00482D44;
-    *(s16 *)((char *)arg0 + 0x1A) = 0x23;
-    *(f32 *)((char *)arg0 + 0x28) = D_00482D48;
-    *(s16 *)((char *)arg0 + 0x12) = 5;
-    *(s16 *)((char *)arg0 + 0x1C) = 1;
-    *(s16 *)((char *)arg0 + 0xE) = 1;
-    *(s16 *)((char *)arg0 + 0x10) = 1;
-}
-
-typedef struct { s64 a; s32 b; } T2D50;
-s32 func_001441B8(s32);
-void func_002B1460(s32, s32, s32, void *, void *, s32);
-
-s32 func_002B2D50(s32 arg0, s32 arg1, void *arg2, void *arg3, s16 arg4) {
-    T2D50 tmp = *(T2D50 *)arg3;
-    s16 *p = (s16 *)arg2;
-    p[0x90/2] = 0x87;
-    p[0x92/2] = 0x40;
-    p[0x98/2] = 0x87;
-    p[0x9A/2] = 0x40;
-    p[0x8C/2] = 0xFF;
-    p[0x8E/2] = 0xC8;
-    p[0x94/2] = 0xFF;
-    p[0x96/2] = 0xC8;
-    {
-        s32 r = func_001441B8(0x80);
-        if (r != 0)
-            func_002B1460(r, arg4, arg1, &tmp, arg2, arg0);
-    }
-    return 0;
-}
-
-u8 D_00483F10;
-extern s32 D_00452900[];
-void func_00194300(void *);
-void func_00141658(void *, s32);
-void func_001447D8(void *);
-
-void func_002B5610(void *arg0, s32 arg1) {
-    u8 v = D_00483F10 - 1;
-    *(void **)((char *)arg0 + 0x48) = D_00452900;
-    if ((s8)v >= 0) {
-        D_00483F10 = v;
-    } else {
-        D_00483F10 = 0;
-    }
-    func_00194300((char *)arg0 + 0x50);
-    func_00194300((char *)arg0 + 0x4C);
-    func_00141658(arg0, 0);
-    if (arg1 & 1) {
-        func_001447D8(arg0);
-    }
-}
+s32 D_00483F30;extern u8 D_008D88B8[12],D_008D8938[1008];void* func_003021B0(void*,s32,s32);
+void func_002CB388(void){s8*base,*p;s32 i;if(!D_00483F30){base=(s8*)D_008D8938;func_003021B0(base,0,1008);p=base+0x374;D_008D88B8[4]=0;D_008D88B8[1]=0;D_008D88B8[3]=32;D_008D88B8[0]=1;i=7;do{i--;*p=-2;p-=126;}while(i>=0);}}
+typedef union __attribute__((packed,aligned(4))){struct __attribute__((packed)){u64 a;s32 b;} v;s16 h[6];} P;
+s32 func_001441B8(s32);void func_002AFFA8(s32,s32,s32,s32);void func_002B1460(s32,s32,s32,void*,void*,s32);
+s32 func_002B1250(s32 a,s32 b,s32 c,P*d){volatile P copy=*d;s32 r=func_001441B8(100);if(r)func_002AFFA8(r,b,c,a);return r;}
+s32 func_002B2D50(s32 a,s32 b,void*c,P*d,s16 e){volatile P tmp=*d;volatile s16*p=c;((s16*)p)[72]=135;((s16*)p)[73]=64;p[76]=135;p[77]=64;p[70]=255;p[71]=200;p[74]=255;p[75]=200;{s32 r=func_001441B8(128);if(r)func_002B1460(r,e,b,&tmp,c,a);}return 0;}
+typedef struct {u8 pad[14];volatile s16 f0e,f10,f12,f14,f16; s16 f18;volatile s16 f1a,f1c,f1e,f20;u8 pad2[2];volatile f32 f24,f28,f2c;} Params;
+f32 D_00482D44,D_00482D48;
+void func_002B2D08(Params*p){f32 a=D_00482D44,b=D_00482D48;p->f18=18;p->f2c=0.25f;p->f24=a;p->f1a=35;p->f28=b;p->f12=5;p->f1c=1;p->f0e=1;p->f10=1;}

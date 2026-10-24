@@ -1,35 +1,8 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-extern M2C_UNK D_0047E1F1;
-
-s8 *func_00304E38(s8 *arg0) {
-    s8 *var_5;
-    u8 temp_2;
-    u8 var_3;
-
-    var_5 = arg0;
-    var_3 = (u8) *arg0;
-    if (*arg0 != 0) {
-        do {
-            if (*(&D_0047E1F1 + (s8) var_3) & 1) {
-                *var_5 = (s8) var_3 + 0x20;
-            }
-            var_5 += 1;
-            temp_2 = *var_5;
-            var_3 = temp_2;
-        } while (temp_2 != 0);
-    }
-    return arg0;
-}
+s64 D_00486DC8;extern char D_00460CE0[],D_00483918[];extern s32 D_008EADB8[],D_008EAE88[];void func_00312DD0(void);void func_002FD348(s32*,char*,void*);
+s32*func_0030DB68(void){if(!D_008EAE88[0]){if(!D_008EADB8[0]){func_00312DD0();func_002FD348(D_008EADB8,D_00483918,&D_00486DC8);}func_002FD348(D_008EAE88,D_00460CE0,D_008EADB8);}return D_008EAE88;}
+extern u8 D_0047E1F1[263];
+char*func_003068C8(char*a){char*p=a;char s=*a;u8 c=*a;if(s){do{s8 sc=(s8)c;if(D_0047E1F1[sc]&2)*p=sc-32;p++;c=*p;}while(c);}return a;}
+char*func_00304E38(char*a){char*p=a;char s=*a;u8 c=*a;if(s){do{s8 sc=(s8)c;if(D_0047E1F1[sc]&1)*p=sc+32;p++;c=*p;}while(c);}return a;}
+typedef struct {char*p;s32 r,w;u16 flags;u16 fd;char*base;s32 size;char pad[0x3c];void*reent;char tail[8];} Stream;
+extern char D_00448480[];s32 func_00306A60(void*,const char*,void*);
+s32 func_00303D90(char*buf,u32 n,const char*fmt,...){Stream f;void*ap=(char*)__builtin_next_arg(fmt)-40;s32 r;f.flags=0x208;f.base=buf;f.size=n?n-1:0;f.reent=*(void**)D_00448480;f.p=buf;f.w=f.size;r=func_00306A60(&f,fmt,ap);if(n)*f.p=0;return r;}

@@ -1,43 +1,6 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 PollSema(s32);                                  /* extern */
-M2C_UNK SignalSema(s32);                            /* extern */
-s32 func_001B08B0(void *, M2C_UNK, M2C_UNK, void *, M2C_UNK, void *, M2C_UNK, M2C_UNK *, s32); /* extern */
-extern M2C_UNK func_0017A088;
-extern M2C_UNK func_001CE218;
-extern M2C_UNK func_01000000;
-
-s32 func_0017A098(s32 arg0) {
-    s32 temp_2;
-    void *temp_3;
-    void *temp_7;
-
-    temp_3 = &func_01000000 + 0xEB640;
-    if (M2C_FIELD(temp_3, s32 *, 0x24) == 0) {
-        return -0x64;
-    }
-    temp_7 = &func_01000000 + 0xEB6C0;
-    if (PollSema(M2C_FIELD(&func_001CE218, s32 *, 0x226C)) < 0) {
-        return -0xC8;
-    }
-    M2C_FIELD(temp_7, s32 *, 0x14) = arg0;
-    temp_2 = func_001B08B0(temp_3, 0x14, 1, temp_7, 0x30, &func_01000000 + 0xECC00, 4, &func_0017A088, 0);
-    if (temp_2 == 0) {
-        M2C_FIELD(&func_001CE218, s32 *, 0x2268) = 0x14;
-    } else {
-        SignalSema(M2C_FIELD(&func_001CE218, s32 *, 0x226C));
-    }
-    return temp_2;
-}
+extern u8 func_001CE218[],func_01000000[];s32 iSignalSema(s32);s32 PollSema(s32);s32 SignalSema(s32);s32 DeleteSema(s32);
+void func_0017A088(void){iSignalSema(*(s32*)(func_001CE218+0x2270));}
+s32 func_001B08B0(void*,s32,s32,void*,s32,void*,s32,void*,s32);
+s32 func_0017A098(s32 a){u8*p=func_01000000+0xEB640;u8*q=func_01000000+0xEB6C0;s32 r;if(*(s32*)(p+36)==0)return -100;if(PollSema(*(s32*)(func_001CE218+0x226C))<0)return -200;*(s32*)(q+20)=a;r=func_001B08B0(p,20,1,q,48,func_01000000+0xECC00,4,func_0017A088,0);if(r==0)*(s32*)(func_001CE218+0x2268)=20;else SignalSema(*(s32*)(func_001CE218+0x226C));return r;}
+void*func_0017A058(void**a,void**b){u8*p=func_01000000+0xECC00;*a=p;*b=func_001CE218+0x2268;*(s32*)(p+60)=*(s32*)(func_001CE218+0x226C);return func_01000000+0xEB640;}
+s32 func_0017A008(void){if(*(s32*)(func_001CE218+0x226C)>=0){DeleteSema(*(s32*)(func_001CE218+0x226C));*(s32*)(func_001CE218+0x226C)=-1;DeleteSema(*(s32*)(func_001CE218+0x2270));}return 1;}

@@ -1,39 +1,57 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct { u8 pad[0x914]; s32 count; } G;
+extern u8 func_001C8098[];
+extern void func_0014CBB8(s32);
+extern void func_00155C2C(G *);
+extern void func_00155F14(G *);
+extern void func_0014CAE8(s32);
+extern void func_0014CA30(s32);
 
-M2C_UNK func_0014CBB8(s32);                         /* extern */
-M2C_UNK func_00155C2C(void *);                      /* extern */
-M2C_UNK func_00155F14(void *);                      /* extern */
-extern M2C_UNK func_001C8098;
-
-void func_00156214(void *arg0) {
-    s32 var_17;
-    s32 var_18;
-    void *var_2;
-
-    var_18 = 0;
-    M2C_FIELD(&func_001C8098, M2C_UNK (**)(), 0xD70)();
-    var_17 = 0x990;
-    if (M2C_FIELD(arg0, s32 *, 0x914) > 0) {
-        var_2 = arg0 + 0x990;
+void func_00156214(G *g) {
+    s32 i = 0;
+    s32 j, q;
+    void *p = func_001C8098;
+    p = *(void **)((u8 *)p + 0xD70);
+    ((void (*)(void))p)();
+    if (g->count > 0) {
+        j = 0x990;
+        q = (s32)g + j;
         do {
-            var_17 += 4;
-            var_18 += 1;
-            func_0014CBB8(M2C_FIELD(var_2, s32 *, 0xC));
-            var_2 = arg0 + var_17;
-        } while (var_18 < M2C_FIELD(arg0, s32 *, 0x914));
+            j += 4;
+            i++;
+            func_0014CBB8(*(s32 *)(q + 0xC));
+            q = (s32)g + j;
+        } while (i < g->count);
     }
-    func_00155C2C(arg0);
-    func_00155F14(arg0);
+    func_00155C2C(g);
+    func_00155F14(g);
+}
+
+void func_001560E8(G *g) {
+    s32 i, j, o, q;
+    void *p = func_001C8098;
+    i = 0;
+    p = *(void **)((u8 *)p + 0xD64);
+    ((void (*)(void))p)();
+    if (g->count > 0) {
+        j = 0x990;
+        q = (s32)g + j;
+        do {
+            j += 4;
+            o = *(s32 *)(q + 0xC);
+            if (o) func_0014CA30(o);
+            i++;
+            q = (s32)g + j;
+        } while (i < g->count);
+    }
+    if (i < 0x28) {
+        j = i * 4 + 0x990;
+        q = (s32)g + j;
+        do {
+            j += 4;
+            o = *(s32 *)(q + 0xC);
+            if (o) func_0014CAE8(o);
+            i++;
+            q = (s32)g + j;
+        } while (i < 0x28);
+    }
 }

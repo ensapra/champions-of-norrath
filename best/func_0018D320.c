@@ -1,33 +1,39 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 func_0018D320(void *arg0) {
-    f32 temp_f0;
-    f32 temp_f1;
-
-    temp_f0 = M2C_FIELD(arg0, f32 *, 0x320);
-    temp_f1 = M2C_FIELD(arg0, f32 *, 0x324);
-    M2C_FIELD(arg0, f32 *, 0x33C) = temp_f0;
-    M2C_FIELD(arg0, f32 *, 0x334) = temp_f1;
-    M2C_FIELD(arg0, f32 *, 0x338) = temp_f0;
-    M2C_FIELD(arg0, f32 *, 0x330) = temp_f1;
-    M2C_ERROR(/* unknown instruction: ldl $v0, 0x337($a0) */);
-    M2C_ERROR(/* unknown instruction: ldr $v0, 0x330($a0) */);
-    M2C_ERROR(/* unknown instruction: ldl $v1, 0x33f($a0) */);
-    M2C_ERROR(/* unknown instruction: ldr $v1, 0x338($a0) */);
-    M2C_ERROR(/* unknown instruction: sdl $v0, 0x347($a0) */);
-    M2C_ERROR(/* unknown instruction: sdl $v1, 0x34f($a0) */);
-    M2C_ERROR(/* unknown instruction: sdr $v1, 0x348($a0) */);
-    return M2C_ERROR(/* unknown instruction: sdr $v0, 0x340($a0) */);
+typedef struct { s32 (*f0)(s32); void (*f4)(s32); s32 (*f8)(s32, s32); } VT;
+s32 func_0018D248(s32 a, VT *vt) {
+    s32 r = -1;
+    s32 n;
+    while ((n = vt->f0(a)) > 0) {
+        if (vt->f8(a, n) == -1) {
+            vt->f4(a);
+            return r;
+        }
+        r = 1;
+    }
+    return 0;
+}
+typedef struct N { s32 a; s32 b; s32 c; struct N *next; } N;
+void func_0018D2F0(u8 *p) {
+    N *n;
+    *(s32 *)(p + 0x370) = 0;
+    n = *(N **)(p + 0x37C);
+    do {
+        n->b = 0;
+        n = n->next;
+    } while (n != 0);
+}
+typedef struct { f32 a, b, c, d; } F4;
+void func_0018D320(u8 *p) {
+    f32 x = *(f32 *)(p + 0x320);
+    f32 y = *(f32 *)(p + 0x324);
+    *(f32 *)(p + 0x338) = x;
+    *(f32 *)(p + 0x330) = y;
+    *(f32 *)(p + 0x33C) = x;
+    *(f32 *)(p + 0x334) = y;
+    *(F4 *)(p + 0x340) = *(F4 *)(p + 0x330);
+}
+typedef struct { s32 size; s32 count; s32 pad; u8 *cur; } Ring;
+void func_001AE898(Ring *r) {
+    r->count++;
+    r->cur++;
+    if (r->cur == (u8 *)r + (r->size + 0x10)) r->cur = (u8 *)r + 0x10;
 }

@@ -1,51 +1,64 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern u8 D_00507660[];
+extern s32 D_004C52F0[];
+void _ExecOSD(s32, s32);
+void func_001B6150(void *, s32, s32);
+void func_001B6268(void);
 
-M2C_UNK func_0015FF30(void *);                      /* extern */
-M2C_UNK func_00160068();                            /* extern */
-M2C_UNK func_00160264(void *);                      /* extern */
-M2C_UNK func_0016049C(void *);                      /* extern */
-s32 func_00170894(M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
+void func_001B6350(s32 arg0, s32 arg1) {
+    func_001B6150(D_00507660, arg0, arg1);
+    func_001B6268();
+    _ExecOSD(arg0, D_004C52F0[0] + 4);
+}
 
-void func_0015FE74(void *arg0) {
-    s32 temp_2;
-    void *temp_3;
-    void *var_2;
-    void *var_4;
-
+typedef struct { s32 w[4]; u64 pad[0x334]; s32 w2[4]; } PktF;
+typedef struct { u8 pad[0x910]; PktF p0; PktF p1; } OwnerF;
+void func_00160068();
+void func_0015FF30(void *);
+void func_00160264(void *);
+void func_0016049C(void *);
+s32 func_00170894(s32, s32, s32, s32);
+void func_0015FE74(OwnerF *o) {
     func_00160068();
-    func_0015FF30(arg0);
-    func_00160264(arg0);
-    func_0016049C(arg0);
-    M2C_FIELD(arg0, s32 *, 0x914) = 0;
-    M2C_FIELD(arg0, s32 *, 0x910) = 0x1000019A;
-    M2C_FIELD(arg0, s32 *, 0x918) = 0;
-    temp_2 = func_00170894(0x50, 0, 0x19A, 0);
-    var_4 = arg0 + 0x22D0;
-    M2C_FIELD(arg0, s32 *, 0x22C4) = 0;
-    M2C_FIELD(arg0, s32 *, 0x22C8) = 0;
-    M2C_FIELD(arg0, s32 *, 0x22CC) = 0;
-    M2C_FIELD(arg0, s32 *, 0x91C) = temp_2;
-    var_2 = arg0 + 0x910;
-    M2C_FIELD(arg0, s32 *, 0x22C0) = 0x60000000;
-    temp_3 = var_4;
-    do {
-        M2C_FIELD(var_4, s64 *, 0) = (s64) M2C_FIELD(var_2, s64 *, 0);
-        M2C_FIELD(var_4, s64 *, 8) = (s64) M2C_FIELD(var_2, s64 *, 8);
-        M2C_FIELD(var_4, s64 *, 0x10) = (s64) M2C_FIELD(var_2, s64 *, 0x10);
-        M2C_FIELD(var_4, s64 *, 0x18) = (s64) M2C_FIELD(var_2, s64 *, 0x18);
-        var_2 += 0x20;
-        var_4 += 0x20;
-    } while (var_2 != temp_3);
+    func_0015FF30(o);
+    func_00160264(o);
+    func_0016049C(o);
+    o->p0.w[0] = 0x1000019A;
+    o->p0.w[1] = 0;
+    o->p0.w[2] = 0;
+    o->p0.w[3] = func_00170894(0x50, 0, 0x19A, 0);
+    o->p0.w2[0] = 0x60000000;
+    o->p0.w2[1] = 0;
+    o->p0.w2[2] = 0;
+    o->p0.w2[3] = 0;
+    o->p1 = o->p0;
+}
+
+void func_001517DC(s32, void *, void *);
+typedef struct { u8 pad[0x924]; s32 x924; s32 x928; } H;
+void func_0015FC30(H *o, s32 mode) {
+    s32 v[4];
+    v[0] = 12;
+    if (mode == 0) {
+        func_001517DC(o->x924, o, v);
+    } else if (mode == 1) {
+        func_001517DC(o->x928, o, v);
+    }
+}
+
+s32 func_0016FA70(s32);
+typedef struct { u8 pad[0x4D0]; s32 x4D0; u8 p1[0x910 - 0x4D4]; s32 x910; s32 x914; u8 p2[0x924 - 0x918]; s32 x924; s32 x928; } K;
+void func_0015C030(K *o) {
+    if (o->x924 != 0) {
+        o->x910 = func_0016FA70(o->x924);
+    } else {
+        o->x910 = 0;
+    }
+    o->x924 = 0;
+    if (o->x928 != 0) {
+        o->x914 = func_0016FA70(o->x928);
+    } else {
+        o->x914 = 0;
+    }
+    o->x4D0 = 0;
+    o->x928 = 0;
 }

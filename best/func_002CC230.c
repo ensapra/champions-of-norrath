@@ -1,38 +1,30 @@
-s32 func_001441B8(s32, s32);
-void func_002A9220(s32, s32, s32, s32);
-s32 func_002A9DC0(s32 a0, s32 a1, s32 a2, s32 *a3) {
-    volatile s32 frame = 0;
-    s32 result = func_001441B8(0x24, a3[2]);
-    if (result) func_002A9220(result, a1, a2, a0);
-    return result;
-}
-s32 func_002D4EC0(s32, void *, s32);
-extern s8 D_004865F8;
-extern u8 func_002CC128[];
-void func_002CC200(void) {
-    func_002D4EC0(0x3E8, func_002CC128 + 0xB8, 0);
-    D_004865F8 = 1;
-}
-s32 CreateSema_2(void *);
-s32 CreateThread_2(void *, void *, s32, void *, s32, void *, void *, s32, void *, s32);
+typedef struct { s32 a; void *func; void *stack; s32 size; void *gp; s32 prio; s32 pad[6]; } TP;
+typedef struct { s32 a; s32 count; s32 c; s32 d; s32 e; s32 f; } SP;
+s32 CreateSema_2(SP *);
+s32 CreateThread_2(TP *);
 void StartThread_2(s32, s32);
 void func_002E2848(void *, s32);
-extern s32 D_00486DB4;
-extern s32 D_00486DB8;
+void func_002CC128(void);
+void func_002CC200(void);
+s32 D_00486DB4;
+s32 D_00486DB8;
 extern u8 D_004879F0[];
 extern u8 D_008D8E50[];
 void func_002CC230(void) {
-    s32 sp30[6];
-    s32 result;
-    sp30[1] = 0x3E8; sp30[2] = 0; sp30[5] = 0;
-    D_00486DB4 = CreateSema_2(&sp30[0]);
-    result = CreateThread_2(sp30, D_008D8E50, 0x2000, D_004879F0, 1, func_002CC128, D_008D8E50, 0x2000, D_004879F0, 1);
-    D_00486DB8 = result;
-    StartThread_2(result, 0);
+    TP th;
+    SP sema;
+    s32 t;
+    sema.count = 0x3E8;
+    sema.c = 0;
+    sema.f = 0;
+    D_00486DB4 = CreateSema_2(&sema);
+    th.func = func_002CC128;
+    th.stack = D_008D8E50;
+    th.size = 0x2000;
+    th.gp = D_004879F0;
+    th.prio = 1;
+    t = CreateThread_2(&th);
+    D_00486DB8 = t;
+    StartThread_2(t, 0);
     func_002E2848(func_002CC200, 0);
-}
-s32 TerminateThread_2(s32);
-void func_002CC2C0(void) {
-    TerminateThread_2(D_00486DB8);
-    func_002E2848(0, 0);
 }

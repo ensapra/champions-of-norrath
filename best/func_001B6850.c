@@ -1,42 +1,42 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 func_001B5C80();                                /* extern */
-M2C_UNK func_001B5CD8();                            /* extern */
-M2C_UNK func_001B6560(s32);                         /* extern */
+extern s32 func_001B5C80(void);
+extern void func_001B5CD8(void);
+extern void func_001B6560(u32);
+extern void func_0010B378(s32, void *, s32);
+extern void func_0013BBD0(void);
+extern void func_0011AD68(s32);
+extern void func_00138990(s32);
+extern void func_0014D328(s32, s32);
+extern s32 func_0011AD08(void);
+extern u8 func_01000000[];
+extern u8 func_001B9FD8[];
+extern u8 func_001C6788[];
 
 s32 func_001B6850(void) {
-    s32 temp_16;
-    s32 temp_2;
-    s32 var_2;
+    s32 st = func_001B5C80();
+    u32 v = *(volatile u32 *)0x10001010;
+    if (!(v & 0x80)) {
+        if (st) func_001B5CD8();
+        return 0;
+    }
+    func_001B6560(v & 0xFFFFF37F);
+    if (st) func_001B5CD8();
+    return 1;
+}
 
-    temp_16 = func_001B5C80();
-    temp_2 = *(s32 *)0x10001010;
-    if (!(temp_2 & 0x80)) {
-        var_2 = 0;
-        if (temp_16 != 0) {
-            func_001B5CD8();
-            return 0;
-        }
-        /* Duplicate return node #5. Try simplifying control flow for better match */
-        return var_2;
-    }
-    func_001B6560(temp_2 & 0xFFFFF37F);
-    var_2 = 1;
-    if (temp_16 != 0) {
-        func_001B5CD8();
-        var_2 = 1;
-    }
-    return var_2;
+void func_00145C08(s32 a, s32 i) {
+    *(s32 *)(func_01000000 + 0xD44E8) = i;
+    func_0010B378(*(s32 *)(func_01000000 + 0xD44C0 + i * 4), func_001B9FD8 + 0x1738, i);
+    func_0013BBD0();
+}
+
+void func_00145BB0(void) {
+    func_0011AD68(*(s32 *)(func_001C6788 + 0x100));
+    *(s32 *)(func_01000000 + 0xD44A0) = 0;
+    func_00138990(*(s32 *)(func_01000000 + 0xD44B0));
+    func_0014D328(*(s32 *)(func_01000000 + 0xD44D0), 0xFF);
+    func_0014D328(*(s32 *)(func_01000000 + 0xD44D4), 0xFF);
+}
+
+void func_00145AB8(void) {
+    *(s32 *)(func_001C6788 + 0x100) = func_0011AD08();
 }

@@ -1,35 +1,41 @@
-/* machine draft (m2c) for mwcps2-3.0.1 -O2 -sdatathreshold 8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 func_002E4AC0(s32, M2C_UNK);                    /* extern */
-extern M2C_UNK D_FFFF;
-
-s32 func_002E5E28(s32 arg0) {
-    M2C_UNK *var_2;
-    s32 temp_2;
-
-loop_4:
-    temp_2 = func_002E4AC0(arg0, 0);
-    if (temp_2 < 0) {
-        return -0x21C;
+typedef struct { s32 f0; u8 *f4; s32 f8; s32 fC; s32 f10; s32 f14; s32 f18; } Ent1C;
+extern Ent1C D_008DD8D0[][4];
+u8 *func_002D39B0(s32, s32);
+s32 func_002D3BC8(s32 arg0, s32 arg1) {
+    u8 *p;
+    if (D_008DD8D0[arg0][arg1].f10 == 0) {
+        return 0x63;
     }
-    var_2 = &D_FFFF;
-    if (temp_2 == 1) {
-        return 0;
+    p = func_002D39B0(arg0, arg1);
+    if (p[0x70] == 6) {
+        if (p[0x71] == 2) {
+            return 5;
+        }
     }
-    do {
+    return p[0x70];
+}
 
-    } while (var_2 != (M2C_UNK *)-1);
-    goto loop_4;
+s32 func_002E4AC0(s32, s32);
+s32 func_002E5E28(s32 a) {
+    s32 r;
+    s32 i;
+    while (1) {
+        r = func_002E4AC0(a, 0);
+        if (r < 0) return -0x21C;
+        if (r == 1) break;
+        for (i = 0x10000; i != -1; i--) {
+        }
+    }
+    return 0;
+}
+
+s32 func_002E4E48(s32, s32, void *, s32, s32);
+s32 func_002E5EA8(s32 a, s32 *p) {
+    if (func_002E4E48(a, 0x1E, p, 0, 4) < 0) return -0x21E;
+    return *p;
+}
+
+s32 func_002E5EE8(s32 a, s32 *p) {
+    if (func_002E4E48(a, 0x1F, p, 0, 4) < 0) return -0x21E;
+    return *p;
 }

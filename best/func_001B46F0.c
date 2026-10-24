@@ -1,38 +1,25 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern u8 jtbl_004C006C[];
+extern u8 D_0110B000[];
+void SignalSema(s32);
+s32 func_001B29F0(s32, s32);
+s32 func_001B06E0(void *, u32, s32);
 
-s32 func_001B06E0(void *, M2C_UNK, M2C_UNK);        /* extern */
-extern M2C_UNK D_FFFFF;
-extern M2C_UNK func_01109848;
-extern M2C_UNK jtbl_004C006C;
+void func_001B1568(void) { SignalSema(*(s32 *)(jtbl_004C006C + 0x3F38)); }
+
+s64 func_001B3A90(s32 a) { return func_001B29F0(a, 0x12); }
+
+s64 func_001B3EB8(s32 a) { return func_001B29F0(a, 0x15); }
 
 s32 func_001B46F0(void) {
-    M2C_UNK *var_2;
-    void *temp_17;
-
-    temp_17 = &func_01109848 + 0x17B8;
-loop_3:
-    if (func_001B06E0(temp_17, 0x80000003, 0) >= 0) {
-        if (M2C_FIELD(temp_17, s32 *, 0x24) != 0) {
-            M2C_FIELD(&jtbl_004C006C, s32 *, 0x3F48) = 0;
-            return 0;
-        }
-        var_2 = &D_FFFFF;
-        do {
-
-        } while (var_2 != (M2C_UNK *)-1);
-        goto loop_3;
+    s32 i;
+    u8 *p;
+    while (1) {
+        p = D_0110B000;
+        if (func_001B06E0(p, 0x80000003, 0) < 0) return -1;
+        if (*(s32 *)(p + 0x24) != 0) break;
+        i = 0x100000;
+        do { i--; } while (i != -1);
     }
-    return -1;
+    *(s32 *)(jtbl_004C006C + 0x3F48) = 0;
+    return 0;
 }

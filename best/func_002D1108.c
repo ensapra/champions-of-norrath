@@ -1,20 +1,61 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+/* identical to ovl_ntgui2_func_0017DD90 (matched), with its names changed by decompdecomp */
+typedef struct {
+    u32 spdifMode : 1;
+    u32 screenType : 2;
+    u32 videoOutput : 1;
+    u32 japLanguage : 1;
+    u32 ps1drvConfig : 8;
+    u32 version : 3;
+    u32 language : 5;
+    u32 timezoneOffset : 11;
+} OsdConfigParam;
 
-void func_002D1108(void) {
-    M2C_ERROR(/* unknown instruction: ldl $v1, 0x7($a0) */);
-    M2C_ERROR(/* unknown instruction: ldr $v1, ($a0) */);
-    M2C_ERROR(/* unknown instruction: sdl $v1, 0x7($a3) */);
-    M2C_ERROR(/* unknown instruction: sdr $v1, ($a3) */);
+typedef struct {
+    u8 b[8];
+} Cfg8;
+
+extern u8 D_00444408[];
+s32 func_0017DCF0(void);
+void GetOsdConfigParam(OsdConfigParam *);
+
+s32 func_0017DD30(void)
+{
+    OsdConfigParam c;
+
+    GetOsdConfigParam(&c);
+    if (func_0017DCF0()) {
+        return D_00444408[0x44C];
+    }
+    GetOsdConfigParam(&c);
+    if (c.version != 0) {
+        return c.language;
+    }
+    return c.japLanguage;
+}
+
+void func_002D1108(Cfg8 *p)
+{
+    *(Cfg8 *)(D_00444408 + 0x448) = *p;
+}
+
+s32 ovl_ntgui2_func_0017DDB0(void)
+{
+    OsdConfigParam c;
+
+    if (func_0017DCF0()) {
+        return D_00444408[0x44A];
+    }
+    GetOsdConfigParam(&c);
+    return c.screenType;
+}
+
+s32 func_0017DDF0(void)
+{
+    OsdConfigParam c;
+
+    if (func_0017DCF0()) {
+        return D_00444408[0x44D];
+    }
+    GetOsdConfigParam(&c);
+    return c.spdifMode;
 }

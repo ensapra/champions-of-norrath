@@ -1,25 +1,27 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+void func_0014CE60(s32, s32, s32);
 
-M2C_UNK func_0014CE60(s32, s32, s32);               /* extern */
+typedef struct {
+    u8 pad0[0x5A0];
+    s32 x5A0;
+    s32 x5A4;
+    s32 x5A8;
+    s32 x5AC;
+    s32 x5B0;
+    u8 pad1[0x5D4 - 0x5B4];
+    s32 x5D4;
+    u8 pad2[0x980 - 0x5D8];
+    s32 x980;
+    s32 x984;
+    u8 pad3[0xA10 - 0x988];
+    s32 xA10;
+    s32 xA14;
+    s32 xA18;
+    s32 xA1C;
+} S_0016F754;
 
-void func_0016F754(void *arg0) {
-    s32 temp_17;
-    s32 temp_5;
-
-    temp_5 = M2C_FIELD(arg0, s32 *, 0x5D4);
-    temp_17 = M2C_FIELD(arg0, s32 *, 0x5A0) + temp_5 + M2C_FIELD(arg0, s32 *, 0xA1C);
-    func_0014CE60(M2C_FIELD(arg0, s32 *, 0x984), temp_17, M2C_FIELD(arg0, s32 *, 0x5A4) + temp_5 + ((s32) (M2C_FIELD(arg0, s32 *, 0x5B0) - M2C_FIELD(arg0, s32 *, 0xA10)) >> 1));
-    func_0014CE60(M2C_FIELD(arg0, s32 *, 0x980), temp_17 + (M2C_FIELD(arg0, s32 *, 0xA10) + M2C_FIELD(arg0, s32 *, 0xA1C)), M2C_FIELD(arg0, s32 *, 0x5A4) + M2C_FIELD(arg0, s32 *, 0x5D4));
+void func_0016F754(S_0016F754 *arg0) {
+    s32 x;
+    x = arg0->x5A0 + arg0->x5D4 + arg0->xA1C;
+    func_0014CE60(arg0->x984, x, ((arg0->x5B0 - arg0->xA10) >> 1) + (arg0->x5A4 + arg0->x5D4));
+    func_0014CE60(arg0->x980, x + (arg0->xA10 + arg0->xA1C), arg0->x5A4 + arg0->x5D4);
 }

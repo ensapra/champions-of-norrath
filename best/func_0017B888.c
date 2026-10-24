@@ -1,33 +1,39 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+s32 func_001AFD10(u32,void*,s32,s32,s32,s32);
+s32 func_001B0318(s32 a,s32 b,s32 c,void*p){s32*q=p;return func_001AFD10(0x80000008,p,64,q[9],q[10],q[11])?0:0x800;}
 
-s32 func_0017B6C8(M2C_UNK);                         /* extern */
+extern s32 iSignalSema(s32);
+extern volatile s32 D_001D0518[], D_001D051C[], D_001D04E8[], D_001D04F4[], D_001D04D4[], D_001D04E0[], D_010ECC40[];
 
-s32 func_0017B888(u8 *arg2) {
-    M2C_UNK var_7;
-    u8 temp_3;
+void func_0017B938(s32 *arg0) {
+    D_001D0518[0] = *arg0;
+    D_001D051C[0] = D_001D0518[0];
+    if (D_001D0518[0] == 0xB) {
+        D_001D0518[0] = 0;
+        D_001D04F4[0] = 0;
+        return;
+    }
+    iSignalSema(D_001D04E8[0]);
+    if (D_001D04D4[0] && D_010ECC40[0]) {
+        iSignalSema(D_001D04E0[0]);
+    } else {
+        D_001D04F4[0] = 0;
+    }
+    D_001D0518[0] = 0;
+}
 
-    temp_3 = *arg2;
-    switch (temp_3) {                               /* irregular */
+s32 func_0017B6C8(void *, s32, u8 *, s32);
+
+s32 func_0017B888(void *a, s32 b, u8 *c) {
+    s32 t;
+    switch (*c) {
     case 0xF9:
-        var_7 = 5;
-block_5:
-        return func_0017B6C8(var_7);
+        t = 5;
+        break;
     case 0xFD:
-        var_7 = 7;
-        goto block_5;
+        t = 7;
+        break;
     default:
         return -1;
     }
+    return func_0017B6C8(a, b, c, t);
 }

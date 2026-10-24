@@ -1,34 +1,46 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct { u8 pad0[0x30]; s32 size; } NetBuf;
+extern void *func_00301FFC(void *, void *, s32);
+extern char *func_00304640(char *, char *);
+extern s32 func_00304CFC(char *);
 
-M2C_UNK func_00304640(s32, s32);                    /* extern */
-s32 func_00304CFC(s32);                             /* extern */
-
-s32 func_002E4FB0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 temp_16;
-    s32 temp_18;
-    s32 temp_19;
-
-    temp_19 = arg2 * 4;
-    temp_18 = M2C_FIELD(arg0, s32 *, 0x30) - temp_19;
-    if (arg3 == 0) {
-        return 0;
+s32 func_002E4F00(NetBuf *arg0, s32 arg1, s32 arg2, void *arg3, s32 arg4) {
+    s32 rem;
+    arg2 *= 4;
+    rem = arg0->size - arg2;
+    if (arg3 != 0) {
+        if (arg4 < 0 || rem < arg4) return -0x21F;
+        func_00301FFC((void *)(arg2 + arg1), arg3, arg4);
     }
-    temp_16 = func_00304CFC(arg3) + 1;
-    if ((temp_16 < 0) || (temp_18 < temp_16)) {
-        return -0x21F;
+    return 0;
+}
+
+s32 func_002E4F58(NetBuf *arg0, void *arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 rem;
+    arg3 *= 4;
+    rem = arg0->size - arg3;
+    if (arg1 != 0) {
+        if (arg4 < 0 || rem < arg4) return -0x21F;
+        func_00301FFC(arg1, (void *)(arg3 + arg2), arg4);
     }
-    func_00304640(arg1 + temp_19, arg3);
-    return temp_16;
+    return 0;
+}
+
+s32 func_002E4FB0(NetBuf *arg0, s32 arg1, s32 arg2, char *arg3) {
+    s32 rem;
+    s32 len;
+    arg2 *= 4;
+    rem = arg0->size - arg2;
+    if (arg3 == 0) return 0;
+    len = func_00304CFC(arg3) + 1;
+    if (len < 0 || rem < len) return -0x21F;
+    func_00304640((char *)(arg1 + arg2), arg3);
+    return len;
+}
+
+s32 func_002E5040(NetBuf *arg0, char *arg1, s32 arg2, s32 arg3) {
+    arg3 *= 4;
+    if (arg1 != 0) {
+        func_00304640(arg1, (char *)(arg2 + arg3));
+    }
+    return 0;
 }

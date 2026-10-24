@@ -1,44 +1,48 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct { s32 kind; s32 flags; u8 pad[0x1C]; } Item;
+typedef struct {
+    u8 pad0[0xB80];
+    Item *items;
+    u8 pad1[0x8];
+    s32 B8C;
+    u8 pad2[0x4];
+    s32 B94;
+    u8 pad3[0xBF0 - 0xB98];
+    s32 count;
+    u8 pad4[0xD04 - 0xBF4];
+    s32 D04;
+    u8 pad5[0x4];
+    s32 D0C;
+} Obj;
 
-s32 func_0015B8D0(void *arg0, s32 arg1, s32 arg2) {
-    s32 temp_2;
-    s32 temp_7;
-    s32 var_10;
-    s32 var_9;
-    void *var_5;
+void func_0015BBCC(Obj *o) {
+    s32 t = o->B94;
+    o->B94 = o->B8C;
+    o->B8C = t;
+}
 
-    temp_7 = M2C_FIELD(arg0, s32 *, 0xB8C);
-    var_10 = 0;
-    var_9 = arg2 - 1;
-    var_5 = M2C_FIELD(arg0, s32 *, 0xB80) + (temp_7 * 0x24);
-    if ((arg2 != 0) && (temp_7 != 0)) {
-loop_3:
-        var_5 -= 0x24;
-        var_10 += 1;
-        M2C_FIELD(arg0, s32 *, 0xB8C) = (s32) (M2C_FIELD(arg0, s32 *, 0xB8C) - 1);
-        temp_2 = M2C_FIELD(var_5, s32 *, 4) & 0xAF;
-        M2C_FIELD(var_5, s32 *, 4) = (s32) ((((M2C_FIELD(arg0, s32 *, 0xD04) != 0) ? arg1 : 0) != 0) ? (temp_2 | 0x50) : temp_2);
-        if ((u32) (M2C_FIELD(var_5, s32 *, 0) - 0x81) < 0x3FU) {
-            if (M2C_FIELD(arg0, s32 *, 0xB8C) != 0) {
-                goto loop_3;
-            }
-        }
-        var_9 -= 1;
-        if ((var_9 != -1) && (M2C_FIELD(arg0, s32 *, 0xB8C) != 0)) {
-            goto loop_3;
-        }
+void func_0015BB8C(Obj *o) {
+    s32 i;
+    for (i = 0; i < o->count; i++) {
+        o->items[i].flags &= 0xAF;
     }
-    return var_10;
+    o->D0C = 0;
+}
+
+s32 func_0015B8D0(Obj *o, s32 a1, s32 n) {
+    s32 flag;
+    s32 cnt = 0;
+    Item *p = &o->items[o->B8C];
+    flag = o->D04 ? a1 : 0;
+    while (n-- != 0 && o->B8C != 0) {
+        do {
+            s32 f;
+            p--;
+            cnt++;
+            o->B8C--;
+            f = p->flags & 0xAF;
+            if (flag) f |= 0x50;
+            p->flags = f;
+        } while ((u32)(p->kind - 0x81) < 0x3F && o->B8C != 0);
+    }
+    return cnt;
 }

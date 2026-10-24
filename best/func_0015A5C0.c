@@ -1,32 +1,11 @@
 s32 func_0015A5C0(s16 arg0, s16 arg1, s32 *arg2) {
-    s16 d;
-
+    s32 d;
     if (arg2 != NULL) {
+        s32 e = (s16)(arg0 - arg1);
+        *arg2 = __builtin_abs(e);
         d = arg0 - arg1;
-        *arg2 = __builtin_abs((s32)d);
     } else {
         d = arg0 - arg1;
     }
-    return d > 0 ? 1 : -1;
-}
-
-s16 func_0015A610(s16 arg0, s16 arg1, f32 a2, f32 a3, f32 a4) {
-    s16 d = arg0 - arg1;
-    s32 ad = __builtin_abs((s32)(s16)d);
-    s32 sign;
-    f32 v;
-
-    sign = d > 0 ? 1 : -1;
-    v = (f32)ad * a2;
-    if (a3 != -1.0f) {
-        if (v < a3) {
-            v = a3;
-        }
-    }
-    if (a4 != -1.0f) {
-        if (v > a4) {
-            v = a4;
-        }
-    }
-    return (s16)((s32)v * sign + (s32)arg0);
+    return (s16)d > 0 ? -1 : 1;
 }

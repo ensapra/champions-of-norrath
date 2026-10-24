@@ -1,30 +1,62 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern u8 func_001C7738[];
+extern u8 func_001C8098[];
+s32 func_0014D29C(void);
+void func_0014D370(s32, s32);
+void func_0014F200(s32, s32, void *, void *);
+void func_0016FB0C(void *);
+extern u8 func_00157FE4[];
 
-s32 func_0014D29C();                                /* extern */
-M2C_UNK func_0014F200(s32, M2C_UNK, void *, M2C_UNK *); /* extern */
-M2C_UNK func_0016FB0C(void *);                      /* extern */
-extern M2C_UNK func_00157FE4;
+typedef struct {
+    u8 pad0[0x890];
+    s32 x890;
+    s32 x894;
+    u8 pad1[0x89C - 0x898];
+    s32 x89C;
+    s32 x8A0;
+    s32 x8A4;
+    u8 x8A8[0x940 - 0x8A8];
+    s32 x940;
+    s32 x944;
+} G;
 
-void func_00157F64(void *arg0) {
-    M2C_FIELD(arg0, s32 *, 0x944) = 0;
-    if (M2C_FIELD(arg0, s32 *, 0x89C) == 0) {
-        M2C_FIELD(arg0, s32 *, 0x8A4) = 1;
-        func_0014F200(func_0014D29C(), 1, arg0, &func_00157FE4);
-        M2C_FIELD(arg0, s32 *, 0x89C) = 1;
-        M2C_FIELD(arg0, s32 *, 0x8A0) = 1;
-        M2C_FIELD(arg0, s32 *, 0x940) = (s32) M2C_FIELD(arg0, s32 *, 0x944);
-        func_0016FB0C(arg0 + 0x8A8);
+void func_00157428(void)
+{
+    void *p = func_001C7738;
+    p = *(void **)((u8 *)p + 0xB4);
+    ((void (*)(void))p)();
+}
+
+void func_00157E90(G *a, s32 b)
+{
+    void *p = func_001C8098;
+    p = *(void **)((u8 *)p + 0x600);
+    ((void (*)(void))p)();
+    func_0014D370(a->x890, b);
+    func_0014D370(a->x894, b);
+}
+
+void func_00157EE4(G *a)
+{
+    a->x944 = 1;
+    if (a->x89C == 0) {
+        a->x8A4 = 1;
+        func_0014F200(func_0014D29C(), 1, a, func_00157FE4);
+        a->x89C = 1;
+        a->x8A0 = 0;
+        a->x940 = a->x944;
+        func_0016FB0C(a->x8A8);
+    }
+}
+
+void func_00157F64(G *a)
+{
+    a->x944 = 0;
+    if (a->x89C == 0) {
+        a->x8A4 = 1;
+        func_0014F200(func_0014D29C(), 1, a, func_00157FE4);
+        a->x89C = 1;
+        a->x8A0 = 1;
+        a->x940 = a->x944;
+        func_0016FB0C(a->x8A8);
     }
 }

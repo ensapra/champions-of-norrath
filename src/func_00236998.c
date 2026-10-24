@@ -1,0 +1,16 @@
+extern void func_0024AF80(s32);
+extern void func_0024EED0(char *, s32);
+extern char D_0034B988[];
+extern char D_00472770[];
+extern char D_00472780[];
+extern s32 D_00483F48;
+void func_00236998(void *arg0)
+{
+  int new_var;
+  __builtin_memcpy(D_0034B988, D_00472770, 11);
+  new_var = 0x230;
+  D_00483F48 = (s32) (*((f32 *) (((char *) arg0) + new_var)));
+  func_0024AF80(0);
+  func_0024EED0(D_00472780, 0x103);
+  return *((volatile s32 *) 0);
+}

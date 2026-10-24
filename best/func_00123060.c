@@ -1,42 +1,53 @@
-extern s32 D_0044AAE0[];
-extern s32 D_0044D498[];
+extern "C" {
+void *func_001441B8(s32);
+void *func_00194498(void *, void *);
+}
+extern u8 D_0044AAE0[];
+extern u8 D_0044D498[];
 
-s32 func_001441B8(s32);
-void func_00194498(s32 *);
+inline void *operator new(unsigned int, void *p) throw() { return p; }
 
-void *func_00123060(void *arg0) {
-    void *result;
-    char *p = (char *)arg0;
-    char *q;
+struct Tri { s32 x, y, z; };
 
-    result = func_001441B8(0x50);
-    if (result == NULL) {
-        return NULL;
+struct Obj {
+    s32 a, b, c;
+    s32 d;
+    Tri e;
+    f32 g, h;
+    s32 i;
+    u8 j, k;
+    s32 *l;
+    f32 m;
+    void *n;
+    u16 o;
+    f32 p, q;
+    s32 r;
+    void *vt;
+    u16 s;
+    Obj(Obj &src) {
+        vt = D_0044D498;
+        func_00194498(&a, &src.a);
+        func_00194498(&b, &src.b);
+        func_00194498(&c, &src.c);
+        d = src.d;
+        e = src.e;
+        g = src.g;
+        h = src.h;
+        i = src.i;
+        j = src.j;
+        k = src.k;
+        vt = D_0044AAE0;
+        m = src.m;
+        o = src.o;
+        p = src.p;
+        l = src.l;
+        n = src.n;
+        q = src.q;
+        r = src.r;
+        s = src.s;
     }
-    q = (char *)result;
+};
 
-    *(void **)(q + 0x48) = (void *)&D_0044D498;
-    func_00194498((s32 *)q);
-    func_00194498((s32 *)(q + 4));
-    func_00194498((s32 *)(q + 8));
-
-    *(s32 *)(q + 0x0C) = *(s32 *)(p + 0x0C);
-    *(s32 *)(q + 0x10) = *(s32 *)(p + 0x10); /* simplified - original uses s64 ldl/ldr */
-    *(s32 *)(q + 0x18) = *(s32 *)(p + 0x18);
-    *(f32 *)(q + 0x1C) = *(f32 *)(p + 0x1C);
-    *(s32 *)(q + 0x24) = *(s32 *)(p + 0x24);
-    *(f32 *)(q + 0x20) = *(f32 *)(p + 0x20);
-    *(u8 *)(q + 0x28) = *(u8 *)(p + 0x28);
-    *(u8 *)(q + 0x29) = *(u8 *)(p + 0x29);
-    *(void **)(q + 0x48) = (void *)&D_0044AAE0;
-    *(f32 *)(q + 0x30) = *(f32 *)(p + 0x30);
-    *(u16 *)(q + 0x38) = *(u16 *)(p + 0x38);
-    *(f32 *)(q + 0x3C) = *(f32 *)(p + 0x3C);
-    *(s32 *)(q + 0x2C) = *(s32 *)(p + 0x2C);
-    *(s32 *)(q + 0x34) = *(s32 *)(p + 0x34);
-    *(f32 *)(q + 0x40) = *(f32 *)(p + 0x40);
-    *(s32 *)(q + 0x44) = *(s32 *)(p + 0x44);
-    *(u16 *)(q + 0x4C) = *(u16 *)(p + 0x4C);
-
-    return result;
+Obj *func_00123060(Obj *src) {
+    return new (func_001441B8(0x50)) Obj(*src);
 }

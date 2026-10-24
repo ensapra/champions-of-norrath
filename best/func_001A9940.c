@@ -1,71 +1,73 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct Item {
+    s32 f0, f4, f8;
+    s16 used;
+    s16 fE;
+    s32 f10, f14, f18;
+    s32 pad1C[5];
+    s32 f30, f34;
+    s32 pad38[3];
+    s32 f44, f48;
+    s32 pad4C[2];
+    void *owner;
+} Item;
 
-void *func_001A98C8(void *, M2C_UNK);               /* extern */
-M2C_UNK func_001A9A78();                            /* extern */
+typedef struct Chunk {
+    struct Chunk *next;
+    s32 count;
+    Item *items;
+} Chunk;
 
-void *func_001A9940(void *arg0) {
-    s32 var_3;
-    void *temp_2;
-    void *temp_4;
-    void *var_16;
-    void *var_4;
+typedef struct Ctx {
+    s32 err;
+    s32 pad4[13];
+    s32 f38;
+    s32 pad3C[103];
+    Chunk chunks;
+} Ctx;
 
-    var_16 = arg0 + 0x1D8;
-    if (M2C_FIELD(arg0, s32 *, 0x38) == 0) {
-        func_001A9A78();
+Chunk *func_001A98C8(Ctx *, s32);
+void func_001A9A78(Ctx *);
+
+Item *func_001A9940(Ctx *c) {
+    Chunk *ch;
+    Item *it;
+    s32 i;
+
+    if (c->f38 == 0) {
+        func_001A9A78(c);
     }
-loop_3:
-    var_3 = M2C_FIELD(var_16, s32 *, 4) - 1;
-    var_4 = M2C_FIELD(var_16, void **, 8);
-    if (var_3 >= 0) {
-loop_4:
-        var_3 -= 1;
-        if (M2C_FIELD(var_4, s16 *, 0xC) != 0) {
-            var_4 += 0x58;
-            if (var_3 < 0) {
-                goto block_6;
+    ch = &c->chunks;
+    for (;;) {
+        i = ch->count;
+        it = ch->items;
+        while (--i >= 0) {
+            if (it->used == 0) {
+                goto found;
             }
-            goto loop_4;
+            it++;
         }
-        M2C_FIELD(var_4, s16 *, 0xE) = -1;
-        M2C_FIELD(var_4, void **, 0x54) = arg0;
-        M2C_FIELD(var_4, s32 *, 0) = 0;
-        M2C_FIELD(var_4, s32 *, 8) = 0;
-        M2C_FIELD(var_4, s32 *, 4) = 0;
-        M2C_FIELD(var_4, s32 *, 0x10) = 0;
-        M2C_FIELD(var_4, s32 *, 0x14) = 0;
-        M2C_FIELD(var_4, s32 *, 0x18) = 0;
-        M2C_FIELD(var_4, s32 *, 0x30) = 0;
-        M2C_FIELD(var_4, s32 *, 0x34) = 0;
-        M2C_FIELD(var_4, s32 *, 0x44) = 0;
-        M2C_FIELD(var_4, s32 *, 0x48) = 0;
-        M2C_FIELD(var_4, s16 *, 0xC) = 1;
-        return var_4;
+        if (ch->next == 0) {
+            ch->next = func_001A98C8(c, 4);
+            if (ch->next == 0) {
+                c->err = 0xC;
+                return 0;
+            }
+        }
+        ch = ch->next;
     }
-block_6:
-    temp_4 = M2C_FIELD(var_16, void **, 0);
-    if (temp_4 != NULL) {
-        var_16 = temp_4;
-        goto loop_3;
-    }
-    temp_2 = func_001A98C8(arg0, 4);
-    M2C_FIELD(var_16, void **, 0) = temp_2;
-    if (temp_2 == NULL) {
-        M2C_FIELD(arg0, s32 *, 0) = 0xC;
-        return temp_2;
-    }
-    var_16 = temp_2;
-    goto loop_3;
+found:
+    it->used = 1;
+    it->fE = -1;
+    it->owner = c;
+    it->f0 = 0;
+    it->f8 = 0;
+    it->f4 = 0;
+    it->f10 = 0;
+    it->f14 = 0;
+    it->f18 = 0;
+    it->f30 = 0;
+    it->f34 = 0;
+    it->f44 = 0;
+    it->f48 = 0;
+    return it;
 }

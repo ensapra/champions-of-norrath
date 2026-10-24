@@ -1,43 +1,117 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct {
+    u32 a;
+    u8 p0[0xC];
+    s32 sz;
+    u8 p1[0xC];
+    s32 off;
+    s32 z;
+} Ent;
 
-M2C_UNK func_0015AFAC(void *);                      /* extern */
-M2C_UNK func_0015B210(void *);                      /* extern */
-M2C_UNK func_0015BA94(void *);                      /* extern */
-M2C_UNK func_0015BBCC();                            /* extern */
+typedef struct {
+    u8 p0[0x98];
+    s32 st;
+    u8 p1[0xB80 - 0x9C];
+    Ent *ents;
+    u8 p2[8];
+    s32 lo;
+    u8 p3[4];
+    s32 hi;
+    s32 tot;
+    s32 c9c;
+    s32 ca0;
+    u8 p4[0xBF0 - 0xBA4];
+    s32 count;
+    u8 p5[0xD10 - 0xBF4];
+    s32 d10;
+} Obj;
 
-s32 func_0015B174(void *arg0) {
-    s32 temp_4;
-    s32 var_2;
-
-    if (M2C_FIELD(arg0, s32 *, 0xB8C) < M2C_FIELD(arg0, s32 *, 0xB94)) {
-        func_0015BBCC();
-        func_0015B210(arg0);
-        M2C_FIELD(arg0, s32 *, 0x98) = 2;
+void func_0015B6F4(Obj *o) {
+    if (o->hi < o->lo) {
+        o->lo = o->hi;
     }
-    temp_4 = M2C_FIELD(arg0, s32 *, 0xBF0);
-    var_2 = 0;
-    if (M2C_FIELD(arg0, s32 *, 0xB8C) < temp_4) {
-        M2C_FIELD(arg0, s32 *, 0xB8C) = temp_4;
-        func_0015B210(arg0);
-        M2C_FIELD(arg0, s32 *, 0x98) = 2;
-        if (M2C_FIELD(arg0, s32 *, 0xD10) == 0) {
-            func_0015AFAC(arg0);
-        } else {
-            func_0015BA94(arg0);
+}
+
+void func_0015B248(Obj *o) {
+    s32 k = 0;
+    s32 n = o->count;
+    Ent *e;
+    s32 i, off;
+
+    o->tot = 0;
+    o->ca0 = 0;
+    o->c9c = 0;
+    e = o->ents;
+    if (n != 0) {
+        off = 0;
+        i = 0;
+        if (n > 0) {
+            do {
+                u32 t = e->a;
+                s32 sz = e->sz;
+                if (t < 0x80) {
+                    k = 1;
+                } else if (t < 0xE0) {
+                    k = 2;
+                } else if (t < 0xF0) {
+                    k = 3;
+                } else if (t < 0xF8) {
+                    k = 4;
+                }
+                e->off = off;
+                off += sz;
+                e->z = 0;
+                i += k;
+                e += k;
+                o->tot += sz;
+            } while (i < o->count);
         }
-        var_2 = 1;
     }
-    return var_2;
+}
+
+void func_0015BBCC();
+void func_0015B210(Obj *);
+void func_0015AFAC(Obj *);
+void func_0015BA94(Obj *);
+
+s32 func_0015B174(Obj *o) {
+    s32 r;
+    if (o->lo < o->hi) {
+        func_0015BBCC();
+        func_0015B210(o);
+        o->st = 2;
+    }
+    r = 0;
+    if (o->lo < o->count) {
+        o->lo = o->count;
+        func_0015B210(o);
+        o->st = 2;
+        if (o->d10 == 0) {
+            func_0015AFAC(o);
+        } else {
+            func_0015BA94(o);
+        }
+        r = 1;
+    }
+    return r;
+}
+
+typedef struct {
+    s32 state;
+    s32 p;
+    s32 nused;
+} Pool;
+extern volatile Pool D_004C4F50[];
+
+s32 func_001B7038(s32 *used, s32 *avail) {
+    volatile Pool *p = D_004C4F50;
+    if (p->state < 0) {
+        return 0x80008001;
+    }
+    if (used) {
+        *used = p->nused;
+    }
+    if (avail) {
+        *avail = 0x80 - p->nused;
+    }
+    return 0;
 }

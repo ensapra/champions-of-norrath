@@ -1,30 +1,9 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-void func_00313700(void *arg0, s32 arg1, s32 arg2, void **arg3) {
-    void *temp_3;
-    void *temp_7;
-
-    temp_7 = *arg3;
-    if (temp_7 != NULL) {
-        temp_3 = M2C_FIELD(arg0, void **, 0x60);
-        if (M2C_FIELD(M2C_FIELD(temp_7, void **, 0xC), s32 *, 0xC) & 0x40) {
-            M2C_FIELD((temp_3 + 0x58), M2C_UNK (**)(void *, void *, void *, s32), 4)(arg0 + M2C_FIELD(temp_3, s16 *, 0x58), temp_7, arg0, arg2);
-            return;
-        }
-        goto block_5;
-    }
-block_5:
-    M2C_FIELD((M2C_FIELD(arg0, void **, 0x60) + 0x60), M2C_UNK (**)(void *, s32, s32, void *, void *, s32), 4)(arg0 + M2C_FIELD(M2C_FIELD(arg0, void **, 0x60), s16 *, 0x60), arg1, arg2, temp_7, arg0, arg2);
-}
+extern char D_00460DD8[],D_00460DE8[],D_00463388[];
+extern s32 D_008EAB78[],D_008EABD8[],D_008EB008[];
+void func_002FD348(s32*,char*,s32*); void func_0030D510(void);
+s32 *func_0030EE98(void){s32 *p=D_008EB008; s32 *q; if(!*p){q=D_008EABD8;if(!*q){func_0030D510();func_002FD348(q,D_00460DD8,D_008EAB78);}func_002FD348(p,D_00460DE8,q);}return D_008EB008;}
+typedef struct VE {s16 d,i; void (*f)();} VE;
+void func_00313700(u8 *o,s32 a,s32 b,u8 **p){u8 *q=*p;VE *v;if(q && (*(s32*)(*(u8**)(q+12)+12)&64)){v=*(VE**)(o+0x60)+11;v->f(o+v->d,a,b);}else {v=*(VE**)(o+0x60)+12;v->f(o+v->d,a,b);}}
+void func_00313A08(u8 *p){s16 *z=(s16*)(p+14);f32 *f=(f32*)(p+36);s16 *o=(s16*)(p+24);s32 i=0; do {i++;*z++=0;*f++=2.0f;*o++=1;}while(i<5);}
+s32 func_001671F8(char*); s32 func_00190E20(s32,s32,f32,f32,f32,f32,f32,f32,f32,f32);
+s64 func_00313CA0(s32 a,s32 b,s32 c){return func_00190E20(b,func_001671F8(D_00463388),(f32)(c*5),0.f,0.f,0.f,0.f,0.f,0.f,0.f);}

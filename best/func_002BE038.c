@@ -1,38 +1,39 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-extern f32 D_00482F8C;
-extern f32 D_00482F90;
-extern f32 D_00482F94;
-
-void func_002BE038(void *arg0) {
-    M2C_FIELD(arg0, s16 *, 0x18) = 0x1E;
-    M2C_FIELD(arg0, f32 *, 0x54) = 2.0f;
-    M2C_FIELD(arg0, f32 *, 0x24) = (f32) D_00482F8C;
-    M2C_FIELD(arg0, f32 *, 0x28) = 0.25f;
-    M2C_FIELD(arg0, s16 *, 0x12) = 5;
-    M2C_FIELD(arg0, s16 *, 0x1C) = 0x1B;
-    M2C_FIELD(arg0, f32 *, 0x2C) = 4.0f;
-    M2C_FIELD(arg0, s16 *, 0x42) = 3;
-    M2C_FIELD(arg0, f32 *, 0x4C) = (f32) D_00482F90;
-    M2C_FIELD(arg0, s16 *, 0x44) = 1;
-    M2C_FIELD(arg0, f32 *, 0x50) = (f32) D_00482F94;
-    M2C_FIELD(arg0, s16 *, 0x3C) = 0xA;
-    M2C_FIELD(arg0, s16 *, 0x46) = 0xE;
-    M2C_FIELD(arg0, s16 *, 0xE) = 1;
-    M2C_FIELD(arg0, s16 *, 0x10) = 5;
-    M2C_FIELD(arg0, s16 *, 0x1A) = 3;
-    M2C_FIELD(arg0, s16 *, 0x38) = 1;
-    M2C_FIELD(arg0, s16 *, 0x3A) = 0xA;
+typedef struct {
+    char pad0[0xE];
+    volatile s16 f0E, f10, f12, f14, f16, f18, f1A, f1C, f1E, f20, f22;
+    volatile f32 f24, f28, f2C, f30, f34;
+    volatile s16 f38, f3A, f3C, f3E, f40, f42, f44, f46;
+    volatile f32 f48, f4C, f50, f54;
+} WepObj2;
+extern f32 D_00482F8C, D_00482F90, D_00482F94;
+void func_002BE038(WepObj2 *a) {
+    f32 x = D_00482F8C;
+    s16 one = 1;
+    f32 q = 0.25f;
+    s16 five = 5;
+    f32 four = 4.0f;
+    s16 three = 3;
+    f32 y = D_00482F90;
+    s16 ten = 10;
+    f32 z = D_00482F94;
+    s16 thirty = 0x1E;
+    f32 two = 2.0f;
+    a->f18 = thirty;
+    a->f54 = two;
+    a->f24 = x;
+    a->f28 = q;
+    a->f12 = five;
+    a->f1C = 0x1B;
+    a->f2C = four;
+    a->f42 = three;
+    a->f4C = y;
+    a->f44 = one;
+    a->f50 = z;
+    a->f3C = ten;
+    a->f46 = 14;
+    a->f0E = one;
+    a->f10 = five;
+    a->f1A = three;
+    a->f38 = one;
+    a->f3A = ten;
 }

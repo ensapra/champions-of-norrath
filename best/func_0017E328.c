@@ -1,24 +1,38 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct { u8 b0; u8 b1; u8 b2; u8 b3; } T;
+void func_0017E008(T *);
+void func_0017E070(T *);
+void func_0017E190(T *);
+void func_0017E238(T *);
+void func_0017E268(T *);
 
-s32 func_0017DE30();                                /* extern */
-s32 func_0017DEE8();                                /* extern */
-M2C_UNK func_0017E290(s32, s32);                    /* extern */
-
-void func_0017E328(s32 arg0) {
-    s32 temp_17;
-
-    temp_17 = func_0017DE30();
-    func_0017E290(arg0, temp_17 + ((func_0017DEE8() * 0x3C) - 0x21C));
+void func_0017E268(T *t){
+    if (t->b3 == 0) {
+        t->b3 = 23;
+        func_0017E190(t);
+    } else {
+        t->b3--;
+    }
 }
+
+void func_0017E290(T *t, s32 d){
+    s32 v;
+    func_0017E008(t);
+    v = t->b2 + d;
+    if (v >= 0) {
+        while (v >= 60) { v -= 60; func_0017E238(t); }
+    } else {
+        do { v += 60; func_0017E268(t); } while (v < 0);
+    }
+    t->b2 = v;
+    func_0017E070(t);
+}
+
+s32 func_0017DE30(void);
+s32 func_0017DEE8(void);
+void func_0017E328(T *t){
+    s32 a = func_0017DE30();
+    s32 b = func_0017DEE8() * 60 - 0x21C;
+    func_0017E290(t, a + b);
+}
+
+void func_0017E320(T *t){ func_0017E290(t, -0x21C); }

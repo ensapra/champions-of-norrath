@@ -1,27 +1,6 @@
-#include "context.h"
-
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-extern M2C_UNK D_008DD880;
-extern M2C_UNK D_008DDAC0;
-
-s32 func_002D46E0(s32 arg0) {
-    s32 arr[4];  /* force larger stack frame */
-    M2C_FIELD(&D_008DDAC0, s32 *, 4) = arg0;
-    M2C_FIELD(&D_008DDAC0, s32 *, 0) = 0xD;
-    if (func_002D8270(&D_008DD880, 1, 0, &D_008DDAC0, 0x80, &D_008DDAC0, 0x80, 0, 0) >= 0) {
-        return M2C_FIELD(&D_008DDAC0, s32 *, 0xC);
-    }
-    return 0;
-}
+extern s32 D_008DDC40[],D_008DDB90[],D_008DDAC0[],D_008DD880[];extern u8 D_008DD8D0[];extern char D_0047B5E8[];
+s32 func_002D8270(void*,s32,s32,void*,s32,void*,s32,s32,s32);void func_002D4818(char*);s32 func_002D43E8(s32,s32,s32);
+s32 func_002D4B60(s32 a){D_008DDC40[0]=a;if(func_002D8270(D_008DDB90,1,0,D_008DDC40,128,D_008DDC40,128,0,0)>=0)return D_008DDC40[1];func_002D4818(D_0047B5E8);return 0;}
+s32 func_002D46E0(s32 a){D_008DDAC0[1]=a;D_008DDAC0[0]=13;if(func_002D8270(D_008DD880,1,0,D_008DDAC0,128,D_008DDAC0,128,0,0)>=0)return D_008DDAC0[3];return 0;}
+s32 func_002D4678(void){D_008DDAC0[0]=12;if(func_002D8270(D_008DD880,1,0,D_008DDAC0,128,D_008DDAC0,128,0,0)>=0)return D_008DDAC0[3];return 0;}
+s32 func_002D4550(s32 a,s32 b){if(*(s32*)(D_008DD8D0+a*112+b*28+16))return func_002D43E8(a,b,0);return 0;}

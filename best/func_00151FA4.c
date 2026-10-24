@@ -1,23 +1,35 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 func_00151FA4(u16 *arg0) {
-    u16 temp_3;
-
-    temp_3 = *arg0;
-    if ((temp_3 != 0) && (((s32) temp_3 < 0xC) || (((s32) temp_3 < 0x10) && ((s32) temp_3 >= 0xE)))) {
+typedef struct { u16 type; } Ev151;
+s32 func_00151FE0(Ev151 *e) {
+    switch (e->type) {
+    case 2 ... 4:
         return 1;
     }
     return 0;
+}
+
+s32 func_00151FA4(Ev151 *e) {
+    switch (e->type) {
+    case 1 ... 11:
+    case 14:
+    case 15:
+        return 1;
+    }
+    return 0;
+}
+
+typedef struct { u8 data[0x28]; } Item151;
+typedef struct {
+    Item151 items[101];
+    s32 head;
+    s32 tail;
+    s32 count;
+} Queue151;
+Item151 *func_00151F54(Queue151 *q) {
+    Item151 *it;
+    if (q->count == 0)
+        return NULL;
+    it = &q->items[q->head];
+    q->head = (q->head + 1) % 100;
+    q->count--;
+    return it;
 }

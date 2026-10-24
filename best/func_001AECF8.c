@@ -1,44 +1,41 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct { s32 size; s32 count; u8 *rd; u8 *wr; u8 data[1]; } Ring;
+void func_001AE898(Ring *r) {
+    r->count++;
+    r->wr++;
+    if (r->wr == r->data + r->size) r->wr = r->data;
+}
 
-M2C_UNK FlushCache(M2C_UNK);                        /* extern */
-s32 func_001AE870(M2C_UNK, M2C_UNK, M2C_UNK);       /* extern */
-s32 func_001B7E98(M2C_UNK, void *, M2C_UNK *);      /* extern */
-extern M2C_UNK func_001AE918;
-extern M2C_UNK func_01000000;
-
+extern s32 FlushCache(s32);
+extern s32 func_001B7E98(s32, void *, void *);
+extern void func_001AE918(void);
+extern s32 func_001AE870(s32, s32, s32);
+typedef struct { s32 h; s32 f4; s32 f8; s32 fC; u32 f10; u32 f14; s32 f18; } Q;
+extern Q D_01107950;
+extern u8 D_01107980[];
+extern u8 D_01107AC0[];
 s32 func_001AECF8(void) {
-    s32 temp_2;
-    void *temp_16;
-
-    temp_16 = &func_01000000 + 0x107950;
+    Q *q = &D_01107950;
+    u8 *t;
     FlushCache(0);
-    M2C_FIELD(&func_01000000, s32 *, 0x107950) = func_001B7E98(0x210, temp_16, &func_001AE918);
-    if (M2C_FIELD(&func_01000000, s32 *, 0x107950) < 0) {
-        return 0;
-    }
-    M2C_FIELD(temp_16, s32 *, 0xC) = 0;
-    temp_2 = (s32) (&func_01000000 + 0x107980) | 0x20000000;
-    M2C_FIELD(temp_16, s32 *, 4) = 0;
-    M2C_FIELD(temp_16, s32 *, 8) = 0;
-    M2C_FIELD(temp_16, s32 *, 0x14) = (s32) ((s32) (&func_01000000 + 0x107AC0) | 0x20000000);
-    M2C_FIELD(temp_16, s32 *, 0x10) = temp_2;
-    M2C_FIELD(temp_2, s16 *, 4) = 0x210;
-    M2C_FIELD(temp_2, s8 *, 6) = 0x45;
-    M2C_FIELD(temp_2, s8 *, 7) = 0x48;
-    M2C_FIELD(temp_2, s32 *, 8) = 0;
-    M2C_FIELD(temp_2, s16 *, 2) = 0;
-    M2C_FIELD(temp_16, s32 *, 0x18) = func_001AE870(0x100, 0x45, 0x210);
+    q->h = func_001B7E98(0x210, q, func_001AE918);
+    if (q->h < 0) return 0;
+    q->fC = 0;
+    t = (u8 *)((u32)D_01107980 | 0x20000000);
+    q->f4 = 0;
+    q->f8 = 0;
+    q->f14 = (u32)D_01107AC0 | 0x20000000;
+    q->f10 = (u32)t;
+    *(s16 *)(t + 4) = 0x210;
+    t[6] = 0x45;
+    t[7] = 0x48;
+    *(s32 *)(t + 8) = 0;
+    *(s16 *)(t + 2) = 0;
+    q->f18 = func_001AE870(0x100, 0x45, 0x210);
     return 1;
+}
+
+s32 func_001AEDB8(s32 a) {
+    while (*(volatile u32 *)0x1000F130 & 0x8000) {}
+    *(volatile u8 *)0x1000F180 = a;
+    return a;
 }

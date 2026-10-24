@@ -1,32 +1,31 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-M2C_UNK func_00195D10(void *);                      /* extern */
-M2C_UNK func_001966E8(void *, s32);                 /* extern */
-M2C_UNK func_001A1568(void *, M2C_UNK, void *);     /* extern */
-extern M2C_UNK D_00364290;
-extern M2C_UNK jtbl_004C006C;
-
-void func_00196658(void *arg0, s32 arg1) {
-    if (arg0 == NULL) {
-        func_001A1568(&jtbl_004C006C + 0xEC4C, 0x6F4, &jtbl_004C006C + 0xED04);
+void func_0019545C(void *);
+void func_0019548C(void *);
+void func_001954BC(void);
+void func_0019550C(void);
+void func_00196120(void *a, s32 b, s32 c) {
+    if (b != 0 || c != 0) {
+        if (c != 0) {
+            if (c > 0) func_0019550C();
+            else func_001954BC();
+        }
+        if (b != 0) {
+            if (b > 0) func_0019548C(a);
+            else func_0019545C(a);
+        }
     }
-    func_001966E8(arg0, arg1);
-    if (M2C_FIELD(&D_00364290, s32 *, 8) == M2C_FIELD(arg0, s32 *, 0x48)) {
-        func_00195D10(arg0);
-    }
-    M2C_FIELD(arg0, s32 *, 0x4C) = 0;
-    M2C_FIELD(&D_00364290, s32 *, 8) = -1;
-    M2C_FIELD(&D_00364290, s32 *, 4) = (s32) (M2C_FIELD(&D_00364290, s32 *, 4) & ~1);
+}
+
+typedef struct { s32 p0; s32 f4; s32 f8; } G;
+extern G D_00364290;
+extern u8 D_004CECB8[], D_004CED70[];
+void func_001A1568(void *, s32, void *);
+void func_001966E8(void *, s32);
+void func_00195D10(void *);
+void func_00196658(u8 *o, s32 b) {
+    if (o == 0) func_001A1568(D_004CECB8, 0x6F4, D_004CED70);
+    func_001966E8(o, b);
+    if (D_00364290.f8 == *(s32 *)(o + 0x48)) func_00195D10(o);
+    *(s32 *)(o + 0x4C) = 0;
+    D_00364290.f8 = -1;
+    D_00364290.f4 &= ~1;
 }

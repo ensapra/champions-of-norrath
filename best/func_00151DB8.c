@@ -1,30 +1,47 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct Node { u8 pad[0x1C]; struct Node *volatile next; } Node;
+void func_0015217C(Node *);
 
-s32 func_001520EC(s32, u32);                        /* extern */
-extern s32 D_0047FC1C;
-
-void func_00151DB8(void *arg0, u32 arg1) {
-    u32 temp_2;
-    void *var_16;
-
-    var_16 = arg0 + 0xFA0;
-    temp_2 = D_0047FC1C - M2C_FIELD(arg0, s64 *, 0xFC0);
-    if (M2C_FIELD(var_16, s32 *, 0x1C) != 0) {
-        do {
-            var_16 = M2C_FIELD(var_16, void **, 0x1C);
-        } while (M2C_FIELD(var_16, s32 *, 0x1C) != 0);
+void func_00151E24(u8 *arg0, Node *arg1) {
+    Node *prev = (Node *)(arg0 + 0xFA0);
+    Node *next;
+    arg0 = *(u8 **)(arg0 + 0xFBC);
+    if (arg1 != NULL) {
+        while (arg0 != NULL) {
+            next = ((Node *)arg0)->next;
+            if ((Node *)arg0 == arg1) {
+                prev->next = next;
+                func_0015217C((Node *)arg0);
+            } else {
+                prev = (Node *)arg0;
+            }
+            arg0 = (u8 *)next;
+        }
     }
-    M2C_FIELD(var_16, s32 *, 0x1C) = func_001520EC(M2C_FIELD(var_16, s32 *, 0x1C), (temp_2 >= arg1) ? (temp_2 + 1) : arg1);
+}
+
+extern s32 D_0047FC1C;
+s32 func_001520EC(Node *, u64);
+
+void func_00151DB8(u8 *arg0, u64 arg1) {
+    Node *p = (Node *)(arg0 + 0xFA0);
+    u64 t = D_0047FC1C - *(u64 *)(arg0 + 0xFC0);
+    if (t >= arg1) arg1 = t + 1;
+    while (p->next != NULL) {
+        p = p->next;
+    }
+    p->next = (Node *)func_001520EC(p->next, arg1);
+}
+
+typedef struct { u8 pad[0x10]; s32 a, b, c, d, e; } Obj;
+Obj *func_001521A0(void *, s32);
+
+void func_00151C5C(u8 *arg0, s32 arg1) {
+    Obj *t = func_001521A0(arg0, 0xF);
+    if (t) {
+        t->e = arg1;
+        t->a = 1;
+        t->b = *(s32 *)(arg0 + 0xFD4);
+        t->c = *(s32 *)(arg0 + 0xFD8);
+        t->d = *(s32 *)(arg0 + 0xFDC);
+    }
 }

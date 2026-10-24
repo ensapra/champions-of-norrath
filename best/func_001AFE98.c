@@ -1,55 +1,57 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern s32 D_010CFC58[];
+extern s32 D_010CFC5C[];
+extern s32 D_010CFC60[];
+extern s32 D_010CFC64[];
+extern s32 D_010CFC70[];
+extern char D_001C5500[];
+s32 func_001404D0(void);
+s32 func_001404F0(void);
+s32 func_00140020(void);
+void func_001403B8(void);
+void func_00140A10(s32);
+s32 func_00141028(void *, s32, s32, s32);
+void func_0013FFF8(void);
+s32 func_0013DFF0(void *);
 
-void func_001AFE98(s32 arg0, s32 arg1) {
-    s32 var_9;
-    u32 temp_11;
-    u32 var_10;
+typedef struct {
+    char pad[0x18];
+    s32 (*fn)();
+} T;
 
-    if (arg1 > 0) {
-        temp_11 = ((u32) ((((arg0 + arg1) - 1) & 0xFFFFFFC0) - (arg0 & 0xFFFFFFC0)) >> 6) + 1;
-        var_9 = temp_11 & 7;
-        var_10 = temp_11 >> 3;
-        if (var_9 != 0) {
-            do {
-                M2C_SYNC();
-                M2C_ERROR(/* unknown instruction: cache 0x18, ($a4) */);
-                M2C_SYNC();
-                var_9 -= 1;
-            } while (var_9 > 0);
-        }
-        if (var_10 != 0) {
-            do {
-                var_10 -= 1;
-                M2C_SYNC();
-                M2C_ERROR(/* unknown instruction: cache 0x18, ($a4) */);
-                M2C_SYNC();
-                M2C_ERROR(/* unknown instruction: cache 0x18, 0x40($a4) */);
-                M2C_SYNC();
-                M2C_ERROR(/* unknown instruction: cache 0x18, 0x80($a4) */);
-                M2C_SYNC();
-                M2C_ERROR(/* unknown instruction: cache 0x18, 0xc0($a4) */);
-                M2C_SYNC();
-                M2C_ERROR(/* unknown instruction: cache 0x18, 0x100($a4) */);
-                M2C_SYNC();
-                M2C_ERROR(/* unknown instruction: cache 0x18, 0x140($a4) */);
-                M2C_SYNC();
-                M2C_ERROR(/* unknown instruction: cache 0x18, 0x180($a4) */);
-                M2C_SYNC();
-                M2C_ERROR(/* unknown instruction: cache 0x18, 0x1c0($a4) */);
-                M2C_SYNC();
-            } while ((s32) var_10 > 0);
-        }
+s32 func_0013DF68(T *t)
+{
+    s32 id;
+    if (func_001404D0() != 0)
+        return 0;
+    id = func_001404F0();
+    D_010CFC58[0] = id;
+    if (id < 0) {
+        D_010CFC60[0] = id;
+        return 1;
     }
+    D_010CFC5C[0] = func_00141028(D_001C5500, id, 0x1320, 0);
+    t->fn = func_0013DFF0;
+    return 0;
+}
+
+s32 func_0013DEE8(T *t) {
+    if (func_00140020() != 0) return 0;
+    if (func_001404D0() != 0) return 0;
+    if (D_010CFC64[0] > 0) {
+        D_010CFC64[0]--;
+        return 0;
+    }
+    func_001403B8();
+    func_00140A10(0x1320);
+    t->fn = func_0013DF68;
+    return 0;
+}
+
+void func_0013DEB0(void) {
+    func_0013FFF8();
+    D_010CFC64[0] = 3;
+    D_010CFC70[0] = 1;
+}
+
+void func_001AFE98(s32 a, s32 n) {
 }

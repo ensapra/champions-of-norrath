@@ -1,42 +1,53 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern u32 D_00362CE8[];
 
-extern u32 D_00362CE8;
+void func_0018AC18(u16 **arg0, u32 c) {
+    u16 *p = *arg0;
+    u32 lim = 0x7FF;
+    s32 ok;
 
-void func_0018AC18(s16 **arg0, u32 arg1) {
-    s16 *var_6;
-    s32 var_3;
-    u32 temp_5;
-    u32 var_5;
-
-    var_5 = arg1;
-    var_6 = *arg0;
-    if (var_5 > 0x10FFFFU) {
-        var_3 = 0;
+    if (c > 0x10FFFF) {
+        ok = 0;
     } else {
-        var_3 = (u32) (var_5 + 0xFFFF2800) > 0x7FFU;
+        u32 d = c - 0xD800;
+        ok = d > lim;
     }
-    if (var_3 == 0) {
-        var_5 = D_00362CE8;
+    if (ok == 0) {
+        c = D_00362CE8[0];
     }
-    if (var_5 <= 0xFFFFU) {
-        *var_6 = (s16) var_5;
+    if (c <= 0xFFFF) {
+        *p = c;
     } else {
-        temp_5 = var_5 + 0xFFFF0000;
-        *var_6 = (temp_5 >> 0xA) - 0x2800;
-        var_6 += 2;
-        *var_6 = (temp_5 & 0x3FF) | 0xDC00;
+        c -= 0x10000;
+        *p = (c >> 10) + 0xD800;
+        p++;
+        *p = (c & 0x3FF) | 0xDC00;
     }
-    *arg0 = var_6 + 2;
+    p++;
+    *arg0 = p;
+}
+
+extern u16 *D_00362CF0[];
+u32 func_0018AD70(u32 a, u32 b) {
+    u32 v = 0;
+    b &= 0xFFFF;
+    if (a <= 0xFFFF) {
+        v = D_00362CF0[0][a];
+    }
+    return v ? v : b;
+}
+
+extern s32 D_00362CE4[];
+s32 func_0018ADD8(s32 a) {
+    s32 t = D_00362CE4[0];
+    D_00362CE4[0] = a;
+    return t;
+}
+
+typedef struct O { char pad[0x350]; s32 a, b, c; } O;
+void func_0018D2F0(O *);
+void func_0018AE08(O *o, s32 a1, s32 a2, s32 a3) {
+    o->a = a2;
+    o->c = a3;
+    o->b = a1;
+    func_0018D2F0(o);
 }

@@ -1,34 +1,17 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct { void *data; s32 cap; s32 unk8; s32 len; s32 grow; } PtrArr;
+extern void *func_0011B940(void *, s32);
+extern void *func_0011B8D0(s32);
 
-s32 func_0011B8D0(s32, s32, s32);                   /* extern */
-s32 func_0011B940(s32, s32, s32);                   /* extern */
-
-void func_0013BD40(void *arg0) {
-    s32 temp_2;
-    s32 temp_4;
-    s32 temp_7;
-    s32 var_2;
-
-    temp_7 = M2C_FIELD(arg0, s32 *, 0);
-    temp_2 = M2C_FIELD(arg0, s32 *, 4) + M2C_FIELD(arg0, s32 *, 0x10);
-    M2C_FIELD(arg0, s32 *, 4) = temp_2;
-    temp_4 = temp_2 * 0x258;
-    if (temp_7 != 0) {
-        var_2 = func_0011B940(temp_7, temp_4, temp_7);
-    } else {
-        var_2 = func_0011B8D0(temp_4, temp_4, temp_7);
-    }
-    M2C_FIELD(arg0, s32 *, 0) = var_2;
+void func_0013BD40(PtrArr *p) {
+    void *old = p->data;
+    s32 n = p->cap + p->grow;
+    s32 size;
+    p->cap = n;
+    size = n * 5;
+    size = size * 15;
+    size = size * 8;
+    if (old)
+        p->data = func_0011B940(old, size);
+    else
+        p->data = func_0011B8D0(size);
 }

@@ -1,29 +1,39 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct LNode {
+    s32 unk0;
+    s32 unk4;
+    struct LNode *next;
+    struct LNode *prev;
+} LNode;
 
-s32 func_00171000(f32);                             /* extern */
-M2C_UNK func_001A2850(void *, s32);                 /* extern */
-extern M2C_UNK func_01000000;
-extern M2C_UNK jtbl_004C006C;
+typedef struct {
+    f32 (*getf)(void);
+    void (*init)(void);
+    s32 rest[12];
+} CbTable;
+
+extern CbTable D_010E4558;
+extern char D_004CB4F0[];
+s32 func_00171000(f32);
+void func_001A2850(void *, s32);
 
 f32 func_00152B70(void) {
-    f32 temp_f0;
-
-    if (M2C_FIELD(&func_01000000, f32 (**)(), 0xE4558) != NULL) {
-        temp_f0 = M2C_FIELD(&func_01000000, f32 (**)(), 0xE4558)();
-        func_001A2850(&jtbl_004C006C + 0xB484, func_00171000(temp_f0));
-        return temp_f0;
+    f32 f;
+    char *buf;
+    if (D_010E4558.getf != NULL) {
+        f = D_010E4558.getf();
+        buf = D_004CB4F0;
+        func_001A2850(buf, func_00171000(f));
+        return f;
     }
     return 1.0f;
+}
+
+void func_00152A08(LNode *head, LNode *n) {
+    LNode *next = n->next;
+    next->prev = n->prev;
+    n->prev->next = next;
+    head->next->prev = n;
+    n->prev = head;
+    n->next = head->next;
+    head->next = n;
 }

@@ -1,28 +1,69 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern u8 func_001C8098[];
+void func_0014CA30(s32);
+void func_0014CF0C(s32, s32, s32);
+void func_0014CBF4(s32, void *, s32);
 
-M2C_UNK func_0014CF0C(s32, s32, s32);               /* extern */
+void func_0016D31C(void)
+{
+    void *p = func_001C8098;
+    p = *(void **)((u8 *)p + 0xD68);
+    ((void (*)(void))p)();
+}
 
-void func_0016D46C(void *arg0) {
-    f32 temp_f0;
-    f32 var_f1;
+void func_0016D2E4(void *arg0)
+{
+    void *p = func_001C8098;
+    p = *(void **)((u8 *)p + 0xD68);
+    ((void (*)(void))p)();
+    func_0014CA30(*(s32 *)((u8 *)arg0 + 0x914));
+    func_0014CA30(*(s32 *)((u8 *)arg0 + 0x910));
+}
 
-    func_0014CF0C(M2C_FIELD(arg0, s32 *, 0x914), M2C_FIELD(arg0, s32 *, 0x5AC), M2C_FIELD(arg0, s32 *, 0x5B0));
-    var_f1 = (f32) M2C_FIELD(arg0, s32 *, 0x978);
-    temp_f0 = (f32) M2C_FIELD(arg0, s32 *, 0x97C);
-    if (temp_f0 < var_f1) {
-        var_f1 = temp_f0;
+void func_0016D46C(void *arg0);
+
+typedef struct {
+    s32 type;
+    s32 pad;
+    s64 val;
+    u8 rest[0x3F0];
+} Msg16D378;
+
+s32 func_0016D378(void *arg0, void *arg1, void *arg2)
+{
+    Msg16D378 msg;
+    s32 send = 0;
+    s32 upd;
+    s32 ret;
+    void *p = func_001C8098;
+    p = *(void **)((u8 *)p + 0xDB8);
+    ret = ((s32 (*)(void))p)();
+    upd = 0;
+    if (*(s32 *)((u8 *)arg1 + 0x978) != *(s32 *)((u8 *)arg2 + 0x978)) {
+        *(s32 *)((u8 *)arg0 + 0x978) = *(s32 *)((u8 *)arg1 + 0x978);
+        msg.type = 0xE;
+        send = 1;
+        upd = 1;
+        ret = 1;
+        msg.val = *(s32 *)((u8 *)arg1 + 0x978);
     }
-    func_0014CF0C(M2C_FIELD(arg0, s32 *, 0x910), M2C_BITWISE(s32, var_f1), M2C_FIELD(arg0, s32 *, 0x5B0));
+    if (send) {
+        func_0014CBF4(*(s32 *)((u8 *)arg0 + 0x910), &msg, send);
+    }
+    if (upd) {
+        func_0016D46C(arg0);
+    }
+    return ret;
+}
+
+void func_0016D46C(void *arg0)
+{
+    f32 a, b, c;
+    func_0014CF0C(*(s32 *)((u8 *)arg0 + 0x914), *(s32 *)((u8 *)arg0 + 0x5AC), *(s32 *)((u8 *)arg0 + 0x5B0));
+    a = *(s32 *)((u8 *)arg0 + 0x5AC);
+    b = *(s32 *)((u8 *)arg0 + 0x978);
+    c = *(s32 *)((u8 *)arg0 + 0x97C);
+    if (c < b) {
+        b = c;
+    }
+    func_0014CF0C(*(s32 *)((u8 *)arg0 + 0x910), (s32)(a * (b / c)), *(s32 *)((u8 *)arg0 + 0x5B0));
 }

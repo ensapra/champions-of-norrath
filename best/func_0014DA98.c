@@ -1,46 +1,34 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+void func_0016FB0C(void *);
+void func_0014D270(void *);
 
-M2C_UNK func_0014D270(void *);                      /* extern */
-M2C_UNK func_0016FB0C(void *);                      /* extern */
-
-void func_0014DA98(void *arg0, s32 arg1) {
-    M2C_FIELD(arg0, s32 *, 0x504) = arg1;
-    if (arg1 != 1) {
-        if (arg1 < 2) {
-            goto block_12;
+void func_0014DA98(u8 *o, s32 n)
+{
+    *(s32 *)(o + 0x504) = n;
+    switch (n) {
+    case 1:
+        *(s32 *)(o + 0x508) = 0;
+        *(s32 *)(o + 0x50C) = 0xFF;
+        func_0016FB0C(o + 0x518);
+        *(s32 *)(o + 0x510) = 0;
+        break;
+    case 2:
+    case 3:
+        *(s32 *)(o + 0x50C) = 0;
+        *(s32 *)(o + 0x508) = 0xFF;
+        func_0016FB0C(o + 0x518);
+        switch (n) {
+        case 3:
+            *(s32 *)(o + 0x510) = 1;
+            break;
+        default:
+            *(s32 *)(o + 0x510) = 0;
+            break;
         }
-        if (arg1 >= 4) {
-block_12:
-            if (M2C_FIELD(arg0, s32 *, 0x510) != 0) {
-                func_0014D270(arg0);
-                return;
-            }
-            return;
-        }
-        M2C_FIELD(arg0, s32 *, 0x50C) = 0;
-        M2C_FIELD(arg0, s32 *, 0x508) = 0xFF;
-        func_0016FB0C(arg0 + 0x518);
-        if (arg1 != 3) {
-            M2C_FIELD(arg0, s32 *, 0x510) = 0;
-            return;
-        }
-        M2C_FIELD(arg0, s32 *, 0x510) = 1;
-        return;
+        break;
+    case 0:
+    default:
+        if (*(s32 *)(o + 0x510) != 0)
+            func_0014D270(o);
+        break;
     }
-    M2C_FIELD(arg0, s32 *, 0x508) = 0;
-    M2C_FIELD(arg0, s32 *, 0x50C) = 0xFF;
-    func_0016FB0C(arg0 + 0x518);
-    M2C_FIELD(arg0, s32 *, 0x510) = 0;
 }

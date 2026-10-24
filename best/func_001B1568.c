@@ -1,19 +1,23 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern u8 jtbl_004C006C[];
+void SignalSema(s32);
+void WaitSema(s32);
+s32 CreateSema(void *);
+void func_001B14E8(void);
 
-M2C_UNK SignalSema();                               /* extern */
+void func_001B1568(void) { SignalSema(*(s32 *)(jtbl_004C006C + 0x3F38)); }
 
-void func_001B1568(void) {
-    SignalSema();
+s32 func_001B1538(void) {
+    func_001B14E8();
+    WaitSema(*(s32 *)(jtbl_004C006C + 0x3F38));
+    return 0;
+}
+
+void func_001B14E8(void) {
+    s32 a[8];
+    if (*(s32 *)(jtbl_004C006C + 0x3F38) == -1) {
+        a[5] = 0;
+        a[1] = 1;
+        a[2] = 1;
+        *(s32 *)(jtbl_004C006C + 0x3F38) = CreateSema(a);
+    }
 }

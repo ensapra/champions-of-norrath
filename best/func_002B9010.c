@@ -1,59 +1,33 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 func_001671F8(M2C_UNK *);                       /* extern */
-M2C_UNK func_00190E20(s32, s32, f32, f32, f32, f32, f32, s32, s32, s32); /* extern */
-extern M2C_UNK D_004795D0;
-extern M2C_UNK D_004795E8;
-extern f32 D_00482EB8;
-extern f32 D_00482EBC;
-
-void func_002B9010(void *arg0, s32 arg1, s32 arg2) {
-    f32 temp_f12;
-    f32 temp_f12_2;
-    s32 temp_16;
-    s32 temp_18;
-    s32 temp_19;
-    s32 temp_20;
-    s32 temp_5;
-    s32 temp_5_2;
-    void *temp_3;
-    void *temp_3_2;
-    void *temp_3_3;
-    void *temp_3_4;
-
-    temp_3 = M2C_FIELD(arg0, void **, 0x60);
-    temp_3_2 = M2C_FIELD(arg0, void **, 0x60);
-    temp_19 = M2C_FIELD((temp_3 + 0x58), s32 (**)(void *, M2C_UNK), 4)(arg0 + M2C_FIELD(temp_3, s16 *, 0x58), 0);
-    temp_3_3 = M2C_FIELD(arg0, void **, 0x60);
-    temp_20 = M2C_FIELD((temp_3_2 + 0x58), s32 (**)(void *, M2C_UNK, s32), 4)(arg0 + M2C_FIELD(temp_3_2, s16 *, 0x58), 1, arg2);
-    temp_3_4 = M2C_FIELD(arg0, void **, 0x60);
-    temp_18 = M2C_FIELD((temp_3_3 + 0x58), s32 (**)(void *, M2C_UNK, s32), 4)(arg0 + M2C_FIELD(temp_3_3, s16 *, 0x58), 2, arg2);
-    temp_16 = M2C_FIELD((temp_3_4 + 0x58), s32 (**)(void *, M2C_UNK, s32), 4)(arg0 + M2C_FIELD(temp_3_4, s16 *, 0x58), 3, arg2);
-    if (temp_18 != 0) {
-        temp_f12 = (f32) temp_19;
-        temp_5 = func_001671F8(&D_004795D0);
-        if ((temp_f12 + (temp_f12 * D_00482EB8)) >= 0.0f) {
-
-        }
-        func_00190E20(arg1, temp_5, temp_f12, (f32) 0, (f32) temp_20, (f32) temp_18, (f32) temp_16, 0, 0, 0);
-        return;
+typedef struct { s16 delta; s16 index; s32 (*fn)(void *, ...); } VEnt;
+typedef struct { u8 pad[0x60]; VEnt *vt; } Obj;
+extern char D_004795D0[], D_004795E8[];
+f32 D_00482EB8 = 0.2f, D_00482EBC = 0.2f;
+extern s32 func_001671F8(char *);
+extern void func_00190E20(s32, s32, f32, f32, f32, f32, f32, f32, f32, f32);
+void func_002B9010(Obj *o, s32 arg1, s32 arg2) {
+    s32 t19, t20, t18, t16;
+    f32 x, y;
+    s32 r;
+    VEnt *e;
+    e = &o->vt[11];
+    t19 = e->fn((u8 *)o + e->delta, 0);
+    e = &o->vt[11];
+    t20 = e->fn((u8 *)o + e->delta, 1, arg2);
+    e = &o->vt[11];
+    t18 = e->fn((u8 *)o + e->delta, 2, arg2);
+    e = &o->vt[11];
+    t16 = e->fn((u8 *)o + e->delta, 3, arg2);
+    if (t18 != 0) {
+        r = func_001671F8(D_004795D0);
+        x = (f32)t19;
+        y = x + x * D_00482EB8;
+        if (y >= 0.0f) y += 0.5f; else y -= 0.5f;
+        func_00190E20(arg1, r, x, (f32)(s32)y, (f32)t20, (f32)t18, (f32)t16, 0.0f, 0.0f, 0.0f);
+    } else {
+        r = func_001671F8(D_004795E8);
+        x = (f32)t19;
+        y = x + x * D_00482EBC;
+        if (y >= 0.0f) y += 0.5f; else y -= 0.5f;
+        func_00190E20(arg1, r, x, (f32)(s32)y, (f32)t20, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     }
-    temp_f12_2 = (f32) temp_19;
-    temp_5_2 = func_001671F8(&D_004795E8);
-    if ((temp_f12_2 + (temp_f12_2 * D_00482EBC)) >= 0.0f) {
-
-    }
-    func_00190E20(arg1, temp_5_2, temp_f12_2, (f32) 0, (f32) temp_20, 0.0f, 0.0f, 0, 0, 0);
 }

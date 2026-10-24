@@ -1,43 +1,52 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct { u8 d[12]; } Days;
+extern Days D_004CC710;
+typedef struct { u8 pad0; u8 b1; u8 b2; u8 hour; u8 b4; u8 day; u8 month; u8 year; } Date;
+void ovl_ntgui2_func_0017E0D8(Date *);
+void func_0017E290(Date *, s32);
+extern s32 D_001D2108[];
+extern u8 D_010EE120[], D_010EE180[], D_010EE1C0[];
+extern s32 D_010EE080[];
+extern char D_004CC7B0[];
+void func_0017EBF8(void);
+s32 WaitSema(s32);
+s32 func_001B08B0(void *, s32, s32, void *, s32, void *, s32, void (*)(void), s32);
+void func_001AF710(char *, s32);
 
-M2C_UNK WaitSema(s32);                              /* extern */
-M2C_UNK func_001AF710(void *, s32);                 /* extern */
-s32 func_001B08B0(void *, M2C_UNK, M2C_UNK, void *, M2C_UNK, void *, M2C_UNK, M2C_UNK *, s32); /* extern */
-extern M2C_UNK func_0017EBF8;
-extern M2C_UNK func_001D1C80;
-extern M2C_UNK func_01000000;
-extern M2C_UNK jtbl_004C006C;
+void func_0017E320(Date *t) {
+    func_0017E290(t, -0x21C);
+}
+
+void func_0017E238(Date *p) {
+    if (++p->hour == 24) {
+        p->hour = 0;
+        ovl_ntgui2_func_0017E0D8(p);
+    }
+}
+
+void func_0017E190(Date *p) {
+    Days days = D_004CC710;
+    p->day--;
+    if ((p->year & 3) == 0) days.d[1] = 29;
+    if (p->day == 0) {
+        p->month--;
+        if (p->month == 0) {
+            if (*(volatile u8 *)&p->year != 0) p->year--; else p->year = 99;
+            p->month = 12;
+        }
+        p->day = days.d[p->month - 1];
+    }
+}
 
 s32 func_0017E630(s32 arg0) {
-    s32 temp_2;
-    s32 var_2;
-    void *temp_3;
-
-    var_2 = -1;
-    if (M2C_FIELD(&func_001D1C80, s32 *, 0x488) != -1) {
-        WaitSema(M2C_FIELD(&func_001D1C80, s32 *, 0x488));
-        temp_2 = func_001B08B0(&func_01000000 + 0xEE120, 1, 1, &func_01000000 + 0xEE180, 0x10, &func_01000000 + 0xEE1C0, 0x90, &func_0017EBF8, 0);
-        if (temp_2 != 0) {
-            func_001AF710(&jtbl_004C006C + 0xC744, temp_2);
-            var_2 = -2;
-        } else {
-            temp_3 = &func_01000000 + 0xEE080;
-            var_2 = 0;
-            M2C_FIELD(temp_3, s32 *, 0x98) = arg0;
-            M2C_FIELD(temp_3, s32 *, 0x90) = 1;
-        }
+    s32 r;
+    if (D_001D2108[0] == -1) return -1;
+    WaitSema(D_001D2108[0]);
+    r = func_001B08B0(D_010EE120, 1, 1, D_010EE180, 0x10, D_010EE1C0, 0x90, func_0017EBF8, 0);
+    if (r != 0) {
+        func_001AF710(D_004CC7B0, r);
+        return -2;
     }
-    return var_2;
+    D_010EE080[0x90 / 4] = 1;
+    D_010EE080[0x98 / 4] = arg0;
+    return 0;
 }

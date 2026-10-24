@@ -1,22 +1,19 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 func_002E4E48(M2C_UNK, s32 *, M2C_UNK, M2C_UNK); /* extern */
-
-s32 func_002E5BD0(s32 *arg1) {
-    if (func_002E4E48(0x10, arg1, 0, 4) >= 0) {
-        return *arg1;
-    }
-    return -0x21E;
+s32 func_002E4E48(s32, s32, s32 *, s32, s32);
+s32 func_002E4F58(s32, s32, s32 *, s32, s32);
+s32 func_002E5B40(s32 a0, s32 *p, s32 a2, s32 a3, s32 a4) {
+    s32 r;
+    p[1] = a4; p[0] = a3;
+    if (func_002E4E48(a0, 0x11, p, 8, a3 + 4) < 0) return -0x21E;
+    r = func_002E4F58(a0, a2, p, 1, a3);
+    if (r >= 0) r = p[0];
+    return r;
+}
+s32 func_002E5BD0(s32 a0, s32 *p) {
+    if (func_002E4E48(a0, 0x10, p, 0, 4) < 0) return -0x21E;
+    return *p;
+}
+s32 func_002E5C10(s32 a0, s32 *p, s32 v) {
+    *p = v;
+    if (func_002E4E48(a0, 0x32, p, 4, 4) < 0) return -0x21E;
+    return *p;
 }

@@ -1,32 +1,16 @@
-extern char D_0044D498[];
-extern char D_00449160[];
-void *func_001441B8(s32);
-void func_00194498(s32 *);
-
-void *func_00128E10(void *arg0) {
-    void *p = func_001441B8(0x50);
-    if (p != 0) {
-        *(s32 *)((char *)p + 0x48) = (s32)D_0044D498;
-        func_00194498((s32 *)p);
-        func_00194498((s32 *)p + 1);
-        func_00194498((s32 *)p + 2);
-        *(s32 *)((char *)p + 0xC) = *(s32 *)((char *)arg0 + 0xC);
-        *(s64 *)((char *)p + 0x10) = *(s64 *)((char *)arg0 + 0x10);
-        *(s32 *)((char *)p + 0x18) = *(s32 *)((char *)arg0 + 0x18);
-        *(f32 *)((char *)p + 0x1C) = *(f32 *)((char *)arg0 + 0x1C);
-        *(s32 *)((char *)p + 0x24) = *(s32 *)((char *)arg0 + 0x24);
-        *(f32 *)((char *)p + 0x20) = *(f32 *)((char *)arg0 + 0x20);
-        *(u8 *)((char *)p + 0x28) = *(u8 *)((char *)arg0 + 0x28);
-        *(u8 *)((char *)p + 0x29) = *(u8 *)((char *)arg0 + 0x29);
-        *(s32 *)((char *)p + 0x48) = (s32)D_00449160;
-        *(f32 *)((char *)p + 0x30) = *(f32 *)((char *)arg0 + 0x30);
-        *(s32 *)((char *)p + 0x44) = *(s32 *)((char *)arg0 + 0x44);
-        *(f32 *)((char *)p + 0x3C) = *(f32 *)((char *)arg0 + 0x3C);
-        *(s32 *)((char *)p + 0x2C) = *(s32 *)((char *)arg0 + 0x2C);
-        *(s32 *)((char *)p + 0x34) = *(s32 *)((char *)arg0 + 0x34);
-        *(u16 *)((char *)p + 0x38) = *(u16 *)((char *)arg0 + 0x38);
-        *(f32 *)((char *)p + 0x40) = *(f32 *)((char *)arg0 + 0x40);
-        *(s32 *)((char *)p + 0x4C) = *(s32 *)((char *)arg0 + 0x4C);
-    }
-    return 0;
+extern void *func_001441B8(s32);
+extern s32 func_00194498(void*,void*);
+extern u32 D_0044D498[],D_00449160[];
+struct __attribute__((packed,aligned(4))) C12 {u64 a;u32 b;};
+struct Obj {u32 f0,f4,f8,fC;struct C12 c; f32 f1C,f20;u32 f24;u8 b28,b29;u32 f2C;f32 f30;u32 f34;u16 h38;f32 f3C,f40;u32 f44,vt,f4C;};
+struct Obj *func_00128E10(struct Obj *in){
+struct Obj *out=func_001441B8(0x50);struct Obj *result;
+if(out){out->vt=(u32)D_0044D498;
+func_00194498(&out->f0,&in->f0);
+func_00194498(&out->f4,&in->f4);
+func_00194498(&out->f8,&in->f8);
+out->fC=in->fC;{u64 a=in->c.a;u32 b=in->c.b;out->c.a=a;out->c.b=b;}{f32 f=in->f1C;u32 w=in->f24;out->f1C=f;out->f24=w;}out->f20=in->f20;
+out->b28=in->b28;out->b29=in->b29;out->vt=(u32)D_00449160;
+{u32 w=in->f44;u32 a=in->f2C;u32 b=in->f34;u16 h=in->h38;u32 z=in->f4C;out->f30=in->f30;out->f3C=in->f3C;out->f2C=a;out->f34=b;out->h38=h;out->f40=in->f40;out->f44=w;out->f4C=z;}
+result=out;}else{result=0;}return result;
 }

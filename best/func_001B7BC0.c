@@ -1,35 +1,45 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct Ent { struct Ent *volatile next; volatile s32 val; s32 aux; s32 pad; } Ent;
+extern Ent *volatile D_0110D880[];
+s32 func_001B6F48(s32);
 
-s32 func_001B6F48(s32);                             /* extern */
-extern M2C_UNK func_01109848;
-
-s32 func_001B7BC0(u32 arg0) {
-    s32 temp_16;
-    s32 temp_2;
-    s32 temp_3;
-
-    temp_16 = (arg0 >> 8) * 0x10;
-    if (((s32) arg0 < 0) || ((arg0 ^ M2C_FIELD(temp_16, s32 *, 4)) & 0xFF)) {
+s32 func_001B7BC0(u32 id) {
+    Ent *e = (Ent *)((id >> 8) * 16);
+    s32 r;
+    if ((s32)id < 0 || ((id ^ e->val) & 0xFF))
         return 0x80008002;
+    r = func_001B6F48(e->val);
+    if (r == 0) {
+        Ent *head = D_0110D880[0];
+        D_0110D880[0] = e;
+        e->next = head;
+        e->val = 0;
     }
-    temp_2 = func_001B6F48(M2C_FIELD(temp_16, s32 *, 4));
-    if (temp_2 == 0) {
-        temp_3 = M2C_FIELD(&func_01109848, s32 *, 0x4038);
-        M2C_FIELD(&func_01109848, s32 *, 0x4038) = temp_16;
-        M2C_FIELD(temp_16, s32 *, 0) = temp_3;
-        M2C_FIELD(temp_16, s32 *, 4) = 0;
-    }
-    return temp_2;
+    return r;
+}
+
+extern s32 D_010D4500[];
+s32 func_0014CE44(s32, s32, s32);
+
+s32 func_00147F58(void *a0, u8 *a1) {
+    return func_0014CE44(D_010D4500[*(s32 *)(a1 + 0x80)], 0x10, 6);
+}
+
+extern s32 D_010D44F8[];
+s32 func_0011BA18(s32);
+s32 func_00110720(s32, void *);
+
+void func_00147498(void) {
+    u8 buf[16];
+    D_010D44F8[0] = func_00110720(func_0011BA18(0x13F), buf);
+}
+
+extern s32 D_010D44F0[];
+void func_00140010(void *);
+
+void func_00147460(void *arg0) {
+    void (*fn)(s32);
+    func_00140010(arg0);
+    fn = *(void (**)(s32))((u8 *)arg0 + 8);
+    if (fn != NULL)
+        fn(D_010D44F0[0]);
 }

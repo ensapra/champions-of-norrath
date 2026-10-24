@@ -1,1 +1,0 @@
-s64 func_001084E0(void *a,void *b){s64 r;s32 n;u64 x,y;n=*(s32*)b;r=0;if(!n)goto end;r=0;if(*(s64*)((u8*)a+8)!=*(s64*)((u8*)b+8))goto end;r=0;if(*(s32*)a!=n)goto end;x=*(u32*)((u8*)a+32);y=*(u32*)((u8*)b+32);r=1;if(x==y)goto end;r=0;end:return r;}

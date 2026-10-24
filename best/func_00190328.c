@@ -1,40 +1,31 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct Req { s32 cmd, a, b, c, res; } Req;
+typedef struct Blk { u8 pad[0x58]; s32 key; u8 pad2[0x24]; } Blk;
+typedef struct Ent { Blk *w0; s32 w1, w2, w3, state, w5, w6; } Ent;
+typedef struct Row { Ent e[4]; } Row;
+extern Row D_010F4610[];
+extern u8 D_010F45C0[];
+extern Req D_010F4800;
+s32 func_001B08B0(void *, s32, s32, void *, s32, void *, s32, s32, s32);
+void func_001AE018(void *, void *);
 
-s32 func_001B08B0(void *, M2C_UNK, M2C_UNK, void *, M2C_UNK, void *, M2C_UNK, M2C_UNK, s32); /* extern */
-extern M2C_UNK func_01000000;
+s32 func_00190328(s32 a, s32 b) {
+    s32 *st = (s32 *)((u8 *)D_010F4610 + 0x10 + b * 0x1C + a * 0x70);
+    Req *r;
+    if (*st == 0) return 0;
+    r = &D_010F4800;
+    r->cmd = 14;
+    r->a = a;
+    r->b = b;
+    r->res = 1;
+    if (func_001B08B0(D_010F45C0, 1, 0, r, 0x80, r, 0x80, 0, 0) < 0) return 0;
+    *st = 0;
+    return r->c;
+}
 
-s32 func_00190328(s32 arg0, s32 arg1) {
-    s32 *temp_17;
-    s32 var_2;
-    void *temp_2;
-
-    temp_17 = (arg1 * 0x1C) + (arg0 * 0x70) + (&func_01000000 + 0xF4610 + 0x10);
-    var_2 = 0;
-    if (*temp_17 != 0) {
-        temp_2 = &func_01000000 + 0xF4800;
-        M2C_FIELD(&func_01000000, s32 *, 0xF4800) = 0xE;
-        M2C_FIELD(temp_2, s32 *, 4) = arg0;
-        M2C_FIELD(temp_2, s32 *, 8) = arg1;
-        M2C_FIELD(temp_2, s32 *, 0x10) = 1;
-        if (func_001B08B0(&func_01000000 + 0xF45C0, 1, 0, temp_2, 0x80, temp_2, 0x80, 0, 0) >= 0) {
-            *temp_17 = 0;
-            var_2 = M2C_FIELD(temp_2, s32 *, 0xC);
-            /* Duplicate return node #6. Try simplifying control flow for better match */
-            return var_2;
-        }
-        return 0;
-    }
-    return var_2;
+Blk *func_001903E0(s32 a, s32 b) {
+    Blk *p = D_010F4610[a].e[b].w0;
+    s32 i;
+    func_001AE018(p, (u8 *)p + 0xFF);
+    i = p[0].key < p[1].key;
+    return p + i;
 }

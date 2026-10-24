@@ -1,0 +1,20 @@
+typedef struct { u8 p0[0x168]; f32 f168, f16c, f170; u8 p1[0x174-0x174+4]; f32 f178; f32 f17c; s32 i180; s32 i184; s32 i188; u8 *f18c; } O;
+extern f32 D_00482280;
+void func_002783A8(O *o) {
+    ((volatile s32 *)o)[0x188 / 4] = 0;
+    ((volatile s32 *)o)[0x170 / 4] = 0;
+    ((volatile s32 *)o)[0x168 / 4] = 0;
+    ((volatile s32 *)o)[0x16C / 4] = 0;
+}
+void func_002783C0(O *o) {
+    s32 i = o->i180;
+    u8 *base = o->f18c;
+    f32 *a = (f32 *)(base + i * 12 + 0x72C);
+    f32 *b = (f32 *)(base + i * 12 + 0x66C);
+    f32 v;
+    if (*(f32 *)(base + i * 4 + 0x2A4) != 0.0f) {
+        v = (b[0] * a[0] + b[1] * a[1] + b[2] * a[2]) / o->f17c * 60.0f;
+        o->f16c = v;
+        o->f168 = v;
+    }
+}

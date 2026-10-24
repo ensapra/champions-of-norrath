@@ -1,3 +1,63 @@
-extern s32 func_00138758(void *, s32, void **); extern void func_00138900(void *, void *); extern void func_00140678(void *,u32*,s32); extern void func_00112BA0(void*,s32); extern void *func_00143A58(void*); extern void func_00191EF8(void*,s32,s32,s32,s32,s32,f32);
-s32 func_0013B868(void *arg0,void *arg1){char buf[0xA0];void*tmp;u32 gap[4];u32 list[0x200];func_00138758(arg0,*(s32*)((u8*)arg1+4),&tmp);func_00138900(buf,tmp);func_00140678(buf,list,0x200);if(list[0]){u32*p=list;do{u8*obj=(u8*)*p++;if(*(u32*)(obj+0xC)&0x20){*(u64*)(obj+0xA0)|=0x800000;func_00112BA0(obj,-1);}}while(*p);}return 0;}
-s32 func_0013B400(void *arg0,void *arg1){char buf[0xA0];void*tmp;u8 local[12];func_00138758(arg0,*(s32*)((u8*)arg1+4),&tmp);func_00138900(buf,tmp);tmp=func_00143A58(buf);*(u64*)local=*(u64*)((u8*)tmp+0x10);*(u32*)(local+8)=*(u32*)((u8*)tmp+0x18);func_00191EF8(local,0,10,2,0,*(s32*)(local+8),(f32)*(s32*)((u8*)arg1+0xC));return 0;}
+extern s32 func_00138758(void *, s32, void **);
+extern void func_00138900(void *, void *);
+extern s32 func_001671F8(void *);
+extern s32 func_001C2378(s32, s32, s32);
+extern void *func_00143A58(void *);
+extern void func_00191EF8(void *, s32, s32, s32, f32);
+extern void func_001C7EB8(void *, s32, s32, s32);
+
+typedef struct { s32 a, b, c; } V12;
+
+s32 func_0013AEA8(void *arg0, s32 *arg1) {
+    struct { char b0[0xA0]; char b1[0xA0]; void *s; } l;
+    s32 t2;
+    s32 t1;
+
+    func_00138758(arg0, arg1[1], &l.s);
+    func_00138900(l.b0, l.s);
+    func_00138758(arg0, arg1[2], &l.s);
+    func_00138900(l.b1, l.s);
+    t1 = func_001671F8(l.b0);
+    t2 = func_001671F8(l.b1);
+    func_001C2378(-1, t1, t2);
+    return 0;
+}
+
+s32 func_0013B400(void *arg0, s32 *arg1) {
+    void *s;
+    char buf[0xA0];
+    V12 v;
+    u8 *p;
+
+    func_00138758(arg0, arg1[1], &s);
+    func_00138900(buf, s);
+    p = func_00143A58(buf);
+    v = *(V12 *)(p + 0x10);
+    func_00191EF8(&v, 0, 10, 2, (f32)arg1[3]);
+    return 0;
+}
+
+s32 func_0013A918(void *arg0, s32 *arg1) {
+    void *s;
+    char buf[0xA0];
+    u8 *p;
+
+    func_00138758(arg0, arg1[1], &s);
+    func_00138900(buf, s);
+    p = func_00143A58(buf);
+    if (p != NULL && (*(s32 *)(p + 0xC) & 0x20)) {
+        return (s32)*(f32 *)(p + 0x230);
+    }
+    return 0;
+}
+
+s32 func_0013A880(void *arg0, s32 *arg1) {
+    struct { char b0[0xA0]; char b1[0xA0]; void *s; } l;
+
+    func_00138758(arg0, arg1[1], &l.s);
+    func_00138900(l.b1, l.s);
+    func_00138758(arg0, arg1[2], &l.s);
+    func_00138900(l.b0, l.s);
+    func_001C7EB8(l.b1, func_001671F8(l.b0), arg1[3], arg1[4]);
+    return 0;
+}

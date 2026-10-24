@@ -1,56 +1,37 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern s32 func_00304CFC(u8 *);
+extern u16 func_0024FB08(u8);
 
-extern M2C_UNK D_0042E400;
+typedef struct {
+    u8 pad0[9];
+    u8 b9, bA, bB, bC, bD;
+    u16 bE;
+    u8 pad10[0x30];
+} Ent;
+extern Ent D_0042E400[];
 
-s32 func_002562D8(s32 arg0, s32 arg1) {
-    s32 var_2;
-    u16 temp_3;
-    u16 temp_4;
-    u8 temp_3_2;
-    u8 temp_3_3;
-    u8 temp_4_2;
-    u8 temp_4_3;
-    void *temp_6;
-    void *temp_8;
-
-    temp_8 = (arg1 << 6) + &D_0042E400;
-    temp_6 = (arg0 << 6) + &D_0042E400;
-    temp_3 = M2C_FIELD(temp_6, u16 *, 0xE);
-    temp_4 = M2C_FIELD(temp_8, u16 *, 0xE);
-    var_2 = 0;
-    if (temp_3 >= temp_4) {
-        var_2 = 1;
-        if (temp_4 >= temp_3) {
-            temp_3_2 = M2C_FIELD(temp_6, u8 *, 0xD);
-            temp_4_2 = M2C_FIELD(temp_8, u8 *, 0xD);
-            var_2 = 0;
-            if (temp_3_2 >= temp_4_2) {
-                var_2 = 1;
-                if (temp_4_2 >= temp_3_2) {
-                    temp_3_3 = M2C_FIELD(temp_6, u8 *, 0xC);
-                    temp_4_3 = M2C_FIELD(temp_8, u8 *, 0xC);
-                    var_2 = 0;
-                    if (temp_3_3 >= temp_4_3) {
-                        var_2 = 1;
-                        if (temp_4_3 >= temp_3_3) {
-                            var_2 = ((u32) ((M2C_FIELD(temp_6, u8 *, 0xB) << 0x10) | (M2C_FIELD(temp_6, u8 *, 0xA) << 8) | M2C_FIELD(temp_6, u8 *, 9)) < (u32) ((M2C_FIELD(temp_8, u8 *, 0xB) << 0x10) | (M2C_FIELD(temp_8, u8 *, 0xA) << 8) | M2C_FIELD(temp_8, u8 *, 9))) == 0;
-                        }
-                    }
-                }
-            }
-        }
+void func_0024FC10(u8 *src, u16 *dst) {
+    s32 i = 0;
+    u16 *p = dst;
+    s32 n = func_00304CFC(src);
+    if (n > 0) {
+        do {
+            u16 v = func_0024FB08(src[i]);
+            i++;
+            *p = ((v >> 8) & 0xFF) | ((v & 0xFF) << 8);
+            p++;
+        } while (i < n);
     }
-    return var_2;
+    dst[i] = 0;
+}
+
+s32 func_002562D8(s32 a, s32 b) {
+    Ent *x = &D_0042E400[a];
+    Ent *y = &D_0042E400[b];
+    if (x->bE < y->bE) return 0;
+    if (y->bE < x->bE) return 1;
+    if (x->bD < y->bD) return 0;
+    if (y->bD < x->bD) return 1;
+    if (x->bC < y->bC) return 0;
+    if (y->bC < x->bC) return 1;
+    return !((u32)((x->bB << 16) | (x->bA << 8) | x->b9) < (u32)((y->bB << 16) | (y->bA << 8) | y->b9));
 }

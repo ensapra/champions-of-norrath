@@ -1,20 +1,5 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-M2C_UNK _iEnableIntc();                             /* extern */
-
-void func_001AE3A0(void) {
-    _iEnableIntc();
-    M2C_SYNC();
-}
+s32 _iEnableIntc(s32);s64 func_001AE3A0(s32 x){return _iEnableIntc(x);}
+void *func_001A1CF0(s32,s32);void *func_001A2660(void*,s32,u32,u32,s32);
+void *func_001AD0C0(s32 a,s32 b,s32 c){u32 n;u32 *p,*q;p=func_001A1CF0(a,b*c);if(p){n=(p[-1]&~3)-4;if(n<=36){q=p;if(n>=20){q[0]=0;q[1]=0;q+=2;if(n>=28){q[0]=0;q[1]=0;q+=2;if(n>=36){q[0]=0;q[1]=0;q+=2;}}}q[0]=0;q++;q[1]=0;q[0]=0;}else func_001A2660(p,0,n,n,n<20);}return p;}
+s32 func_001ACB40(void);s32 func_001714D8(s32);s64 func_001ACB68(void){return func_001714D8(func_001ACB40());}
+s32 func_001AFB98(s32,s32,s32,s32,s32,s32,s32);s64 func_001AFCD0(s32 a,s32 b,s32 c,s32 d,s32 e,s32 f){return func_001AFB98(a,0,b,c,d,e,f);}

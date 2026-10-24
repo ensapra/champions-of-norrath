@@ -1,24 +1,9 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-M2C_UNK func_0018D068();                            /* extern */
-
-void func_0018D030(void *arg0, s32 arg3) {
-    M2C_FIELD(arg0, s32 *, 0x390) = arg3;
-    M2C_FIELD(arg0, s32 *, 0x36C) = 1;
-    M2C_FIELD(arg0, s32 *, 0x2C4) = 1;
-    M2C_FIELD(arg0, s32 *, 0x2C0) = 0;
-    M2C_FIELD(arg0, s32 *, 0x38C) = arg3;
-    func_0018D068();
+s32 func_0018D068(u8 *p, s32 a, s32 b);
+s64 func_0018D030(u8 *p, s32 a, s32 b, s32 c) {
+    *(s32 *)(p + 0x2C4) = 1;
+    *(s32 *)(p + 0x2C0) = 0;
+    *(s32 *)(p + 0x38C) = c;
+    *(s32 *)(p + 0x36C) = 1;
+    *(s32 *)(p + 0x390) = c;
+    return func_0018D068(p, a, b);
 }

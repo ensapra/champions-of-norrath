@@ -1,31 +1,52 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern u8 jtbl_004C006C[];
+typedef struct { s32 a; s32 flags; s32 c; s32 d; } Ent;
+extern Ent D_0110AD00[];
+extern u8 D_004C3EF8[];
+extern void *D_004C3FB0[];
+extern u8 D_0110AF28[];
+s32 WaitSema(s32);
+s32 SignalSema(s32);
+void func_001B0FD8(void);
+s32 func_001A2418(void *, void *, s32);
 
-s32 func_001A2418(void *, void *, M2C_UNK);         /* extern */
-extern M2C_UNK func_01109848;
-extern M2C_UNK jtbl_004C006C;
+void func_001AFF44(void) {
+}
+
+Ent *func_001B1038(void) {
+    Ent *e;
+    func_001B0FD8();
+    WaitSema(*(s32 *)(jtbl_004C006C + 0x3F3C));
+    for (e = D_0110AD00; e < D_0110AD00 + 32; e++) {
+        if (e->flags == 0) {
+            e->flags = 0x10000000;
+            SignalSema(*(s32 *)(jtbl_004C006C + 0x3F3C));
+            return e;
+        }
+    }
+    SignalSema(*(s32 *)(jtbl_004C006C + 0x3F3C));
+    return 0;
+}
+
+Ent *func_001B10C0(u32 i) {
+    Ent *e;
+    func_001B0FD8();
+    WaitSema(*(s32 *)(jtbl_004C006C + 0x3F3C));
+    if (i >= 32) {
+        SignalSema(*(s32 *)(jtbl_004C006C + 0x3F3C));
+        return 0;
+    }
+    e = &D_0110AD00[i];
+    SignalSema(*(s32 *)(jtbl_004C006C + 0x3F3C));
+    return e;
+}
 
 s32 func_001B1870(void) {
-    s32 var_18;
-    void *temp_2;
-    void *temp_3;
-
-    temp_2 = &jtbl_004C006C + 0x3E8C;
-    temp_3 = &func_01109848 + 0x16E0;
-    var_18 = 0;
-    if ((func_001A2418(temp_3, temp_2, 4) != 0) && (func_001A2418(temp_3, M2C_FIELD(&jtbl_004C006C, void **, 0x3F44), 4) != 0)) {
-        var_18 = func_001A2418(temp_2, M2C_FIELD(&jtbl_004C006C, void **, 0x3F44), 4) != 0;
+    u8 *a = D_004C3EF8;
+    u8 *b = D_0110AF28;
+    s32 r = 0;
+    if (func_001A2418(b, a, 4) &&
+        func_001A2418(b, D_004C3FB0[0], 4)) {
+        r = func_001A2418(a, D_004C3FB0[0], 4) != 0;
     }
-    return var_18;
+    return r;
 }

@@ -1,41 +1,55 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern void func_001B6328(s32);
+void func_001001C8(void) { func_001B6328(0); }
 
-M2C_UNK func_00106288(s32);                         /* extern */
+typedef struct { s32 a, b, c, d, e, f, g; } S7;
+typedef struct { S7 *data; s32 cap; s32 unk8; s32 len; s32 grow; } PtrArr;
+extern void func_00106288(PtrArr *);
 
-void func_00106368(void *arg0, void *arg1) {
-    s32 temp_5;
-    s32 var_2;
+void func_00106368(PtrArr *p, S7 *src) {
+    if (p->len >= p->cap) func_00106288(p);
+    p->data[p->len] = *src;
+    p->len++;
+}
 
-    temp_5 = M2C_FIELD(arg0, s32 *, 0xC);
-    var_2 = temp_5 * 8;
-    if (temp_5 >= M2C_FIELD(arg0, s32 *, 4)) {
-        func_00106288(temp_5);
-        var_2 = M2C_FIELD(arg0, s32 *, 0xC) * 8;
+extern void *func_0011B8D0(s32);
+extern void func_0011B968(void *);
+extern s32 func_001A24AC(void *, void *, s32);
+
+s32 func_00106B70(PtrArr *p) {
+    s32 n = p->cap;
+    if (n > 0) {
+        S7 *q = func_0011B8D0(n * 0x1C);
+        S7 *old = p->data;
+        if ((s32)q < (s32)old) {
+            func_001A24AC(q, old, p->len * 0x1C);
+            if (p->data != 0) func_0011B968(p->data);
+            p->data = q;
+            return 1;
+        }
+        func_0011B968(q);
     }
-    M2C_ERROR(/* unknown instruction: ldl $v1, 0x7($s1) */);
-    M2C_ERROR(/* unknown instruction: ldr $v1, ($s1) */);
-    M2C_ERROR(/* unknown instruction: ldl $a0, 0xf($s1) */);
-    M2C_ERROR(/* unknown instruction: ldr $a0, 0x8($s1) */);
-    M2C_ERROR(/* unknown instruction: ldl $a1, 0x17($s1) */);
-    M2C_ERROR(/* unknown instruction: ldr $a1, 0x10($s1) */);
-    M2C_ERROR(/* unknown instruction: sdl $v1, 0x7($v0) */);
-    M2C_ERROR(/* unknown instruction: sdr $v1, ($v0) */);
-    M2C_ERROR(/* unknown instruction: sdl $a0, 0xf($v0) */);
-    M2C_ERROR(/* unknown instruction: sdr $a0, 0x8($v0) */);
-    M2C_ERROR(/* unknown instruction: sdl $a1, 0x17($v0) */);
-    M2C_ERROR(/* unknown instruction: sdr $a1, 0x10($v0) */);
-    M2C_FIELD((((var_2 - M2C_FIELD(arg0, s32 *, 0xC)) * 4) + M2C_FIELD(arg0, s32 *, 0)), s32 *, 0x18) = (s32) M2C_FIELD(arg1, s32 *, 0x18);
-    M2C_FIELD(arg0, s32 *, 0xC) = (s32) (M2C_FIELD(arg0, s32 *, 0xC) + 1);
+    return 0;
+}
+
+extern u8 D_010C1E80[];
+extern void func_0014CD0C(void *, s32, s32, s32);
+extern void func_00106C48(s32);
+extern void func_00106C58(s32);
+extern void func_001079A0();
+
+void func_00106D38(s32 i, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
+    S7 s;
+    u8 *base = D_010C1E80 + i * 0x14;
+    s.a = a;
+    s.b = b;
+    s.c = c;
+    s.d = d;
+    s.e = e;
+    s.f = f;
+    s.g = 0;
+    func_00106368((PtrArr *)base, &s);
+    func_0014CD0C((void *)a, 6, (s32)func_00106C48, 0);
+    func_0014CD0C((void *)a, 7, (s32)func_00106C58, 0);
+    if (b & 1)
+        func_0014CD0C((void *)a, 5, (s32)func_001079A0, 0);
 }

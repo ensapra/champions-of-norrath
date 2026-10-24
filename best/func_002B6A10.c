@@ -1,76 +1,11 @@
-#include "context.h"
-
-extern f32 D_00482E3C;
-extern f32 D_00482E40;
-
-typedef struct {
-    s32 field_0;
-    s32 field_4;
-    s32 field_8;
-} Struct12;
-
-s32 func_001441B8(s32, Struct12);
-void func_002B5898(s32, s32, s32, s32);
-
-typedef struct {
-    s16 field_0xE;
-    s16 field_0x10;
-    s16 field_0x12;
-    s16 field_0x18;
-    s16 field_0x1A;
-    s16 field_0x1C;
-    f32 field_0x24;
-    f32 field_0x28;
-    f32 field_0x2C;
-} StructB57C0;
-
-typedef struct {
-    s16 field_0xE;
-    s16 field_0x10;
-    s16 field_0x12;
-    s16 field_0x18;
-    s16 field_0x1A;
-    f32 field_0x24;
-    f32 field_0x28;
-    s16 field_0x38;
-    s16 field_0x3A;
-    s16 field_0x42;
-    s16 field_0x44;
-    f32 field_0x4C;
-    f32 field_0x50;
-} StructB6A10;
-
-void func_002B57C0(StructB57C0 *arg0) {
-    arg0->field_0x2C = 2.5f;
-    arg0->field_0x18 = 0x28;
-    arg0->field_0x1A = 0xF;
-    arg0->field_0x28 = 2.0f;
-    arg0->field_0x12 = 1;
-    arg0->field_0x1C = 5;
-    arg0->field_0xE = 1;
-    arg0->field_0x24 = 2.0f;
-    arg0->field_0x10 = 1;
-}
-
-void func_002B6A10(StructB6A10 *arg0) {
-    arg0->field_0x18 = 0x113;
-    arg0->field_0x50 = D_00482E40;
-    arg0->field_0x24 = 5.0f;
-    arg0->field_0x28 = D_00482E3C;
-    arg0->field_0x42 = 2;
-    arg0->field_0x4C = 2.0f;
-    arg0->field_0x3A = 1;
-    arg0->field_0x44 = 0x1E;
-    arg0->field_0xE = 1;
-    arg0->field_0x10 = 1;
-    arg0->field_0x1A = 0x1E;
-    arg0->field_0x38 = 1;
-}
-
-s32 func_002B6A70(s32 arg0, s32 arg1, s32 arg2, Struct12 *arg3) {
-    s32 result = func_001441B8(0x58, *arg3);
-    if (result) {
-        func_002B5898(result, arg1, arg2, arg0);
-    }
-    return result;
-}
+typedef struct {s32 cmd,a,b,c,d,res,pad[26];} Rpc40E0;
+extern Rpc40E0 D_008DDAC0;extern u8 D_008DD880[];
+s32 func_002D8270(void*,s32,s32,void*,s32,void*,s32,s32,s32);void func_002D3C78(s32,s32,s32);
+s32 func_002D40E0(s32 a,s32 b,s32 c,s32 d){Rpc40E0*r=&D_008DDAC0;r->c=c;r->d=d;r->cmd=6;r->a=a;r->b=b;if(func_002D8270(D_008DD880,1,0,r,128,r,128,0,0)<0)return 0;{s32 result=r->res;if(result==1){func_002D3C78(a,b,2);result=r->res;}return result;}}
+typedef struct __attribute__((packed,aligned(4))){u64 a;s32 b;}P;
+s32 func_001441B8(s32);void func_002B5898(s32,s32,s32,s32);
+s32 func_002B6A70(s32 a,s32 b,s32 c,P*d){volatile P copy=*d;s32 r=func_001441B8(0x58);if(r)func_002B5898(r,b,c,a);return r;}
+typedef struct{u8 pad[14];volatile s16 hE,h10,h12,h14,h16,h18,h1A,h1C;u8 pad2[6];volatile f32 f24,f28,f2C;u8 pad3[8];volatile s16 h38,h3A;u8 pad4[6];volatile s16 h42,h44,h46;volatile f32 f48,f4C,f50;}Obj;
+f32 D_00482E3C,D_00482E40;
+void func_002B6A10(Obj*p){f32 d=D_00482E40,c=2.0f,b=D_00482E3C,a=5.0f;p->h18=0x113;p->f50=d;p->f24=a;p->f28=b;p->h42=2;p->f4C=c;p->h3A=1;p->h44=30;p->hE=1;p->h10=1;p->h1A=30;p->h38=1;}
+void func_002B57C0(Obj*p){f32 x=2.0f,y=2.5f;s16 one=1;p->f2C=y;p->h18=40;p->h1A=15;p->f28=x;p->h12=one;p->h1C=5;p->hE=one;p->f24=x;p->h10=one;}

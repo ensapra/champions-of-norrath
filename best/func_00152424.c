@@ -1,37 +1,75 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct {
+    char pad_0[0x9A8];
+    s32 unk_9A8;
+    char pad_9AC[0x24];
+    char unk_9D0[4];
+} GuiObj;
 
-s32 func_0014B41C(void *, s32);                     /* extern */
-M2C_UNK func_0014B938(s32);                         /* extern */
-void *func_0014D29C();                              /* extern */
-M2C_UNK func_00151964(void *);                      /* extern */
+s32 func_0014B41C(GuiObj *, s32);
+void func_0014B938(s32);
+GuiObj *func_0014D29C(s32);
+void func_00151964(void *);
+void func_0014D328(s32, s32);
 extern s32 D_0047FBF4;
+extern u8 func_001C8098[];
 
-s32 func_00152424(s32 arg0) {
-    s32 var_2;
-    void *temp_2;
+typedef struct {
+    u8 pad[0x910];
+    s32 x910;
+    s32 x914;
+    s32 x918;
+} S1537BC;
 
-    temp_2 = func_0014D29C();
-    if ((temp_2 == NULL) || (func_0014B41C(temp_2, D_0047FBF4) == 0)) {
+void func_001537BC(S1537BC *arg0, s32 arg1) {
+    u8 *p = func_001C8098;
+    p = *(u8 **)(p + 0xDF0);
+    ((void (*)(void *, s32))p)(arg0, arg1);
+    func_0014D328(arg0->x910, arg1);
+    func_0014D328(arg0->x914, arg1);
+    func_0014D328(arg0->x918, arg1);
+}
+
+s32 func_00152424(s32 arg0, s32 arg1) {
+    GuiObj *obj = func_0014D29C(arg0);
+    s32 *p;
+    if (obj == NULL || !func_0014B41C(obj, D_0047FBF4)) {
         return 0;
     }
-    var_2 = 0;
-    if (((temp_2 + 0x9A8) != NULL) && (M2C_FIELD(temp_2, s32 *, 0x9A8) == 0)) {
-        M2C_FIELD(temp_2, s32 *, 0x9A8) = arg0;
-        func_0014B938(arg0);
-        func_00151964(temp_2 + 0x9D0);
-        var_2 = 1;
+    p = &obj->unk_9A8;
+    if (p == NULL) {
+        return 0;
     }
-    return var_2;
+    if (*p != 0) {
+        return 0;
+    }
+    *p = arg0;
+    func_0014B938(arg0);
+    func_00151964(obj->unk_9D0);
+    return 1;
+}
+
+s32 func_001523D0(void) {
+    GuiObj *obj = func_0014D29C(0);
+    s32 *p;
+    if (obj == NULL || !func_0014B41C(obj, D_0047FBF4)) {
+        return 0;
+    }
+    p = &obj->unk_9A8;
+    if (p == NULL) {
+        return 0;
+    }
+    return *p;
+}
+
+s32 func_00152378(s32 arg0, s32 arg1) {
+    GuiObj *obj = func_0014D29C(arg1);
+    s32 *p;
+    if (obj == NULL || !func_0014B41C(obj, D_0047FBF4)) {
+        return 0;
+    }
+    p = &obj->unk_9A8;
+    if (p == NULL) {
+        return 0;
+    }
+    return *p != 0;
 }

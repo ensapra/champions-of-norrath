@@ -1,42 +1,64 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+s32 func_001AFD10(s32, s32, s32, s32, s32, s32);
+s32 func_001B05D0(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    return func_001AFD10(0x80000008, arg3, 0x40, 0, 0, 0) ? 0 : 0x800;
+}
 
-M2C_UNK func_001AE5D0(s32, void *, void *);         /* extern */
+typedef struct Req {
+    char pad0[0xC];
+    s32 fC;
+    char pad10[0xC];
+    s32 f1C;
+    void *f20;
+    s32 f24, f28, f2C, f30, f34;
+    char pad38[4];
+    struct Req *next;
+    struct ReqQ *q;
+} Req;
+typedef struct ReqQ {
+    s32 id;
+    s32 busy;
+    char pad8[4];
+    Req *head;
+    s32 tail;
+} ReqQ;
+typedef struct {
+    char pad0[0x10];
+    s32 f10;
+    void *f14;
+    char pad18[4];
+    s32 f1C, f20, f24, f28, f2C, f30;
+    Req *req;
+} ReqSrc;
+void func_001AE5D0(s32, Req *, ReqQ *);
+void func_001B0820(ReqSrc *s) {
+    Req *r = s->req;
+    ReqQ *q = r->q;
+    if (q->head == 0)
+        q->head = r;
+    else
+        ((Req *)q->tail)->next = r;
+    q->tail = (s32)r;
+    r->f20 = s->f14;
+    r->f1C = s->f1C;
+    r->f24 = s->f20;
+    r->fC = s->f24;
+    r->f28 = s->f28;
+    r->f2C = s->f2C;
+    r->f30 = s->f30;
+    r->f34 = s->f10;
+    if (q->id >= 0 && q->busy == 0)
+        func_001AE5D0(q->id, r, q);
+}
 
-void func_001B0820(void *arg0) {
-    s32 temp_4;
-    void *temp_5;
-    void *temp_6;
-
-    temp_5 = M2C_FIELD(arg0, void **, 0x34);
-    temp_6 = M2C_FIELD(temp_5, void **, 0x40);
-    if (M2C_FIELD(temp_6, void **, 0xC) != NULL) {
-        M2C_FIELD(M2C_FIELD(temp_6, void **, 0x10), void **, 0x3C) = temp_5;
-    } else {
-        M2C_FIELD(temp_6, void **, 0xC) = temp_5;
+typedef struct { char pad[0x10]; s32 flags; char pad14[4]; s32 serial; } Obj1B;
+typedef struct { Obj1B *o; s32 serial; } Handle;
+s32 func_001B0AA8(Handle *h) {
+    Obj1B *o = h->o;
+    if (o != 0 && h->serial == o->serial) {
+        if (o->flags & 1)
+            goto ok;
     }
-    M2C_FIELD(temp_6, void **, 0x10) = temp_5;
-    M2C_FIELD(temp_5, s32 *, 0x20) = (s32) M2C_FIELD(arg0, s32 *, 0x14);
-    M2C_FIELD(temp_5, s32 *, 0x1C) = (s32) M2C_FIELD(arg0, s32 *, 0x1C);
-    M2C_FIELD(temp_5, s32 *, 0x24) = (s32) M2C_FIELD(arg0, s32 *, 0x20);
-    M2C_FIELD(temp_5, s32 *, 0xC) = (s32) M2C_FIELD(arg0, s32 *, 0x24);
-    M2C_FIELD(temp_5, s32 *, 0x28) = (s32) M2C_FIELD(arg0, s32 *, 0x28);
-    M2C_FIELD(temp_5, s32 *, 0x2C) = (s32) M2C_FIELD(arg0, s32 *, 0x2C);
-    M2C_FIELD(temp_5, s32 *, 0x30) = (s32) M2C_FIELD(arg0, s32 *, 0x30);
-    M2C_FIELD(temp_5, s32 *, 0x34) = (s32) M2C_FIELD(arg0, s32 *, 0x10);
-    temp_4 = M2C_FIELD(temp_6, s32 *, 0);
-    if ((temp_4 >= 0) && (M2C_FIELD(temp_6, s32 *, 4) == 0)) {
-        func_001AE5D0(temp_4, temp_5, temp_6);
-    }
+    return 0;
+ok:
+    return 1;
 }

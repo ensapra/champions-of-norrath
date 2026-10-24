@@ -1,40 +1,7 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 func_002E4E48(s32, M2C_UNK, void *, s32, M2C_UNK); /* extern */
-s32 func_002E4F00(s32, void *, M2C_UNK, s32);       /* extern */
-
-s32 func_002E5620(s32 arg0, void *arg1, s32 arg2, s32 arg4, s32 *arg5, s32 arg6) {
-    s32 var_2;
-
-    M2C_FIELD(arg1, s32 *, 0) = arg2;
-    if (arg5 != NULL) {
-        M2C_FIELD(arg1, s32 *, 4) = (s32) *arg5;
-    } else {
-        M2C_FIELD(arg1, s32 *, 4) = 0;
-    }
-    M2C_FIELD(arg1, s32 *, 8) = arg4;
-    M2C_FIELD(arg1, s32 *, 0xC) = arg6;
-    var_2 = func_002E4F00(arg0, arg1, 4, arg4);
-    if (var_2 >= 0) {
-        var_2 = -0x21E;
-        if (func_002E4E48(arg0, 5, arg1, arg4 + 0x10, 8) >= 0) {
-            if (arg5 != NULL) {
-                *arg5 = M2C_FIELD(arg1, s32 *, 4);
-            }
-            var_2 = M2C_FIELD(arg1, s32 *, 0);
-        }
-    }
-    return var_2;
-}
+s32 SignalSema_2(s32); s32 func_002D8270(void*,s32,s32,s32,s32,void*,s32,s32,s32); s32 func_002E2CD0(s32);
+extern s32 D_004460A8[]; extern u8 D_00446100[],D_00447250[];
+s32 func_002E2E40(void){s32 v;if(func_002E2CD0(2)==0)return 0;if(func_002D8270(D_00447250,14,0,0,0,D_00446100,4,0,0)<0){SignalSema_2(D_004460A8[0]);return 0;}v=*(s32*)((u32)D_00446100|0x20000000);SignalSema_2(D_004460A8[0]);return v;}
+s32 func_002E4E48(s32,s32,void*,s32,s32); s32 func_002E4F00(s32,void*,s32,s32,s32);
+s32 func_002E5400(s32 a,s32*p,s32 b,s32 c){p[0]=b;p[1]=c;if(func_002E4E48(a,3,p,8,4)>=0)return p[0];return -542;}
+s32 func_002E57B8(s32 a,s32*p,s32 b,s32 c){p[0]=b;p[1]=c;if(func_002E4E48(a,15,p,8,4)>=0)return p[0];return -542;}
+s32 func_002E5620(s32 a,s32*p,s32 b,s32 c,s32 d,s32*q,s32 e){s32 r;p[0]=b;if(q)p[1]=*q;else p[1]=0;p[2]=d;p[3]=e;r=func_002E4F00(a,p,4,c,d);if(r<0)return r;if(func_002E4E48(a,5,p,d+16,8)<0)return -542;if(q)*q=p[1];return p[0];}

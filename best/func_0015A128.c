@@ -1,22 +1,41 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+s32 func_0014CF0C(s32, s32, s32);
+void func_0015A128(char *arg0) {
+    s32 t = *(s32 *)(arg0 + 0x8D4);
+    s32 y = *(s32 *)(arg0 + 0x5B0) - ((t + *(s32 *)(arg0 + 0xCF4)) * 2);
+    s32 x = *(s32 *)(arg0 + 0x5AC) - ((t + *(s32 *)(arg0 + 0xCF0)) * 2);
+    func_0014CF0C(*(s32 *)(arg0 + 0x910), x, y);
+}
 
-M2C_UNK func_0014CF0C(s32, s32, s32);               /* extern */
+s32 func_0014D29C(void *);
+s32 func_0014F200(s32, u64, void *, void *);
+void func_0014F288(s32, s32);
+void func_0015AFAC(void *);
+void func_0015B248(void *);
+void func_0015B2F8(void *);
+void func_0015B400(void *);
+void func_0015B520(void *);
+void func_0015BB8C();
+s32 func_0015BBE0(void *, s32, s32);
+extern void func_0015AE18();
 
-void func_0015A128(void *arg0) {
-    s32 temp_6;
+void func_0015A354(char *arg0) {
+    s32 temp_2;
 
-    temp_6 = M2C_FIELD(arg0, s32 *, 0x8D4);
-    func_0014CF0C(M2C_FIELD(arg0, s32 *, 0x910), M2C_FIELD(arg0, s32 *, 0x5AC) - ((temp_6 + M2C_FIELD(arg0, s32 *, 0xCF0)) * 2), M2C_FIELD(arg0, s32 *, 0x5B0) - ((temp_6 + M2C_FIELD(arg0, s32 *, 0xCF4)) * 2));
+    if (*(s32 *)(arg0 + 0xD04) != 0) {
+        func_0015BB8C();
+        temp_2 = func_0015BBE0(arg0, *(s32 *)(arg0 + 0x4F4), *(s32 *)(arg0 + 0x4F8));
+        if (temp_2 >= 0) {
+            *(s32 *)(arg0 + 0xB8C) = temp_2;
+            func_0015AFAC(arg0);
+            *(s32 *)(arg0 + 0x98) = 2;
+            func_0015B248(arg0);
+            func_0015B2F8(arg0);
+            func_0015B520(arg0);
+            func_0015B400(arg0);
+        }
+        if (*(s32 *)(arg0 + 0xC90) != 0) {
+            func_0014F288(func_0014D29C(arg0), *(s32 *)(arg0 + 0xC90));
+        }
+        *(s32 *)(arg0 + 0xC90) = func_0014F200(func_0014D29C(arg0), *(u32 *)(arg0 + 0xC94), arg0, func_0015AE18);
+    }
 }

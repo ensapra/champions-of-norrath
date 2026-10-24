@@ -1,20 +1,41 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+void *D_00480430;
 
-extern void *D_00480430;
+void func_0017FD48(f32 x)
+{
+    void *p;
+    f32 z = 0.0f;
+    p = D_00480430;
+    x = x - z;
+    *(s32 *)((s8 *)p + 0x3C) = (s32)x;
+    p = D_00480430;
+    *(s32 *)((s8 *)p + 0x18) = 1;
+}
 
-void func_0017FD48(f32 fparg0) {
-    M2C_FIELD(D_00480430, f32 *, 0x3C) = 0.0f;
-    M2C_FIELD(D_00480430, s32 *, 0x18) = 1;
+void func_0017FD84(f32 x)
+{
+    void *p;
+    p = D_00480430;
+    *(f32 *)((s8 *)p + 0x58) = x;
+    p = D_00480430;
+    *(s32 *)((s8 *)p + 0x18) = 1;
+}
+
+void func_0017FDCC(f32 x)
+{
+    void *p;
+    p = D_00480430;
+    *(f32 *)((s8 *)p + 0x54) = x;
+    p = D_00480430;
+    *(s32 *)((s8 *)p + 0x18) = 1;
+}
+
+typedef struct { u8 pad0; u8 b1; u8 b2; u8 hour; } Date;
+void ovl_ntgui2_func_0017E0D8(Date *);
+
+void func_0017E238(Date *p)
+{
+    if (++p->hour == 24) {
+        p->hour = 0;
+        ovl_ntgui2_func_0017E0D8(p);
+    }
 }

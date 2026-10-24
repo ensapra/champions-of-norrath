@@ -1,6 +1,0 @@
-extern u8 D_00448480[9]; extern s32 D_008EC440[256]; extern s32 D_008EAA80; extern u8 D_008EA9A0[224]; extern u8 D_008EAA88[16]; extern u32 D_004480DC; extern s32 D_004480E0;
-s32 func_003001A8(void *,void *); s32 func_00306AD8(void *,void *,s32,s32); s32 GetThreadId_2(void); s32 func_002FA060(void); s32 func_00144AC0(s32); void func_003021B0(void *,s32,s32,void *); s32 func_002FA130(void); u8 *func_002FA3B8(void);
-s32 func_00306A60(void *arg0,s32 arg1,s32 arg2) { void *p=*(void **)((u8*)arg0+0x54); if(!p){p=*(void**)D_00448480;*(void **)((u8*)arg0+0x54)=p;} if(*(s32*)((u8*)p+0x38)==0){func_003001A8(p,arg0);p=*(void **)((u8*)arg0+0x54);} return func_00306AD8(p,arg0,arg1,arg2); }
-s32 func_002FA420(void) { s32 a=GetThreadId_2(); s32 *slot=&D_008EC440[a]; s32 v=*slot; if(v)return v; v=func_002FA060(); a=GetThreadId_2(); s32 was=D_008EC440[a]; if(was)func_00144AC0(was); D_008EC440[GetThreadId_2()]=v; return v; }
-u8 *func_002FA3B8(void) { if(!D_008EAA80){D_008EAA80=1;func_003021B0(D_008EA9A0,0,0xE0,&D_008EAA80);*(u32*)(D_008EA9A0+4)=(u32)D_008EAA88;} return D_008EA9A0; }
-void func_002FA350(void) { if(D_004480DC==(u32)func_002FA350)D_004480DC=(u32)func_002FA3B8; if(!D_004480E0)func_002FA130(); ((void(*)(void))D_004480DC)(); }

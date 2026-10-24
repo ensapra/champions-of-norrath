@@ -1,57 +1,54 @@
-/* Function declarations */
-void func_0014B558(s32, s32);
-void func_0014B558(s32, s32);
-
-/* func_00164964 - matches func_0016E790 pattern */
-void func_00164964(s32 arg0) {
-    func_0014B558(arg0 + 0x130, 1);
+extern void func_0014B558(void *, void *, s32);
+void func_00164964(u8 *a) {
+    func_0014B558(a, a + 0x130, 1);
 }
 
-/* func_00164980 */
-void func_00164980(void *arg0) {
-    if (*(s32 *)((u8 *)arg0 + 0x538) == 0) {
-        *(s64 *)((u8 *)arg0 + 0x930) = *(s64 *)((u8 *)arg0 + 0x940);
-        *(s64 *)((u8 *)arg0 + 0x938) = *(s64 *)((u8 *)arg0 + 0x948);
+void func_00164980(u8 *a) {
+    if (*(s32 *)(a + 0x538) != 0) {
+        void *p = *(void **)(a + 0x4C);
+        p = *(void **)((u8 *)p + 0x110);
+        ((void (*)(void *))p)(a);
     } else {
-        void *ptr = *(void **)((u8 *)arg0 + 0x4C);
-        void (*fn)(void *) = *(void (**)(void *))((u8 *)ptr + 0x110);
-        fn(arg0);
+        *(s64 *)(a + 0x930) = *(s64 *)(a + 0x940);
+        *(s64 *)(a + 0x938) = *(s64 *)(a + 0x948);
     }
 }
 
-/* func_00164824 */
-void func_00164824(void *arg0, s32 *arg1, s32 *arg2, s32 arg3) {
-    s32 *src = (s32 *)((u8 *)arg0 + 0xA10);
-    s32 flag = *(s32 *)((u8 *)arg0 + 0x944);
-    u32 i = 0;
-    
-    if (flag != 0) {
+void func_00164824(u8 *a, s32 *x, s32 *y, s32 v) {
+    s32 *src = (s32 *)(a + 0xA10);
+    u32 i;
+    if (*(s32 *)(a + 0x944) != 0) {
+        i = 0;
         do {
-            arg1[i] = arg3;
-            s32 val = src[i];
-            arg2[i] = val;
+            s32 s = *src;
+            x[i] = v;
+            y[i] = s;
+            src++;
             i++;
         } while (i < 4);
     } else {
+        i = 0;
         do {
-            arg2[i] = arg3;
-            s32 val = src[i];
-            arg1[i] = val;
+            s32 s = *src;
+            y[i] = v;
+            x[i] = s;
+            src++;
             i++;
         } while (i < 4);
     }
 }
 
-/* func_00164AB0 */
-extern void (*func_001C7AFC[])(void);  /* func_001C7AF8+0x4 */
-
-void func_00164AB0(void *arg0) {
-    func_001C7AFC[0]();
-    s64 val1 = *(s64 *)((u8 *)arg0 + 0x940);
-    s64 val2 = *(s64 *)((u8 *)arg0 + 0x948);
-    *(s32 *)((u8 *)arg0 + 0x98) = 2;
-    *(s64 *)((u8 *)arg0 + 0x930) = val1;
-    *(s64 *)((u8 *)arg0 + 0x938) = val2;
-    *(s64 *)((u8 *)arg0 + 0x950) = val1;
-    *(s64 *)((u8 *)arg0 + 0x958) = val2;
+extern u8 func_001C7AF8[];
+void func_00164AB0(u8 *a) {
+    u8 *p = func_001C7AF8;
+    s64 v0, v1;
+    p = *(u8 **)(p + 4);
+    ((void (*)(void))p)();
+    v0 = *(s64 *)(a + 0x940);
+    v1 = *(s64 *)(a + 0x948);
+    *(s32 *)(a + 0x98) = 2;
+    *(s64 *)(a + 0x950) = v0;
+    *(s64 *)(a + 0x958) = v1;
+    *(s64 *)(a + 0x930) = v0;
+    *(s64 *)(a + 0x938) = v1;
 }

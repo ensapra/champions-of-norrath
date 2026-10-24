@@ -1,63 +1,29 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+s32 func_001B08B0();
+extern s32 jtbl_004C006C[];
+extern struct { s32 v; char name[0x100]; } D_0110B0C0;
+extern u8 D_0110B000[];
+extern s32 D_0110B040[];
+#define G (*(s32 *)&jtbl_004C006C[0x3F48/4])
 
-s32 func_001B08B0(void *, M2C_UNK, M2C_UNK, void *, s32, s32 *, M2C_UNK, M2C_UNK, s32); /* extern */
-extern M2C_UNK func_01109848;
-extern M2C_UNK jtbl_004C006C;
-
-s32 func_001B4900(u8 *arg0, s32 arg1) {
-    s32 *var_16;
-    s32 var_2;
-    s32 var_8;
-    u8 temp_2;
-    u8 temp_4;
-    void *temp_7;
-    void *var_9;
-
-    if (M2C_FIELD(&jtbl_004C006C, s32 *, 0x3F48) < 0) {
-        return 0;
-    }
-    temp_2 = *arg0;
-    temp_7 = &func_01109848 + 0x1878;
-    M2C_FIELD(temp_7, u8 *, 4) = temp_2;
-    var_8 = 0;
-    if ((temp_2 << 0x18) != 0) {
-        var_9 = &func_01109848 + 0x17B8;
-        var_16 = &func_01109848 + 0x17F8;
-        var_8 = 1;
-loop_4:
-        if (var_8 < 0xFC) {
-            temp_4 = *(arg0 + var_8);
-            M2C_FIELD((temp_7 + var_8), u8 *, 4) = temp_4;
-            if ((temp_4 << 0x18) != 0) {
-                var_8 += 1;
-                goto loop_4;
-            }
+s32 func_001B4900(u8 *s, s32 v) {
+    s32 i;
+    u8 c;
+    if (G < 0) return 0;
+    c = s[0];
+    D_0110B0C0.name[0] = c;
+    i = 0;
+    if (c != 0) {
+        i = 1;
+        while (i < 0xFC) {
+            c = s[i];
+            D_0110B0C0.name[i] = c;
+            if (c == 0) break;
+            i++;
         }
-    } else {
-        var_9 = &func_01109848 + 0x17B8;
-        var_16 = &func_01109848 + 0x17F8;
     }
-    if (var_8 == 0xFC) {
-        var_8 = 0xFB;
-        M2C_FIELD(temp_7, s8 *, 0xFF) = 0;
-    }
-    M2C_FIELD(&func_01109848, s32 *, 0x1878) = arg1;
-    M2C_FIELD(temp_7, s8 *, 0xFF) = 0;
-    var_2 = *var_16;
-    if (func_001B08B0(var_9, 3, 0, temp_7, var_8 + 5, var_16, 4, 0, 0) < 0) {
-        var_2 = -1;
-    }
-    return var_2;
+    if (i == 0xFC) { i = 0xFB; D_0110B0C0.name[0xFB] = 0; }
+    D_0110B0C0.v = v;
+    D_0110B0C0.name[0xFB] = 0;
+    if (func_001B08B0(D_0110B000, 3, 0, &D_0110B0C0, i + 5, D_0110B040, 4, 0, 0) < 0) return -1;
+    return D_0110B040[0];
 }

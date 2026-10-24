@@ -1,69 +1,73 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct {
+    u8 pad0[0x2C4];
+    s32 x2C4;
+    u8 pad2C8[0x38C - 0x2C8];
+    u8 *start;
+    u8 *cur;
+} Txt0018D;
 
-u8 func_0018D360(void *arg0) {
-    s32 var_7;
-    u8 *temp_6;
-    u8 *var_6;
-    u8 temp_5;
-    u8 temp_5_2;
-    u8 var_3;
+void func_0018C1F0(Txt0018D *);
 
-    temp_6 = M2C_FIELD(arg0, u8 **, 0x390);
-    temp_5 = *temp_6;
-    var_6 = temp_6 + 1;
-    if (temp_5 == 0) {
-        return 0U;
+s32 func_0018D360(Txt0018D *o)
+{
+    u8 *p = o->cur;
+    u32 b = *p++;
+    s32 c;
+    s32 n;
+
+    if (b == 0) {
+        return 0;
     }
-    var_3 = temp_5;
-    if (temp_5 & 0x80) {
-        if (temp_5 >= 0xC0U) {
-            var_3 = temp_5 & 0x1F;
-            if (temp_5 < 0xE0U) {
-                var_7 = 1;
-                goto block_11;
-            }
-            var_3 = temp_5 & 0xF;
-            if (temp_5 < 0xF0U) {
-                var_7 = 2;
-                goto block_11;
-            }
-            var_3 = temp_5 & 7;
-            if (temp_5 >= 0xF8U) {
-                /* Duplicate return node #9. Try simplifying control flow for better match */
-                return -1U;
-            }
-            var_7 = 3;
-block_11:
-loop_12:
-            temp_5_2 = *var_6;
-            var_6 += 1;
-            if ((temp_5_2 & 0xC0) == 0x80) {
-                var_7 -= 1;
-                var_3 = (var_3 << 6) | (temp_5_2 & 0x3F);
-                if (var_7 == 0) {
-                    /* Duplicate return node #14. Try simplifying control flow for better match */
-                    M2C_FIELD(arg0, u8 **, 0x390) = var_6;
-                    return var_3;
-                }
-                goto loop_12;
-            }
-            /* Duplicate return node #9. Try simplifying control flow for better match */
-            return -1U;
+    if ((s8)b >= 0) {
+        c = b;
+    } else {
+        if (b < 0xC0) {
+            return -1;
+        } else if (b < 0xE0) {
+            n = 1;
+            c = b & 0x1F;
+        } else if (b < 0xF0) {
+            n = 2;
+            c = b & 0xF;
+        } else if (b < 0xF8) {
+            n = 3;
+            c = b & 0x7;
+        } else {
+            return -1;
         }
-        return -1U;
+        do {
+            b = *p++;
+            if ((b & 0xC0) != 0x80) {
+                return -1;
+            }
+            c = (c << 6) | (b & 0x3F);
+        } while (--n);
     }
-    M2C_FIELD(arg0, u8 **, 0x390) = var_6;
-    return var_3;
+    o->cur = p;
+    return c;
+}
+
+s32 func_0018D400(Txt0018D *o)
+{
+    u8 *start = o->start;
+    u8 *p = o->cur;
+
+    if (start == p) {
+        return -1;
+    }
+    do {
+        p--;
+        if ((s8)*p >= 0) break;
+        if ((u8)(*p + 0x40) < 0x38) break;
+    } while (start != p);
+    o->cur = p;
+    return 0;
+}
+
+void func_0018D44C(Txt0018D *o)
+{
+    s32 t = o->x2C4;
+    o->x2C4 = 0;
+    func_0018C1F0(o);
+    o->x2C4 = t;
 }
