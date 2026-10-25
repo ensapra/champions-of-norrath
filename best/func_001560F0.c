@@ -1,74 +1,19 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct { f32 x, y, z, w; } V4;
+typedef struct { f32 x, y, z; } V3;
 
-void func_001560F0(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4, f32 fparg0) {
-    f32 sp0;
-    f32 sp4;
-    f32 sp8;
-    f32 sp10;
-    f32 sp14;
-    f32 sp18;
-    f32 sp20;
-    f32 sp24;
-    f32 sp28;
-    f32 sp30;
-    f32 temp_f10;
-    f32 temp_f11;
-    f32 temp_f13;
-    f32 temp_f14;
-    f32 temp_f15;
-    f32 temp_f17;
-    f32 temp_f17_2;
-    f32 temp_f17_3;
-    f32 temp_f17_4;
-    f32 temp_f1;
-    f32 temp_f2;
-    f32 temp_f3;
-    f32 temp_f5;
-    f32 temp_f6;
-    f32 temp_f7;
-    f32 temp_f8;
-    f32 temp_f9;
-
-    temp_f1 = fparg0 * fparg0;
-    temp_f8 = fparg0 * 6.0f;
-    temp_f15 = temp_f1 * 3.0f;
-    temp_f17 = (temp_f1 * 6.0f) - temp_f8;
-    temp_f5 = M2C_FIELD(arg0, f32 *, 8) * temp_f17;
-    temp_f3 = M2C_FIELD(arg0, f32 *, 0) * temp_f17;
-    temp_f2 = M2C_FIELD(arg0, f32 *, 4) * temp_f17;
-    temp_f17_2 = (temp_f1 * -6.0f) + temp_f8;
-    sp8 = temp_f5;
-    sp0 = temp_f3;
-    sp4 = temp_f2;
-    temp_f9 = M2C_FIELD(arg1, f32 *, 8) * temp_f17_2;
-    temp_f7 = M2C_FIELD(arg1, f32 *, 0) * temp_f17_2;
-    temp_f6 = M2C_FIELD(arg1, f32 *, 4) * temp_f17_2;
-    temp_f17_3 = (temp_f15 - (fparg0 * 4.0f)) + 1.0f;
-    sp18 = temp_f9;
-    temp_f10 = M2C_FIELD(arg2, f32 *, 8) * temp_f17_3;
-    sp10 = temp_f7;
-    temp_f11 = M2C_FIELD(arg2, f32 *, 0) * temp_f17_3;
-    sp14 = temp_f6;
-    temp_f13 = M2C_FIELD(arg2, f32 *, 4) * temp_f17_3;
-    temp_f17_4 = temp_f15 - (2.0f * fparg0);
-    temp_f14 = M2C_FIELD(arg3, f32 *, 0) * temp_f17_4;
-    sp28 = temp_f10;
-    sp20 = temp_f11;
-    sp24 = temp_f13;
-    sp30 = temp_f14;
-    M2C_FIELD(arg4, f32 *, 8) = (f32) (temp_f5 + temp_f9 + temp_f10 + (M2C_FIELD(arg3, f32 *, 8) * temp_f17_4));
-    M2C_FIELD(arg4, f32 *, 0) = (f32) (temp_f3 + temp_f7 + temp_f11 + temp_f14);
-    M2C_FIELD(arg4, f32 *, 4) = (f32) (temp_f2 + temp_f6 + temp_f13 + (M2C_FIELD(arg3, f32 *, 4) * temp_f17_4));
+void func_001560F0(V3 *p0, V3 *p1, V3 *m0, V3 *m1, V3 *out, f32 t) {
+    V4 v[4];
+    f32 t2 = t * t;
+    f32 k;
+    k = t2 * 6.0f - t * 6.0f;
+    v[0].x = p0->x * k; v[0].y = p0->y * k; v[0].z = p0->z * k;
+    k = t2 * -6.0f + t * 6.0f;
+    v[1].x = p1->x * k; v[1].y = p1->y * k; v[1].z = p1->z * k;
+    k = t2 * 3.0f - t * 4.0f + 1.0f;
+    v[2].x = m0->x * k; v[2].y = m0->y * k; v[2].z = m0->z * k;
+    k = t2 * 3.0f - 2.0f * t;
+    v[3].x = m1->x * k; v[3].y = m1->y * k; v[3].z = m1->z * k;
+    out->x = v[0].x + v[1].x + v[2].x + v[3].x;
+    out->y = v[0].y + v[1].y + v[2].y + v[3].y;
+    out->z = v[0].z + v[1].z + v[2].z + v[3].z;
 }

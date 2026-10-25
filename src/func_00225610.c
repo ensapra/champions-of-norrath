@@ -1,0 +1,19 @@
+typedef struct __attribute__((packed, aligned(4))) { u32 w[3]; } Copy12;
+extern "C" void func_0021EC10(void *);
+class C148 {
+public:
+    char pad[0x48];
+    virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8();
+    virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12();
+    virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16();
+    virtual void Set(Copy12 *p, s32 a, s32 b);
+};
+struct Obj { char pad[0x10]; Copy12 pos; char pad2[0x148 - 0x1C]; C148 *f148; };
+extern "C" void func_00225610(Obj *o) {
+    Copy12 v;
+    if (o->f148) {
+        o->f148->Set((v = o->pos, &v), 0, 0);
+    }
+    func_0021EC10(o);
+}

@@ -1,17 +1,1 @@
-void func_0015BEF8(void *arg0, void *arg1) {
- f32 f0,f1,f2,f3,f4,f5,f6,f7,f8,f10,f12;
- f4=*(f32*)((s8*)arg1+0); f6=*(f32*)((s8*)arg1+4); f2=*(f32*)((s8*)arg1+8); f5=*(f32*)((s8*)arg1+12);
- f3=2.0f/((f4*f4)+(f6*f6)+(f2*f2)+(f5*f5));
- f1=f2*f3; f0=f6*f3; f3=f4*f3;
- f2=f2*f1; f8=f6*f0; f7=f4*f3; f12=f5*f1; f10=f4*f1; f6=f6*f1;
- f3=f5*f3; f4=f4*f0; f5=f5*f0;
- *(f32*)((s8*)arg0+0x14)=f6-f3;
- *(f32*)((s8*)arg0+8)=f10+f5;
- *(f32*)((s8*)arg0+4)=f4-f12;
- *(f32*)((s8*)arg0+0x20)=1.0f-(f7+f8);
- *(f32*)((s8*)arg0+0)=1.0f-(f8+f2);
- *(f32*)((s8*)arg0+0x10)=1.0f-(f7+f2);
- *(f32*)((s8*)arg0+12)=f4+f12;
- *(f32*)((s8*)arg0+0x18)=f10-f5;
- *(f32*)((s8*)arg0+0x1c)=f6+f3;
-}
+void func_0015BEF8(void *out,void *in){f32 x=*(f32*)((u8*)in),y=*(f32*)((u8*)in+4),z=*(f32*)((u8*)in+8),w=*(f32*)((u8*)in+12);f32 s=2.0f/(x*x+y*y+z*z+w*w);f32 a=z*s,b=y*s,c=x*s;f32 d=z*a,e=y*b,f=x*c,g=w*a,h=x*a,j=y*a,k=w*b,l=x*b;*(f32*)((u8*)out+0x14)=l-w*c;*(f32*)((u8*)out+8)=h+w*b;*(f32*)((u8*)out+4)=e-w*a;*(f32*)((u8*)out+0x20)=1.0f-(f+e);*(f32*)((u8*)out)=1.0f-(e+d);*(f32*)((u8*)out+0x10)=1.0f-(f+d);*(f32*)((u8*)out+12)=e+w*a;*(f32*)((u8*)out+0x18)=h-w*b;*(f32*)((u8*)out+0x1c)=l+w*c;}

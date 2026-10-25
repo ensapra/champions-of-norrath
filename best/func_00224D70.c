@@ -1,38 +1,4 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 func_00165DC0(M2C_UNK *, M2C_UNK *);            /* extern */
-M2C_UNK func_0024D308(s32, void *, M2C_UNK);        /* extern */
-s32 func_00304168(void *, M2C_UNK *);               /* extern */
-extern M2C_UNK D_00470EC8;
-extern M2C_UNK D_00470ED8;
-extern M2C_UNK D_00470EE8;
-extern M2C_UNK D_00470F00;
-extern M2C_UNK D_00470F18;
-extern M2C_UNK D_00485508;
-
-void func_00224D70(void *arg0) {
-    void *temp_2;
-
-    if ((M2C_FIELD(arg0, s32 *, 0x120) != 0) && (M2C_FIELD(arg0, s32 *, 0x11C) & 0xC)) {
-        temp_2 = M2C_FIELD(arg0, void **, 0x48);
-        M2C_FIELD((temp_2 + 0x88), M2C_UNK (**)(void *), 4)(arg0 + M2C_FIELD(temp_2, s16 *, 0x88));
-        if (func_00304168(arg0 + 0x4C, &D_00470EC8) == 0) {
-            func_0024D308(func_00165DC0(&D_00470ED8, &D_00470EE8), arg0, 0x3F800000);
-            return;
-        }
-        func_0024D308(func_00165DC0(&D_00485508, &D_00470F00), arg0, 0x3F800000);
-        func_0024D308(func_00165DC0(&D_00485508, &D_00470F18), arg0, 0x3F800000);
-    }
-}
+extern char D_00470EC8[],D_00470ED8[],D_00470EE8[],D_00470F00[],D_00470F18[],D_00485508[];
+s32 func_00165DC0(char*,char*); s32 func_00304168(void*,char*); void func_0024D308(s32,void*,f32);
+typedef struct { s16 off; s16 pad; void (*fn)(void*); } Call;
+void func_00224D70(void *a){void*p;Call*c;void*x;if(*(s32*)((char*)a+0x120)==0)return;if((*(s32*)((char*)a+0x11c)&0xc)==0)return;p=*(void**)((char*)a+0x48);c=(Call*)((char*)p+0x88);c->fn((char*)a+c->off);if(func_00304168((char*)a+0x4c,D_00470EC8)==0){func_0024D308(func_00165DC0(D_00470ED8,D_00470EE8),a,1.0f);return;}x=(void*)func_00165DC0(D_00485508,D_00470F00);func_0024D308((s32)x,a,1.0f);x=(void*)func_00165DC0(D_00485508,D_00470F18);func_0024D308((s32)x,a,1.0f);}

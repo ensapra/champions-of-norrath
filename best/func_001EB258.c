@@ -1,0 +1,3 @@
+typedef struct __attribute__((packed,aligned(4))){u64 a;s32 b;} P12;
+void *func_001441B8(s32);void func_00168A38(s32,P12*,s16,void*,s32,void*,void*,void*,f32,void*);void func_00149068(void*,void*,s32,s32,s32,s32,s32,s32,f32);
+void func_001EB258(u8*o){u8 area[0x20];P12 a,b;u8*p=o+0x10;void*v;s16 ang;if(*(s32*)(o+0x3c0)){a=*(P12*)p;b=*(P12*)p;ang=*(u16*)(o+0x38);ang-=0x4001;func_00168A38(*(s32*)(*(u8**)(o+0x24)+0xc),&b,ang,o+0x120,0,area,area+0x10,&a,1.0f,p);v=func_001441B8(0x248);if(v)func_00149068(v,area,*(s32*)*(u8**)(o+0x24),*(s32*)(*(u8**)(o+0x24)+(*(s32*)(o+0x3c0)<<3)),*(s32*)(*(u8**)(o+0x24)+(*(s32*)(o+0x3c0)<<3)+8),1,0x4001,0,1.0f);}*(s32*)(o+0x3c0)=0;}

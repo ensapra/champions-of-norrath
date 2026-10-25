@@ -1,63 +1,36 @@
-extern u8 D_0000FFFF[];
-extern u8 D_000FFFFF[];
-extern u8 D_00FFFFFF[];
-extern char D_0047B370[];
-extern u32 D_00444A0C;
-extern u8 D_008E1CC0[];
+/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
 
-s32 func_002E4AC0(void *, s32);
-s32 func_002D80A0(void *, u32, s32);
-void func_002D70D0(void *);
-void func_002D32E8(void *);
-
-s32 func_002E5E28(void *arg0) {
-    s32 r;
-    s32 i;
-
-    for (;;) {
-        r = func_002E4AC0(arg0, 0);
-        if (r < 0) {
-            return -0x21C;
-        }
-        if (r == 1) {
-            return 0;
-        }
-        i = (s32)D_0000FFFF;
-        do {
-            i--;
-        } while (i != -1);
-    }
-}
+s32 func_002D80A0(M2C_UNK *, M2C_UNK, M2C_UNK);     /* extern */
+extern s32 D_00444A0C;
+extern M2C_UNK D_008E1CC0;
+extern M2C_UNK D_FFFFF;
 
 s32 func_002DC0B0(void) {
-    s32 i;
+    M2C_UNK *var_2;
 
-    for (;;) {
-        if (func_002D80A0(D_008E1CC0, 0x80000003, 0) < 0) {
-            return -1;
-        }
-        if (*(s32 *)(D_008E1CC0 + 0x24) != 0) {
+loop_3:
+    if (func_002D80A0(&D_008E1CC0, 0x80000003, 0) >= 0) {
+        if (M2C_FIELD(&D_008E1CC0, s32 *, 0x24) != 0) {
             D_00444A0C = 0;
             return 0;
         }
-        i = (s32)D_000FFFFF;
+        var_2 = &D_FFFFF;
         do {
-            i--;
-        } while (i != -1);
-    }
-}
 
-void func_002D2B50(s32 *arg0) {
-    s32 i;
-
-    if (*arg0 & 0x100) {
-        i = (s32)D_00FFFFFF;
-        do {
-            if (i < 0) {
-                func_002D70D0(D_0047B370);
-                func_002D32E8(arg0);
-            }
-            i--;
-        } while (*arg0 & 0x100);
+        } while (var_2 != (M2C_UNK *)-1);
+        goto loop_3;
     }
+    return -1;
 }

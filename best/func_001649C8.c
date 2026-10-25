@@ -1,50 +1,40 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 func_0014BA30(s32, void *);                     /* extern */
-extern M2C_UNK func_001C7A00;
-
-s32 func_001649C8(void *arg0, void *arg1, void *arg2) {
-    s32 temp_3;
-    s32 var_18;
-    s32 var_2;
-    s64 temp_2;
-    s64 temp_5;
-
-    var_18 = M2C_FIELD(&func_001C7A00, s32 (**)(), 0xB0)();
-    temp_3 = M2C_FIELD(arg1, s32 *, 0x920);
-    if (temp_3 != M2C_FIELD(arg2, s32 *, 0x920)) {
-        M2C_FIELD(arg0, s32 *, 0x920) = temp_3;
-        M2C_FIELD(arg0, s32 *, 0x98) = 2;
-        var_18 = 1;
+extern u8 func_001C7A00[];
+s32 func_0014BA30(void *a, void *b);
+typedef struct { void *pad[0x44/4]; } Pd;
+typedef struct VT { u8 pad[0x110]; void (*fn)(void *); } VT;
+typedef struct Obj {
+    u8 p0[0x4C]; VT *vt; u8 p1[0x98-0x50]; s32 st;
+    u8 p2[0x538-0x9C]; s32 f538;
+    u8 p3[0x920-0x53C]; s32 id;
+    u8 p4[0x930-0x924]; s64 a30; s64 a38; s64 a40; s64 a48; s64 a50; s64 a58;
+} Obj;
+s32 func_001649C8(Obj *o, Obj *a, Obj *b) {
+    s32 r;
+    void *pv;
+    s64 x, y;
+    pv = func_001C7A00;
+    pv = *(void **)((u8 *)pv + 0xB0);
+    r = ((s32 (*)(void))pv)();
+    if (a->id != b->id) {
+        o->id = a->id;
+        o->st = 2;
+        r = 1;
     }
-    var_2 = var_18;
-    if (func_0014BA30(arg1 + 0x940, arg2 + 0x940) == 0) {
-        M2C_FIELD(arg0, s64 *, 0x950) = (s64) M2C_FIELD(arg0, s64 *, 0x940);
-        M2C_FIELD(arg0, s64 *, 0x958) = (s64) M2C_FIELD(arg0, s64 *, 0x948);
-        temp_2 = M2C_FIELD(arg1, s64 *, 0x940);
-        M2C_FIELD(arg0, s64 *, 0x940) = temp_2;
-        temp_5 = M2C_FIELD(arg1, s64 *, 0x948);
-        M2C_FIELD(arg0, s64 *, 0x948) = temp_5;
-        if (M2C_FIELD(arg0, s32 *, 0x538) != 0) {
-            M2C_FIELD(M2C_FIELD(arg0, void **, 0x4C), M2C_UNK (**)(void *, s64), 0x110)(arg0, temp_5);
+    if (func_0014BA30(&a->a40, &b->a40) == 0) {
+        o->a50 = o->a40;
+        o->a58 = o->a48;
+        x = a->a40;
+        o->a40 = x;
+        y = a->a48;
+        o->a48 = y;
+        if (o->f538 != 0) {
+            o->vt->fn(o);
         } else {
-            M2C_FIELD(arg0, s64 *, 0x930) = temp_2;
-            M2C_FIELD(arg0, s64 *, 0x938) = temp_5;
+            o->a30 = x;
+            o->a38 = y;
         }
-        M2C_FIELD(arg0, s32 *, 0x98) = 2;
-        var_2 = 1;
+        o->st = 2;
+        r = 1;
     }
-    return var_2;
+    return r;
 }

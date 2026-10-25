@@ -1,0 +1,12 @@
+extern s32 func_00161FDC(s32, void*, void*, s32, ...);
+extern s32 func_0014B460(s32);
+extern u8 func_001B9FD8[];
+extern u8 func_001BCB38[];
+extern u8 func_01000000[];
+extern u8 jtbl_004C006C[];
+void func_001381E0(void) {
+ s64 a=*(s64*)(func_001B9FD8+0x1718), b=*(s64*)(func_001B9FD8+0x1720), c=*(s64*)(func_001B9FD8+0x1710), d=*(s64*)(func_001B9FD8+0x1710);
+ s32 r=func_00161FDC(*(s32*)(func_001BCB38+0xD74),jtbl_004C006C+0xAEDC,__builtin_frame_address(0),0x1A,
+ 1,0x46,0x61,0x44,8,0,0xA,0,0xD,2,0xF,2,0x14,0,0x3B,8,0x3D,8,0x3F,8,0x41,8,0x11,0,0x63,0x16,0x5E,0x16,0xD4,1,0xCD,0,0xCE,1,0x62,(s64)&c,0x5D,(s64)&c,0xC7,0x66,(s64)(jtbl_004C006C+0xAED4),0x13,0,0x43,1,0x45,1,0x44,1,0x46,1,0x61,(s64)&a,0x5C,(s64)&a);
+ *(s32*)(func_01000000+0xCE570)=r; func_0014B460(r);
+}

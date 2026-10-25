@@ -1,0 +1,2 @@
+extern u8 D_00780B00[];
+void func_00183DD0(s32 id, f32 *v){u8 tmp[12];__builtin_memcpy(tmp,v,12);if(id!=0){u8 *e=D_00780B00+(id&255)*0x410;if(*(s16*)(e+0x400)==id){u8 write=e[0x405];u8 read=e[0x404];if((((write+1)&0x7f)!=read)&&(((write+2)&0x7f)!=read)){*(s16*)(e+write*8)=(s16)(2.0f**(f32*)tmp);*(s16*)(e+e[0x405]*8+2)=(s16)(2.0f**(f32*)(tmp+4));*(s16*)(e+e[0x405]*8+4)=(s16)(2.0f**(f32*)(tmp+8));*(s16*)(e+e[0x405]*8+6)=*(u16*)(e+0x402)+1;e[0x405]=(e[0x405]+1)&0x7f;}}}}

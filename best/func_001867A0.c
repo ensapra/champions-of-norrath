@@ -1,0 +1,3 @@
+extern "C" { void func_00191678(s32); void func_001916D0(s32); void func_001917D8(s32,s32); void func_00191860(s32,u64); void func_00191878(s32); void func_001919A0(s32,u64); void ovl_ntgui2_func_00191830(s32); typedef struct{s32 a,b,c,d;} E;
+void func_001867A0(s32 a,E*b,s64 c,s64 d){s64 hi=d<<32; s64 q=((s64)0x44000000<<32)|0x8000; s32 t,u,v;func_001916D0(a);func_001917D8(a,0);func_00191860(a,(u64)q);func_001919A0(a,0x46);func_001919A0(a,(u64)(c<<32)>>32);t=b->a;u=b->b;v=(t+b->c+0x6c00)|((u+b->d+0x7200)<<16);func_001919A0(a,(t+0x6c00)|((u+0x7200)<<16)|hi);func_001919A0(a,v|hi);func_00191878(a);ovl_ntgui2_func_00191830(a);func_00191678(a);}
+}

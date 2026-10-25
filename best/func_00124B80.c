@@ -11,7 +11,7 @@ typedef struct S124B80
   u8 unk28;
   u8 unk29;
   u8 pad2A[2];
-  s32 unk2C;
+  u32 unk2C;
   f32 unk30;
   s32 unk34;
   u16 unk38;
@@ -31,9 +31,9 @@ extern void *func_001441B8(s32);
 extern void func_00194498(void *, void *);
 void *func_00124B80(S124B80 *arg0)
 {
-  S124B80 *p;
+  register S124B80 *p;
   u8 *d;
-  u8 *s;
+  register u8 *s;
   s32 i;
   void *res;
   f32 f30;
@@ -76,8 +76,8 @@ void *func_00124B80(S124B80 *arg0)
     p->unk44 = i44;
     p->unk4C = arg0->unk4C;
     d = ((u8 *) p) + 0x4D;
-    s = ((u8 *) arg0) + 0x4D;
     i = 3;
+    s = ((u8 *) arg0) + 0x4D;
     do
     {
       *(d++) = *(s++);

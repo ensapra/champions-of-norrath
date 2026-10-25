@@ -11,6 +11,7 @@ func_00194498(&out->f4,&in->f4);
 func_00194498(&out->f8,&in->f8);
 out->fC=in->fC;{u64 a=in->c.a;u32 b=in->c.b;out->c.a=a;out->c.b=b;}{f32 f=in->f1C;u32 w=in->f24;out->f1C=f;out->f24=w;}out->f20=in->f20;
 out->b28=in->b28;out->b29=in->b29;out->vt=(u32)D_00449160;
-{u32 w=in->f44;u32 a=in->f2C;u32 b=in->f34;u16 h=in->h38;u32 z=in->f4C;out->f30=in->f30;out->f3C=in->f3C;out->f2C=a;out->f34=b;out->h38=h;out->f40=in->f40;out->f44=w;out->f4C=z;}
+out->f30=in->f30;out->f44=in->f44;out->f3C=in->f3C;
+{u32 z=in->f4C;u32 a=in->f2C;u32 b=in->f34;u16 h=in->h38;f32 f=in->f40;out->f2C=a;out->f34=b;out->h38=h;out->f40=f;out->f4C=z;}
 result=out;}else{result=0;}return result;
 }

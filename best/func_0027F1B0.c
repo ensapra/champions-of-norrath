@@ -1,0 +1,2 @@
+typedef struct __attribute__((packed)){u64 a,b,c;u32 d;s8 e;} Config; extern Config D_00476848; extern u8 D_008D5AB8[]; s32 D_00486D14; s32 D_00486D18;
+void func_0027F1B0(void){Config t; s32 i=0,j=0;t=D_00476848;D_00486D18=0;do{D_008D5AB8[i]=i+97;i++;}while(i<26);D_00486D18=i;do{D_008D5AB8[i]=j+48;i++;j++;}while(j<10);D_00486D18=i;if(*(u8*)&t){j=0;while(((u8*)&t)[j]){D_008D5AB8[i+j]=((u8*)&t)[j];j++;}D_00486D18=i+j;}D_00486D14=10;}

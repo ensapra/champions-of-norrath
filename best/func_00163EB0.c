@@ -1,69 +1,25 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-extern f32 D_0047FFA0;
-
-void func_00163EB0(void *arg0, s32 arg1, f32 fparg0) {
-    f32 temp_f0;
-    f32 var_f12;
-    s32 *var_6;
-    s32 temp_4;
-    s32 var_2;
-    s32 var_7;
-    s8 temp_2;
-    void *var_2_2;
-
-    if (arg0 != NULL) {
-        if (arg1 != 0) {
-            temp_2 = M2C_FIELD(arg0, s8 *, 4);
-            var_7 = 0;
-            if (temp_2 > 0) {
-                var_6 = arg0 + 8;
-                var_2 = M2C_FIELD(arg0, s32 *, 8);
-loop_10:
-                var_6 += 0x20;
-                temp_4 = var_7 << 5;
-                var_7 += 1;
-                if (var_2 != arg1) {
-                    if (var_7 < temp_2) {
-                        var_2 = *var_6;
-                        goto loop_10;
-                    }
-                    goto block_14;
-                }
-                var_2_2 = arg0 + temp_4 + 8;
-            } else {
-                goto block_14;
-            }
-        } else {
-            goto block_14;
-        }
-    } else {
-block_14:
-        var_2_2 = NULL;
+struct Ent { s32 key; s32 pad; f32 val; f32 d; f32 e; s32 z; s32 p2[2]; };
+struct Tbl { s32 h0; s8 n; s8 p1[3]; Ent ents[1]; };
+extern "C" f32 D_0047FFA0;
+static inline Ent *find(Tbl *t, s32 key) {
+    s32 i;
+    if (t == 0) return 0;
+    if (key == 0) return 0;
+    for (i = 0; i < t->n; i++) {
+        if (t->ents[i].key == key) return &t->ents[i];
     }
-    if (var_2_2 != NULL) {
-        temp_f0 = M2C_ERROR(/* unknown instruction: min.s $f0, $f0, $f1 */);
-        M2C_FIELD(var_2_2, f32 *, 8) = temp_f0;
-        if (temp_f0 > 1.0f) {
-            M2C_FIELD(var_2_2, f32 *, 8) = 1.0f;
-        }
-        var_f12 = 1.0f;
-        if (!(fparg0 < D_0047FFA0)) {
-            var_f12 = 1.0f / (fparg0 * 60.0f);
-        }
-        M2C_FIELD(var_2_2, M2C_UNK32 *, 0x10) = 0;
-        M2C_FIELD(var_2_2, f32 *, 0xC) = (f32) -var_f12;
+    return 0;
+}
+extern "C" void func_00163EB0(Tbl *t, s32 key, f32 x) {
+    Ent *en = find(t, key);
+    if (en != 0) {
+        f32 one = 1.0f;
+        f32 inv;
+        en->val = en->val <? en->e;
+        if (one < en->val) en->val = one;
+        inv = one;
+        if (!(x < D_0047FFA0)) inv = one / (x * 60.0f);
+        en->e = 0;
+        en->d = -inv;
     }
 }

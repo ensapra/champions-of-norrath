@@ -1,60 +1,100 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-void *func_001441B8(M2C_UNK);                       /* extern */
-M2C_UNK func_00194498(void *, void *);              /* extern */
-extern M2C_UNK D_00448B00;
-extern M2C_UNK D_0044D498;
-
-void *func_00129B78(void *arg0) {
-    void *temp_2;
-    void *var_8;
-
-    temp_2 = func_001441B8(0x68);
-    var_8 = NULL;
-    if (temp_2 != NULL) {
-        M2C_FIELD(temp_2, M2C_UNK **, 0x48) = &D_0044D498;
-        func_00194498(temp_2, arg0);
-        func_00194498(temp_2 + 4, arg0 + 4);
-        func_00194498(temp_2 + 8, arg0 + 8);
-        var_8 = temp_2;
-        M2C_FIELD(temp_2, s32 *, 0xC) = (s32) M2C_FIELD(arg0, s32 *, 0xC);
-        M2C_ERROR(/* unknown instruction: ldl $v0, 0x17($s1) */);
-        M2C_ERROR(/* unknown instruction: ldr $v0, 0x10($s1) */);
-        M2C_ERROR(/* unknown instruction: sdl $v0, 0x17($s0) */);
-        M2C_ERROR(/* unknown instruction: sdr $v0, 0x10($s0) */);
-        M2C_FIELD(temp_2, s32 *, 0x18) = (s32) M2C_FIELD(arg0, s32 *, 0x18);
-        M2C_FIELD(temp_2, f32 *, 0x1C) = (f32) M2C_FIELD(arg0, f32 *, 0x1C);
-        M2C_FIELD(temp_2, s32 *, 0x24) = (s32) M2C_FIELD(arg0, s32 *, 0x24);
-        M2C_FIELD(temp_2, f32 *, 0x20) = (f32) M2C_FIELD(arg0, f32 *, 0x20);
-        M2C_FIELD(temp_2, u8 *, 0x28) = (u8) M2C_FIELD(arg0, u8 *, 0x28);
-        M2C_FIELD(temp_2, M2C_UNK **, 0x48) = &D_00448B00;
-        M2C_FIELD(temp_2, u8 *, 0x29) = (u8) M2C_FIELD(arg0, u8 *, 0x29);
-        M2C_FIELD(temp_2, f32 *, 0x30) = (f32) M2C_FIELD(arg0, f32 *, 0x30);
-        M2C_FIELD(temp_2, s32 *, 0x44) = (s32) M2C_FIELD(arg0, s32 *, 0x44);
-        M2C_FIELD(temp_2, f32 *, 0x3C) = (f32) M2C_FIELD(arg0, f32 *, 0x3C);
-        M2C_FIELD(temp_2, s32 *, 0x34) = (s32) M2C_FIELD(arg0, s32 *, 0x34);
-        M2C_FIELD(temp_2, u16 *, 0x38) = (u16) M2C_FIELD(arg0, u16 *, 0x38);
-        M2C_FIELD(temp_2, f32 *, 0x40) = (f32) M2C_FIELD(arg0, f32 *, 0x40);
-        M2C_FIELD(temp_2, s32 *, 0x2C) = (s32) M2C_FIELD(arg0, s32 *, 0x2C);
-        M2C_FIELD(temp_2, s32 *, 0x4C) = (s32) M2C_FIELD(arg0, s32 *, 0x4C);
-        M2C_FIELD(temp_2, s32 *, 0x50) = (s32) M2C_FIELD(arg0, s32 *, 0x50);
-        M2C_FIELD(temp_2, s32 *, 0x54) = (s32) M2C_FIELD(arg0, s32 *, 0x54);
-        M2C_FIELD(temp_2, f32 *, 0x5C) = (f32) M2C_FIELD(arg0, f32 *, 0x5C);
-        M2C_FIELD(temp_2, s32 *, 0x58) = (s32) M2C_FIELD(arg0, s32 *, 0x58);
-        M2C_FIELD(temp_2, s32 *, 0x60) = (s32) M2C_FIELD(arg0, s32 *, 0x60);
-        M2C_FIELD(temp_2, u8 *, 0x64) = (u8) M2C_FIELD(arg0, u8 *, 0x64);
+extern void *func_001441B8(s32);
+extern s32 func_00194498(void *, void *);
+extern u32 D_0044D498[];
+extern u32 D_00448B00[];
+struct C12
+{
+  u64 a;
+  u32 b;
+} __attribute__((packed, aligned(4)));
+struct Obj
+{
+  u32 f0;
+  u32 f4;
+  u32 f8;
+  u32 fC;
+  struct C12 c;
+  f32 f1C;
+  f32 f20;
+  u32 f24;
+  u8 b28;
+  u8 b29;
+  u32 f2C;
+  f32 f30;
+  u32 f34;
+  u16 h38;
+  f32 f3C;
+  f32 f40;
+  u32 f44;
+  u32 vt;
+  u32 f4C;
+  u32 f50;
+  u32 f54;
+  u32 f58;
+  f32 f5C;
+  u32 f60;
+  u8 b64;
+};
+struct Obj *func_00129B78(struct Obj *in)
+{
+  struct Obj *out = func_001441B8(0x68);
+  struct Obj *result;
+  if (out)
+  {
+    out->vt = (u32) D_0044D498;
+    func_00194498(&out->f0, &in->f0);
+    func_00194498(&out->f4, &in->f4);
+    func_00194498(&out->f8, &in->f8);
+    out->fC = in->fC;
+    {
+      u64 a = in->c.a;
+      u32 b = in->c.b;
+      out->c.a = a;
+      out->c.b = b;
     }
-    return var_8;
+    {
+      f32 f = in->f1C;
+      u32 w = in->f24;
+      out->f1C = f;
+      out->f24 = w;
+    }
+    out->f20 = in->f20;
+    out->b28 = in->b28;
+    out->b29 = in->b29;
+    out->vt = (u32) D_00448B00;
+    out->f30 = in->f30;
+    result = out;
+    result->f44 = in->f44;
+    result->f3C = in->f3C;
+    {
+      u32 b = in->f34;
+      u16 h = in->h38;
+      u32 a = in->f2C;
+      u32 c = in->f4C;
+      u32 d = in->f50;
+      u32 e = in->f54;
+      f32 g = in->f40;
+      out->f34 = b;
+      result->h38 = h;
+      out->f40 = g;
+      out->f2C = a;
+      result->f4C = c;
+      result->f50 = d;
+      out->f54 = e;
+      do
+      {
+      }
+      while (0);
+    }
+    out->f5C = in->f5C;
+    result->f58 = in->f58;
+    out->f60 = in->f60;
+    result->b64 = in->b64;
+    result = out;
+  }
+  else
+  {
+    result = 0;
+  }
+  return result;
 }

@@ -1,78 +1,95 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-void func_00109710(void *arg0) {
-    s16 temp_6;
-    s16 temp_7;
-    s16 temp_8;
-    s16 temp_9;
-    s16 var_10;
-    s16 var_12;
-    s16 var_13;
-    s16 var_14;
-    s8 temp_3;
-
-    var_14 = 0;
-    temp_3 = M2C_FIELD(arg0, s8 *, 0x9C);
-    var_13 = 0;
-    var_12 = 0;
-    var_10 = 0;
-    switch (temp_3) {
+typedef struct 
+{
+  char pad[0x8C];
+  s16 a;
+  s16 b;
+  s16 c;
+  s16 d;
+  char pad2[8];
+  s8 kind;
+} S9;
+void func_00109710(S9 *p)
+{
+  s16 d = 0;
+  s16 c = 0;
+  s16 b = 0;
+  s16 a = 0;
+  s16 pa;
+  s16 pb;
+  s16 pc;
+  s16 pd;
+  switch (p->kind)
+  {
     case 1:
-        var_14 = 0x1E;
-        var_13 = 0x1E;
-block_12:
-        var_12 = 0x1E;
-block_13:
-        var_10 = 0x32;
-        break;
+      a = (b = 30);
+      goto l1e;
+
     case 2:
-        var_14 = 0x1E;
-        var_13 = 0xF;
-        var_12 = 0xF;
-        goto block_13;
+      a = 30;
+      b = 15;
+      c = 15;
+      goto l32;
+
     case 3:
-        var_14 = 0xF;
-        var_13 = 0xF;
-        goto block_12;
+      a = 15;
+      b = 15;
+      goto l1e;
+
     case 4:
-        var_14 = 0xA;
-        var_13 = 0x14;
-        var_12 = 0xA;
-        goto block_13;
-    case 7:
-        var_14 = 0x14;
-        var_13 = 0x14;
-        var_12 = 0xF;
-        goto block_13;
+      c = 10;
+      a = 10;
+      b = 20;
+      goto l32;
+
     case 5:
-        var_14 = 0x14;
-        var_13 = 0x14;
-        var_12 = 0xA;
-        goto block_13;
+      a = 20;
+      b = 20;
+      c = 15;
+      goto l32;
+
     case 6:
+      a = 20;
+      b = 20;
+      c = 10;
+      goto l32;
+
+    case 7:
+      a = 20;
+      b = 0;
+      l1e:
+    c = 30;
+
+      l32:
+    d = 50;
+
+
     case 8:
-        var_14 = 0x14;
-        var_13 = 0;
-        goto block_12;
-    }
-    temp_6 = M2C_FIELD(arg0, s16 *, 0x8C);
-    temp_8 = M2C_FIELD(arg0, s16 *, 0x8E);
-    temp_9 = M2C_FIELD(arg0, s16 *, 0x90);
-    temp_7 = M2C_FIELD(arg0, s16 *, 0x92);
-    M2C_FIELD(arg0, s16 *, 0x92) = (s16) ((temp_7 >= var_10) ? temp_7 : var_10);
-    M2C_FIELD(arg0, s16 *, 0x8C) = (s16) ((temp_6 >= var_14) ? temp_6 : var_14);
-    M2C_FIELD(arg0, s16 *, 0x8E) = (s16) ((temp_8 >= var_13) ? temp_8 : var_13);
-    M2C_FIELD(arg0, s16 *, 0x90) = (s16) ((temp_9 >= var_12) ? temp_9 : var_12);
+      break;
+
+  }
+
+  pa = p->a;
+  pb = p->b;
+  pc = p->c;
+  pd = p->d;
+  if (pa >= a)
+  {
+    a = pa;
+  }
+  if (pb >= b)
+  {
+    b = pb;
+  }
+  if (pc >= c)
+  {
+    c = pc;
+  }
+  if (pd >= d)
+  {
+    d = pd;
+  }
+  p->d = d;
+  p->a = a;
+  p->b = b;
+  p->c = c;
 }

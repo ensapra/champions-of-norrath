@@ -1,35 +1,22 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-M2C_UNK func_00143830();                            /* extern */
 extern f32 D_00481710;
 extern s8 D_00483829;
-
-void func_00221940(void *arg0, void *arg1) {
-    f32 temp_f1;
-    f32 temp_f5;
-    f32 temp_f6;
-    f32 temp_f7;
-
-    if ((D_00483829 == 0) && (arg1 != NULL) && (M2C_FIELD(arg1, s32 *, 0xC) & 0x40) && !(M2C_FIELD(arg0, s32 *, 0x124) & 8) && (M2C_FIELD(arg1, u8 *, 0x471) == 0)) {
-        temp_f5 = M2C_FIELD(arg1, f32 *, 0x4AC);
-        temp_f6 = M2C_FIELD(arg0, f32 *, 0x128);
-        temp_f7 = M2C_FIELD(arg0, f32 *, 0x12C);
-        temp_f1 = M2C_ERROR(/* unknown instruction: rsqrt.s $f1, $f1, $f0 */);
-        if (((temp_f6 * (temp_f5 * temp_f1)) + (temp_f7 * (M2C_FIELD(arg1, f32 *, 0x4B0) * temp_f1))) < 52.0f) {
-            M2C_FIELD(arg0, f32 *, 0x128) = (f32) (temp_f6 + (temp_f5 * D_00481710));
-            M2C_FIELD(arg0, f32 *, 0x12C) = (f32) (temp_f7 + (M2C_FIELD(arg1, f32 *, 0x4B0) * D_00481710));
+extern void func_00143830();
+typedef struct { f32 x, y, z; } V3;
+void func_00221940(u8 *a, u8 *b) {
+    V3 d;
+    f32 vx, vy, len;
+    if (D_00483829 == 0 && b != 0 && (*(s32 *)(b + 0xC) & 0x40) && !(*(s32 *)(a + 0x124) & 8) && *(u8 *)(b + 0x471) == 0) {
+        f32 bx = *(f32 *)(b + 0x4AC);
+        f32 by = *(f32 *)(b + 0x4B0);
+        f32 ax = *(f32 *)(a + 0x128);
+        f32 ay = *(f32 *)(a + 0x12C);
+        f32 inv = 1.0f / __builtin_sqrtf(bx * bx + by * by);
+        d.x = bx * inv;
+        d.y = by * inv;
+        d.z = 0.0f;
+        if (ax * d.x + ay * d.y < 52.0f) {
+            *(f32 *)(a + 0x128) = ax + bx * D_00481710;
+            *(f32 *)(a + 0x12C) = ay + *(f32 *)(b + 0x4B0) * D_00481710;
         }
         func_00143830();
     }

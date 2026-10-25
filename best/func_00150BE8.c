@@ -1,43 +1,32 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-M2C_UNK func_0014BA50(s32, s32, s32, s32, s32, s32, s32, s32); /* extern */
-
-void func_00150BE8(void *arg0) {
-    s32 temp_10;
-    s32 temp_4;
-    s32 temp_5;
-    s32 temp_7;
-    s32 temp_8;
-
-    temp_7 = M2C_FIELD(arg0, s32 *, 0x5D4);
-    temp_10 = M2C_FIELD(arg0, s32 *, 0x5A0);
-    temp_8 = M2C_FIELD(arg0, s32 *, 0x5A4);
-    temp_5 = M2C_FIELD(arg0, s32 *, 0x810);
-    temp_4 = M2C_FIELD(arg0, s32 *, 0x814);
-    M2C_FIELD(arg0, s32 *, 0x830) = (s32) (temp_5 + temp_10 + temp_7);
-    M2C_FIELD(arg0, s32 *, 0x834) = (s32) (temp_4 + temp_8 + temp_7);
-    M2C_FIELD(arg0, s32 *, 0x838) = (s32) (temp_5 + temp_7 + (M2C_FIELD(arg0, s32 *, 0x5AC) + temp_10));
-    M2C_FIELD(arg0, s32 *, 0x83C) = (s32) (temp_4 + temp_7 + (M2C_FIELD(arg0, s32 *, 0x5B0) + temp_8));
-    func_0014BA50(M2C_FIELD(arg0, s32 *, 0x818), M2C_FIELD(arg0, s32 *, 0x81C), M2C_FIELD(arg0, s32 *, 0x820), M2C_FIELD(arg0, s32 *, 0x824), arg0 + 0x830, arg0 + 0x834, arg0 + 0x838, arg0 + 0x83C);
-    if (M2C_FIELD(arg0, s32 *, 0x830) >= M2C_FIELD(arg0, s32 *, 0x838)) {
-        M2C_FIELD(arg0, s32 *, 0x858) = 0;
-        return;
-    }
-    if (M2C_FIELD(arg0, s32 *, 0x834) >= M2C_FIELD(arg0, s32 *, 0x83C)) {
-        M2C_FIELD(arg0, s32 *, 0x858) = 0;
-        return;
-    }
-    M2C_FIELD(arg0, s32 *, 0x858) = 1;
+typedef struct {
+    u8 pad0[0x5A0];
+    s32 a0, a1; s32 pad2; s32 a3, a4;
+    u8 pad1[0x5D4-0x5B4];
+    s32 b;
+    u8 pad3[0x810-0x5D8];
+    s32 c0, c1, c2, c3, c4, c5;
+    s32 pad5[2];
+    s32 r0, r1, r2, r3;
+    u8 pad4[0x858-0x840];
+    s32 ok;
+} S150;
+void func_0014BA50(s32, s32, s32, s32, s32 *, s32 *, s32 *, s32 *);
+void func_00150BE8(S150 *s) {
+    s32 t7 = s->b;
+    s32 t10 = s->a0;
+    s32 t8 = s->a1;
+    s32 t5 = s->c0;
+    s32 t4 = s->c1;
+    s32 r2 = t5 + t7 + (s->a3 + t10);
+    s32 r3 = t4 + t7 + (s->a4 + t8);
+    s32 r0 = t5 + t10 + t7;
+    s32 r1 = t4 + t8 + t7;
+    s->r0 = r0;
+    s->r1 = r1;
+    s->r2 = r2;
+    s->r3 = r3;
+    func_0014BA50(s->c2, s->c3, s->c4, s->c5, &s->r0, &s->r1, &s->r2, &s->r3);
+    if (s->r2 <= s->r0) { s->ok = 0; return; }
+    if (s->r3 <= s->r1) { s->ok = 0; return; }
+    s->ok = 1;
 }

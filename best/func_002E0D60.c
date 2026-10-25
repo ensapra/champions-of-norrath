@@ -1,35 +1,26 @@
-/* identical to func_0017A008 (matched), with its names changed by decompdecomp */
-extern s32 D_001D0484[];
-extern s32 D_001D0488[];
-extern u32 D_001D0290[];
-extern u32 D_001D0294[];
-s32 DeleteSema_2(s32);
+/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
 
-s32 func_002E0D60(void){
-    if(D_001D0484[0]>=0){
-        DeleteSema_2(D_001D0484[0]);
-        D_001D0484[0]=-1;
-        DeleteSema_2(D_001D0488[0]);
+M2C_UNK DeleteSema_2(s32);                          /* extern */
+extern s32 D_00446074;
+extern s32 D_00446078;
+
+s32 func_002E0D60(void) {
+    if (D_00446074 >= 0) {
+        DeleteSema_2(D_00446074);
+        D_00446074 = -1;
+        DeleteSema_2(D_00446078);
     }
     return 1;
-}
-
-u32 func_00175BF0(u32 n) {
-    u32 old = D_001D0290[0];
-    u32 nw = ((old + n + 31) >> 5) << 5;
-    D_001D0290[0] = nw;
-    return (D_001D0294[0] < nw) ? D_001D0294[0] - n : old;
-}
-
-u32 func_00175B90(u32 n, s32 mode) {
-    u32 v;
-    if (mode == -1) {
-        v = D_001D0294[0] - n;
-    } else if (mode == 1) {
-        v = ((D_001D0294[0] - n) >> 5) << 5;
-    } else {
-        return 0;
-    }
-    D_001D0294[0] = v;
-    return (D_001D0294[0] < D_001D0290[0]) ? D_001D0290[0] : v;
 }

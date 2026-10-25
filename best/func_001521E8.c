@@ -6,7 +6,7 @@ typedef struct Em {
     u8 pad2EE[6]; f32 x2F4;
 } Em;
 typedef struct Self {
-    u8 pad0[0x44]; u32 seed;
+    u8 pad0[0x44]; s32 seed;
     u8 pad48[0x70C]; s16 x754; s16 x756;
     u8 pad758[8]; f32 x760;
 } Self;
@@ -20,8 +20,8 @@ extern s16 func_0015A198(f32, f32);
 extern void func_00180DA0(void *, void *, void *, f32);
 extern void func_0017A818(s32, Vec3 *, f32, f32, Vec3 *);
 
-#define RND(s) ((s)->seed = (s)->seed * 0x19660D + 0x3C6EF35F, (s)->seed >> 16)
-#define RF(s) ((f32)RND(s) * (1.0f / 65536.0f))
+#define RND(s) ((s)->seed = (s)->seed * 0x19660D + 0x3C6EF35F, (u32)(s)->seed >> 16)
+#define RF(s) ((f32)(s32)RND(s) * (1.0f / 65536.0f))
 
 void func_001521E8(Self *self, Vec3 *pos, void *mat, s32 extra)
 {

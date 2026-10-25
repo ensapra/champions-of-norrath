@@ -1,58 +1,48 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 func_002FF990(void *);                          /* extern */
-s32 func_00304CFC(s8 *, s8 *);                      /* extern */
-s32 func_00304F60(s32, s8 *, s32);                  /* extern */
-extern M2C_UNK D_0047E1F1;
-
-s32 func_00143D98(s32 *arg0, s8 *arg1, s32 arg2) {
-    s32 *var_16;
-    s32 temp_17;
-    s32 var_19;
-    s8 *temp_2;
-    s8 *var_5;
-    u8 temp_2_2;
-    u8 var_3;
-
-    var_16 = arg0;
-    var_19 = arg2;
-    if (var_16 == NULL) {
-        goto block_11;
-    }
-    var_5 = arg1;
-    var_3 = (u8) *arg1;
-    if (*arg1 != 0) {
-        do {
-            *var_5 = (*(&D_0047E1F1 + (s8) var_3) & 1) ? ((s8) var_3 + 0x20) : (s8) var_3;
-            var_5 += 1;
-            temp_2_2 = *var_5;
-            var_3 = temp_2_2;
-        } while (temp_2_2 != 0);
-    }
-    temp_17 = func_00304CFC(arg1, var_5);
-    if (*var_16 != 0) {
-loop_7:
-        if ((func_00304F60(*var_16, arg1, temp_17) != 0) || (temp_2 = *var_16 + temp_17, (*temp_2 != 0x3D)) || (var_19 -= 1, (var_19 != -1))) {
-            var_16 += 4;
-            if (*var_16 == 0) {
-                goto block_11;
-            }
-            goto loop_7;
-        }
-        return func_002FF990(temp_2 + 1);
-    }
-block_11:
+extern unsigned char D_0047E1F1[263];
+s32 func_002FF990(char *);
+s32 func_00304CFC(char *);
+s32 func_00304F60(char *, char *, s32);
+s32 func_00143D98(char **env, char *name, s32 n)
+{
+  char *p;
+  char *e;
+  s32 len;
+  if (env == 0)
+  {
     return 0;
+  }
+  p = name;
+  if (*p)
+  {
+    do
+    {
+      s32 c = *p;
+      s32 r = c;
+      if ((*((unsigned char *) (((s32) D_0047E1F1) + c))) & 1)
+      {
+        r = c + 0x20;
+      }
+      *p = r;
+      p++;
+    }
+    while (*p);
+  }
+  len = func_00304CFC(name);
+  if (*((s32 *) env))
+  {
+    do
+    {
+      if (func_00304F60(*env, name, len) == 0)
+      {
+        e = (*env) + len;
+        if (((*e) == '=') && ((len = --n) == (-1)))
+        {
+          return func_002FF990(e + 1);
+        }
+      }
+      env++;
+    }
+    while (*((s32 *) env));
+  }
+  return 0;
 }

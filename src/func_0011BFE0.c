@@ -1,0 +1,87 @@
+extern s32 D_010C4CF4[], D_010C4CFC[];
+extern s32 D_001BD8A4[], D_001BD8A8[], D_001BD880[], D_001BD884[], D_001BD888[], D_001BD88C[], D_001BD8AC[];
+extern s32 D_001C3984[];
+extern u8 D_001C3990[];
+extern void WaitSema(s32);
+extern void FlushCache(s32);
+extern void func_0010A078(void);
+extern void func_0010A440(void);
+extern void func_0010B3C0(void);
+extern void func_0010EF98(void);
+extern void func_001169C0(void);
+extern void func_00118578(void);
+extern s32 func_0011B908(s32, s32);
+extern void func_0011B968(s32);
+extern void func_0011C228(void);
+extern void func_0011C278(void);
+extern void func_0011C4F8(void);
+extern void ovl_ntgui2_func_001383F0(void);
+extern void func_00139570(void);
+extern void func_0013B970(void);
+extern void ovl_ntgui2_func_0013BAE0(void);
+extern void func_0013FDC0(void);
+extern void func_00140460(void);
+extern void func_00144F70(void);
+extern void func_001488D8(void);
+extern void func_0014B460(s32);
+extern void func_0014CA30(s32);
+extern void func_0018E538(s32, s32);
+extern void func_0018E9C0(void *, s32, s32, s32, s32, s32, s32, s32);
+extern void func_0018ECE8(void *, s32);
+extern void func_001A2660(s32, s32, s32);
+void func_0011BFE0(void) {
+    u8 buf[0x60];
+    s32 x = 0;
+    s32 i = 0xD;
+    s32 h;
+    D_010C4CFC[0] = 1;
+    WaitSema(D_010C4CF4[0]);
+    h = func_0011B908(0x10, 0x28000);
+    func_001A2660(h, 0, 0x28000);
+    func_0018E538(0, 0);
+    do {
+        s32 a = (x << 23) >> 16;
+        x += 5;
+        func_0018E9C0(buf, a, 0xA, 0, 0, 0, 0x280, 0x40);
+        FlushCache(0);
+        i--;
+        func_0018ECE8(buf, h);
+        func_0018E538(0, 0);
+    } while (i >= 0);
+    func_0011B968(h);
+    if (D_010C4CFC[0] != 0) {
+        do {
+            u8 *g;
+            void (*fn)(void);
+            func_0011C228();
+            func_00144F70();
+            func_0011C4F8();
+            func_001488D8();
+            g = D_001C3990;
+            fn = *(void (**)(void))(g + 0x50);
+            if (fn)
+                fn();
+            ovl_ntgui2_func_001383F0();
+            ovl_ntgui2_func_0013BAE0();
+            func_001169C0();
+            func_0013B970();
+            func_0010A440();
+            func_0010A078();
+            func_00118578();
+            func_0010EF98();
+            func_00139570();
+            func_0014B460(D_001BD8A4[0]);
+            func_0014B460(D_001BD8A8[0]);
+            func_0014B460(D_001BD880[0]);
+            func_0014B460(D_001BD884[0]);
+            func_0014B460(D_001BD888[0]);
+            func_0014B460(D_001BD88C[0]);
+            func_0010B3C0();
+            func_0014CA30(D_001BD8AC[0]);
+            func_00140460();
+            func_0013FDC0();
+            func_0011C278();
+            D_001C3984[0] = 1 - D_001C3984[0];
+        } while (D_010C4CFC[0] != 0);
+    }
+}

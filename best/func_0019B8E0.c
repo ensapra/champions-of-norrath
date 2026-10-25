@@ -1,64 +1,34 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct { char pad[0x8C]; u32 (*f)(char *, f32); } Vt;
+typedef struct { char pad[0x3098]; s32 total; s32 start; char pad2[0x31A4 - 0x30A0]; char str[0x100]; } Big;
+extern Big D_003642D0;
+extern Vt *D_004804D0;
+extern s32 func_001A444C(char *);
 
-s32 func_001A444C(void *);                          /* extern */
-extern M2C_UNK D_003642D0;
-extern void *D_004804D0;
-
-u32 func_0019B8E0(f32 fparg0, f32 fparg1) {
-    s32 temp_19;
-    s32 temp_2;
-    s32 var_16;
-    s32 var_16_2;
-    u32 var_18;
-    u32 var_20;
-    u8 temp_3;
-    void *temp_23;
-    void *temp_2_2;
-    void *temp_2_3;
-    void *temp_4;
-    void *var_17;
-
-    temp_23 = &D_003642D0 + 0x31A4;
-    temp_19 = M2C_FIELD(&D_003642D0, s32 *, 0x309C);
-    temp_2 = func_001A444C(temp_23);
-    var_17 = temp_2 + (&D_003642D0 + 0x31A5);
-    if (temp_19 > 0) {
-        var_16 = temp_19;
+u32 func_0019B8E0(f32 a, f32 b) {
+    s32 start = D_003642D0.start;
+    s32 n = func_001A444C(D_003642D0.str);
+    char *p = &D_003642D0.str[1] + n;
+    s32 i, k;
+    u32 best = 0, v;
+    if (start > 0) {
+        k = start;
         do {
-            var_16 -= 1;
-            var_17 = var_17 + func_001A444C(var_17) + 2;
-        } while (var_16 != 0);
+            p = p + func_001A444C(p) + 2;
+        } while (--k != 0);
     }
-    var_20 = 0;
-    var_16_2 = 0;
-    if (temp_19 < M2C_FIELD(&D_003642D0, s32 *, 0x3098)) {
-        temp_2_2 = D_004804D0;
-loop_5:
-        var_18 = M2C_FIELD(temp_2_2, u32 (**)(void *, f32), 0x8C)(var_17, fparg0);
-        temp_2_3 = var_17 + func_001A444C(var_17);
-        temp_3 = M2C_FIELD(temp_2_3, u8 *, 1);
-        temp_4 = temp_23 + temp_3;
-        var_17 = temp_2_3 + 2;
-        if ((s32) temp_3 < temp_2) {
-            var_18 += M2C_FIELD(D_004804D0, s32 (**)(void *, f32), 0x8C)(temp_4, fparg1);
-        }
-        var_16_2 += 1;
-        var_20 = (var_20 < var_18) ? var_18 : var_20;
-        if ((var_16_2 < 0xA) && ((temp_19 + var_16_2) < M2C_FIELD(&D_003642D0, s32 *, 0x3098))) {
-            goto loop_5;
-        }
+    i = 0;
+    if (start < D_003642D0.total) {
+        do {
+            u8 c;
+            v = D_004804D0->f(p, a);
+            p = p + func_001A444C(p);
+            c = p[1];
+            p += 2;
+            if (c < n)
+                v += D_004804D0->f(D_003642D0.str + c, b);
+            i++;
+            if (best < v) best = v;
+        } while (i < 10 && start + i < D_003642D0.total);
     }
-    return var_20;
+    return best;
 }

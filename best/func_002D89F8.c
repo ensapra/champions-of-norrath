@@ -1,65 +1,48 @@
-extern u8 D_008E1BE8[];
-extern u8 D_0044494C[];
-extern void *D_00444A08[];
-extern s32 D_00444A00[];
-extern s32 D_00444A04[];
-extern u8 D_008E19C0[];
-extern s32 func_00301F68(void *, void *, s32);
-extern s32 CreateSema_2(void *);
-extern void SignalSema_2(s32);
-extern void WaitSema_2(s32);
-extern s32 func_002D8738(s32);
-extern void func_002D8790(s32);
-extern void SleepThread_2(s32);
+/* machine draft (m2c) for ee-gcc-2.9-991111 -O2 -G8, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
 
-typedef struct { s32 f0; s32 f1; s32 f2; s32 f3; s32 f4; s32 f5; } StmParam;
+M2C_UNK SignalSema_2(s32, M2C_UNK);                 /* extern */
+M2C_UNK WaitSema_2(s32);                            /* extern */
+M2C_UNK func_002D8998();                            /* extern */
+extern s32 D_00444A00;
+extern M2C_UNK D_008E19C0;
 
-void func_002D8998(void) {
-    StmParam s;
-    if (D_00444A00[0] == -1) {
-        s.f5 = 0;
-        s.f1 = 1;
-        s.f2 = 1;
-        D_00444A00[0] = CreateSema_2(&s);
-        D_00444A04[0] = CreateSema_2(&s);
-    }
-}
+M2C_UNK *func_002D89F8(void) {
+    M2C_UNK *var_16;
+    s32 var_2;
+    void *temp_3;
 
-void *func_002D89F8(void) {
-    u8 *p;
-    u8 *end;
     func_002D8998();
-    WaitSema_2(D_00444A00[0]);
-    end = D_008E19C0 + 0x200;
-    for (p = D_008E19C0; p < end; p += 0x10) {
-        if (*(s32 *)(p + 4) == 0) {
-            *(s32 *)(p + 4) = 0x10000000;
-            SignalSema_2(D_00444A00[0]);
-            return p;
+    WaitSema_2(D_00444A00);
+    var_16 = &D_008E19C0;
+    temp_3 = &D_008E19C0 + 0x200;
+    if ((u32) &D_008E19C0 < (u32) temp_3) {
+        var_2 = M2C_FIELD(&D_008E19C0, s32 *, 4);
+loop_2:
+        if (var_2 != 0) {
+            var_16 += 0x10;
+            if ((u32) var_16 < (u32) temp_3) {
+                var_2 = M2C_FIELD(var_16, s32 *, 4);
+                goto loop_2;
+            }
+            goto block_9;
         }
+        M2C_FIELD(var_16, s32 *, 4) = 0x10000000;
+        SignalSema_2(D_00444A00, 0x10000000);
+        return var_16;
     }
-    SignalSema_2(D_00444A00[0]);
+block_9:
+    SignalSema_2(D_00444A00, 0x10000000);
     return NULL;
-}
-
-void func_002D8958(s32 arg0) {
-    s32 r;
-    while (1) {
-        r = func_002D8738(arg0);
-        if (r != 0) {
-            func_002D8790(r);
-        } else {
-            SleepThread_2(r);
-        }
-    }
-}
-
-s32 func_002D9230(void) {
-    s32 ret = 0;
-    if (func_00301F68(D_008E1BE8, D_0044494C, 4) != 0) {
-        if (func_00301F68(D_008E1BE8, D_00444A08[0], 4) != 0) {
-            ret = func_00301F68(D_0044494C, D_00444A08[0], 4) != 0;
-        }
-    }
-    return ret;
 }

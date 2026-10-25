@@ -1,25 +1,45 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct {
+    u8 pad_00[0x10];
+    s16 unk_10;
+    s16 pad_12;
+    s16 unk_14;
+    u8 pad_16[0xA];
+    s64 x0 : 11;
+    s64 : 5;
+    s64 x1 : 11;
+    s64 : 5;
+    s64 y0 : 11;
+    s64 : 5;
+    s64 y1 : 11;
+    s64 : 5;
+    u8 pad_28[0x28];
+} Rec;
 
-extern s32 D_0047FC30;
-extern s32 D_0047FC34;
+typedef struct {
+    u8 pad_00[0x4EC];
+    s32 unk_4EC;
+    u8 pad_4F0[0x338];
+    u16 unk_828;
+    u16 pad_82A;
+    u16 unk_82C;
+    u16 pad_82E;
+    s32 unk_830;
+    s32 unk_834;
+    s32 unk_838;
+    s32 unk_83C;
+    u8 pad_840[0x50];
+    Rec recs[2];
+} Parent;
 
-void func_001575A0(void *arg0) {
-    void *temp_9;
+s32 D_0047FC30;
+s32 D_0047FC34;
 
-    temp_9 = arg0 + (M2C_FIELD(arg0, s32 *, 0x4EC) * 0x50) + 0x890;
-    M2C_FIELD(temp_9, s16 *, 0x10) = (s16) (((0x800 - ((s32) D_0047FC30 >> 1)) * 0x10) - M2C_FIELD(arg0, u16 *, 0x828));
-    M2C_FIELD(temp_9, s64 *, 0x20) = (s64) ((((((((M2C_FIELD(temp_9, s64 *, 0x20) & ~0x7FF) | (((s64) M2C_FIELD(arg0, s32 *, 0x830) >> 4) & 0x7FF)) & 0xF800FFFF) | (((((s32) M2C_FIELD(arg0, s32 *, 0x838) >> 4) - 1) & 0x7FF) << 0x10)) & ((((-0x800 << 0x10) | 0xFFFF) << 0x10) | 0xFFFF)) | ((((s32) (M2C_FIELD(arg0, s32 *, 0x834) + 7) >> 4) & 0x7FF) << 0x20)) & ((((0xF800FFFF << 0x10) | 0xFFFF) << 0x10) | 0xFFFF)) | (((((s32) (M2C_FIELD(arg0, s32 *, 0x83C) + 0xF) >> 4) - 1) & 0x7FF) << 0x30));
-    M2C_FIELD(temp_9, s16 *, 0x14) = (s16) (((0x800 - ((s32) D_0047FC34 >> 1)) * 0x10) - M2C_FIELD(arg0, u16 *, 0x82C));
+void func_001575A0(Parent *arg0) {
+    Rec *p = &arg0->recs[arg0->unk_4EC];
+    p->unk_10 = ((0x800 - (D_0047FC30 >> 1)) * 16) - arg0->unk_828;
+    p->x0 = arg0->unk_830 >> 4;
+    p->x1 = (arg0->unk_838 >> 4) - 1;
+    p->y0 = (arg0->unk_834 + 7) >> 4;
+    p->y1 = ((arg0->unk_83C + 15) >> 4) - 1;
+    p->unk_14 = ((0x800 - (D_0047FC34 >> 1)) * 16) - arg0->unk_82C;
 }

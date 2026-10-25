@@ -1,45 +1,23 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct { s32 a, b, c; } V12;
+typedef struct { char q0[0xC]; s32 f0c; s32 f10; s32 f14; } P24;
+#define FLD(o, T, off) (*(T *)((char *)(o) + (off)))
+extern char D_004741E0[], D_004741F0[], D_00474200[];
+s32 func_00165DC0(char *, char *);
+s32 func_00109808(void *, s32, s32, s32);
+void func_0016C060(s32, s32, s32, s32, s32, s32, s32, s32);
+void func_001DC2C0(void *, s32, void *, V12 *, s16, s32, void *, s32, f32, f32, s32, s32);
 
-s32 func_00109808(void *, s32, s32, M2C_UNK);       /* extern */
-s32 func_00165DC0(M2C_UNK *, M2C_UNK *);            /* extern */
-M2C_UNK func_0016C060(s32, s32, M2C_UNK, s32, s32, M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
-M2C_UNK func_001DC2C0(void *, s32, void *, M2C_UNK *, s16, s32, void *, s32, M2C_UNK, M2C_UNK, s32, s32); /* extern */
-extern M2C_UNK D_004741E0;
-extern M2C_UNK D_004741F0;
-extern M2C_UNK D_00474200;
-
-void func_002468A0(void *arg0) {
-    M2C_UNK sp10;
-    s32 temp_16;
-    s32 temp_19;
-    s32 temp_2;
-    void *temp_2_2;
-
-    if (M2C_FIELD(arg0, s32 *, 0x3C0) != 0) {
-        temp_2 = func_00165DC0(&D_004741E0, &D_004741F0);
-        M2C_ERROR(/* unknown instruction: ldl $a0, 0x17($s1) */);
-        M2C_ERROR(/* unknown instruction: ldr $a0, 0x10($s1) */);
-        M2C_ERROR(/* unknown instruction: sdl $a0, 0x7($a3) */);
-        M2C_ERROR(/* unknown instruction: sdr $a0, ($a3) */);
-        M2C_FIELD(&sp10, s32 *, 8) = (s32) M2C_FIELD(arg0, s32 *, 0x18);
-        func_001DC2C0(arg0 + 0x408, temp_2, arg0 + 0x3C8, &sp10, M2C_FIELD(arg0, s16 *, 0x38), M2C_FIELD(M2C_FIELD(arg0, void **, 0x24), s32 *, 0xC), arg0 + 0x120, M2C_FIELD(arg0, s16 *, 0x23C) == 6, 0x3F000000, 0x3F800000, 0, 0);
+void func_002468A0(void *o) {
+    s32 h, i;
+    V12 v;
+    if (FLD(o, s32, 0x3C0) != 0) {
+        i = func_00165DC0(D_004741E0, D_004741F0);
+        v = FLD(o, V12, 0x10);
+        func_001DC2C0((char *)o + 0x408, i, (char *)o + 0x3C8, &v, FLD(o, s16, 0x38), FLD(o, P24 *, 0x24)->f0c, (char *)o + 0x120, FLD(o, s16, 0x23C) == 6, 0.5f, 1.0f, 0, 0);
     }
-    temp_2_2 = M2C_FIELD(arg0, void **, 0x24);
-    temp_19 = func_00109808(arg0, M2C_FIELD(temp_2_2, s32 *, 0xC), M2C_FIELD(temp_2_2, s32 *, 0x14), 0);
-    if (M2C_FIELD(arg0, s32 *, 0x3C0) != 0) {
-        temp_16 = func_00165DC0(&D_004741E0, &D_004741F0);
-        func_0016C060(temp_16, func_00165DC0(&D_004741E0, &D_00474200), 0, M2C_FIELD(M2C_FIELD(arg0, void **, 0x24), s32 *, 0xC), temp_19, -1, -1, 0);
+    h = func_00109808(o, FLD(o, P24 *, 0x24)->f0c, FLD(o, P24 *, 0x24)->f14, 0);
+    if (FLD(o, s32, 0x3C0) != 0) {
+        i = func_00165DC0(D_004741E0, D_004741F0);
+        func_0016C060(i, func_00165DC0(D_004741E0, D_00474200), 0, FLD(o, P24 *, 0x24)->f0c, h, -1, -1, 0);
     }
 }

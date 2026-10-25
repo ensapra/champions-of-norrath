@@ -1,57 +1,40 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 DeleteSema(s32);                                /* extern */
-s32 RemoveIntcHandler(M2C_UNK, s32);                /* extern */
-M2C_UNK func_001AE200(M2C_UNK);                     /* extern */
-M2C_UNK func_001AF710(void *);                      /* extern */
-s32 func_001B5C80();                                /* extern */
-M2C_UNK func_001B5CD8();                            /* extern */
-extern M2C_UNK func_001D1C80;
-extern M2C_UNK func_01000000;
-extern M2C_UNK jtbl_004C006C;
+s32 DeleteSema(s32);
+s32 RemoveIntcHandler(s32, s32);
+void func_001AE200(s32);
+void func_001AF710(void *);
+s32 func_001B5C80(void);
+void func_001B5CD8(void);
+extern s32 D_010EE11C[];
+extern s32 D_001D2108[];
+extern u8 D_004CC758[];
+extern u8 D_004CC788[];
 
 s32 func_0017E568(void) {
-    s32 *var_17;
-    s32 temp_17;
-    s32 temp_2;
-    s32 temp_4;
-    s32 var_18;
-
-    var_18 = 0;
-    temp_17 = func_001B5C80();
-    temp_2 = RemoveIntcHandler(3, M2C_FIELD(&func_01000000, s32 *, 0xEE11C));
-    if (temp_2 == 0) {
+    s32 err = 0;
+    s32 a = func_001B5C80();
+    s32 r = RemoveIntcHandler(3, D_010EE11C[0]);
+    if (r == 0) {
         func_001AE200(3);
     }
-    if (temp_17 != 0) {
+    if (a != 0) {
         func_001B5CD8();
     }
-    var_17 = &func_001D1C80 + 0x488;
-    if (temp_2 < 0) {
-        var_18 = 1;
-        func_001AF710(&jtbl_004C006C + 0xC6EC);
-        var_17 = &func_001D1C80 + 0x488;
+    if (r < 0) {
+        err = 1;
+        func_001AF710(D_004CC758);
     }
-    temp_4 = *var_17;
-    if (temp_4 != -1) {
-        if (DeleteSema(temp_4) >= 0) {
-            *var_17 = -1;
+    {
+    s32 *p = D_001D2108;
+    s32 m = -1;
+    if (*p != m) {
+        if (DeleteSema(*p) >= 0) {
+            *p = m;
         } else {
-            var_18 += 1;
-            func_001AF710(&jtbl_004C006C + 0xC71C);
+            err++;
+            func_001AF710(D_004CC788);
+            return -1;
         }
     }
-    return (var_18 == 0) ? 0 : -1;
+    }
+    return err == 0 ? 0 : -1;
 }

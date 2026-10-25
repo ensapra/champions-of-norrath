@@ -20,6 +20,15 @@ s32 func_00100850(u32 a, s32 b) {
     case 2:
         func_0011C3B8(0, 1, 0, 0);
         break;
+    case 3:
+        func_0011C3B8(4, 1, 3, 8);
+        break;
+    case 4:
+        if (func_00185430(func_00184198() ? 0x3000 : 0x20))
+            func_0011C3B8(4, 1, 3, 0);
+        else
+            func_0011C3B8(4, 1, 3, 9);
+        break;
     default:
         break;
     }

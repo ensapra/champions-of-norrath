@@ -1,57 +1,61 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct { f32 x, y, z; } Vec3;
 
-extern M2C_UNK D_00408600;
-extern s32 D_0042A3E8;
-extern f32 D_0047FC90;
-extern s32 D_00484F44;
+typedef struct {
+    u8 pad0[0x348];
+    f32 f348;
+    u8 pad1[0x11C];
+    f32 f468;
+    f32 f46C;
+    f32 f470;
+    u8 pad2[0x49C];
+    void *p910;
+} Parent;
+
+typedef struct {
+    u8 pad0[0xC];
+    s32 flags;
+    u8 pad1[0x520];
+    Parent *parent;
+} Obj;
+
+typedef struct {
+    u8 pad0[0x5570];
+    Obj *obj;
+    u8 pad1[0x83C];
+} Entry;
+
+s32 D_00484F44;
+f32 D_0047FC90;
+extern u8 D_00408600[];
+extern s32 D_0042A3E8[];
 
 s32 func_00138F20(void) {
-    f32 sp0;
-    f32 sp4;
-    f32 sp8;
-    f32 temp_f2;
-    f32 temp_f2_2;
-    f32 temp_f4;
-    f32 temp_f5;
-    s32 *var_4;
-    s32 var_2;
-    s32 var_2_2;
-    s32 var_5;
-    void *temp_3;
-    void *temp_3_2;
-    void *temp_3_3;
-    void *temp_3_4;
+    s32 i;
+    Obj *obj;
+    Parent *par;
+    Vec3 v;
+    Vec3 *nrm;
+    Entry *arr;
+    f32 dot;
 
-    var_5 = 0;
+    i = 0;
     if (D_00484F44 > 0) {
-        var_4 = &D_0042A3E8;
-        var_2_2 = D_0042A3E8;
-loop_2:
-        temp_3 = M2C_FIELD(((var_2_2 * 0x5DB0) + &D_00408600), void **, 0x5570);
-        var_4 += 4;
-        if ((temp_3 == NULL) || (M2C_FIELD(temp_3, s32 *, 0xC) & 8) || (temp_3_2 = M2C_FIELD(temp_3, void **, 0x530), (temp_3_2 == NULL)) || !(M2C_FIELD(temp_3_2, f32 *, 0x348) > 2.0f) || ((temp_f2 = -M2C_FIELD(temp_3_2, f32 *, 0x468), temp_f4 = -M2C_FIELD(temp_3_2, f32 *, 0x46C), temp_3_3 = M2C_FIELD(temp_3_2, void **, 0x910), temp_f5 = -M2C_FIELD(temp_3_2, f32 *, 0x470), temp_3_4 = temp_3_3 + 0xC, sp0 = temp_f2, sp4 = temp_f4, sp8 = temp_f5, temp_f2_2 = (temp_f2 * M2C_FIELD(temp_3_3, f32 *, 0xC)) + (temp_f4 * M2C_FIELD(temp_3_4, f32 *, 4)) + (temp_f5 * M2C_FIELD(temp_3_4, f32 *, 8)), var_2 = 1, !(temp_f2_2 > 0.0f)) && (var_2 = -1, !(temp_f2_2 < D_0047FC90)))) {
-            var_5 += 1;
-            if (var_5 < D_00484F44) {
-                var_2_2 = *var_4;
-                goto loop_2;
-            }
-            goto block_11;
+        arr = (Entry *)D_00408600;
+        for (; i < D_00484F44; i++) {
+            obj = arr[D_0042A3E8[i]].obj;
+            if (obj == NULL) continue;
+            if (obj->flags & 8) continue;
+            par = obj->parent;
+            if (par == NULL) continue;
+            if (!(par->f348 > 2.0f)) continue;
+            v.x = -par->f468;
+            v.y = -par->f46C;
+            v.z = -par->f470;
+            nrm = (Vec3 *)((f32 *)par->p910 + 3);
+            dot = v.x * nrm->x + v.y * nrm->y + v.z * nrm->z;
+            if (dot > 0.0f) return 1;
+            if (dot < D_0047FC90) return -1;
         }
-    } else {
-block_11:
-        var_2 = 0;
     }
-    return var_2;
+    return 0;
 }

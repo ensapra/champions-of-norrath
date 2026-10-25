@@ -1,0 +1,33 @@
+typedef struct { s32 a, b; } V8;
+typedef struct { s32 a, b, c; } V12;
+extern V8 D_00486240[];
+extern char D_00486248[];
+extern char D_00478060[];
+extern char D_00478070[];
+f32 D_0048291C;
+void func_0013E730(V8 *);
+void func_0013E7D0(void);
+void func_001577D0(void *, V12 *, s32, f32);
+s32 func_00165DC0(char *, char *);
+void func_0016AE78(s32, s32, s32, V12 *, void *, s32, s32, s32, s32);
+void func_0013CB88(void);
+
+void func_0029CFD8(char *self) {
+    V12 *p = (V12 *)(self + 0x10);
+    if (*(s32 *)(self + 0x58) == 0) {
+        char buf[0x30];
+        V8 v[3];
+        V12 a, b;
+        s32 r1, r2;
+        v[0] = D_00486240[0];
+        func_0013E730(v);
+        func_0013E7D0();
+        a = *p;
+        func_001577D0(buf, &a, 0, *(f32 *)(self + 0x50) * D_0048291C);
+        r1 = func_00165DC0(D_00486248, D_00478060);
+        r2 = func_00165DC0(D_00486248, D_00478070);
+        b = *p;
+        func_0016AE78(r1, r2, 3, &b, buf, 0, -1, 0, 0);
+        func_0013CB88();
+    }
+}

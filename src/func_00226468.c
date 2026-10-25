@@ -1,0 +1,1 @@
+s32 func_00142158(void *,s32,s32); s32 func_00143498(void *); void func_001434D8(void); void func_002207A8(void); void func_00226468(void *p){ s32 old=*(s32*)((u8*)p+0x118); func_002207A8(); s32 r=func_00142158(p,*(s32*)((u8*)p+0x118),1000)!=0; *(s32*)((u8*)p+0x118)=r; if(old==0){if(r) func_00143498(p);} else if(r==0) func_001434D8(); }

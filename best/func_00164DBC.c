@@ -1,0 +1,1 @@
+typedef struct { u8 b[0x1300]; } O; extern s32 func_0014BA30(void*,void*); extern void func_0014CBF4(s32,s32,s32,s32,...); extern void func_00165508(void*); s32 func_00164DBC(O *a,O *b,O *c){ return 0; }

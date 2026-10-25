@@ -1,29 +1,40 @@
-s32 func_001AFD10(s32, void *, s32, s32, s32, s32);
-void *func_001B01D8(s32);
-void *func_001B0580(s32, s32);
-void func_001B7A28(s32, void *, void *);
-void func_001B05D0(void);
+/* machine draft (m2c) for ee-gcc-2.9-991111 -O2 -G0, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
 
-void func_001B0610(s32 *arg0, s32 arg1) {
-    s32 *p;
-    s32 *q;
-    s32 a, b;
+s32 func_001AFD10(M2C_UNK, void *, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
+void *func_001B01D8(s32);                           /* extern */
+void *func_001B0580(s32, s32);                      /* extern */
+M2C_UNK func_001B7A28(M2C_UNK, M2C_UNK *, void *);  /* extern */
+extern M2C_UNK func_001B05D0;
 
-    p = func_001B01D8(arg1);
-    b = arg0[5];
-    a = arg0[7];
-    p[7] = a;
-    p[5] = b;
-    p[8] = 0x80000009;
-    q = func_001B0580(arg0[8], arg1);
-    if (q == NULL) {
-        p[9] = 0;
-        p[10] = 0;
+void func_001B0610(void *arg0, s32 arg1) {
+    void *temp_2;
+    void *temp_2_2;
+
+    temp_2 = func_001B01D8(arg1);
+    M2C_FIELD(temp_2, s32 *, 0x1C) = (s32) M2C_FIELD(arg0, s32 *, 0x1C);
+    M2C_FIELD(temp_2, s32 *, 0x14) = (s32) M2C_FIELD(arg0, s32 *, 0x14);
+    M2C_FIELD(temp_2, s32 *, 0x20) = 0x80000009;
+    temp_2_2 = func_001B0580(M2C_FIELD(arg0, s32 *, 0x20), arg1);
+    if (temp_2_2 != NULL) {
+        M2C_FIELD(temp_2, void **, 0x24) = temp_2_2;
+        M2C_FIELD(temp_2, s32 *, 0x28) = (s32) M2C_FIELD(temp_2_2, s32 *, 8);
     } else {
-        p[9] = (s32)q;
-        p[10] = q[2];
+        M2C_FIELD(temp_2, void **, 0x24) = NULL;
+        M2C_FIELD(temp_2, s32 *, 0x28) = 0;
     }
-    if (func_001AFD10(0x80000008, p, 0x40, 0, 0, 0) == 0) {
-        func_001B7A28(0x800, func_001B05D0, p);
+    if (func_001AFD10(0x80000008, temp_2, 0x40, 0, 0, 0) == 0) {
+        func_001B7A28(0x800, &func_001B05D0, temp_2);
     }
 }

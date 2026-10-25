@@ -1,84 +1,77 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct { f32 x, y, z; } V3_5898;
+typedef struct { char pad[0x10]; V3_5898 pos; } Ent_5898;
+typedef struct {
+    char pad0[8];
+    s8 b8, b9;
+    s16 sA, sC, sE, s10, s12, s14, s16, s18;
+    char pad1[2];
+    f32 f1C, f20, f24, f28, f2C;
+} Sub_5898;
+typedef struct {
+    s8 id;
+    s32 unk4;
+    void *owner;
+    Ent_5898 *ent;
+    u32 rnd;
+    void *vt;
+    Sub_5898 sub0;
+    char pad[0x48 - 0x18 - sizeof(Sub_5898)];
+    V3_5898 pos;
+    s32 unk54;
+} Spell_5898;
+extern char D_0044E670[];
+extern char D_00452AE0[];
+extern char D_00479468[];
+extern char D_004864A0[];
+u32 D_00483E5C;
+f32 D_00482E1C;
+void ovl_ntgui2_func_0013D230(void *);
+void *func_00165DC0(char *, char *);
+s32 func_0024D4F8(void *, V3_5898 *, Ent_5898 *, f32);
+void func_0024C5F8(s32);
 
-M2C_UNK func_0013D230(void *, M2C_UNK, s32, M2C_UNK, M2C_UNK, s32); /* extern */
-s32 func_00165DC0(M2C_UNK *, M2C_UNK *);            /* extern */
-M2C_UNK func_0024C5F8(s32);                         /* extern */
-s32 func_0024D4F8(s32, M2C_UNK *, void *, M2C_UNK); /* extern */
-extern M2C_UNK D_0044E670;
-extern M2C_UNK D_00452AE0;
-extern M2C_UNK D_00479468;
-extern f32 D_00482E1C;
-extern u32 D_00483E5C;
-extern M2C_UNK D_004864A0;
+void func_002B5898(Spell_5898 *s, s8 id, Ent_5898 *ent, void *owner)
+{
+    V3_5898 a;
+    V3_5898 unused;
+    V3_5898 c;
+    Sub_5898 *p;
+    void *h;
+    f32 one = 1.0f;
+    f32 z = 0.0f;
+    f32 inv = one / z;
+    s32 r;
 
-void func_002B5898(void *arg0, s8 arg1, void *arg2, s32 arg3) {
-    s32 sp8;
-    M2C_UNK sp20;
-    f32 temp_f2;
-    s32 temp_2_2;
-    s32 temp_4;
-    s32 temp_9;
-    u32 temp_3;
-    void *temp_2;
-    void *temp_6;
-
-    M2C_FIELD(arg0, s8 *, 0) = arg1;
-    temp_2 = arg0 + 0x18;
-    temp_f2 = 1.0f / 0.0f;
-    M2C_FIELD(arg0, M2C_UNK **, 0x14) = &D_0044E670;
-    M2C_FIELD(arg0, void **, 0xC) = arg2;
-    M2C_FIELD(arg0, s32 *, 8) = arg3;
-    temp_3 = (D_00483E5C * 0x19660D) + 0x3C6EF35F;
-    M2C_FIELD(arg0, s32 *, 4) = 0;
-    D_00483E5C = temp_3;
-    M2C_FIELD(arg0, u32 *, 0x10) = (u32) (temp_3 >> 0x10);
-    M2C_FIELD(arg0, M2C_UNK **, 0x14) = &D_00452AE0;
-    M2C_ERROR(/* unknown instruction: ldl $a1, 0x17($a2) */);
-    M2C_ERROR(/* unknown instruction: ldr $a1, 0x10($a2) */);
-    temp_9 = M2C_FIELD(arg2, s32 *, 0x18);
-    M2C_ERROR(/* unknown instruction: sdl $a1, 0x7($sp) */);
-    M2C_ERROR(/* unknown instruction: sdr $a1, ($sp) */);
-    sp8 = temp_9;
-    M2C_FIELD(temp_2, s8 *, 9) = 0;
-    M2C_ERROR(/* unknown instruction: ldl $a1, 0x7($sp) */);
-    M2C_ERROR(/* unknown instruction: ldr $a1, ($sp) */);
-    M2C_ERROR(/* unknown instruction: sdl $a1, 0x4f($s0) */);
-    M2C_FIELD(arg0, s32 *, 0x50) = sp8;
-    M2C_FIELD(temp_2, s16 *, 0x12) = 0xFF;
-    M2C_FIELD(temp_2, s16 *, 0x14) = 0x7D;
-    M2C_FIELD(temp_2, s16 *, 0xA) = 0xFF;
-    M2C_FIELD(temp_2, s16 *, 0xC) = 0x7D;
-    M2C_FIELD(temp_2, f32 *, 0x28) = temp_f2;
-    M2C_FIELD(temp_2, f32 *, 0x2C) = (f32) D_00482E1C;
-    M2C_FIELD(temp_2, f32 *, 0x1C) = 0.0f;
-    M2C_FIELD(temp_2, f32 *, 0x24) = 0.0f;
-    M2C_FIELD(temp_2, f32 *, 0x20) = temp_f2;
-    M2C_FIELD(temp_2, s16 *, 0x18) = 0x42;
-    M2C_FIELD(temp_2, s16 *, 0x10) = 0x42;
-    M2C_FIELD(temp_2, s16 *, 0xE) = 0;
-    M2C_FIELD(temp_2, s16 *, 0x16) = 0;
-    M2C_FIELD(temp_2, s8 *, 8) = 0;
-    func_0013D230(temp_2, M2C_ERROR(/* unknown instruction: sdr $a1, 0x48($s0) */), sp8, 0x7D, 0xFF, temp_9);
-    temp_6 = M2C_FIELD(arg0, void **, 0xC);
-    temp_4 = func_00165DC0(&D_004864A0, &D_00479468);
-    M2C_ERROR(/* unknown instruction: ldl $a7, 0x17($a2) */);
-    M2C_ERROR(/* unknown instruction: ldr $a7, 0x10($a2) */);
-    M2C_ERROR(/* unknown instruction: sdl $a7, 0x7($v1) */);
-    M2C_ERROR(/* unknown instruction: sdr $a7, ($v1) */);
-    M2C_FIELD(&sp20, s32 *, 8) = (s32) M2C_FIELD(temp_6, s32 *, 0x18);
-    temp_2_2 = func_0024D4F8(temp_4, &sp20, temp_6, 0x3F800000);
-    M2C_FIELD(arg0, s32 *, 0x54) = temp_2_2;
-    func_0024C5F8(temp_2_2);
+    s->id = id;
+    s->vt = D_0044E670;
+    s->ent = ent;
+    s->owner = owner;
+    s->unk4 = 0;
+    D_00483E5C = D_00483E5C * 0x19660D + 0x3C6EF35F;
+    s->rnd = D_00483E5C >> 16;
+    s->vt = D_00452AE0;
+    a = ent->pos;
+    p = &s->sub0;
+    p->b9 = 0;
+    s->pos = a;
+    p->s12 = 0xFF;
+    p->s14 = 0x7D;
+    p->sA = 0xFF;
+    p->sC = 0x7D;
+    p->f28 = inv;
+    p->f2C = D_00482E1C;
+    p->f1C = z;
+    p->f24 = z;
+    p->f20 = inv;
+    p->s18 = 0x42;
+    p->s10 = 0x42;
+    p->sE = 0;
+    p->s16 = 0;
+    p->b8 = 0;
+    ovl_ntgui2_func_0013D230(p);
+    h = func_00165DC0(D_004864A0, D_00479468);
+    c = s->ent->pos;
+    r = func_0024D4F8(h, &c, s->ent, one);
+    s->unk54 = r;
+    func_0024C5F8(r);
 }

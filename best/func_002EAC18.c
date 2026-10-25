@@ -1,46 +1,19 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-M2C_UNK SignalSema_2(s32);                         /* extern */
-M2C_UNK WaitSema_2(s32, M2C_UNK);                /* extern */
-s32 func_002D8270(M2C_UNK *, M2C_UNK, M2C_UNK, void *, M2C_UNK, void *, M2C_UNK, M2C_UNK, s32); /* extern */
-M2C_UNK func_00302560(M2C_UNK *);                   /* extern */
-extern void *D_00447F74;
-extern s32 D_00447F7C;
-extern M2C_UNK D_0047C6A0;
-extern M2C_UNK D_008EA780;
-
-s32 func_002EAC18(s32 arg0, s32 arg1, s32 arg2) {
-    s32 temp_16;
-    s32 var_2;
-
-    var_2 = 0x8000000A;
-    if (D_00447F7C != -1) {
-        WaitSema_2(D_00447F7C, -1);
-        M2C_FIELD(D_00447F74, s8 *, 0x10) = (s8) (arg1 & 0xFF);
-        M2C_FIELD(D_00447F74, s32 *, 0xC) = arg0;
-        M2C_FIELD(D_00447F74, s8 *, 0x11) = (s8) (arg2 & 0xFF);
-        if (func_002D8270(&D_008EA780, 0xD, 0, D_00447F74, 0x20, D_00447F74, 0x20, 0, 0) == 0) {
-            temp_16 = M2C_FIELD(D_00447F74, s32 *, 0);
-            SignalSema_2(D_00447F7C);
-            return temp_16;
-        }
-        func_00302560(&D_0047C6A0);
-        SignalSema_2(D_00447F7C);
-        var_2 = 0x80000000;
-        /* Duplicate return node #5. Try simplifying control flow for better match */
-        return var_2;
+typedef struct { s32 ret; s32 pad[2]; s32 a; u8 b; u8 c; } AudRpc;
+s32 SignalSema_2(s32); s32 WaitSema_2(s32); s32 func_002D8270(void *,s32,s32,void *,s32,void *,s32,s32,s32); void func_00302560(void *);
+extern AudRpc *D_00447F74[]; extern s32 D_00447F7C[]; extern char D_0047C6A0[]; extern u8 D_008EA780[];
+s32 func_002EAC18(s32 arg0, u8 arg1, u8 arg2) {
+    s32 v;
+    if (D_00447F7C[0] == -1) return 0x8000000A;
+    WaitSema_2(D_00447F7C[0]);
+    D_00447F74[0]->a = arg0;
+    D_00447F74[0]->b = arg1;
+    D_00447F74[0]->c = arg2;
+    if (func_002D8270(D_008EA780, 0xD, 0, D_00447F74[0], 0x20, D_00447F74[0], 0x20, 0, 0) == 0) {
+        v = D_00447F74[0]->ret;
+        SignalSema_2(D_00447F7C[0]);
+        return v;
     }
-    return var_2;
+    func_00302560(D_0047C6A0);
+    SignalSema_2(D_00447F7C[0]);
+    return 0x80000000;
 }

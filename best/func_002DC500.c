@@ -1,19 +1,63 @@
-extern s32 D_00444A0C[];
-extern s32 D_008E1CC0[];
-extern s32 D_008E1D00[];
-extern s32 D_008E1D40[];
+/* identical to func_001B4B40 (matched), with its names changed by decompdecomp */
+typedef struct { s32 gen; void *items; s32 n; } Pool;
+typedef struct { u8 pad[0x10]; s32 flags; void *self; s32 gen; } Item;
+extern void func_001B5C80(void);
+extern void func_001B5CD8(void);
 
-s32 func_002D8270(void *a0, s32 a1, s32 a2, void *a3, s32 a4, void *a5, s32 a6, s32 a7, s32 a8);
+Item *func_001B0110(Pool *p) {
+    Item *it;
+    s32 i;
+    s32 g;
+    func_001B5C80();
+    it = (Item *)p->items;
+    for (i = 0; i < p->n; i++, it++) {
+        if (!(it->flags & 1)) {
+            it->flags = (i << 16) | 5;
+            g = p->gen + 1;
+            p->gen = g;
+            if (g == 1) {
+                p->gen = g + 1;
+                g = 1;
+            }
+            it->self = it;
+            it->gen = g;
+            func_001B5CD8();
+            return it;
+        }
+    }
+    func_001B5CD8();
+    return 0;
+}
 
-s32 func_002DC500(s32 x) {
-    s32 r;
-    if (D_00444A0C[0] < 0) {
+extern u8 D_00440AC4[];
+extern u8 D_0110B000[];
+extern s32 D_0110B040[];
+extern s32 D_0110B080[];
+s32 func_002D8270(void *, s32, s32, s32 *, s32, s32 *, s32, s32, s32);
+
+u32 func_002DC500(s32 a) {
+    if (*(s32 *)(D_00440AC4 + 0x3F48) < 0)
         return 0;
-    }
-    D_008E1D40[0] = x;
-    r = func_002D8270(D_008E1CC0, 8, 0, D_008E1D40, 4, D_008E1D00, 4, 0, 0);
-    if (r < 0) {
+    D_0110B080[0] = a;
+    if (func_002D8270(D_0110B000, 8, 0, D_0110B080, 4, D_0110B040, 4, 0, 0) < 0)
         return -1;
-    }
-    return D_008E1D00[0];
+    return D_0110B040[0];
+}
+
+u32 func_001B4BC0(s32 a) {
+    if (*(s32 *)(D_00440AC4 + 0x3F48) < 0)
+        return 0;
+    D_0110B080[0] = a;
+    if (func_002D8270(D_0110B000, 9, 0, D_0110B080, 4, D_0110B040, 4, 0, 0) < 0)
+        return -1;
+    return D_0110B040[0];
+}
+
+extern u8 D_0110B3E8[];
+void func_001A2660(void *, s32, s32);
+
+s32 func_001B4DD0(void) {
+    *(s32 *)(D_00440AC4 + 0x3F4C) = -1;
+    func_001A2660(D_0110B3E8, 0, 4);
+    return 0;
 }

@@ -1,0 +1,1 @@
+typedef struct {u8 *data;s32 cap;s32 pad8;s32 size;} A; typedef struct {u8 *data;s32 pad4;s32 s8;s32 count;} B; void func_0013BD40(A*); void func_0013C4F0(A*a,s32 start,B*b){s32 n=b->count;if(a->size+n>a->cap)func_0013BD40(a);a->size+=n;}

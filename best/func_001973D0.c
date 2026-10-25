@@ -1,64 +1,37 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct { u8 b0; u8 flag; } St;
+typedef struct { char p0[0xC]; void (*f0)(s32, void *, void *, void *, void *); void (*f1)(s32, void *, void *); char p1[0xE4 - 0x14]; s32 mode; } Obj;
+St *D_00480488;
+s32 D_0048048C;
+extern char D_004CF040[], D_004CF098[], D_00508490[], D_010F6528[], D_010F65E8[];
+s32 SignalSema(s32);
+void func_00197B54(void *);
+void func_00197B8C(void *);
+void func_00197DB4(s32, void *, void *, void *);
+void func_001988E8(s32, void *, void *, void *);
+void func_001A1568(void *, s32, void *);
 
-M2C_UNK SignalSema(s32);                            /* extern */
-M2C_UNK func_00197B54(void *);                      /* extern */
-M2C_UNK func_00197B8C(void *);                      /* extern */
-M2C_UNK func_00197DB4(s32, void *, void *, void *); /* extern */
-M2C_UNK func_001988E8(s32, void *, void *, void *); /* extern */
-M2C_UNK func_001A1568(void *, M2C_UNK, void *);     /* extern */
-extern void *D_00480488;
-extern s32 D_0048048C;
-extern M2C_UNK D_00508021;
-extern M2C_UNK func_01000000;
-extern M2C_UNK jtbl_004C006C;
-
-void func_001973D0(s32 arg0, void *arg1) {
-    s32 temp_3;
-    void *temp_16;
-    void *temp_17;
-    void *temp_6;
-
-    if (arg0 == 0) {
-        func_001A1568(&jtbl_004C006C + 0xEFD4, 0x192, &D_00508021 + 0x46F);
-    }
-    if (arg1 == NULL) {
-        func_001A1568(&jtbl_004C006C + 0xEFD4, 0x193, &jtbl_004C006C + 0xF02C);
-    }
+s32 func_001973D0(s32 a, Obj *o) {
+    if (a == 0) func_001A1568(D_004CF040, 0x192, D_00508490);
+    if (o == 0) func_001A1568(D_004CF040, 0x193, D_004CF098);
     SignalSema(D_0048048C);
-    if (M2C_FIELD(D_00480488, u16 *, 0) != 0) {
-        temp_3 = M2C_FIELD(arg1, s32 *, 0xE4);
-        switch (temp_3) {                           /* irregular */
+    if (*(u16 *)D_00480488) {
+        switch (o->mode) {
         case 3:
             break;
         case 0:
-            func_00197B54(arg1);
+            func_00197B54(o);
             break;
         case 2:
-            func_00197B8C(arg1);
+            func_00197B8C(o);
             break;
         default:
         case 1:
-            temp_6 = &func_01000000 + 0xF65E8;
-            if (M2C_FIELD(D_00480488, u8 *, 1) != 0) {
-                func_001988E8(arg0, arg1, temp_6, temp_6 - 0x40);
+            if (D_00480488->flag) {
+                func_001988E8(a, o, D_010F65E8, D_010F65E8 - 0x40);
             } else {
-                temp_16 = &func_01000000 + 0xF6528;
-                temp_17 = temp_16 - 0x40;
-                M2C_FIELD(arg1, M2C_UNK (**)(s32, void *, void *, void *, void *), 0xC)(arg0, arg1, temp_16, temp_17, temp_16 - 0x80);
-                M2C_FIELD(arg1, M2C_UNK (**)(s32, void *, void *), 0x10)(arg0, arg1, temp_16);
-                func_00197DB4(arg0, arg1, temp_16, temp_17);
+                o->f0(a, o, D_010F6528, D_010F6528 - 0x40, D_010F6528 - 0x80);
+                o->f1(a, o, D_010F6528);
+                func_00197DB4(a, o, D_010F6528, D_010F6528 - 0x40);
             }
             break;
         }

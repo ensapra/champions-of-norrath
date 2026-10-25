@@ -1,0 +1,1 @@
+void func_001669B4(void *a){u32 idx=*(u32*)((u8*)a+0x4ec);u8 *table=(u8*)0x004c0000+0xb9e4;u32 vals[8];s32 i;for(i=0;i<8;i++)vals[i]=*(u32*)(table+i*4);for(i=0;i<8;i++){u8 *src=(u8*)a+0x930+vals[i]*4;u8 *dst=(u8*)a+0x9e0+idx*0xf80+i*0x20;dst[0]=src[0];dst[1]=src[1];dst[2]=src[2];dst[3]=(u8)(idx*src[3]/255);}}

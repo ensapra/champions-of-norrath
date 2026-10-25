@@ -1,42 +1,25 @@
-s32 copy_words(s32 *dst, s32 *src, u32 size) {
-    u32 n = size >> 2;
-    u32 i = 0;
-    while (i < n) {
-        s32 t = *src;
-        i++;
-        src++;
-        *dst = t;
-        dst++;
-    }
-    return 0;
-}
-s32 func_002DDB10(void *a0, s32 a1, s32 a2);
-void func_002DDC28(void);
-void _ExecPS2_2(s32 a0, s32 a1, s32 a2, s32 a3);
-void _LoadExecPS2_2(s32 a0, s32 a1, s32 a2);
-s32 func_002DD040(s32 a0, void *a1, s32 a2, s32 a3);
-extern s32 D_00445D48[];
-extern u8 D_0047B920[];
-extern char D_0047B8E8[];
-void func_002DDC30(s32 a0, s32 a1, s32 a2, s32 a3) {
-    s32 tmp;
-    tmp = 0;
-    func_002DDB10(D_0047B920, a2, a3);
+/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
+
+M2C_UNK _ExecPS2_2(s32, s32, s32, s32);             /* extern */
+M2C_UNK func_002DDB10(M2C_UNK *, s32, s32);         /* extern */
+M2C_UNK func_002DDC28();                            /* extern */
+extern s32 D_00445D48;
+extern M2C_UNK D_0047B920;
+
+void func_002DDC30(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    func_002DDB10(&D_0047B920, arg2, arg3);
     func_002DDC28();
-    _ExecPS2_2(a0, a1, a2, D_00445D48[0] + 4);
-    tmp += 1;
-    (void)tmp;
-}
-void func_002DDCA0(s32 a0, s32 a1, s32 a2) {
-    s32 tmp;
-    tmp = func_002DDB10((void *)a0, a1, a2);
-    func_002DDC28();
-    _LoadExecPS2_2(tmp, a1, D_00445D48[0] + 4);
-}
-void func_002DD168(s32 a0, s32 a1) {
-    s32 tmp;
-    tmp = 0;
-    func_002DD040(a0, D_0047B8E8, a1, 1);
-    tmp += 1;
-    (void)tmp;
+    _ExecPS2_2(arg0, arg1, arg2, D_00445D48 + 4);
 }

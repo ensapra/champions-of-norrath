@@ -1,38 +1,6 @@
-/* func_002A9E58 */
-f32 func_002A9E58(s32 unused, s32 arg1) {
-    return ((f32)(arg1 - 1) * 9.0f) + 102.0f;
-}
-
-/* func_002A9D50 */
-extern f32 D_00482B70;
-extern f32 D_00482B74;
-void func_002A9D50(void *arg0) {
-    char *a = (char *)arg0;
-    *(f32 *)(a + 0x28) = 2.0f;
-    *(s16 *)(a + 0x38) = 1;
-    *(f32 *)(a + 0x2C) = 1.0f;
-    *(s16 *)(a + 0x14) = 6;
-    *(f32 *)(a + 0x30) = D_00482B70;
-    *(s16 *)(a + 0x1A) = 0xF;
-    *(f32 *)(a + 0x4C) = D_00482B74;
-    *(s16 *)(a + 0x1C) = 8;
-    *(s16 *)(a + 0x1E) = 0x15;
-    *(s16 *)(a + 0x42) = 2;
-    *(s16 *)(a + 0xE) = 1;
-    *(s16 *)(a + 0x18) = 6;
-    *(f32 *)(a + 0x24) = 2.0f;
-    *(s16 *)(a + 0x10) = 1;
-    *(s16 *)(a + 0x12) = 6;
-}
-
-/* func_002A9DC0 */
-typedef struct { s64 a; s32 b; } Struct12;
-s32 func_001441B8(s32, s32, s32, Struct12);
-s32 func_002A9220(s32, s32, s32, s32);
-s32 func_002A9DC0(s32 arg0, s32 arg1, s32 arg2, Struct12 *arg3) {
-    s32 ret = func_001441B8(0x24, arg1, arg2, *arg3);
-    if (ret != 0) {
-        func_002A9220(ret, arg1, arg2, arg0);
-    }
-    return ret;
+extern f32 D_00482B70; extern f32 D_00482B74;
+typedef struct {u8 pad[14]; volatile s16 h0e,h10,h12,h14,h16,h18,h1a,h1c,h1e,h20; u8 pad2[2]; volatile f32 f24,f28,f2c,f30; u8 pad3[0x18]; volatile f32 f4c;} Obj9;
+void func_002A9D50(volatile Obj9 *o) {
+ f32 a=2.0f,b=1.0f,c=D_00482B70,d=D_00482B74;
+ o->f4c=d; o->h1a=15; o->f28=a; o->h1c=8; o->f2c=b; o->h14=6; o->h1e=21; o->f30=c; o->h18=1; o->h20=2; o->h0e=1; o->h18=6; o->f24=a; o->h10=1; o->h12=6;
 }

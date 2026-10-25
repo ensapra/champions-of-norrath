@@ -1,65 +1,78 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern "C" {
+void *func_001441B8(s32);
+void *func_00194498(void *, void *);
+}
+extern u8 D_00449700[];
+extern u8 D_0044D498[];
 
-void *func_001441B8(M2C_UNK);                       /* extern */
-M2C_UNK func_00194498(void *, void *);              /* extern */
-extern M2C_UNK D_00449700;
-extern M2C_UNK D_0044D498;
+inline void *operator new(unsigned int, void *p) throw() { return p; }
 
-void *func_00127C48(void *arg0) {
-    void *temp_2;
-    void *var_7;
+struct Tri { s32 x, y, z; };
 
-    temp_2 = func_001441B8(0x70);
-    var_7 = NULL;
-    if (temp_2 != NULL) {
-        M2C_FIELD(temp_2, M2C_UNK **, 0x48) = &D_0044D498;
-        func_00194498(temp_2, arg0);
-        func_00194498(temp_2 + 4, arg0 + 4);
-        func_00194498(temp_2 + 8, arg0 + 8);
-        var_7 = temp_2;
-        M2C_FIELD(temp_2, s32 *, 0xC) = (s32) M2C_FIELD(arg0, s32 *, 0xC);
-        M2C_ERROR(/* unknown instruction: ldl $v0, 0x17($s1) */);
-        M2C_ERROR(/* unknown instruction: ldr $v0, 0x10($s1) */);
-        M2C_ERROR(/* unknown instruction: sdl $v0, 0x17($s0) */);
-        M2C_ERROR(/* unknown instruction: sdr $v0, 0x10($s0) */);
-        M2C_FIELD(temp_2, s32 *, 0x18) = (s32) M2C_FIELD(arg0, s32 *, 0x18);
-        M2C_FIELD(temp_2, f32 *, 0x1C) = (f32) M2C_FIELD(arg0, f32 *, 0x1C);
-        M2C_FIELD(temp_2, s32 *, 0x24) = (s32) M2C_FIELD(arg0, s32 *, 0x24);
-        M2C_FIELD(temp_2, f32 *, 0x20) = (f32) M2C_FIELD(arg0, f32 *, 0x20);
-        M2C_FIELD(temp_2, u8 *, 0x28) = (u8) M2C_FIELD(arg0, u8 *, 0x28);
-        M2C_FIELD(temp_2, M2C_UNK **, 0x48) = &D_00449700;
-        M2C_FIELD(temp_2, u8 *, 0x29) = (u8) M2C_FIELD(arg0, u8 *, 0x29);
-        M2C_FIELD(temp_2, f32 *, 0x30) = (f32) M2C_FIELD(arg0, f32 *, 0x30);
-        M2C_FIELD(temp_2, u16 *, 0x38) = (u16) M2C_FIELD(arg0, u16 *, 0x38);
-        M2C_FIELD(temp_2, f32 *, 0x3C) = (f32) M2C_FIELD(arg0, f32 *, 0x3C);
-        M2C_FIELD(temp_2, u16 *, 0x4C) = (u16) M2C_FIELD(arg0, u16 *, 0x4C);
-        M2C_FIELD(temp_2, s32 *, 0x2C) = (s32) M2C_FIELD(arg0, s32 *, 0x2C);
-        M2C_FIELD(temp_2, s32 *, 0x34) = (s32) M2C_FIELD(arg0, s32 *, 0x34);
-        M2C_FIELD(temp_2, f32 *, 0x40) = (f32) M2C_FIELD(arg0, f32 *, 0x40);
-        M2C_FIELD(temp_2, s32 *, 0x44) = (s32) M2C_FIELD(arg0, s32 *, 0x44);
-        M2C_FIELD(temp_2, u16 *, 0x4E) = (u16) M2C_FIELD(arg0, u16 *, 0x4E);
-        M2C_FIELD(temp_2, s32 *, 0x54) = (s32) M2C_FIELD(arg0, s32 *, 0x54);
-        M2C_FIELD(temp_2, f32 *, 0x58) = (f32) M2C_FIELD(arg0, f32 *, 0x58);
-        M2C_FIELD(temp_2, s32 *, 0x60) = (s32) M2C_FIELD(arg0, s32 *, 0x60);
-        M2C_FIELD(temp_2, s32 *, 0x50) = (s32) M2C_FIELD(arg0, s32 *, 0x50);
-        M2C_FIELD(temp_2, f32 *, 0x5C) = (f32) M2C_FIELD(arg0, f32 *, 0x5C);
-        M2C_FIELD(temp_2, s32 *, 0x64) = (s32) M2C_FIELD(arg0, s32 *, 0x64);
-        M2C_FIELD(temp_2, u8 *, 0x68) = (u8) M2C_FIELD(arg0, u8 *, 0x68);
-        M2C_FIELD(temp_2, u8 *, 0x69) = (u8) M2C_FIELD(arg0, u8 *, 0x69);
-        M2C_FIELD(temp_2, u16 *, 0x6A) = (u16) M2C_FIELD(arg0, u16 *, 0x6A);
-        M2C_FIELD(temp_2, u16 *, 0x6C) = (u16) M2C_FIELD(arg0, u16 *, 0x6C);
+struct Obj {
+    s32 a, b, c;
+    s32 d;
+    Tri e;
+    f32 g, h;
+    s32 i;
+    u8 j, k;
+    s32 *l;
+    f32 m;
+    s32 *n;
+    u16 o;
+    f32 p, q;
+    s32 r;
+    void *vt;
+    u16 s, t;
+    void *u;
+    s32 v;
+    f32 w, x;
+    s32 y, z;
+    u8 b68, b69;
+    u16 h6A, h6C;
+    Obj(Obj &src) {
+        vt = D_0044D498;
+        func_00194498(&a, &src.a);
+        func_00194498(&b, &src.b);
+        func_00194498(&c, &src.c);
+        d = src.d;
+        e = src.e;
+        g = src.g;
+        h = src.h;
+        i = src.i;
+        j = src.j;
+        k = src.k;
+        vt = D_00449700;
+        m = src.m;
+        o = src.o;
+        p = src.p;
+        s = src.s;
+        {
+            s32 *L = src.l;
+            s32 *N = src.n;
+            f32 Q = src.q;
+            s32 R = src.r;
+            u16 T = src.t;
+            void *U = src.u;
+            l = L;
+            n = N;
+            q = Q;
+            r = R;
+            t = T;
+            v = src.v;
+            w = src.w;
+            y = src.y;
+            u = U;
+        }
+        x = src.x;
+        z = src.z;
+        b68 = src.b68;
+        b69 = src.b69;
+        h6A = src.h6A;
+        h6C = src.h6C;
     }
-    return var_7;
+};
+
+Obj *func_00127C48(Obj *src) {
+    return new (func_001441B8(0x70)) Obj(*src);
 }

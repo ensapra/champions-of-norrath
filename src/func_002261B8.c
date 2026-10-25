@@ -1,0 +1,1 @@
+typedef struct{f32 x,y,z;}V3; typedef struct{u8 p0[0x48];void*vt;u8 p4c[0x84];u32 fd0;}Y; extern u8 D_0044F0A8[]; extern volatile unsigned int func_00220278(void*,s32,V3*,s16); volatile short func_002261B8(Y*o,s32 a1,V3*a2,s16 a3){V3 t=*a2; func_00220278(o,a1,&t,a3); o->vt=D_0044F0A8; o->fd0|=1;}

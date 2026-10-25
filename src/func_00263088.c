@@ -1,0 +1,3 @@
+s32 func_00263908(void*,s32,s32); void func_00266218(void*,s32); void func_002662B0(s32,void*,s32); void func_00266A20(s32,void*); s32 func_00266DA0(s32);
+typedef struct {u8 pad[0x1c];s32 selected;s32 owner; s32 pad2[1];s32 entries[1];} Obj;
+void func_00263088(Obj *o,s32 arg1){s32 i;func_00266A20(arg1,o);if(o->selected!=-1){if(*(s32*)((u8*)o+o->selected*8+0x24)!=0)goto scan;if(func_00263908(o,o->selected,arg1)==0)goto scan;func_00266218(o,arg1);if(o->owner)func_002662B0(o->owner,o,arg1);return;}scan:for(i=0;i<func_00266DA0(*(s32*)o);i++){if(*(s32*)((u8*)o+0x24+i*8)==0&&func_00263908(o,i,arg1)){func_00266218(o,arg1);if(o->owner)func_002662B0(o->owner,o,arg1);return;}}}

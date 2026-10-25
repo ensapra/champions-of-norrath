@@ -1,54 +1,30 @@
-typedef struct{s32 size;s32 count;u8 *rd;u8 *wr;u8 data[1];}Ring;
-void func_001AE898(Ring *r){ r->count++; r->wr++; if (r->wr == r->data + r->size) r->wr = r->data; }
-typedef struct Node { struct Node *next; s32 b; s32 (*fn)(s32, s32); s32 arg; } Node;
-extern u8 func_01109848[];
-s32 func_001B7898(s32 a, s32 b, s32 c, Node *n) {
-    s32 r = n->fn(((s32)n << 4) | (a & 0xFE) | 1, n->arg);
-    if (r == 0) {
-        Node **head = (Node **)(func_01109848 + 0x4038);
-        Node *old = *head;
-        r = -1;
-        *head = n;
-        n->next = old;
-        n->b = 0;
+/* machine draft (m2c) for ee-gcc-2.9-991111 -O2 -G0, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
+
+extern M2C_UNK func_01109848;
+
+s32 func_001B7898(s32 arg0, s32 arg3) {
+    s32 temp_4;
+    s32 var_2;
+
+    var_2 = M2C_FIELD(arg3, s32 (**)(s32, s32), 8)((arg3 * 0x10) | (arg0 & 0xFE) | 1, M2C_FIELD(arg3, s32 *, 0xC));
+    if (var_2 == 0) {
+        var_2 = -1;
+        temp_4 = M2C_FIELD(&func_01109848, s32 *, 0x4038);
+        M2C_FIELD(&func_01109848, s32 *, 0x4038) = arg3;
+        M2C_FIELD(arg3, s32 *, 0) = temp_4;
+        M2C_FIELD(arg3, s32 *, 4) = 0;
     }
-    return r;
-}
-s32 func_001B5C80();
-void func_001B5CD8();
-void func_001B6FE8(s32);
-s32 func_001B7B18(u32 h) {
-    Node *n = (Node *)((h >> 8) << 4);
-    s32 t = func_001B5C80();
-    if ((s32)h < 0 || ((h ^ n->b) & 0xFF) != 0) {
-        if (t != 0) func_001B5CD8();
-        return 0x80008002;
-    }
-    {
-        Node **head = (Node **)(func_01109848 + 0x4038);
-        Node *old;
-        func_001B6FE8(n->b);
-        old = *head;
-        *head = n;
-        n->next = old;
-        n->b = 0;
-    }
-    if (t != 0) func_001B5CD8();
-    return 0;
-}
-extern u8 jtbl_004C006C[];
-s32 func_001B7D98(s32 h) {
-    u32 idx; u32 max; s32 *tab;
-    if (h < 0) {
-        idx = h & 0x7FFFFFFF;
-        tab = (s32 *)(func_01109848 + 0x4040);
-        max = 0x20;
-    } else {
-        idx = h;
-        tab = *(s32 **)(jtbl_004C006C + 0x4F04);
-        max = ((u32 *)jtbl_004C006C)[0x4F08 / 4];
-    }
-    if (idx >= max) return -0x69;
-    tab[idx * 4] = 0;
-    return 0;
+    return var_2;
 }

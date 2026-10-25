@@ -1,0 +1,1 @@
+extern s64 func_00171000(f32); extern f32 func_001714D8(s64); extern s64 func_001798F0(s64,s64); extern s64 jtbl_004C006C[]; void func_00129878(void*a,void*b){f32 x=((f32*)b)[7]/((f32*)b)[3]; f32 y=func_001714D8(func_001798F0(func_00171000(x),jtbl_004C006C[0xA204/8])); if(y>1.0f)y=1.0f; if(y<0.0f)y=0.0f; if(a)y+=0.0f;}

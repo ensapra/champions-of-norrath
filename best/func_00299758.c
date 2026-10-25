@@ -1,0 +1,5 @@
+typedef struct { unsigned char x[0x80]; } Obj; typedef struct { unsigned char x[0x600]; } Ctx; typedef struct { unsigned char x[0x70]; } DObj;
+extern char D_0044E670[],D_00451010[],D_00477F50[],D_00477F60[],D_00486210[];
+extern f32 D_00482828,D_0048282C,D_00482830; s32 D_00483E5C,D_004844A4;
+extern void ovl_ntgui2_func_0013D230(void*); extern void ovl_ntgui2_func_0013F158(void*,f32,void*,void*); extern s32 func_00165DC0(void*,void*); extern s32 func_0015E948(void*); extern void func_00163830(void*,void*,s32); extern void func_001A6760(s32,s32); extern s32 func_0024D308(s32,f32,void*); extern void func_00194390(void*,void*,void*); extern void func_00194300(void*);
+s32 func_00299758(Obj*a,s8 b,Ctx*c,DObj*d) { a->x[0]=b; *(s32*)(a->x+4)=0; *(void**)(a->x+8)=d; *(void**)(a->x+12)=c; *(s32*)(a->x+0x10)=0; *(void**)(a->x+0x14)=D_0044E670; *(s32*)(a->x+0x18)=0; *(f32*)(a->x+0x1c)=10.0f; *(f32*)(a->x+0x20)=D_00482828; *(f32*)(a->x+0x24)=10.0f; *(f32*)(a->x+0x28)=D_00482828; ovl_ntgui2_func_0013D230(a->x+0x1c); return 0; }

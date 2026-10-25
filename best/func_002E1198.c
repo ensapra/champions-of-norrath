@@ -1,4 +1,4 @@
-/* machine draft (m2c), tried by autopilot */
+/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
 typedef s32 M2C_UNK;
@@ -12,8 +12,8 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK SignalSema_2(s32);                         /* extern */
-s32 PollSema_2(s32);                             /* extern */
+s32 PollSema_2(s32);                                /* extern */
+M2C_UNK SignalSema_2(s32);                          /* extern */
 s32 func_002D8270(M2C_UNK *, M2C_UNK, M2C_UNK, M2C_UNK *, M2C_UNK, M2C_UNK *, M2C_UNK, M2C_UNK *, s32); /* extern */
 extern s32 D_00446070;
 extern s32 D_00446074;

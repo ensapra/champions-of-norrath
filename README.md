@@ -12,7 +12,10 @@ decompdecomp's byte-for-byte comparison.
 - **Game:** SLUS-20565, Champions of Norrath
 - **Platform:** PlayStation 2
 - **Compiler:** EE-GCC 2.96
-- **Progress:** 4926 matching function(s), 2240 best attempt(s)
+<!-- decompdecomp:progress:start -->
+- **Progress:** 5554 matching function(s), 2725 best attempt(s)
+- **Completion:** 5,554 / 9,007 functions (61.7%). 481 set aside, excluded from completion.
+<!-- decompdecomp:progress:end -->
 
 ## Install decompdecomp
 
@@ -89,3 +92,12 @@ check its current state and ask whether someone else is working on it.
 
 Only contribute or share material you have the right to distribute. Follow the
 repository's license and maintainer guidance.
+
+<!-- decompdecomp:visuals:start -->
+## Progress map
+
+![Decompilation completion and function map](decompdecomp-progress.svg)
+
+Green: matched. Gold: attempted. Grey: open. Red: set aside. Functions follow address, then source unit and name order.
+The image and tagged counts update on save. Keep project notes outside the hidden `decompdecomp` comment pairs to preserve them.
+<!-- decompdecomp:visuals:end -->

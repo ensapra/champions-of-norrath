@@ -1,0 +1,1 @@
+typedef struct { u8 pad[0x18c]; u8 flags; u8 tail[0xb]; } Ent; typedef struct {u8 pad[0x68];u32 count;u8 pad2[0x78-0x6c];Ent *items;} Obj; s32 func_0019A594(Obj*p,s32 n){u32 i=0,k=0;while(i<p->count){if(p->items[i].flags&0x20){if(n==k)return i;k++;}i++;}return -1;}

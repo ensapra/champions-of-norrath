@@ -1,0 +1,1 @@
+typedef struct {u8 pad[0x3c8]; s32 slot;} Obj; extern u8 D_00448B90[]; extern void func_00194300(void*); extern void func_00112340(void*,s32); extern void func_001447D8(void*); void func_00208CD0(Obj *o,s32 flags){ *(void**)((u8*)o+0x48)=D_00448B90; if(o->slot) func_00194300(&o->slot); func_00194300(&o->slot); func_00112340(o,0); if(flags&1) func_001447D8(o); }

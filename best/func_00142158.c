@@ -1,50 +1,69 @@
-s32 func_00194390(s32 *, void *, void *);
-s32 func_001944A0(s32, s8, s32, s32);
-f32 D_00333D28[12];
-f32 D_0037EE90[4];
-s8 D_00483AC9 = 1;
+typedef struct { f32 x, y, z; } Vec3;
+typedef struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 flags;
+    Vec3 pos;
+} S142158;
+
+void func_00194390(void *list, void *node, void *obj);
+void func_001944A0(s32);
+extern Vec3 D_00333D28[];
+extern Vec3 D_0037EE90[];
+s8 D_00483AC9;
 s32 D_00483AD0;
 s8 D_00483AFE;
 s32 D_00486878[2];
-s32 D_004FBFD0[60];
-s32 func_00142158(void *arg0, s32 arg1, s32 arg2, s32 arg4) {
-    s32 result = 0;
-    s32 mode = arg2;
-    s32 counter = arg4;
-    s32 radius = (*(s32 *)((u8 *)arg0 + 0xc) & 0x80000) ? 0xabe0 : mode;
+extern s32 D_004FBFD0[];
+
+static inline f32 dist2(Vec3 *a, Vec3 *b) {
+    f32 dx = a->x - b->x;
+    f32 dy = a->y - b->y;
+    f32 dz = a->z - b->z;
+    return dx * dx + dy * dy + dz * dz;
+}
+
+s32 func_00142158(S142158 *o, s32 prev, s32 r) {
+    s32 hit = 0;
+    s32 rad;
+    s32 n;
+    s32 i;
+
+    rad = 0xABE0;
+    if (!(o->flags & 0x80000)) {
+        rad = r;
+    }
     if (D_00483AC9) {
-        f32 dx = *(f32 *)((u8 *)arg0 + 0x10) - D_0037EE90[0];
-        f32 dy = *(f32 *)((u8 *)arg0 + 0x14) - D_0037EE90[1];
-        f32 dz = *(f32 *)((u8 *)arg0 + 0x18) - D_0037EE90[2];
-        if (dx*dx + dy*dy + dz*dz < (f32)(radius * radius)) result = 1;
+        if (dist2(&o->pos, D_0037EE90) < (f32)(rad * rad)) {
+            hit = 1;
+        }
     } else {
-        mode = D_00483AFE;
-        counter = 0;
-        if (mode > 0) {
-            s32 i = 0;
-            do {
-                f32 dx = *(f32 *)((u8 *)arg0 + 0x10) - D_00333D28[i*3];
-                f32 dy = *(f32 *)((u8 *)arg0 + 0x14) - D_00333D28[i*3+1];
-                f32 dz = *(f32 *)((u8 *)arg0 + 0x18) - D_00333D28[i*3+2];
-                if (dx*dx + dy*dy + dz*dz < (f32)(radius * radius)) { result = 1; break; }
-                counter++;
-                i++;
-            } while (counter < mode);
+        n = D_00483AFE;
+        for (i = 0; i < n; i++) {
+            if (dist2(&o->pos, &D_00333D28[i]) < (f32)(rad * rad)) {
+                hit = 1;
+                break;
+            }
         }
     }
-    if (result != arg1) {
-        s32 state = *(s32 *)((u8 *)arg0 + 4);
-        if (result) {
-            if (state) func_001944A0(state, mode, radius, counter);
-            func_00194390((s32 *)&D_00486878, (u8 *)arg0 + 4, arg0);
+    if (hit != prev) {
+        if (hit) {
+            if (o->unk4) {
+                func_001944A0(o->unk4);
+            }
+            func_00194390(D_00486878, &o->unk4, o);
         } else {
-            if (state) func_001944A0(state, mode, radius, counter);
-            s32 next = D_00483AD0 + 1;
-            D_00483AD0 = next;
-            s32 slot = next < 0x3c ? next : 0;
-            D_00483AD0 = slot;
-            func_00194390(&D_004FBFD0[slot], (u8 *)arg0 + 4, arg0);
+            if (o->unk4) {
+                func_001944A0(o->unk4);
+            }
+            rad = ++*(u32 *)&D_00483AD0;
+            if (rad >= 60) {
+                rad = 0;
+            }
+            D_00483AD0 = rad;
+            func_00194390(&D_004FBFD0[rad], &o->unk4, o);
         }
     }
-    return result;
+    return hit;
 }

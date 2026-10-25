@@ -1,30 +1,34 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct {
+    u64 f0:11;
+    u64 f1:5;
+    u64 f2:11;
+    u64 f3:5;
+    u64 f4:3;
+    u64 f5:13;
+    u64 f6:11;
+    u64 f7:5;
+} FrameReg;
 
-M2C_UNK func_0016FEAC(void *, M2C_UNK);             /* extern */
-M2C_UNK func_00170584(s32, M2C_UNK, M2C_UNK);       /* extern */
 extern s32 D_0047FC30;
 extern s32 D_0047FC34;
+extern void func_0016FEAC(void *, s32);
+extern void func_00170584(void *, s32, s32);
 
-void func_00150754(s32 arg0) {
-    void *temp_17;
+void func_00150754(u8 *a0)
+{
+    u8 *p = a0 + 0x780;
+    s32 w;
+    s32 h;
 
-    temp_17 = arg0 + 0x780;
-    func_0016FEAC(temp_17, 2);
-    func_00170584(arg0 + 0x790, 0x98, 0);
-    func_00170584(arg0 + 0x7A0, 0xC0, 0);
-    M2C_FIELD(temp_17, s64 *, 0x20) = (s64) ((((M2C_FIELD(temp_17, s64 *, 0x20) & ~0x7FF & ((((-0x800 << 0x10) | 0xFFFF) << 0x10) | 0xFFFF) & 0xF800FFFF) | (((D_0047FC30 - 1) & 0x7FF) << 0x10)) & ((((0xF800FFFF << 0x10) | 0xFFFF) << 0x10) | 0xFFFF)) | (((D_0047FC34 - 1) & 0x7FF) << 0x30));
-    M2C_FIELD(temp_17, s16 *, 0x10) = (s16) ((0x800 - ((s32) D_0047FC30 >> 1)) * 0x10);
-    M2C_FIELD(temp_17, s16 *, 0x14) = (s16) ((0x800 - ((s32) D_0047FC34 >> 1)) * 0x10);
+    func_0016FEAC(p, 2);
+    func_00170584(a0 + 0x790, 0x98, 0);
+    func_00170584(a0 + 0x7A0, 0xC0, 0);
+    w = D_0047FC30;
+    h = D_0047FC34;
+    ((FrameReg *)(p + 0x20))->f0 = 0;
+    ((FrameReg *)(p + 0x20))->f4 = 0;
+    ((FrameReg *)(p + 0x20))->f2 = w - 1;
+    ((FrameReg *)(p + 0x20))->f6 = h - 1;
+    *(s16 *)(p + 0x10) = (s16)((0x800 - (w >> 1)) << 4);
+    *(s16 *)(p + 0x14) = (s16)((0x800 - (h >> 1)) << 4);
 }

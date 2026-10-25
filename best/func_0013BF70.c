@@ -1,0 +1,1 @@
+typedef struct{u32 d[150];} Elem;typedef struct{Elem*data;s32 cap,pad,count;}Vec;void func_0013BD40(s32);void func_0013BF70(Vec*v,s32 idx,Elem*e){s32 i;if(v->count>=v->cap)func_0013BD40(v->count);for(i=v->count-1;i>=idx;i--)v->data[i+1]=v->data[i];v->data[idx]=*e;v->count++;}

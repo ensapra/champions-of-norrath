@@ -1,0 +1,1 @@
+void func_002A1428(void *a){if(*(s32*)((char*)a+0x60)==0){void *p=(char*)a+0x10; func_00183DD0(*(s32*)((char*)a+0x74),p,0); *(s32*)((char*)a+0x6c)=*(s32*)((char*)a+0x6c)+1; if(func_00144CB8(a,(char*)a+0x54,*(s32*)((char*)a+0x5c))&1)func_002A1A10(a,1); else if(*(s32*)((char*)a+0x6c)>=0x259)func_002A1A10(a,0);}}

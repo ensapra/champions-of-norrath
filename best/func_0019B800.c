@@ -1,40 +1,26 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern char D_00367474[];
+s32 func_001A444C(char *s);
+void func_001A24AC(char *dst, char *src, s32 n);
 
-M2C_UNK func_001A24AC(s8 *, M2C_UNK *, s32);        /* extern */
-s32 func_001A444C(M2C_UNK *);                       /* extern */
-extern M2C_UNK D_00367474;
+static inline s32 CopyStr(char *dst, char *src) {
+    s32 n = func_001A444C(src);
+    func_001A24AC(dst, src, n);
+    dst[n] = 0;
+    return n;
+}
 
-void *func_0019B800(M2C_UNK *arg0, s8 *arg1, s8 *arg2) {
-    M2C_UNK *temp_17;
-    s32 temp_19;
-    s32 temp_2;
-    s32 temp_2_3;
-    u8 temp_2_2;
-
-    temp_19 = func_001A444C(&D_00367474);
-    temp_2 = func_001A444C(arg0);
-    func_001A24AC(arg1, arg0, temp_2);
-    arg1[temp_2] = 0;
-    temp_2_2 = M2C_FIELD((arg0 + temp_2), u8 *, 1);
-    temp_17 = temp_2_2 + &D_00367474;
-    if ((s32) temp_2_2 < temp_19) {
-        temp_2_3 = func_001A444C(temp_17);
-        func_001A24AC(arg2, temp_17, temp_2_3);
-        arg2[temp_2_3] = 0;
+char *func_0019B800(char *src, char *a, char *b) {
+    char *p = src;
+    s32 total = func_001A444C(D_00367474);
+    s32 len = CopyStr(a, p);
+    s32 off;
+    p += len;
+    off = ((u8 *)p)[1];
+    p = D_00367474 + off;
+    if (off < total) {
+        CopyStr(b, p);
     } else {
-        *arg2 = 0;
+        b[0] = 0;
     }
-    return arg0 + temp_2 + 2;
+    return src + len + 2;
 }

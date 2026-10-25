@@ -62,7 +62,6 @@ void func_0016EC08(s32 x0, s32 y0, s32 x1, s32 y1, s32 a4, s32 a5) {
     d[1] = 5;
     pk.cur = c + 4;
     PktClose(&pk);
-    c = D_004844C8;
+    func_0015EB80(D_004844C8, a4, 0, 0, 0);
     D_004844C8 = pk.cur;
-    func_0015EB80(c, a4, 0, 0, 0);
 }

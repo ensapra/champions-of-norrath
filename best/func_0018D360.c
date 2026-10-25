@@ -1,16 +1,11 @@
 typedef struct {
-    u8 pad0[0x2C4];
-    s32 x2C4;
-    u8 pad2C8[0x38C - 0x2C8];
+    u8 pad0[0x38C];
     u8 *start;
     u8 *cur;
 } Txt0018D;
 
-void func_0018C1F0(Txt0018D *);
-
-s32 func_0018D360(Txt0018D *o)
-{
-    u8 *p = o->cur;
+s32 func_0018D360(void *arg0) {
+    u8 *p = *(u8 **)((u8 *)arg0 + 0x390);
     u32 b = *p++;
     s32 c;
     s32 n;
@@ -18,9 +13,7 @@ s32 func_0018D360(Txt0018D *o)
     if (b == 0) {
         return 0;
     }
-    if ((s8)b >= 0) {
-        c = b;
-    } else {
+    if ((s8)b < 0) {
         if (b < 0xC0) {
             return -1;
         } else if (b < 0xE0) {
@@ -41,33 +34,34 @@ s32 func_0018D360(Txt0018D *o)
                 return -1;
             }
             c = (c << 6) | (b & 0x3F);
-        } while (--n);
+            n--;
+        } while (n);
+    } else {
+        c = b;
     }
-    o->cur = p;
+    *(u8 **)((u8 *)arg0 + 0x390) = p;
     return c;
 }
 
-s32 func_0018D400(Txt0018D *o)
-{
-    u8 *start = o->start;
-    u8 *p = o->cur;
-
+s32 func_0018D400(void *arg0) {
+    u8 *start = *(u8 **)((u8 *)arg0 + 0x38C);
+    u8 *p = *(u8 **)((u8 *)arg0 + 0x390);
     if (start == p) {
         return -1;
     }
-    do {
-        p--;
-        if ((s8)*p >= 0) break;
-        if ((u8)(*p + 0x40) < 0x38) break;
-    } while (start != p);
-    o->cur = p;
+    p = p - 1;
+    while (1) {
+        if ((s8)*p >= 0) {
+            break;
+        }
+        if ((u8)(*p + 0x40) >= 0x38) {
+            break;
+        }
+        if (start == p) {
+            break;
+        }
+        p = p - 1;
+    }
+    *(u8 **)((u8 *)arg0 + 0x390) = p;
     return 0;
-}
-
-void func_0018D44C(Txt0018D *o)
-{
-    s32 t = o->x2C4;
-    o->x2C4 = 0;
-    func_0018C1F0(o);
-    o->x2C4 = t;
 }

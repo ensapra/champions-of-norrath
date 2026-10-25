@@ -7,6 +7,7 @@ extern void func_00180DA0(void *, void *, void *, f32);
 
 typedef struct { f32 x, y, z; } Vec3;
 
+static inline void scale(Vec3 *o,volatile Vec3 *v,f32 k){o->x=v->x*k;o->y=v->y*k;o->z=v->z*k;}
 void func_002A5A78(u8 *arg0) {
     s32 i = 0;
     u8 *node;
@@ -32,9 +33,7 @@ void func_002A5A78(u8 *arg0) {
             frame.v.z = 2.0f * ((f32)func_0015E948(arg0) * inv) - one;
         } while (frame.v.x * frame.v.x + frame.v.y * frame.v.y + frame.v.z * frame.v.z > one);
         frame.t = *(volatile Vec3 *)&frame.v;
-        frame.s.x = frame.t.x * k;
-        frame.s.y = frame.t.y * k;
-        frame.s.z = frame.t.z * k;
+        scale(&frame.s,&frame.t,k);
         frame.c = frame.s;
         func_00180DA0(&D_008D7270, &frame.out12, &frame.c, 0.0f);
         i++;

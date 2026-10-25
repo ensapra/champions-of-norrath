@@ -26,11 +26,12 @@ s32 func_0018AEA8(u8 *self, s32 key, s32 *out)
             E *e = base + mid;
             if (key < e->a)
                 hi = mid;
-            else if (e->b < key)
-                lo = mid;
             else {
-                found = e;
-                break;
+                lo = mid;
+                if (!(e->b < key)) {
+                    found = e;
+                    break;
+                }
             }
         } while (lo + 1 != hi);
         if (!found)

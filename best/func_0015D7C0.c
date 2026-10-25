@@ -13,7 +13,7 @@ typedef s32 M2C_UNK32;
 #endif
 
 void func_0015D7C0(void *arg0) {
-    void *temp_7;
+    register void *temp_7;
 
     temp_7 = arg0 + 0x910;
     M2C_FIELD((temp_7 + (M2C_FIELD(arg0, s32 *, 0x4EC) * 0x1D0)), s8 *, 0x143) = (s8) ((s32) (M2C_FIELD(arg0, s32 *, 0x618) * M2C_FIELD(temp_7, s32 *, 0x424)) / 255);

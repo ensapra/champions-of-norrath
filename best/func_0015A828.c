@@ -1,47 +1,43 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-M2C_UNK func_0011B9E0(s32);                         /* extern */
-s32 func_0015A928(void *, s32, s32, s32, s32);      /* extern */
-M2C_UNK func_0015ACB0(s32, s32, M2C_UNK, s32);      /* extern */
-
-s32 func_0015A828(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    s32 temp_2;
-    s32 temp_7;
-    s32 var_4;
-    s32 var_5;
-    void *temp_3;
-
-    temp_7 = M2C_FIELD(arg0, s32 *, 0xBF0) - arg1;
-    if (temp_7 > 0) {
-        temp_2 = M2C_FIELD(arg0, s32 *, 0xB80);
-        func_0015ACB0(temp_2 + ((arg1 + arg3) * 0x24), temp_2 + (arg1 * 0x24), 0x24, temp_7);
+void func_0015ACB0(s32, s32, s32, s32);
+s32 func_0015A928(void *, s32, s32, s32, s32);
+void func_0011B9E0(s32);
+s32 func_0015A828(u8 *p, s32 idx, s32 b, s32 cnt, s32 e)
+{
+  s32 n = (*((s32 *) (p + 0xBF0))) - idx;
+  s32 off;
+  s32 c;
+  u8 *r;
+  s32 *new_var;
+  s32 new_var2;
+  new_var2 = cnt;
+  if (n > 0)
+  {
+    s32 t = *((s32 *) (p + 0xB80));
+    s32 s = t + (idx * 0x24);
+    s32 d = t + ((idx + new_var2) * 0x24);
+ do { } while (0);
+    func_0015ACB0(d, s, 0x24, n);
+  }
+  if (cnt > 0)
+  {
+    s32 base = *((s32 *) (p + 0xB80));
+    c = cnt;
+    off = idx * 0x24;
+    do
+    {
+      r = (u8 *) (off + base);
+      off += 0x24;
+      c -= 1;
+      *((s32 *) (r + 4)) = (*((s32 *) (r + 4))) & 0xAF;
     }
-    if (arg3 > 0) {
-        var_5 = arg3;
-        var_4 = arg1 * 0x24;
-        do {
-            temp_3 = var_4 + M2C_FIELD(arg0, s32 *, 0xB80);
-            var_4 += 0x24;
-            var_5 -= 1;
-            M2C_FIELD(temp_3, s32 *, 4) = (s32) (M2C_FIELD(temp_3, s32 *, 4) & 0xAF);
-        } while (var_5 != 0);
-    }
-    M2C_FIELD(arg0, s32 *, 0xBF0) = (s32) (M2C_FIELD(arg0, s32 *, 0xBF0) + func_0015A928(arg0, arg1, arg2, arg3, arg4));
-    if (M2C_FIELD(arg0, s32 *, 0xC84) != 0) {
-        M2C_FIELD(arg0, s32 *, 0xC84) = 0;
-        func_0011B9E0(arg2);
-    }
-    return 1;
+    while (c != 0);
+  }
+  *((s32 *) (p + 0xBF0)) = (*((s32 *) (p + 0xBF0))) + func_0015A928(p, idx, b, cnt, e);
+  if ((*((s32 *) (p + 0xC84))) != 0)
+  {
+    *((s32 *) (p + 0xC84)) = 0;
+    new_var = &b;
+    func_0011B9E0(*new_var);
+  }
+  return 1;
 }

@@ -1,0 +1,1 @@
+s32 func_00166C10(s32,...); void func_00149674(void*p){ volatile s64 stack[134]; s32*x=p; x[0x4d0/4]=0; x[0x8a0/4]=0; x[0x8a4/4]=0; x[0x8a0/4]=func_00166C10(0,(char*)p+0x58,p,0x10,0x12); x[0x8a4/4]=func_00166C10(0,(char*)p+0x58,p,3,0x12); x[0x8a0/4]=0;}

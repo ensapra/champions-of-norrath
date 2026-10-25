@@ -1,35 +1,46 @@
+typedef struct { f32 x, y; } V2;
+typedef struct Node { struct Node *next; s32 p4, p8; struct Item *item; } Node;
+typedef struct Item { s32 p0, p4, p8, flags; V2 pos; } Item;
+typedef struct {
+    u8 p0[0x50];
+    Node *list;
+    u8 p54[0x18A - 0x54];
+    s8 b18A;
+    s8 b18B;
+    f32 range;
+} Obj;
 s32 func_00194390(void *, void *, void *);
 s32 func_0028DA08(void *, void *);
 extern f32 D_004825F4;
-void func_0028D5E8(void *arg0, void *arg1) {
-    void **link;
-    void *item;
-    void *best = 0;
-    f32 bestDistance;
-    f32 distance;
-    if (*(s8 *)((u8 *)arg0 + 0x18B) == *(s8 *)((u8 *)arg0 + 0x18A)) return;
-    link = *(void ***)((u8 *)arg0 + 0x50);
-    bestDistance = D_004825F4;
-    while (link != 0) {
-        item = *(void **)((u8 *)link + 0xC);
-        if (item != 0 && (*(s32 *)((u8 *)item + 0xC) & 8) == 0) {
-            f32 dx = *(f32 *)((u8 *)item + 0x10) - *(f32 *)arg1;
-            f32 dy = *(f32 *)((u8 *)item + 0x14) - *(f32 *)((u8 *)arg1 + 4);
-            distance = dx * dx + dy * dy;
-            if (distance < *(f32 *)((u8 *)arg0 + 0x18C) && distance < bestDistance &&
-                func_0028DA08(arg0, item) == 0) {
-                bestDistance = distance;
+void func_0028D5E8(Obj *o, V2 *p) {
+    Node *n;
+    Item *item;
+    Item *best;
+    f32 bestD;
+    f32 d;
+    if (o->b18B == o->b18A) return;
+    n = o->list;
+    bestD = D_004825F4;
+    best = 0;
+    for (; n; n = n->next) {
+        item = n->item;
+        if (item && !(item->flags & 8)) {
+            V2 *ip = &item->pos;
+            f32 dx = ip->x - p->x;
+            f32 dy = ip->y - p->y;
+            d = dx * dx + dy * dy;
+            if (d < o->range && d < bestD && !func_0028DA08(o, item)) {
+                bestD = d;
                 best = item;
             }
         }
-        link = *(void ***)link;
     }
-    if (best != 0) {
-        func_00194390((u8 *)arg0 + 0x54, best, best);
-        if (*(s8 *)((u8 *)arg0 + 0x18A) != 0) {
-            *(s8 *)((u8 *)arg0 + 0x18B) += 1;
-            func_0028D5E8(arg0, (u8 *)best + 0x10);
-            func_0028D5E8(arg0, arg1);
+    if (best) {
+        func_00194390((u8 *)o + 0x54, best, best);
+        if (o->b18A) {
+            o->b18B = o->b18B + 1;
+            func_0028D5E8(o, &best->pos);
+            func_0028D5E8(o, p);
         }
     }
 }

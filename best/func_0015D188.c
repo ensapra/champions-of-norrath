@@ -1,0 +1,40 @@
+typedef struct { s32 a, b, c, d; char pad0[0x70]; s32 x, y, z, w; s32 a2, b2, c2, d2; char pad1[0x120]; s32 e, f, g, h; } Item __attribute__((aligned(8)));
+typedef struct { char pad[0x410]; s32 f410, f414, f418, f41C, f420; } T;
+typedef struct {
+    char pad[0x910];
+    char pad2[0x10];
+    Item i1, i1c;
+} Obj __attribute__((aligned(8)));
+void func_0015D354(void);
+void func_0015D484(Obj *);
+s32 func_00170894(s32, s32, s32, s32);
+
+void func_0015D188(Obj *o) {
+    T *t = (T *)((char *)o + 0x910);
+    s32 n, r, m, y;
+    func_0015D354();
+    func_0015D484(o);
+    o->i1.a = 0x10000007;
+    o->i1.b = 0;
+    o->i1.c = 0;
+    o->i1.d = func_00170894(0x50, 0, 7, 0);
+    y = t->f420;
+    n = (1 << t->f410) << t->f414;
+    if (t->f41C == 0) { if (n < 0) n += 3; r = n >> 2; } else { if (n < 0) n += 7; r = n >> 3; }
+    o->i1.x = r | 0x30000000;
+    o->i1.z = 0;
+    o->i1.y = y & 0xFFFFFFF;
+    n = (1 << t->f410) << t->f414;
+    if (t->f41C == 0) { if (n < 0) n += 3; r = n >> 2; } else { if (n < 0) n += 7; r = n >> 3; }
+    o->i1.w = func_00170894(0x50, 0, r & 0xFFFF, 0);
+    o->i1.a2 = 0x10000012;
+    o->i1.b2 = 0;
+    o->i1.c2 = 0;
+    m = func_00170894(0x50, 0, 0x12, 0);
+    o->i1.e = 0x60000000;
+    o->i1.h = 0;
+    o->i1.f = 0;
+    o->i1.g = 0;
+    o->i1.d2 = m;
+    o->i1c = o->i1;
+}

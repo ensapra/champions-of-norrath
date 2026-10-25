@@ -1,4 +1,4 @@
-/* machine draft (m2c), tried by autopilot */
+/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
 typedef s32 M2C_UNK;
@@ -12,7 +12,7 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK _iDisableDmac_2();                            /* extern */
+M2C_UNK _iDisableDmac_2();                          /* extern */
 
 void func_002D5DC0(void) {
     _iDisableDmac_2();

@@ -1,58 +1,36 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct Cb { s32 f00; s32 f04; s32 sema8; s32 f0C; s32 f10; s32 f14; s32 gp; void (*func)(s32); s32 arg; s32 f24; s32 sema; s32 f2C; } Cb;
+typedef struct Msg { s32 pad[7]; Cb *cb; u32 cmd; s32 a; s32 b; } Msg;
+s32 iSignalSema_2(s32);
+void func_002E47A8(s32);
 
-M2C_UNK iSignalSema_2(s32);                         /* extern */
-M2C_UNK func_002E47A8(s32);                         /* extern */
-
-void func_002E47C8(void *arg0) {
-    s32 temp_28;
-    s32 temp_4;
-    u32 temp_3;
-    void *temp_16;
-    void *temp_17;
-    void *temp_17_2;
-    void *temp_17_3;
-
-    temp_3 = M2C_FIELD(arg0, u32 *, 0x20);
-    switch (temp_3) {                               /* irregular */
-    case 0x8000001C:
+void func_002E47C8(Msg *m) {
+    Cb *t;
+    switch (m->cmd) {
+    case 0x8000001A:
+        t = m->cb;
+        if (t->func != 0) {
+            t->func(t->arg);
+        }
+        iSignalSema_2(t->sema);
         break;
     case 0x80000019:
-        temp_17 = M2C_FIELD(arg0, void **, 0x1C);
-        M2C_FIELD(temp_17, s32 *, 0x24) = (s32) M2C_FIELD(arg0, s32 *, 0x24);
-        M2C_FIELD(temp_17, s32 *, 0x14) = (s32) M2C_FIELD(arg0, s32 *, 0x28);
-        iSignalSema_2(M2C_FIELD(temp_17, s32 *, 0x28));
+        t = m->cb;
+        t->f24 = m->a;
+        t->f14 = m->b;
+        iSignalSema_2(t->sema);
+        break;
+    case 0x8000001C:
         break;
     case 0x8000001D:
-        temp_17_2 = M2C_FIELD(arg0, void **, 0x1C);
-        M2C_FIELD(temp_17_2, s32 *, 0x2C) = (s32) M2C_FIELD(arg0, s32 *, 0x24);
-        iSignalSema_2(M2C_FIELD(temp_17_2, s32 *, 0x28));
-        break;
-    case 0x8000001A:
-        temp_17_3 = M2C_FIELD(arg0, void **, 0x1C);
-        if (M2C_FIELD(temp_17_3, M2C_UNK (**)(s32), 0x1C) != NULL) {
-            temp_28 = M2C_FIELD(temp_17_3, s32 *, 0x18);
-            M2C_FIELD(temp_17_3, M2C_UNK (**)(s32), 0x1C)(M2C_FIELD(temp_17_3, s32 *, 0x20));
-        }
-        iSignalSema_2(M2C_FIELD(temp_17_3, s32 *, 0x28));
+        t = m->cb;
+        t->f2C = m->a;
+        iSignalSema_2(t->sema);
         break;
     }
-    temp_16 = M2C_FIELD(arg0, void **, 0x1C);
-    temp_4 = M2C_FIELD(temp_16, s32 *, 8);
-    if (temp_4 >= 0) {
-        iSignalSema_2(temp_4);
+    t = m->cb;
+    if (t->sema8 >= 0) {
+        iSignalSema_2(t->sema8);
     }
-    func_002E47A8(M2C_FIELD(temp_16, s32 *, 0));
-    M2C_FIELD(temp_16, s32 *, 0) = 0;
+    func_002E47A8(t->f00);
+    t->f00 = 0;
 }

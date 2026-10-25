@@ -30,9 +30,10 @@ void func_002D70D0(char *);
 static inline s32 find_lump(char *name)
 {
     s32 i;
-    for (i = 0; i < D_00483F8C; i++) {
+    LumpEntry *e = D_006CB280;
+    for (i = 0; i < D_00483F8C; i++, e++) {
         if (func_003044FC(D_006CB280[i].name, name) == 0) {
-            if ((D_006CB280[i].flags ^ 1) & 1) {
+            if ((e->flags ^ 1) & 1) {
                 break;
             }
         }

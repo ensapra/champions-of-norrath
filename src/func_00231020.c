@@ -1,0 +1,1 @@
+s32 func_00231020(u8*o,s32*p){s32*start=p;s32 v,f;p++;v=p[-1];f=*(s32*)(o+0xC)&~0x201;o[0x8A]=v;*(s32*)(o+0xC)=f;if((v<<24)!=0)*(s32*)(o+0xC)=f|0x200;else *(s32*)(o+0xC)=f|1;return (u8*)p-(u8*)start;}

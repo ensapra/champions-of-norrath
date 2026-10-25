@@ -1,0 +1,27 @@
+typedef struct __attribute__((packed, aligned(4))) { u32 w[3]; } C12;
+typedef struct { C12 head; u8 pad[20]; } L32;
+extern u8 D_00449B90[];
+s32 D_004844A4;
+void func_001411F0(void *, void *, s32, s32);
+void func_00143830(void *);
+void func_00194390(void *, s32, s32);
+void func_001D5630(s32, void *, s32);
+void func_001E6490(u8 *p, C12 *b, s32 c) {
+    L32 loc1;
+    C12 loc2;
+    s32 *q;
+    loc1.head = *b;
+    func_001411F0(p, &loc1.head, 0, 0);
+    q = (s32 *)(p + 0x4C);
+    *(s32 *)(p + 0x48) = (s32)D_00449B90;
+    *q = 0;
+    if (c != 0) {
+        func_00194390(q, c, c);
+    }
+    *(s32 *)(p + 0x50) = D_004844A4 + 0x78;
+    loc2 = *(C12 *)(p + 0x10);
+    func_001D5630(5, &loc2, *(s32 *)(p + 0x18));
+    func_00143830(p);
+    *(f32 *)(p + 0x1C) = 10.0f;
+    *(s32 *)(p + 0xC) |= 0x420C;
+}

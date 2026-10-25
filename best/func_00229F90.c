@@ -1,30 +1,5 @@
-s32 func_00109808(void *, s32, s32, s32);
-void func_0013CB88(void);
-void func_0013E730(void *);
-void func_0016C060(s32, s32, s32, s32, s32, s32, s32, s32);
-void func_0016CBF8(void *);
-void func_0016CD20(void);
-void func_001DC2C0(void *, s32, void *, void *, s32, s32, void *, s32, f32, f32, s32, s32);
-typedef struct { s32 a,b,c; } Vec3;
-void func_00229F90(void *arg0) {
-    Vec3 t0, t1;
-    u8 pad[16];
-    s32 result;
-    void *obj = *(void **)((u8 *)arg0 + 0x24);
-    s32 flag = *(s16 *)((u8 *)arg0 + 0x23C) == 6;
-    t0 = *(Vec3 *)((u8 *)arg0 + 0x10);
-    func_001DC2C0((u8 *)arg0 + 0x410, *(s32 *)((u8 *)obj + 0x7C),
-        (u8 *)arg0 + 0x3CC, &t0, *(s16 *)((u8 *)arg0 + 0x38),
-        *(s32 *)((u8 *)obj + 0xC), (u8 *)arg0 + 0x120,
-        flag, 0.5f, *(f32 *)((u8 *)arg0 + 0xE0), 0, 0);
-    obj = *(void **)((u8 *)arg0 + 0x24);
-    result = func_00109808(arg0, *(s32 *)((u8 *)obj + 0xC), *(s32 *)((u8 *)obj + 0x14), 0);
-    t1 = *(Vec3 *)((u8 *)arg0 + 0x10);
-    func_0016CBF8(&t1);
-    func_0013E730((u8 *)arg0 + 0x428);
-    obj = *(void **)((u8 *)arg0 + 0x24);
-    func_0016C060(*(s32 *)((u8 *)obj + 0x7C), *(s32 *)((u8 *)obj + 0x84), 0,
-        *(s32 *)((u8 *)obj + 0xC), result, -1, -1, 0);
-    func_0013CB88();
-    func_0016CD20();
-}
+s32 func_00109808(void *,s32,s32,s32); void func_0013CB88(void); void func_0013E730(void *); void func_0016C060(s32,s32,s32,s32,s32,s32,s32,s32); void func_0016CBF8(void *); void func_0016CD20(void); void func_001DC2C0(void *,s32,void *,void *,s32,s32,void *,s32,f32,f32,s32,s32); typedef struct{s32 a,b,c;} Vec3; struct VBuf{u8 p[16];Vec3 v;};
+void func_00229F90(void *arg0){Vec3 t0; struct VBuf b; s32 result; void *obj=*(void**)((u8*)arg0+0x24); s32 flag=*(s16*)((u8*)arg0+0x23c)==6; t0=*(Vec3*)((u8*)arg0+0x10);
+func_001DC2C0((u8*)arg0+0x410,*(s32*)((u8*)obj+0x7c),(u8*)arg0+0x3cc,&t0,*(s16*)((u8*)arg0+0x38),*(s32*)((u8*)obj+0xc),(u8*)arg0+0x120,flag,0.5f,*(f32*)((u8*)arg0+0xe0),0,0);
+obj=*(void**)((u8*)arg0+0x24); result=func_00109808(arg0,*(s32*)((u8*)obj+0xc),*(s32*)((u8*)obj+0x14),0); b.v=*(Vec3*)((u8*)arg0+0x10);func_0016CBF8(&b.v);func_0013E730((u8*)arg0+0x428);obj=*(void**)((u8*)arg0+0x24);
+func_0016C060(*(s32*)((u8*)obj+0x7c),*(s32*)((u8*)obj+0x84),0,*(s32*)((u8*)obj+0xc),result,-1,-1,0);func_0013CB88();func_0016CD20();}

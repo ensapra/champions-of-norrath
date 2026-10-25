@@ -1,18 +1,19 @@
-void func_002DCDD8();
-void func_002DDEA0(u32, void *);
+/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
 
-void func_002DD020(s32 a) {
-    volatile void *dummy;
-    func_002DCDD8(a, 0);
-    dummy = (void *)0;
-    (void)dummy;
-}
+M2C_UNK func_002DDEA0(M2C_UNK, s32);                /* extern */
 
-void func_002DD000(s32 a) {
-    volatile s32 buf[4];
-    func_002DCDD8(a, 0, buf);
-}
-
-void func_002DDF10(void *p) {
-    func_002DDEA0(0xB0001000, p);
+void func_002DDF10(s32 arg0) {
+    func_002DDEA0(0xB0000000, arg0);
 }

@@ -1,12 +1,26 @@
-s32 func_002D7BC8(void *obj, s32 arg1) {
-    s32 *p = (s32 *)obj;
-    s32 result;
-    if (arg1 < 0) {
-        result = func_002D7B98(obj);
-    } else if (arg1 >= p[8]) {
-        result = func_002D7B98(obj);
-    } else {
-        result = p[7] + (arg1 << 6);
+/* machine draft (m2c) for ee-gcc-2.9-991111 -O2 -G8, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
+
+s32 func_002D7B98();                                /* extern */
+
+s32 func_002D7BC8(void *arg0, s32 arg1) {
+    if (arg1 >= 0) {
+        if (arg1 < M2C_FIELD(arg0, s32 *, 0x20)) {
+            return M2C_FIELD(arg0, s32 *, 0x1C) + (arg1 << 6);
+        }
+        goto block_4;
     }
-    return result;
+block_4:
+    return func_002D7B98();
 }

@@ -1,0 +1,4 @@
+extern "C" { void *func_001441B8(s32); void *func_00194498(void*,void*); }
+extern u8 D_0044D498[],D_004499D8[]; struct Tri{s32 x,y,z;}; struct Obj{s32 a,b,c,d;Tri e;f32 g,h;s32 i;u8 j,k;s32 *l;f32 m;void *n;u16 o;f32 p,q;s32 r;void *vt;u16 s,t,u;f32 v;u8 w;};
+static inline Obj *copyObj(Obj *dst,Obj *src){dst->vt=D_0044D498;func_00194498(&dst->a,&src->a);func_00194498(&dst->b,&src->b);func_00194498(&dst->c,&src->c);Obj *result=dst;dst->d=src->d;dst->e=src->e;dst->g=src->g;dst->h=src->h;dst->i=src->i;dst->j=src->j;dst->k=src->k;dst->vt=D_004499D8;dst->m=src->m;dst->o=src->o;dst->p=src->p;dst->s=src->s;dst->l=src->l;dst->n=src->n;dst->q=src->q;dst->r=src->r;dst->t=src->t;dst->u=src->u;dst->v=src->v;dst->w=src->w;return result;}
+Obj *func_00127690(Obj *src){Obj *dst=(Obj*)func_001441B8(0x5C);return dst?copyObj(dst,src):0;}

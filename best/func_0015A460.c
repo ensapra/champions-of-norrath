@@ -1,22 +1,21 @@
-void func_0015A460(void *arg0, void *arg1) {
-    f32 x = *(f32 *)((u8 *)arg1 + 0);
-    f32 y = *(f32 *)((u8 *)arg1 + 4);
-    f32 z = *(f32 *)((u8 *)arg1 + 8);
-    f32 w = *(f32 *)((u8 *)arg1 + 12);
-    f32 xx = x*x, yy = y*y, zz = z*z, ww = w*w;
-    *(s32 *)((u8 *)arg0 + 0x2c) = 0;
-    *(s32 *)((u8 *)arg0 + 0x0c) = 0;
-    *(s32 *)((u8 *)arg0 + 0x1c) = 0;
-    f32 s = 2.0f / (xx + yy + zz + ww);
-    f32 ys=y*s, zs=z*s, xs=x*s;
-    f32 yz=z*ys, yy2=y*zs, xy=x*ys, xz=x*zs, xw=x*(w*s), yw=y*(w*s), zw=z*(w*s);
-    *(f32 *)((u8 *)arg0+0x18)=y*(y*s)-w*xs;
-    *(f32 *)((u8 *)arg0+8)=xw+zw;
-    *(f32 *)((u8 *)arg0+4)=x*zs-w*ys;
-    *(f32 *)((u8 *)arg0+0x28)=1.0f-(xz+yy2);
-    *(f32 *)((u8 *)arg0+0)=1.0f-(yy2+yz);
-    *(f32 *)((u8 *)arg0+0x14)=1.0f-(xz+yz);
-    *(f32 *)((u8 *)arg0+0x10)=x*zs+w*ys;
-    *(f32 *)((u8 *)arg0+0x20)=xw-zw;
-    *(f32 *)((u8 *)arg0+0x24)=y*(y*s)+w*xs;
+void func_0015A460(f32 *m, f32 *q) {
+    f32 x = q[0], y = q[1], z = q[2], w = q[3];
+    f32 xx = x * x, yy = y * y, zz = z * z, ww = w * w;
+    f32 s, xs, ys, zs, ws;
+    ((s32 *)m)[11] = 0;
+    ((s32 *)m)[3] = 0;
+    ((s32 *)m)[7] = 0;
+    s = 2.0f / (xx + yy + zz + ww);
+    zs = z * s;
+    ys = y * s;
+    xs = x * s;
+    m[6] = y * zs - w * xs;
+    m[2] = x * zs + w * ys;
+    m[1] = x * ys - w * zs;
+    m[10] = 1.0f - (x * xs + y * ys);
+    m[0] = 1.0f - (y * ys + z * zs);
+    m[5] = 1.0f - (x * xs + z * zs);
+    m[4] = x * ys + w * zs;
+    m[8] = x * zs - w * ys;
+    m[9] = y * zs + w * xs;
 }

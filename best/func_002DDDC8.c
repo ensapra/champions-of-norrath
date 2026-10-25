@@ -1,4 +1,4 @@
-/* machine draft (m2c), tried by autopilot */
+/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
 typedef s32 M2C_UNK;
@@ -12,10 +12,10 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK FlushCache_2(M2C_UNK);                     /* extern */
+M2C_UNK Copy_9(M2C_UNK, M2C_UNK *, M2C_UNK);        /* extern */
+M2C_UNK FlushCache_2(M2C_UNK);                      /* extern */
+s32 GetEntryAddress_7(s32);                         /* extern */
 M2C_UNK SetSyscall_11(s32, s32);                    /* extern */
-M2C_UNK Copy_9(M2C_UNK, M2C_UNK *, M2C_UNK); /* extern */
-s32 GetEntryAddress_7(s32);                             /* extern */
 extern M2C_UNK D_00445200;
 extern M2C_UNK D_00445940;
 extern M2C_UNK D_00445968;

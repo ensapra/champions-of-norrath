@@ -1,61 +1,41 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 func_0024F978(s32, s32 *);                      /* extern */
+typedef struct { s32 v; s16 idx; char pad[0x16]; } Ent;
+typedef struct { s32 p0; s32 p1; } Slot;
+typedef struct { char pad[0x2C]; s32 f2C; } Sub;
+typedef struct { char pad[0x34]; Slot *slots; Ent *ents; } Obj;
+s32 func_0024F978(s32, Ent *);
 extern f32 D_00482024;
 
-f32 func_0024C4C0(void *arg0) {
-    f32 temp_f22;
-    f32 var_f0;
-    f32 var_f20;
-    f32 var_f21;
-    s16 temp_3;
-    s32 *temp_5;
-    s32 *var_2;
-    s32 temp_16;
-    s32 var_18;
-    s32 var_19;
-    void *temp_3_2;
-
-    var_f21 = 0.0f;
-    temp_5 = M2C_FIELD(arg0, s32 **, 0x38);
-    var_f0 = 0.0f;
-    if (temp_5 != NULL) {
-        if (*temp_5 <= 0x7FFFFFFE) {
-            temp_f22 = D_00482024;
-            var_19 = 0;
-            var_18 = 0;
-            var_2 = temp_5;
+f32 func_0024C4C0(Obj *o) {
+    f32 best = 0.0f;
+    f32 ret = best;
+    f32 scale;
+    s32 i, off;
+    Ent *e = o->ents;
+    if (e != 0) {
+        if (e->v <= 0x7FFFFFFE) {
+            scale = D_00482024;
+            i = 0;
+            off = 0;
             do {
-                var_18 += 0x1C;
-                temp_3 = M2C_FIELD(var_2, s16 *, 4);
-                var_f20 = (f32) M2C_FIELD(var_2, s32 *, 0) * temp_f22;
-                if (temp_3 >= 0) {
-                    temp_3_2 = M2C_FIELD(((temp_3 * 8) + M2C_FIELD(arg0, s32 *, 0x34)), void **, 4);
-                    if (temp_3_2 != NULL) {
-                        temp_16 = ((s32) M2C_FIELD(temp_3_2, s32 *, 0x2C) >> 4) * 7;
-                        var_f20 += (f32) (temp_16 * 4) / (f32) func_0024F978(M2C_FIELD(temp_3_2, s32 *, 0x10), M2C_FIELD(arg0, s32 **, 0x38));
+                f32 val;
+                s32 idx;
+                Ent *p = (Ent *)(off + (s32)e);
+                off += 0x1C;
+                idx = p->idx;
+                val = (f32)p->v * scale;
+                if (idx >= 0) {
+                    Sub *s = (Sub *)o->slots[idx].p1;
+                    if (s != 0) {
+                        s32 t = (s->f2C >> 4) * 7;
+                        val += (f32)(t * 4) / (f32)func_0024F978(*(s32 *)((char *)s + 0x10), e);
+                        e = o->ents;
                     }
                 }
-                if (var_f21 < var_f20) {
-                    var_f21 = var_f20;
-                }
-                var_19 += 0x1C;
-                var_2 = var_18 + M2C_FIELD(arg0, s32 **, 0x38);
-            } while (*(var_19 + M2C_FIELD(arg0, s32 **, 0x38)) <= 0x7FFFFFFE);
-            var_f0 = var_f21;
+                if (best < val) best = val;
+                i += 0x1C;
+            } while (((Ent *)(i + (s32)e))->v <= 0x7FFFFFFE);
+            ret = best;
         }
     }
-    return var_f0;
+    return ret;
 }

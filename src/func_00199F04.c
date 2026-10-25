@@ -1,0 +1,3 @@
+typedef struct{u8 pad[0xF0];s32 f0,f4,f8;}O;typedef struct{u8 pad[0x24];void(*fn)(s32);}G;G*D_00480488;
+void func_0019542C(void);void func_00195660(void*,s32);void func_00195704(void*,s32);void func_00195924(void);void func_001959B8(void*,s32,s32);void func_00199B84(void);
+void func_00199F04(O*p){s32 d;if(p->f4==17){D_00480488->fn(1);*((u8*)D_00480488+1)=1;*(s32*)((u8*)p+72)=1;func_001959B8(p,10,2);return func_00195704(p,1);}if(p->f4==16){d=p->f8-p->f0;switch(d){case 0:func_00195924();*(s32*)((u8*)p+72)=0;return;case 1:func_0019542C();*(s32*)((u8*)p+72)=2;break;case 3:func_00195660(p,1);*(s32*)((u8*)p+72)=d;break;}}else{func_00199B84();return func_00195704(p,1);}}

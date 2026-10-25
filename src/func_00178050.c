@@ -1,0 +1,56 @@
+typedef struct { f32 x, y, z, w; } V4_178;
+typedef struct { s32 a; s32 b; s32 w; s32 n; V4_178 data[1]; } Arr_178;
+typedef struct { Arr_178 *p[8]; } Set_178;
+typedef struct {
+    s32 n0, n1, m0, m1;
+    V4_178 *d1, *d2, *e1, *e2;
+    V4_178 *d3, *d4;
+    s32 w5, w6, n5, n6;
+    V4_178 *d5, *d6, *d0;
+    s32 n0b;
+    V4_178 *d7;
+    s32 n7;
+} Out_178;
+s32 func_00177EB0(Out_178 *, Set_178 *);
+
+s64 func_00178050(Out_178 *o, Set_178 *s) {
+    Arr_178 *a1 = s->p[1];
+    Arr_178 *a2 = s->p[2];
+    s32 n1 = a1->n;
+    V4_178 *d1 = a1->data;
+    V4_178 *d2 = a2->data;
+    Arr_178 *a5 = s->p[5];
+    Arr_178 *a6;
+    s32 n2;
+    V4_178 *e1, *e2, *d3, *d4;
+    Arr_178 *a0, *a7;
+    o->n0 = n1;
+    o->n1 = n1;
+    a6 = s->p[6];
+    e1 = d1 + n1;
+    n2 = a2->n;
+    d3 = s->p[3]->data;
+    o->m0 = n2;
+    o->m1 = n2;
+    e2 = d2 + n2;
+    d4 = s->p[4]->data;
+    a0 = s->p[0];
+    o->w5 = a5->w;
+    a7 = s->p[7];
+    o->e1 = e1;
+    o->n5 = a5->n;
+    o->e2 = e2;
+    o->d3 = d3;
+    o->w6 = a6->w;
+    o->d4 = d4;
+    o->d5 = a5->data;
+    o->n6 = a6->n;
+    o->d6 = a6->data;
+    o->d0 = a0->data;
+    o->n0b = a0->n;
+    o->d1 = d1;
+    o->d2 = d2;
+    o->n7 = a7->n;
+    o->d7 = a7->data;
+    return func_00177EB0(o, s);
+}

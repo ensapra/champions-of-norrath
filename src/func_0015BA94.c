@@ -1,0 +1,2 @@
+typedef struct{u8 p0[4];s32 f;u8 p8[0x1c];} Item; typedef struct{u8 p0[0xB80];Item*items;u8 pB84[8];s32 a;u8 pB90[4];s32 b;u8 pB98[0x58];s32 n;u8 pBF4[0x110];s32 on;u8 pD08[4];s32 diff;} O;
+void func_0015BA94(O*o){s32 lo,hi,i,x,y;if(o->on){y=o->b;x=o->a;if(x>=y){lo=y;hi=x;}else{lo=x;hi=y;}for(i=0;i<lo;i++)o->items[i].f&=0xAF;for(;i<hi;i++)o->items[i].f=(u8)o->items[i].f|0x50;for(;i<o->n;i++)o->items[i].f&=0xAF;o->diff=hi-lo;}}

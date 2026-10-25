@@ -1,30 +1,12 @@
 typedef struct { s32 a; void *func; void *stack; s32 size; void *gp; s32 prio; s32 pad[6]; } TP;
 typedef struct { s32 a; s32 count; s32 c; s32 d; s32 e; s32 f; } SP;
-s32 CreateSema_2(SP *);
-s32 CreateThread_2(TP *);
-void StartThread_2(s32, s32);
-void func_002E2848(void *, s32);
-void func_002CC128(void);
-void func_002CC200(void);
-s32 D_00486DB4;
-s32 D_00486DB8;
-extern u8 D_004879F0[];
-extern u8 D_008D8E50[];
+s32 CreateSema_2(SP *); s32 CreateThread_2(TP *); void StartThread_2(s32,s32);
+void func_002E2848(void *,s32); void func_002CC128(void); void func_002CC200(void);
+s32 D_00486DB4; s32 D_00486DB8; extern u8 D_004879F0[]; extern u8 D_008D8E50[];
 void func_002CC230(void) {
-    TP th;
-    SP sema;
-    s32 t;
-    sema.count = 0x3E8;
-    sema.c = 0;
-    sema.f = 0;
-    D_00486DB4 = CreateSema_2(&sema);
-    th.func = func_002CC128;
-    th.stack = D_008D8E50;
-    th.size = 0x2000;
-    th.gp = D_004879F0;
-    th.prio = 1;
-    t = CreateThread_2(&th);
-    D_00486DB8 = t;
-    StartThread_2(t, 0);
-    func_002E2848(func_002CC200, 0);
+ TP th; SP sema; s32 t;
+ sema.count=0x3E8; sema.c=0; sema.f=0;
+ D_00486DB4=CreateSema_2(&sema);
+ th.size=0x2000; th.stack=D_008D8E50; th.func=func_002CC128; th.gp=D_004879F0; th.prio=1;
+ t=CreateThread_2(&th); D_00486DB8=t; StartThread_2(t,0); func_002E2848(func_002CC200,0);
 }

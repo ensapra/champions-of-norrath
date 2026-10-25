@@ -1,59 +1,43 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-s32 func_0024ADB8(M2C_UNK);                         /* extern */
-M2C_UNK func_0024F5B8(M2C_UNK, f32);                /* extern */
+s32 func_0024ADB8(s32);
+void func_0024F5B8(s32, f32);
 extern f32 D_00482010;
 extern f32 D_00482014;
 extern f32 D_00482018;
 extern f32 D_0048201C;
 extern f32 D_00485934;
-extern f32 D_0048593C;
-extern f32 D_00485968;
+extern volatile f32 D_0048593C;
+extern volatile f32 D_00485968;
 
 void func_0024B710(void) {
-    f32 temp_f20;
-    f32 var_f1;
-    f32 var_f2;
-
-    temp_f20 = D_0048593C;
+    f32 old = *(f32 *)&D_0048593C;
+    f32 t;
+    f32 v;
+    f32 one;
+    void (*fp)(s32, f32);
     if (func_0024ADB8(2) & 0x20) {
-        D_00485968 = D_00482010;
+        t = D_00482010;
+        D_00485968 = t;
     }
-    var_f2 = D_00485968 + D_00482014;
-    if (var_f2 > 1.0f) {
-        var_f2 = 1.0f;
+    t = *(f32 *)&D_00485968;
+    one = 1.0f;
+    t += D_00482014;
+    if (one < t) t = one;
+    D_00485968 = t;
+    v = D_0048593C;
+    if (t < v) {
+        v -= D_00482018;
+        if (v < t) v = t;
+        D_0048593C = v;
     }
-    D_00485968 = var_f2;
-    var_f1 = D_0048593C;
-    if (var_f2 < var_f1) {
-        var_f1 -= D_00482018;
-        if (var_f1 < var_f2) {
-            var_f1 = var_f2;
-        }
-        D_0048593C = var_f1;
+    if (v < t) {
+        v += D_0048201C;
+        if (t < v) v = t;
+        D_0048593C = v;
     }
-    if (var_f1 < var_f2) {
-        var_f1 += D_0048201C;
-        if (var_f2 < var_f1) {
-            var_f1 = var_f2;
-        }
-        D_0048593C = var_f1;
-    }
-    if (var_f1 != temp_f20) {
+    if (v != old) {
         if (func_0024ADB8(0) & 0x20) {
-            func_0024F5B8(0, D_0048593C * D_00485934 * 0.46875f);
+            fp = func_0024F5B8;
+            fp(0, D_0048593C * D_00485934 * 0.46875f);
         }
     }
 }

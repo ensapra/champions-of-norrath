@@ -1,43 +1,19 @@
-#include "context.h"
-void _iEnableIntc_2(void);
-void func_002D5D60(void) {
-    _iEnableIntc_2();
-    M2C_SYNC();
-}
+/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
 
-#include "context.h"
-void func_002D5930(s32, s32);
-void func_002D5A58(s32 arg0, s32 arg1) {
-    s32 m = (s32)0xFFFFFFC0;
-    func_002D5930(arg0 & m, arg1 & m);
-}
+M2C_UNK func_002D5930(s32);                         /* extern */
 
-#include "context.h"
-void func_002DDCE8(s32);
-s32 func_002D58B8(s32 arg0, s32 arg1) {
-    if (arg0 == 1) {
-        func_002DDCE8(arg1);
-    }
-    return 0;
-}
-
-#include "context.h"
-extern char D_00444958[];
-extern char D_008DE0C0[];
-extern char D_008DE0C8[];
-void iSignalSema_2(void*, void*, s32, s32);
-u8 func_002D6028(u8 arg0) {
-    s32 d0 = *(s32*)D_00444958;
-    if (arg0 >= 0x80 || d0 == 0) return (u8)-1;
-    {
-        char *base = D_008DE0C8;
-        int temp2 = *(s32*)(base + 4) & 0x1FF;
-        int temp6 = temp2 * 2;
-        char *temp5 = base + temp6;
-        *(s32*)(base + 4) = temp2 + 1;
-        *(u8*)(temp5 + 8) = 1;
-        *(u8*)(temp5 + 9) = arg0;
-        iSignalSema_2((void*)*(u32*)D_008DE0C0, temp5, temp6, 1);
-        return arg0;
-    }
+void func_002D5A58(s32 arg1) {
+    func_002D5930(arg1 & 0xFFFFFFC0);
 }

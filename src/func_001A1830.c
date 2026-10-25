@@ -1,0 +1,55 @@
+typedef struct mchunk { u32 prev_size; u32 size; struct mchunk *fd; struct mchunk *bk; } *mchunkptr;
+typedef unsigned int size_t;
+void *func_001A1CF0(void *r, size_t n);
+void func_001A2720(void *r);
+void func_001A27A0(void *r);
+void func_001A9C28(void *r, void *m);
+unsigned long func_001B9570(unsigned long a, unsigned long b);
+
+#define chunksize(p) ((p)->size & ~3)
+#define long_sub_size_t(x, y) ((x) < (y) ? -(long)((y) - (x)) : (long)((x) - (y)))
+
+void *func_001A1830(void *reent, size_t alignment, size_t bytes) {
+    size_t nb;
+    char *m;
+    mchunkptr p;
+    char *brk;
+    mchunkptr newp;
+    size_t newsize;
+    size_t leadsize;
+    mchunkptr remainder;
+    long remainder_size;
+
+    if (alignment <= 16) return func_001A1CF0(reent, bytes);
+    if (alignment < 16) alignment = 16;
+
+    nb = (bytes + 4 + 15 < 16 + 15) ? 16 : ((bytes + 4 + 15) & ~15);
+    m = (char *)func_001A1CF0(reent, nb + alignment + 16);
+    if (m == 0) return 0;
+
+    func_001A2720(reent);
+    p = (mchunkptr)(m - 8);
+
+    if (func_001B9570((unsigned long)m, alignment) != 0) {
+        brk = (char *)(((unsigned long)(m + alignment - 1)) & -alignment) - 8;
+        if ((long)(brk - (char *)p) < 16) brk = brk + alignment;
+        newp = (mchunkptr)brk;
+        leadsize = brk - (char *)p;
+        newsize = chunksize(p) - leadsize;
+        newp->size = newsize | 1;
+        ((mchunkptr)((char *)newp + newsize))->size |= 1;
+        p->size = (p->size & 1) | leadsize;
+        func_001A9C28(reent, (char *)p + 8);
+        p = newp;
+    }
+
+    remainder_size = long_sub_size_t(chunksize(p), nb);
+    if (remainder_size >= 16) {
+        remainder = (mchunkptr)((char *)p + nb);
+        remainder->size = remainder_size | 1;
+        p->size = (p->size & 1) | nb;
+        func_001A9C28(reent, (char *)remainder + 8);
+    }
+    func_001A27A0(reent);
+    return (char *)p + 8;
+}

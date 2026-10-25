@@ -1,0 +1,4 @@
+typedef struct {u32 w[16];} ThreadParam;
+s32 func_001849E8(void*,s32); s32 GetThreadId(void); s32 ReferThreadStatus(s32,void*); s32 CreateThread(ThreadParam*,s32,void*,void*); s32 StartThread(s32,s32,s32); s32 func_00184D00(s32,s32,s32);
+extern char func_001DC2C0[]; extern char D_0050A1C0[]; extern char func_01000000[]; s32 D_001D2328;
+void func_00185248(s32 on){char *o=func_001DC2C0+0x10C0;*(void**)(o+8)=func_001DC2C0+0x10D0;*(s32*)(o+4)=0;*(s32*)o=0;*(s32*)(o+0xc)=0;if(on){func_001849E8(o,0x1f4);s32 id=GetThreadId();ThreadParam st;ReferThreadStatus(id,&st);s32 pr=*(s32*)((char*)&st+0x18);pr+=(pr<0x7e);ThreadParam param;((s32*)&param)[1]=(s32)func_00184D00;((void**)&param)[2]=func_01000000+0xF0480;((s32*)&param)[3]=0x4000;((void**)&param)[4]=D_0050A1C0+0x5830;((s32*)&param)[5]=pr;s32 t=CreateThread(&param,pr,(void*)func_00184D00,D_0050A1C0+0x5830);D_001D2328=t;if(t==-1){func_00184D00(t,0,-1);return;}StartThread(t,0,-1);}}

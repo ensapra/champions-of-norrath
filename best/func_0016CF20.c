@@ -73,7 +73,8 @@ newhead:
         if (D_006E5D80[newhead].flag != 0)
             return;
         *(s16 *)(D_006E5D80[newhead].ptr + 0x18) = 0;
-        D_00486970 = (newhead + 1) & 0xF;
+        tail = (newhead + 1) & 0xF;
+        D_00486970 = tail;
     }
     D_006E5D80[head].end = start + size;
     D_006E5D80[head].start = start;

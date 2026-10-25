@@ -16,107 +16,93 @@ extern char D_00466B30[];
 extern char D_00466B40[];
 extern char D_00466B50[];
 extern char D_00466B60[];
-extern void *jtbl_00466B70[];
-extern f32 D_00480598;
+f32 D_00480598;
 
 extern s32 func_00163D58(s32, s32);
-extern s32 func_00165DC0(void*, const char*);
-extern void func_00160128(void*, s32, s32, f32);
-
-typedef struct {
-    u64 unk0;
-    u32 unk8;
-    u8 unkC;
-} Unk;
+extern s32 func_00165DC0(void *, const char *);
+extern void func_00160128(s32, s32, f32, s32);
 
 void func_001B01B0(s32 arg0, s32 arg1, s32 arg2) {
-    Unk sp;
+    u8 sp[13];
     s32 var_s0 = arg1;
-    s32 var_s1 = arg1;
-    u8 *base;
-    u8 *p;
+    u8 *base = D_00408600;
+    u8 *p = base + arg0 * 0x5DB0;
     s32 idx;
-    const char *str;
+    const char *str2;
     f32 f20;
-    base = D_00408600;
-    p = base + arg0;
-    if (*(s32*)(p + 0x5570) == 0) {
-        return;
-    }
-    var_s0 = arg1;
-    idx = *(s32*)(p + 0x54);
-    if ((u32)idx >= 10) {
-        goto end;
-    }
-    str = 0;
+    s32 r1, r2;
+
+    if (*(s32 *)(p + 0x5570) == 0) return;
+    idx = *(s32 *)(p + 0x54);
+    if ((u32)idx >= 10) return;
+
     switch (idx) {
         case 0:
-            sp.unk0 = *(u64*)D_00466A60;
-            sp.unk8 = *(u32*)(D_00466A60 + 8);
-            sp.unkC = *(u8*)(D_00466A60 + 10);
+            *(u64 *)(sp + 0) = *(u64 *)D_00466A60;
+            *(u16 *)(sp + 8) = *(u16 *)(D_00466A60 + 8);
+            sp[10] = *(u8 *)(D_00466A60 + 10);
             break;
         case 1:
-            str = D_00466A70;
-            sp.unk0 = *(u64*)str;
-            sp.unk8 = *(u32*)(str + 8);
-            sp.unkC = *(u8*)(str + 10);
+            *(u64 *)(sp + 0) = *(u64 *)D_00466A70;
+            *(u32 *)(sp + 8) = *(u32 *)(D_00466A70 + 8);
             break;
         case 2:
-            str = D_00466A80;
-            sp.unk0 = *(u64*)str;
-            sp.unk8 = *(u32*)(str + 8);
-            sp.unkC = *(u8*)(str + 10);
+            *(u64 *)(sp + 0) = *(u64 *)D_00466A80;
+            *(u32 *)(sp + 8) = *(u32 *)(D_00466A80 + 8);
             break;
         case 3:
-            str = D_00466A90;
-            sp.unk0 = *(u64*)str;
-            sp.unk8 = *(u32*)(str + 8);
-            sp.unkC = *(u8*)(str + 12);
+            *(u64 *)(sp + 0) = *(u64 *)D_00466A90;
+            *(u32 *)(sp + 8) = *(u32 *)(D_00466A90 + 8);
+            sp[12] = *(u8 *)(D_00466A90 + 12);
             break;
         case 4:
-            str = D_00466AA0;
-            sp.unk0 = *(u64*)str;
-            sp.unk8 = *(u32*)(str + 8);
-            sp.unkC = *(u8*)(str + 12);
+            *(u64 *)(sp + 0) = *(u64 *)D_00466AA0;
+            *(u32 *)(sp + 8) = *(u32 *)(D_00466AA0 + 8);
+            sp[12] = *(u8 *)(D_00466AA0 + 12);
             break;
         case 5:
-            str = D_00466AB0;
-            sp.unk0 = *(u64*)str;
-            sp.unk8 = *(u32*)(str + 8);
-            sp.unkC = *(u8*)(str + 12);
+            *(u64 *)(sp + 0) = *(u64 *)D_00466AB0;
+            *(u32 *)(sp + 8) = *(u32 *)(D_00466AB0 + 8);
+            sp[12] = *(u8 *)(D_00466AB0 + 12);
             break;
         case 6:
-            str = D_00466AC0;
-            sp.unk0 = *(u64*)str;
-            sp.unk8 = *(u32*)(str + 8);
-            sp.unkC = *(u8*)(str + 12);
+            *(u64 *)(sp + 0) = *(u64 *)D_00466AC0;
+            *(u32 *)(sp + 8) = *(u32 *)(D_00466AC0 + 8);
+            sp[12] = *(u8 *)(D_00466AC0 + 12);
             break;
         case 7:
-            str = D_00466AD0;
-            sp.unk0 = *(u64*)str;
-            sp.unk8 = *(u32*)(str + 8);
-            sp.unkC = *(u8*)(str + 12);
+            *(u64 *)(sp + 0) = *(u64 *)D_00466AD0;
+            *(u32 *)(sp + 8) = *(u32 *)(D_00466AD0 + 8);
             break;
         case 8:
-            str = D_00466AE0;
-            sp.unk0 = *(u64*)str;
-            sp.unk8 = *(u32*)(str + 8);
-            sp.unkC = *(u8*)(str + 12);
+            *(u64 *)(sp + 0) = *(u64 *)D_00466AE0;
+            *(u32 *)(sp + 8) = *(u32 *)(D_00466AE0 + 8);
+            sp[12] = *(u8 *)(D_00466AE0 + 12);
             break;
         case 9:
-            str = D_00466AF0;
-            sp.unk0 = *(u64*)str;
-            sp.unk8 = *(u32*)(str + 8);
-            sp.unkC = *(u8*)(str + 12);
+            *(u64 *)(sp + 0) = *(u64 *)D_00466AF0;
+            *(u32 *)(sp + 8) = *(u32 *)(D_00466AF0 + 8);
+            sp[12] = *(u8 *)(D_00466AF0 + 12);
             break;
-        default:
-            goto end;
     }
+
     f20 = D_00480598;
-    if (arg2 == 0) {
-        f20 = 0.0f;
+    if (arg2 != 0) f20 = 0.0f;
+
+    {
+        s32 byte = *(s8 *)(D_00408600 + arg0 * 0x5DB0 + 0x5C1E);
+        if (byte == 1) str2 = D_00466B00;
+        else if (byte == 2) str2 = D_00466B10;
+        else if (byte == 3) str2 = D_00466B20;
+        else if (byte == 4) str2 = D_00466B30;
+        else if (byte == 5) str2 = D_00466B40;
+        else if (byte == 7) str2 = D_00466B50;
+        else str2 = D_00466B60;
     }
-    return;
-end:
-    return;
+
+    r1 = func_00165DC0(sp, str2);
+    r2 = func_00163D58(var_s0, r1);
+    if (r2 != 0) return;
+    r1 = func_00165DC0(sp, str2);
+    func_00160128(var_s0, r1, f20, 0x43);
 }

@@ -1,19 +1,70 @@
 s32 D_00484F44; u8 D_00484538;
-s32 func_0026C190(void *, s32, s32, s32, s32);
-s32 func_0026FAF8(void *, s32); s32 func_0026FB00(void *, s16); s32 func_0026FB08(void *, f32);
-s32 func_003021B0(void *, s32, s32, s32);
-void func_0026BE00(void *a,s32 b,s32 c) {
- u8 *p=(u8*)a; u8 v; f32 z=*(f32*)(p+0xA0); u8 *table=p+0xc;
- if(b){*(s16*)(p+0x6c)=8000;*(s16*)(p+0x6e)=10000;*(s16*)(p+0x70)=13000;
- *(f32*)(p+0xb0)=170.0f;*(f32*)(p+0xb4)=420.0f;*(f32*)(p+0xb8)=500.0f;*(f32*)(p+0xbc)=90.0f;
- *(f32*)(p+0xc4)=60.0f;*(f32*)(p+0xdc)=150.0f;*(f32*)(p+0xe0)=40.0f;*(f32*)(p+0xe4)=20.0f;*(f32*)(p+0xe8)=-20.0f;*(f32*)(p+0xf0)=-25.0f;*(f32*)(p+0xa4)=-1.0f;*(f32*)(p+0xc0)=60.0f;*(f32*)(p+0xec)=-25.0f;*(s32*)(p+0x50)=0;}
- if(c){*(s32*)(p+0x58)=0;*(s32*)(p+0x54)=1;*(s8*)(p+0x161)=-1;}
- *(s16*)(p+0x8a)=-8192;*(s32*)(p+0xa0)=0;*(s32*)(p+0x5c)=1;*(s8*)(p+0x16c)=0;*(s8*)(p+0x16d)=0;
- *(u16*)(p+0x74)=*(u16*)(table+(*(s32*)(p+0x54)*2)+0x60);*(s32*)(p+0x44)=-1;*(f32*)(p+0x90)=1.0f;*(s32*)(p+0x38)=0;*(s32*)(p+0x4c)=0;
- *(f32*)(p+0x98)=z;*(f32*)(p+0x9c)=z;*(f32*)(p+0xc8)=z;*(f32*)(p+0xd0)=z;*(f32*)(p+0xd4)=z;*(f32*)(p+0xcc)=z;
- v=D_00484F44>0?(u8)D_00484F44:D_00484538;*(u8*)(p+0x16e)=v;
- func_003021B0(p+0x100,0,0x60,c);func_0026FAF8(a,-8192);
- func_0026FB00(a,*(s16*)(table+(*(s32*)(p+0x54)*2)+0x60));
- func_0026FB08(a,*(f32*)(p+(*(s32*)(p+0x54)*4)+0xb0));
- func_0026C190(a,0,0,0,0);*(s32*)(p+0x48)=1;
+void func_0026C190(void *, s32, f32, f32, f32);
+void func_0026FAF8(void *, s32); void func_0026FB00(void *, s16); void func_0026FB08(void *, f32);
+void func_003021B0(void *, s32, s32);
+
+typedef struct {
+    char pad0[0x38]; s32 f38;
+    char pad1[0x44 - 0x3C]; s32 f44, f48, f4C, f50, idx, f58, f5C;
+    char pad2[0x6C - 0x60]; s16 g[3]; char padg[2]; u16 f74;
+    char pad3[0x8A - 0x76]; s16 f8A;
+    char pad4[0x90 - 0x8C]; f32 f90;
+    char pad5[0x98 - 0x94]; f32 f98, f9C, fA0, fA4;
+    char pad6[0xB0 - 0xA8]; f32 v[4];
+    f32 fC0, fC4, fC8, fCC, fD0, fD4;
+    char pad7[0xDC - 0xD8]; f32 fDC, fE0, fE4, fE8, fEC, fF0;
+    char pad8[0x100 - 0xF4]; char sub[0x61];
+    s8 f161;
+    char pad9[0x16C - 0x162]; s8 f16C, f16D, f16E;
+} Obj;
+
+void func_0026BE00(Obj *o, s32 a, s32 c) {
+    if (a) {
+        o->g[0] = 8000;
+        o->g[1] = 10000;
+        o->g[2] = 13000;
+        o->v[0] = 170.0f;
+        o->v[1] = 420.0f;
+        o->v[2] = 500.0f;
+        o->v[3] = 90.0f;
+        o->fC4 = o->fC0 = 60.0f;
+        o->fDC = 150.0f;
+        o->fE0 = 40.0f;
+        o->fE4 = 20.0f;
+        o->fE8 = -20.0f;
+        o->fF0 = o->fEC = -25.0f;
+        o->fA4 = -1.0f;
+        o->f50 = 0;
+    }
+    if (c) {
+        o->f58 = 0;
+        o->idx = 1;
+        o->f161 = -1;
+    }
+    o->f8A = -8192;
+    o->fA0 = 0.0f;
+    o->f44 = -1;
+    o->f5C = 1;
+    o->f74 = o->g[o->idx];
+    o->f16C = 0;
+    o->f16D = 0;
+    o->f90 = 1.0f;
+    o->f38 = 0;
+    o->f4C = 0;
+    o->f98 = o->fA0;
+    o->fC8 = o->fA0;
+    o->fD0 = o->fA0;
+    o->fD4 = o->fA0;
+    o->fCC = o->fA0;
+    o->f9C = o->fA0;
+    if (D_00484F44 <= 0)
+        o->f16E = D_00484538;
+    else
+        o->f16E = (u8)D_00484F44;
+    func_003021B0(o->sub, 0, 0x60);
+    func_0026FAF8(o, -8192);
+    func_0026FB00(o, o->g[o->idx]);
+    func_0026FB08(o, o->v[o->idx]);
+    func_0026C190(o, 0, 0.0f, 0.0f, 0.0f);
+    o->f48 = 1;
 }

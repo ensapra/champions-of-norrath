@@ -1,30 +1,38 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
+typedef struct 
+{
+  u8 pad[0x0E];
+  volatile s16 f0E;
+  volatile s16 f10;
+  volatile s16 f12;
+  volatile s16 f14;
+  volatile s16 f16;
+  volatile s16 f18;
+  volatile s16 f1A;
+  volatile s16 f1C;
+  volatile s16 f1E;
+  volatile s16 f20;
+  u8 pad2[2];
+  volatile f32 f24;
+  volatile s32 f28;
+  volatile f32 f2C;
+  volatile f32 f30;
+  volatile f32 f34;
+} ObjParam3;
 extern f32 D_00482AE8;
-
-void func_002A6E18(void *arg0) {
-    M2C_FIELD(arg0, s16 *, 0x18) = 0x5A;
-    M2C_FIELD(arg0, f32 *, 0x34) = 1.0f;
-    M2C_FIELD(arg0, f32 *, 0x24) = 10.0f;
-    M2C_FIELD(arg0, s16 *, 0x1A) = 0x1E;
-    M2C_FIELD(arg0, f32 *, 0x2C) = (f32) D_00482AE8;
-    M2C_FIELD(arg0, s16 *, 0x20) = 1;
-    M2C_FIELD(arg0, s16 *, 0xE) = 1;
-    M2C_FIELD(arg0, s16 *, 0x10) = 1;
-    M2C_FIELD(arg0, s32 *, 0x28) = 0;
-    M2C_FIELD(arg0, s16 *, 0x12) = 1;
-    M2C_FIELD(arg0, s16 *, 0x1C) = 1;
-    M2C_FIELD(arg0, s16 *, 0x16) = 1;
+void func_002A6E18(ObjParam3 *o)
+{
+  f32 a = 10.0f;
+  f32 b = D_00482AE8;
+  f32 c = 1.0f;
+  s32 new_var;
+  s32 one = 1;
+ do { o->f18 = 0x5A; o->f34 = c; o->f24 = a; o->f1A = 0x1E; o->f2C = b; } while (0);
+  new_var = one;
+  o->f20 = new_var;
+  o->f0E = new_var;
+  o->f10 = new_var;
+  o->f28 = 0;
+  o->f12 = new_var;
+  o->f1C = new_var;
+  o->f16 = new_var;
 }

@@ -1,0 +1,1 @@
+extern char func_01000000[]; s32 func_0019B088(void*,s32,s32); void func_001A2660(void*); s32 func_00182050(void *src,s32 a,s32 b){ char *dst=func_01000000+0xF0400; s32 x=a&255,y=b&65535; if(src){ __builtin_memcpy(dst,src,0x28); return func_0019B088(dst,x,y); } func_001A2660(dst); return func_0019B088(dst,x,y);}

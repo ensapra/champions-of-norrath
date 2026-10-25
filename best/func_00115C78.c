@@ -1,54 +1,16 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-void *func_001441B8(M2C_UNK);                       /* extern */
-M2C_UNK func_00194498(void *, void *);              /* extern */
-extern M2C_UNK D_0044C958;
-extern M2C_UNK D_0044D498;
-
-void *func_00115C78(void *arg0) {
-    void *temp_2;
-    void *var_7;
-
-    temp_2 = func_001441B8(0x50);
-    var_7 = NULL;
-    if (temp_2 != NULL) {
-        M2C_FIELD(temp_2, M2C_UNK **, 0x48) = &D_0044D498;
-        func_00194498(temp_2, arg0);
-        func_00194498(temp_2 + 4, arg0 + 4);
-        func_00194498(temp_2 + 8, arg0 + 8);
-        var_7 = temp_2;
-        M2C_FIELD(temp_2, s32 *, 0xC) = (s32) M2C_FIELD(arg0, s32 *, 0xC);
-        M2C_ERROR(/* unknown instruction: ldl $v0, 0x17($s1) */);
-        M2C_ERROR(/* unknown instruction: ldr $v0, 0x10($s1) */);
-        M2C_ERROR(/* unknown instruction: sdl $v0, 0x17($s0) */);
-        M2C_ERROR(/* unknown instruction: sdr $v0, 0x10($s0) */);
-        M2C_FIELD(temp_2, s32 *, 0x18) = (s32) M2C_FIELD(arg0, s32 *, 0x18);
-        M2C_FIELD(temp_2, f32 *, 0x1C) = (f32) M2C_FIELD(arg0, f32 *, 0x1C);
-        M2C_FIELD(temp_2, s32 *, 0x24) = (s32) M2C_FIELD(arg0, s32 *, 0x24);
-        M2C_FIELD(temp_2, f32 *, 0x20) = (f32) M2C_FIELD(arg0, f32 *, 0x20);
-        M2C_FIELD(temp_2, u8 *, 0x28) = (u8) M2C_FIELD(arg0, u8 *, 0x28);
-        M2C_FIELD(temp_2, M2C_UNK **, 0x48) = &D_0044C958;
-        M2C_FIELD(temp_2, u8 *, 0x29) = (u8) M2C_FIELD(arg0, u8 *, 0x29);
-        M2C_FIELD(temp_2, f32 *, 0x30) = (f32) M2C_FIELD(arg0, f32 *, 0x30);
-        M2C_FIELD(temp_2, f32 *, 0x3C) = (f32) M2C_FIELD(arg0, f32 *, 0x3C);
-        M2C_FIELD(temp_2, s32 *, 0x2C) = (s32) M2C_FIELD(arg0, s32 *, 0x2C);
-        M2C_FIELD(temp_2, s32 *, 0x34) = (s32) M2C_FIELD(arg0, s32 *, 0x34);
-        M2C_FIELD(temp_2, u16 *, 0x38) = (u16) M2C_FIELD(arg0, u16 *, 0x38);
-        M2C_FIELD(temp_2, f32 *, 0x40) = (f32) M2C_FIELD(arg0, f32 *, 0x40);
-        M2C_FIELD(temp_2, s32 *, 0x44) = (s32) M2C_FIELD(arg0, s32 *, 0x44);
-        M2C_FIELD(temp_2, s32 *, 0x4C) = (s32) M2C_FIELD(arg0, s32 *, 0x4C);
-    }
-    return var_7;
+extern void *func_001441B8(s32);
+extern s32 func_00194498(void*,void*);
+extern u32 D_0044D498[],D_0044C958[];
+struct __attribute__((packed,aligned(4))) C12 {u64 a;u32 b;};
+struct Obj {u32 f0,f4,f8,fC;struct C12 c; f32 f1C,f20;u32 f24;u8 b28,b29;u32 f2C;f32 f30;u32 f34;u16 h38;f32 f3C,f40;u32 f44,vt,f4C;};
+struct Obj *func_00115C78(struct Obj *in){
+struct Obj *out=func_001441B8(0x50);struct Obj *result;
+if(out){out->vt=(u32)D_0044D498;
+func_00194498(&out->f0,&in->f0);
+func_00194498(&out->f4,&in->f4);
+func_00194498(&out->f8,&in->f8);
+out->fC=in->fC;{u64 a=in->c.a;u32 b=in->c.b;out->c.a=a;out->c.b=b;}{f32 f=in->f1C;u32 w=in->f24;out->f1C=f;out->f24=w;}out->f20=in->f20;
+out->b28=in->b28;out->b29=in->b29;out->vt=(u32)D_0044C958;
+{u32 z=in->f4C;u32 a=in->f2C;u32 b=in->f34;u16 h=in->h38;out->f30=in->f30;out->f3C=in->f3C;out->f2C=a;out->f34=b;out->h38=h;out->f40=in->f40;out->f44=in->f44;out->f4C=z;}
+result=out;}else{result=0;}return result;
 }

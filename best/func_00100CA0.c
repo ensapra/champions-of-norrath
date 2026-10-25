@@ -12,11 +12,22 @@ extern char D_00454330[];
 void func_00100CA0(Vec3_ pos, s32 arg) {
     Buf100 buf;
     Buf100 *b = &buf;
-    Vec3_ out;
-    Vec3_ off;
+    Vec3_ passed;
+    Vec3_ unused;
     void *obj;
     s32 i;
-    {s32 k=3;s16*q=&buf.e[3][0];do{k--;*q=-1;q-=4;}while(k>=0);}
+    Vec3_ *vp = &passed;
+    f32 zero;
+    {
+        s16 val = -1;
+        s32 k = 3;
+        s16 *q = &buf.e[3][0];
+        do {
+            k--;
+            *q = val;
+            q -= 4;
+        } while (k >= 0);
+    }
     ((volatile Buf100*)b)->d=-1;
     ((volatile Buf100*)b)->c=-1;
     for (i = 0; i < 4; i++) {
@@ -26,14 +37,16 @@ void func_00100CA0(Vec3_ pos, s32 arg) {
     func_00105F60(arg, b, -1, 0);
     obj = func_001441B8(0x248);
     if (obj != 0) {
-        Ent100 *e = D_0031F540;
-        f32 zero = 0.0f;
-        off.x = zero;
-        off.y = zero;
-        off.z = 36.0f;
-        out.x = pos.x + off.x;
-        out.y = pos.y;
-        out.z = pos.z + off.z;
-        func_00149068(obj, &out, D_00454330, e[func_00108498(b)].a, e[func_00108498(b)].b, 1, 0x441, b, 1.0f);
+        zero = 0.0f;
+        unused.x = zero;
+        unused.y = zero;
+        unused.z = 36.0f;
+        vp->x = pos.x + zero;
+        vp->y = pos.y;
+        vp->z = pos.z + 36.0f;
+        {
+            Ent100 *e = D_0031F540;
+            func_00149068(obj, vp, D_00454330, e[func_00108498(b)].a, e[func_00108498(b)].b, 1, 0x441, b, 1.0f);
+        }
     }
 }

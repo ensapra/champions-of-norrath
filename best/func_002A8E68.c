@@ -1,26 +1,10 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-M2C_UNK func_00180D78(M2C_UNK *, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, s32, s32, s32, s32, s32); /* extern */
-extern M2C_UNK D_008D73B0;
-extern M2C_UNK D_008D7400;
-
-void func_002A8E68(s32 arg0, s32 arg1) {
-    if ((arg1 == 0xFFFF) && (arg0 == 1)) {
-        func_00180D78(&D_008D73B0, 0x16, 0x15, 6, 0xC8, 0x14, 0x13, 6, 0x42C80000, 0xC0400000, 0, 0, arg0, 0, 4, 0);
-        if (arg0 == 1) {
-            func_00180D78(&D_008D7400, 0x32, 0x32, 0x3C, 0xFF, 0, 0, 0, 0x42480000, 0x42480000, 0, 0xFF, arg0, 2, 6, 0);
+extern char D_008D73B0[], D_008D7400[];
+extern void func_00180D78(void *, s32, s32, s32, s32, s32, s32, s32, f32, f32, f32, s32, s32, s32, s32, s32);
+void func_002A8E68(s32 a, s32 b) {
+    if (b == 0xFFFF && a == 1) {
+        func_00180D78(D_008D73B0, 0x16, 0x15, 6, 0xC8, 0x14, 0x13, 6, 100.0f, -3.0f, 0.0f, 0, a, 0, 4, 0);
+        if (a == 1) {
+            func_00180D78(D_008D7400, 0x32, 0x32, 0x3C, 0xFF, 0, 0, 0, 50.0f, 50.0f, 0.0f, 0xFF, a, 2, 6, 0);
         }
     }
 }

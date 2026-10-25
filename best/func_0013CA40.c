@@ -1,54 +1,15 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-extern M2C_UNK D_00486850;
-extern M2C_UNK D_00486858;
-extern M2C_UNK D_00486860;
-extern f32 D_00486868;
-extern f32 D_0048686C;
-extern f32 D_00486870;
-
-void func_0013CA40(f32 fparg0, f32 fparg1, f32 fparg2) {
-    f32 temp_2;
-    f32 temp_3;
-    f32 temp_3_2;
-    f32 temp_4;
-    f32 temp_5;
-    f32 temp_7;
-    f32 temp_8;
-    f32 temp_f0;
-    f32 temp_f6;
-
-    D_00486868 = fparg0;
-    temp_f6 = (f32) M2C_FIELD(&D_00486850, s16 *, 4) * fparg2;
-    D_0048686C = fparg1;
-    D_00486870 = fparg2;
-    temp_f0 = (f32) M2C_FIELD(&D_00486858, s16 *, 2) * fparg1;
-    temp_3 = (f32) M2C_FIELD(&D_00486850, s16 *, 0) * fparg0;
-    temp_4 = (f32) M2C_FIELD(&D_00486850, s16 *, 2) * fparg1;
-    M2C_FIELD(&D_00486850, s16 *, 0) = (s16) M2C_ERROR(/* Read from unset register $f9 */);
-    M2C_FIELD(&D_00486850, s16 *, 2) = M2C_BITWISE(s16, temp_3);
-    M2C_FIELD(&D_00486850, s16 *, 4) = M2C_BITWISE(s16, temp_4);
-    temp_8 = (f32) M2C_FIELD(&D_00486858, s16 *, 0) * fparg0;
-    temp_5 = temp_f0;
-    temp_7 = temp_f0;
-    temp_3_2 = temp_f0;
-    M2C_FIELD(&D_00486858, s16 *, 0) = M2C_BITWISE(s16, temp_f6);
-    temp_2 = temp_f0;
-    M2C_FIELD(&D_00486858, s16 *, 2) = M2C_BITWISE(s16, temp_8);
-    M2C_FIELD(&D_00486858, s16 *, 4) = M2C_BITWISE(s16, temp_7);
-    M2C_FIELD(&D_00486860, s16 *, 0) = M2C_BITWISE(s16, temp_5);
-    M2C_FIELD(&D_00486860, s16 *, 2) = M2C_BITWISE(s16, temp_3_2);
-    M2C_FIELD(&D_00486860, s16 *, 4) = M2C_BITWISE(s16, temp_2);
+s16 D_00486850[4];
+s16 D_00486858[4];
+s16 D_00486860[4];
+f32 D_00486868; f32 D_0048686C; f32 D_00486870;
+void func_0013CA40(f32 x, f32 y, f32 z) {
+ s16 *a=D_00486850, *b=D_00486858, *c=D_00486860;
+ s16 *a4=a+2, *a2=a+1, *b4=b+2, *b2=b+1, *c4=c+2, *c2=c+1;
+ f32 t0=(f32)*a*x, t1=(f32)*a2*y, t2=(f32)*a4*z;
+ f32 u0=(f32)*b*x, u1=(f32)*b2*y, u2=(f32)*b4*z;
+ f32 v0=(f32)*c*x, v1=(f32)*c2*y, v2=(f32)*c4*z;
+ D_00486868=x; D_0048686C=y; D_00486870=z;
+ *a=(s16)t0; *a2=(s16)t1; *a4=(s16)t2;
+ *b=(s16)u0; *b2=(s16)u1; *b4=(s16)u2;
+ *c=(s16)v0; *c2=(s16)v1; *c4=(s16)v2;
 }

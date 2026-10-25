@@ -1,51 +1,31 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern s32 D_001C5434[];
+extern s32 D_001BD888[];
+extern s32 D_010CE390[];
+extern s32 D_010CE3A0[];
+extern s32 D_001BB6B4[];
+extern s32 D_001BB6C4[];
+extern s32 D_001BB720[];
+s32 func_0010A4D0(s32, s32, s32);
+s32 func_0010B378(s32, void *);
+s32 func_0010CBC8(s32, s32, s32, s32);
+s32 func_0011BA18(s32);
+void func_00136CC8(s32);
+void func_0013BBD0(void);
 
-M2C_UNK func_0010A4D0(s32, M2C_UNK, M2C_UNK);       /* extern */
-M2C_UNK func_0010B378(s32, void *, void *);         /* extern */
-M2C_UNK func_0010CBC8(M2C_UNK, s32, s32, s32);      /* extern */
-s32 func_0011BA18(M2C_UNK);                         /* extern */
-M2C_UNK func_00136CC8(s64);                         /* extern */
-M2C_UNK func_0013BBD0();                            /* extern */
-extern M2C_UNK func_001B9FD8;
-extern M2C_UNK func_001BCB38;
-extern M2C_UNK func_001C5078;
-extern M2C_UNK func_01000000;
-
-void func_00137020(s64 arg1) {
-    s32 temp_16;
-    s32 temp_17;
-    s32 temp_3;
-    s64 temp_18;
-
-    temp_18 = (s64) (arg1 << 0x20) >> 0x20;
-    if (M2C_FIELD(&func_001C5078, s32 *, 0x3BC) != 0) {
-        if (temp_18 != 0) {
-            if (M2C_FIELD(&func_001BCB38, s32 *, 0xD50) != 0) {
-                func_0010A4D0(M2C_FIELD(&func_001BCB38, s32 *, 0xD50), 0, 0);
-            }
-        } else {
-            temp_17 = func_0011BA18(2);
-            temp_16 = func_0011BA18(3);
-            func_0010CBC8(0, temp_17, temp_16, func_0011BA18(0xC));
+void func_00137020(s32 a0, s64 arg) {
+    s32 a, b;
+    s32 idx = (s32)arg;
+    if (D_001C5434[0] != 0) {
+        if (idx == 0) {
+            a = func_0011BA18(2);
+            b = func_0011BA18(3);
+            func_0010CBC8(0, a, b, func_0011BA18(0xC));
+        } else if (D_001BD888[0] != 0) {
+            func_0010A4D0(D_001BD888[0], 0, 0);
         }
     }
-    temp_3 = temp_18 * 4;
-    M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) = (s32) *(&func_01000000 + 0xCE3A0 + temp_3);
-    func_0010B378(*(&func_01000000 + 0xCE390 + temp_3), &func_001B9FD8 + 0x1748, &func_001B9FD8 + 0x16EC);
+    D_001BB6C4[0] = D_010CE3A0[idx];
+    func_0010B378(D_010CE390[idx], D_001BB720);
     func_0013BBD0();
-    if (M2C_FIELD(&func_001B9FD8, s32 *, 0x16DC) != 0) {
-        func_00136CC8(temp_18);
-    }
+    if (D_001BB6B4[0] != 0) func_00136CC8(idx);
 }

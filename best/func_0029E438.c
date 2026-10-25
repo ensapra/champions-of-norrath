@@ -1,36 +1,36 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern char D_00478198[];
 
-s32 func_001671F8(M2C_UNK *);                       /* extern */
-M2C_UNK func_00190E20(s32, s32, f32, f32, f32, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
-extern M2C_UNK D_00478198;
+extern s32 func_001671F8(void *);
+extern void func_00190E20(s32, s32, f32, f32, f32, f32, f32, f32, f32, f32);
 
 void func_0029E438(void *arg0, s32 arg1, s32 arg2) {
-    s32 temp_16;
-    s32 temp_18;
-    s32 temp_19;
-    void *temp_3;
-    void *temp_3_2;
-    void *temp_7;
-    void *temp_7_2;
+    char *base = (char *)arg0;
+    s32 r0, r1, r2;
 
-    temp_3 = M2C_FIELD(arg0, void **, 0x60);
-    temp_3_2 = M2C_FIELD(arg0, void **, 0x60);
-    temp_19 = M2C_FIELD((temp_3 + 0x58), s32 (**)(void *, M2C_UNK), 4)(arg0 + M2C_FIELD(temp_3, s16 *, 0x58), 0);
-    temp_7 = M2C_FIELD(arg0, void **, 0x60);
-    temp_7_2 = temp_7 + 0x58;
-    temp_18 = M2C_FIELD((temp_3_2 + 0x58), s32 (**)(void *, M2C_UNK, s32), 4)(arg0 + M2C_FIELD(temp_3_2, s16 *, 0x58), 1, arg2) / 12;
-    temp_16 = M2C_FIELD(temp_7_2, s32 (**)(void *, M2C_UNK, s32, void *), 4)(arg0 + M2C_FIELD(temp_7, s16 *, 0x58), 2, arg2, temp_7_2);
-    func_00190E20(arg1, func_001671F8(&D_00478198), (f32) temp_19, (f32) temp_18, (f32) temp_16, 0, 0, 0, 0, 0);
+    {
+        void *vtable = *(void **)(base + 0x60);
+        char *dispatch = (char *)vtable + 0x58;
+        s16 offset = *(s16 *)dispatch;
+        s32 (*fn)(void *, s32) = *(s32 (**)(void *, s32))(dispatch + 4);
+        r0 = fn(base + offset, 0);
+    }
+    {
+        void *vtable = *(void **)(base + 0x60);
+        char *dispatch = (char *)vtable + 0x58;
+        s16 offset = *(s16 *)dispatch;
+        s32 (*fn)(void *, s32, s32) = *(s32 (**)(void *, s32, s32))(dispatch + 4);
+        r1 = fn(base + offset, 1, arg2) / 12;
+    }
+    {
+        void *vtable = *(void **)(base + 0x60);
+        char *dispatch = (char *)vtable + 0x58;
+        s16 offset = *(s16 *)dispatch;
+        s32 (*fn)(void *, s32, s32) = *(s32 (**)(void *, s32, s32))(dispatch + 4);
+        r2 = fn(base + offset, 2, arg2);
+    }
+
+    s32 r = func_001671F8(D_00478198);
+
+    void (*fp)(s32, s32, f32, f32, f32, f32, f32, f32, f32, f32) = func_00190E20;
+    fp(arg1, r, (f32)r0, (f32)r1, (f32)r2, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
 }
