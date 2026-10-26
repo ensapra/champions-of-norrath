@@ -1,0 +1,1 @@
+typedef signed short s16; extern char D_0034B6B1[],D_00484610[]; s32 func_00305328(void*,void*); void func_0019E780(s32 a){volatile unsigned char x[0x100];s32 i;for(i=3;i>=0;i--)*(volatile s16*)(x+0x24+i*8)=-1;x[0x21]=0xff;x[0x20]=0xff;for(i=0;i<4;i++){*(volatile s16*)(x+0x10+i*2)=0;*(volatile s16*)(x+0x18+i*2)=0;}func_00305328(D_0034B6B1,D_00484610);x[0x30]=a;}

@@ -22,11 +22,11 @@ extern s8 D_00483200;
 extern s32 D_00483204;
 extern s8 D_00483208;
 extern s32 D_004844A8;
-extern s8 D_00487080;
-extern M2C_UNK D_004D7080;
-extern M2C_UNK D_004D70FC;
-extern M2C_UNK D_004D7100;
-extern M2C_UNK D_004DA080;
+extern s8 D_00487080[];
+extern u8 D_004D7080[];
+extern u8 D_004D70FC[];
+extern u8 D_004D7100[];
+extern u8 D_004DA080[];
 
 void func_001005A8(s32 arg0, M2C_UNK *arg1) {
     s32 sp0;
@@ -35,7 +35,7 @@ void func_001005A8(s32 arg0, M2C_UNK *arg1) {
     s16 *var_19;
     s16 *var_4_2;
     s16 temp_3;
-    s16 var_5_2;
+    s32 var_5_2;
     s32 **var_22;
     s32 *temp_3_2;
     s32 temp_30;
@@ -67,51 +67,21 @@ void func_001005A8(s32 arg0, M2C_UNK *arg1) {
         var_6 = D_00483204;
         sp0 = var_6;
         if (var_6 >= 0) {
-            *(&D_004D70FC + (var_6 * 0xC0)) = D_004844A8;
+            *(s32 *)(D_004D70FC + (var_6 * 0xC0)) = D_004844A8;
         }
         temp_30 = var_6 * 2;
         if (D_00483208 != 0) {
             temp_6 = var_6 * 0xC0;
-            temp_18 = temp_6 + &D_004D7100;
-            M2C_ERROR(/* unknown instruction: ldl $v1, 0x7($v0) */);
-            M2C_ERROR(/* unknown instruction: ldr $v1, ($v0) */);
-            M2C_ERROR(/* unknown instruction: ldl $a0, 0xf($v0) */);
-            M2C_ERROR(/* unknown instruction: ldr $a0, 0x8($v0) */);
-            M2C_ERROR(/* unknown instruction: ldl $a1, 0x17($v0) */);
-            M2C_ERROR(/* unknown instruction: ldr $a1, 0x10($v0) */);
-            M2C_ERROR(/* unknown instruction: ldl $a4, 0x1f($v0) */);
-            M2C_ERROR(/* unknown instruction: ldr $a4, 0x18($v0) */);
-            M2C_ERROR(/* unknown instruction: sdl $v1, 0x7($s2) */);
-            M2C_ERROR(/* unknown instruction: sdr $v1, ($s2) */);
-            M2C_ERROR(/* unknown instruction: sdl $a0, 0xf($s2) */);
-            M2C_ERROR(/* unknown instruction: sdr $a0, 0x8($s2) */);
-            M2C_ERROR(/* unknown instruction: sdl $a1, 0x17($s2) */);
-            M2C_ERROR(/* unknown instruction: sdr $a1, 0x10($s2) */);
-            M2C_ERROR(/* unknown instruction: sdl $a4, 0x1f($s2) */);
-            M2C_ERROR(/* unknown instruction: sdr $a4, 0x18($s2) */);
-            M2C_ERROR(/* unknown instruction: ldl $v1, 0x27($v0) */);
-            M2C_ERROR(/* unknown instruction: ldr $v1, 0x20($v0) */);
-            M2C_ERROR(/* unknown instruction: ldl $a0, 0x2f($v0) */);
-            M2C_ERROR(/* unknown instruction: ldr $a0, 0x28($v0) */);
-            M2C_ERROR(/* unknown instruction: ldl $a1, 0x37($v0) */);
-            M2C_ERROR(/* unknown instruction: ldr $a1, 0x30($v0) */);
-            M2C_ERROR(/* unknown instruction: ldl $a4, 0x3f($v0) */);
-            M2C_ERROR(/* unknown instruction: ldr $a4, 0x38($v0) */);
-            M2C_ERROR(/* unknown instruction: sdl $v1, 0x27($s2) */);
-            M2C_ERROR(/* unknown instruction: sdr $v1, 0x20($s2) */);
-            M2C_ERROR(/* unknown instruction: sdl $a0, 0x2f($s2) */);
-            M2C_ERROR(/* unknown instruction: sdr $a0, 0x28($s2) */);
-            M2C_ERROR(/* unknown instruction: sdl $a1, 0x37($s2) */);
-            M2C_ERROR(/* unknown instruction: sdr $a1, 0x30($s2) */);
-            M2C_ERROR(/* unknown instruction: sdl $a4, 0x3f($s2) */);
+            temp_18 = temp_6 + D_004D7100;
+            { typedef struct __attribute__((packed)) { u64 q[8]; } DCopy64; *(DCopy64 *)temp_18 = *(DCopy64 *)D_004DA080; }
             var_22 = NULL;
             var_21 = 0;
             M2C_ERROR(/* unknown instruction: sdr $a4, 0x38($s2) */);
             var_16 = M2C_FIELD(temp_18, u16 *, 6);
             M2C_FIELD(temp_18, s32 *, -4) = (s32) D_004844A8;
-            var_20 = M2C_FIELD(temp_18, s32 *, 0x10) + &D_004DA080;
+            var_20 = M2C_FIELD(temp_18, s32 *, 0x10) + D_004DA080;
             if (var_16 != 0) {
-                temp_2 = &D_004D7100 - 0x80;
+                temp_2 = D_004D7100 - 0x80;
                 sp4 = temp_6 + 0x40 + temp_2;
                 var_19 = temp_6 + temp_2 + 0x40;
                 var_2 = (s32) var_16 < 0x50;
@@ -121,28 +91,24 @@ loop_6:
                 temp_2_2 = D_00487080;
 loop_7:
                 var_5_2 = 0;
-                if (temp_2_2 != 0) {
-                    var_3 = &D_00487080;
+                if (D_00487080[0] != 0) {
                     var_5_2 = 1;
-loop_9:
-                    var_3 += 0x500;
-                    if (var_5_2 < 0x100) {
-                        if (*var_3 != 0) {
-                            var_5_2 += 1;
-                            goto loop_9;
-                        }
+                    var_3 = D_00487080 + 0x500;
+                    while (var_5_2 < 0x100 && *var_3 != 0) {
+                        var_5_2++;
+                        var_3 += 0x500;
                     }
                 }
                 if (var_5_2 == 0x100) {
                     if (func_001004A8() == 0) {
                         if (var_21 > 0) {
                             var_5_3 = var_21;
-                            var_4_2 = ((temp_30 + sp0) << 6) + &D_004D7080 + 0x40;
+                            var_4_2 = ((temp_30 + sp0) << 6) + D_004D7080 + 0x40;
                             do {
                                 temp_3 = *var_4_2;
                                 var_4_2 += 2;
                                 var_5_3 -= 1;
-                                *((temp_3 * 0x500) + &D_00487080) = 0;
+                                *((temp_3 * 0x500) + D_00487080) = 0;
                             } while (var_5_3 != 0);
                         }
                         *sp4 = -1;
@@ -152,7 +118,7 @@ loop_9:
                 } else {
                     *var_19 = var_5_2;
                     var_21 += 1;
-                    temp_3_2 = (var_5_2 * 0x500) + &D_00487080;
+                    temp_3_2 = (var_5_2 * 0x500) + D_00487080;
                     var_19 += 2;
                     if (var_22 != NULL) {
                         *var_22 = temp_3_2;
@@ -178,10 +144,10 @@ loop_9:
                 }
             } else {
 block_29:
-                var_5 = &D_004D7080;
+                var_5 = D_004D7080;
                 var_4 = -1;
                 var_6 = -0xF4240;
-                M2C_FIELD((((((temp_30 + sp0) << 5) + var_21) * 2) + &D_004D7080), s16 *, 0x40) = -1;
+                M2C_FIELD((((((temp_30 + sp0) << 5) + var_21) * 2) + D_004D7080), s16 *, 0x40) = -1;
                 M2C_FIELD(temp_18, s16 *, 0xA) = -0x5805;
                 D_00483204 = -0xF4240;
                 M2C_FIELD(temp_18, s32 *, 0x10) = 0;
@@ -193,15 +159,15 @@ block_30:
             if (func_00166D20(var_4, var_5, var_6) == 0) {
                 D_00483200 = 0;
                 var_18 = 0;
-                var_16_2 = &D_004D7080 + 0x40;
+                var_16_2 = D_004D7080 + 0x40;
                 var_17 = 0;
 loop_32:
-                temp_4 = var_17 + &D_004D7080;
+                temp_4 = var_17 + D_004D7080;
                 var_17 += 0xC0;
                 if ((M2C_FIELD(var_16_2, s8 *, -0x40) != 0) && (M2C_FIELD(var_16_2, s16 *, 0) == -1)) {
                     temp_2_3 = func_00100258(temp_4);
                     if (temp_2_3 != NULL) {
-                        func_00166BF8(&D_00454320, &D_004DA080, &D_00483208, M2C_FIELD(temp_2_3, u16 *, 4) << 0xB, M2C_FIELD(temp_2_3, u16 *, 2) << 0xB);
+                        func_00166BF8(&D_00454320, D_004DA080, &D_00483208, M2C_FIELD(temp_2_3, u16 *, 4) << 0xB, M2C_FIELD(temp_2_3, u16 *, 2) << 0xB);
                         D_00483200 = 1;
                         D_00483204 = var_18;
                         M2C_FIELD(var_16_2, s32 *, 0x3C) = (s32) D_004844A8;

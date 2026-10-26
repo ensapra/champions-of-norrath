@@ -1,115 +1,35 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-M2C_UNK func_001A24AC(void *, s32, s32);            /* extern */
-M2C_UNK func_001A4738(void *, s32, M2C_UNK);        /* extern */
-s32 func_001B08B0(void *, s32, M2C_UNK, s32 *, M2C_UNK, s32 *, M2C_UNK, M2C_UNK, s32); /* extern */
-s32 func_001B4C40();                                /* extern */
-s32 func_001B4D40();                                /* extern */
-extern M2C_UNK func_01109848;
-
-s32 func_001B5418(s32 arg0, s32 arg1, s32 arg2, s32 *arg3, s32 arg4) {
-    s32 *var_21;
-    s32 var_2;
-    s32 var_3;
-    void *temp_2;
-    void *temp_2_2;
-    void *var_4;
-    void *var_5;
-
-    var_2 = 0xFFFF0000;
-    if (func_001B4C40() >= 0) {
-        if (func_001B4D40() == 0) {
-            temp_2 = &func_01109848 + 0x1980;
-            func_001A4738(temp_2, arg0, 0xFC);
-            temp_2_2 = temp_2 - 8;
-            M2C_FIELD(temp_2_2, s8 *, 0x103) = 0;
-            if (arg2 != 0) {
-                if (arg1 >= 0xFD) {
-                    var_4 = temp_2 + 0xFC;
-                    var_3 = arg2;
-                    if ((arg2 | (s32) var_4) & 7) {
-                        var_21 = &func_01109848 + 0x1978;
-                        var_5 = (void *)0x01110000;
-                        do {
-                            M2C_ERROR(/* unknown instruction: ldl $a2, 0x7($v1) */);
-                            M2C_ERROR(/* unknown instruction: ldr $a2, ($v1) */);
-                            M2C_ERROR(/* unknown instruction: ldl $a3, 0xf($v1) */);
-                            M2C_ERROR(/* unknown instruction: ldr $a3, 0x8($v1) */);
-                            M2C_ERROR(/* unknown instruction: ldl $a4, 0x17($v1) */);
-                            M2C_ERROR(/* unknown instruction: ldr $a4, 0x10($v1) */);
-                            M2C_ERROR(/* unknown instruction: ldl $a5, 0x1f($v1) */);
-                            M2C_ERROR(/* unknown instruction: ldr $a5, 0x18($v1) */);
-                            M2C_ERROR(/* unknown instruction: sdl $a2, 0x7($a0) */);
-                            M2C_ERROR(/* unknown instruction: sdr $a2, ($a0) */);
-                            M2C_ERROR(/* unknown instruction: sdl $a3, 0xf($a0) */);
-                            M2C_ERROR(/* unknown instruction: sdr $a3, 0x8($a0) */);
-                            M2C_ERROR(/* unknown instruction: sdl $a4, 0x17($a0) */);
-                            M2C_ERROR(/* unknown instruction: sdr $a4, 0x10($a0) */);
-                            M2C_ERROR(/* unknown instruction: sdl $a5, 0x1f($a0) */);
-                            M2C_ERROR(/* unknown instruction: sdr $a5, 0x18($a0) */);
-                            var_3 += 0x20;
-                            var_4 += 0x20;
-                        } while (var_3 != (arg2 + 0xE0));
-                    } else {
-                        var_21 = &func_01109848 + 0x1978;
-                        var_5 = &func_01109848 + 0x1B78;
-                        do {
-                            M2C_FIELD(var_4, s64 *, 0) = (s64) M2C_FIELD(var_3, s64 *, 0);
-                            M2C_FIELD(var_4, s64 *, 8) = (s64) M2C_FIELD(var_3, s64 *, 8);
-                            M2C_FIELD(var_4, s64 *, 0x10) = (s64) M2C_FIELD(var_3, s64 *, 0x10);
-                            M2C_FIELD(var_4, s64 *, 0x18) = (s64) M2C_FIELD(var_3, s64 *, 0x18);
-                            var_3 += 0x20;
-                            var_4 += 0x20;
-                        } while (var_3 != (arg2 + 0xE0));
-                    }
-                    M2C_ERROR(/* unknown instruction: ldl $a2, 0x7($v1) */);
-                    M2C_ERROR(/* unknown instruction: ldr $a2, ($v1) */);
-                    M2C_ERROR(/* unknown instruction: ldl $a3, 0xf($v1) */);
-                    M2C_ERROR(/* unknown instruction: ldr $a3, 0x8($v1) */);
-                    M2C_ERROR(/* unknown instruction: ldl $a4, 0x17($v1) */);
-                    M2C_ERROR(/* unknown instruction: ldr $a4, 0x10($v1) */);
-                    M2C_ERROR(/* unknown instruction: sdl $a2, 0x7($a0) */);
-                    M2C_ERROR(/* unknown instruction: sdr $a2, ($a0) */);
-                    M2C_ERROR(/* unknown instruction: sdl $a3, 0xf($a0) */);
-                    M2C_ERROR(/* unknown instruction: sdr $a3, 0x8($a0) */);
-                    M2C_ERROR(/* unknown instruction: sdl $a4, 0x17($a0) */);
-                    M2C_ERROR(/* unknown instruction: sdr $a4, 0x10($a0) */);
-                    M2C_FIELD(var_4, M2C_UNK *, 0x18) = M2C_UNALIGNED32(M2C_FIELD(var_3, M2C_UNK *, 0x18));
-                    *var_21 = 0xFC;
-                } else {
-                    var_21 = &func_01109848 + 0x1978;
-                    func_001A24AC(temp_2 + 0xFC, arg2, arg1);
-                    M2C_FIELD(temp_2, s32 *, -8) = arg1;
-                    goto block_16;
-                }
-            } else {
-                M2C_FIELD(temp_2_2, s8 *, 0x104) = 0;
-                var_21 = &func_01109848 + 0x1978;
-                M2C_FIELD(temp_2, s32 *, -8) = 0;
-block_16:
-                var_5 = &func_01109848 + 0x1B78;
-            }
-            if (func_001B08B0(var_5, arg4, 0, var_21, 0x200, var_21, 8, 0, 0) >= 0) {
-                var_2 = M2C_FIELD(var_21, s32 *, 0);
-                *arg3 = M2C_FIELD(var_21, s32 *, 4);
-                /* Duplicate return node #22. Try simplifying control flow for better match */
-                return var_2;
-            }
-            return 0xFFFEFFFF;
-        }
-        return 0xFFFEFFFC;
-    }
-    return var_2;
+s32 func_001B4C40(void); s32 func_001B4D40(void);
+s32 func_001A4738(void*,s32,s32); s32 func_001A24AC(void*,s32,s32);
+s32 func_001B08B0(void*,s32,s32,s32*,s32,s32*,s32,s32,s32);
+extern u8 func_01109848[];
+s32 func_001B5418(s32 a0, s32 a1, void *a2, s32 *a3, s32 a4) {
+ s32 r=0xFFFF0000;
+ u8 *dst,*buf; s32 *result; s32 status;
+ if(func_001B4C40()<0) return r;
+ if(func_001B4D40()!=0) return 0xFFFEFFFC;
+ dst=func_01109848+0x1980;
+ func_001A4738(dst,a0,0xFC);
+ result=(s32 *)(dst-8); dst[-5]=0;
+ if(a2) {
+  if(a1>=0xFD) {
+   u8 *d=dst+0xFC; u8 *s=a2; u8 *end=s+0xE0;
+   while(s<end) {
+    u64 q0=*(u64*)(s+0),q1=*(u64*)(s+8),q2=*(u64*)(s+16),q3=*(u64*)(s+24);
+    *(u64*)(d+0)=q0; *(u64*)(d+8)=q1; *(u64*)(d+16)=q2; *(u64*)(d+24)=q3;
+    s+=0x20; d+=0x20;
+   }
+   *(u64*)(d)=*(u64*)(s); *(u64*)(d+8)=*(u64*)(s+8); *(u32*)(d+16)=*(u32*)(s+16);
+   *result=0xFC;
+   buf=func_01109848+0x1B78;
+  } else {
+   func_001A24AC(dst+0xFC,(s32)a2,a1);
+   *(s32*)(dst-8)=a1;
+   buf=func_01109848+0x1B78;
+  }
+ } else {
+  dst[0x104]=0; *(s32*)(dst-8)=0; buf=func_01109848+0x1B78;
+ }
+ status=func_001B08B0(buf,a4,0,result,0x200,result,8,0,0);
+ if(status>=0){*a3=result[1];return *result;}
+ return 0xFFFEFFFF;
 }

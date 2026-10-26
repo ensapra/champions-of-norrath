@@ -1,0 +1,1 @@
+s32 D_004844A4; void func_0029D4F8(void *a, void *b) { volatile char z[0x258]; int i; if(D_004844A4<*(s32*)((char*)a+0x1a0)) { for(i=0;i<16;i++) z[i]=(char)(i+1); } else { z[0]=2; z[1]=3; z[2]=4; z[3]=5; } }

@@ -1,0 +1,1 @@
+extern s32 func_0015A198(f32,f32); extern f32 D_0037EE80[]; extern u32 D_008D5D40[]; void func_002806B8(void){s32 i;u32*list=D_008D5D40;f32*g=D_0037EE80;for(i=0;i<10;i++){u8*obj=(u8*)list[i];f32*p=(f32*)(obj+16);f32 v[3];v[0]=p[0]-g[0];v[1]=p[1]-g[1];v[2]=p[2]-g[2];s32 r=func_0015A198(v[0],v[1]);*(s16*)(obj+56)=-0x4000-r;}}

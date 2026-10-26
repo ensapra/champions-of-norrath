@@ -1,0 +1,1 @@
+typedef struct{char pad[0x48];void *v;char rest[0x428];} Obj;extern void*func_001441B8(int);extern void func_00194498(void*,void*);extern int D_0044D498;Obj*func_0011CEF8(Obj*a){Obj*p=(Obj*)func_001441B8(0x478);if(!p)return 0;p->v=&D_0044D498;func_00194498(p,a);func_00194498((char*)p+4,(char*)a+4);func_00194498((char*)p+8,(char*)a+8);*p=*a;return p;}

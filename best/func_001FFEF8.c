@@ -1,0 +1,1 @@
+void func_001FFEF8(void *arg0) { if (!arg0) return; if (*(s32*)((char*)arg0+0x100)<=0) { *(volatile s8*)((char*)arg0+0x450)=*(s8*)((char*)arg0+0x238); *(volatile s8*)((char*)arg0+0x452)=*(s8*)((char*)arg0+0x451); } }

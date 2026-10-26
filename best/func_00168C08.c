@@ -1,0 +1,82 @@
+typedef struct { u8 *cur; u8 *start; u64 *tag; } Ctx;
+typedef struct { s32 a, b, c; } V3i;
+typedef struct { f32 m[16]; } Mat;
+typedef struct { char pad[0x10]; u16 flags; char pad2[6]; u64 q18; u8 b20; } Prm;
+typedef struct { u64 d, r; } Reg;
+s8 D_0048407C;
+extern void func_0013D970();
+void func_00168C08(Ctx *c, Mat *m, V3i *v, Prm *pr, s8 a4) {
+  V3i sp;
+  u8 *p, *t;
+  Reg *e, *e1, *e2, *e3;
+  u64 *r;
+  u16 fl;
+  u8 *st = c->cur;
+  p = st + 0xC;
+  *(u32 *)(st + 8) = 0x11000000;
+  c->start = st;
+  c->cur = p;
+  while (((u32)p & 0xF) != 0xC) *p++ = 0;
+  fl = pr->flags;
+  *(u32 *)p = (((fl & 0x10) != 0) + 5) | 0x50000000;
+  e = (Reg *)(p + 4);
+  e1 = (Reg *)(p + 0x14);
+  e2 = (Reg *)(p + 0x24);
+  e3 = (Reg *)(p + 0x34);
+  e->d = ((u64)0x10000000 << 32) | 0x8000;
+  e->r = 0xE;
+  c->tag = (u64 *)e;
+  e1->r = 0x3F;
+  e1->d = 0;
+  c->cur = (u8 *)e3;
+  e2->r = 6;
+  e2->d = 0;
+  if (a4 != 0) {
+    e3->r = 0x42;
+    e3->d = ((u64)(0x80 - a4) << 32) | 0x64;
+    c->cur = (u8 *)(e + 4);
+  } else {
+    c->cur = (u8 *)(e3 + 1);
+    e3->r = 0x42;
+    e3->d = pr->q18;
+  }
+  if (fl & 0x10) {
+    Reg *x = (Reg *)c->cur;
+    x->d = ((u64)pr->b20 << 32) | 0x64;
+    x->r = 0x43;
+    c->cur = (u8 *)(x + 1);
+  }
+  t = c->cur;
+  r = c->tag;
+  *(f32 *)(t + 0x14) = m->m[0];
+  *(u64 *)(t + 8) = 0x47;
+  *(u64 *)t = 0x507F5;
+  *(f32 *)(t + 0x18) = m->m[1];
+  *(u32 *)(t + 0x10) = 0x6C04C000;
+  *(f32 *)(t + 0x1C) = m->m[2];
+  *r |= (((s32)((u64 *)(t + 0x10) - r) - 2) >> 1);
+  *(f32 *)(t + 0x20) = m->m[3];
+  *(f32 *)(t + 0x24) = m->m[4];
+  *(f32 *)(t + 0x28) = m->m[5];
+  *(f32 *)(t + 0x2C) = m->m[6];
+  *(f32 *)(t + 0x30) = m->m[7];
+  *(f32 *)(t + 0x34) = m->m[8];
+  *(f32 *)(t + 0x38) = m->m[9];
+  *(f32 *)(t + 0x3C) = m->m[10];
+  *(f32 *)(t + 0x40) = m->m[11];
+  *(f32 *)(t + 0x44) = m->m[12];
+  *(f32 *)(t + 0x48) = m->m[13];
+  c->cur = t + 0x54;
+  *(f32 *)(t + 0x4C) = m->m[14];
+  *(f32 *)(t + 0x50) = m->m[15];
+  c->cur = t + 0x5C;
+  *(u32 *)(t + 0x54) = D_0048407C | 0x04000000;
+  *(u32 *)(t + 0x58) = 0x14000002;
+  sp = *v;
+  func_0013D970(c, &sp, t + 0x54, 0x14000002, &sp, t + 0x5C, 0x04000000, m);
+  p = c->cur;
+  while ((u32)p & 0xF) *p++ = 0;
+  st = c->start;
+  c->cur = p;
+  *(u64 *)st = (((s32)(p - st) >> 3) - 2 >> 1) | 0x10000000;
+}

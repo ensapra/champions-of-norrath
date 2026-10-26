@@ -54,12 +54,12 @@ void func_0011A0B8(s32 arg0, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s
     void *var_16;
 
     sp0 = arg0;
-    spC = ((arg5 - arg3) - 1) << 0xA;
+    spC = ((arg3 - arg0) - 1) << 0xA;
     sp8 = (arg0 * 2) + sp0;
     sp4 = arg4;
-    sp10 = ((arg6 - arg4) - 1) << 0xA;
-    sp18 = arg6 - 2;
-    sp14 = arg5 - 2;
+    sp10 = ((arg2 - arg3) - 1) << 0xA;
+    sp18 = arg0 - 2;
+    sp14 = arg2 - 2;
     switch (arg_sp10) {                             /* irregular */
     case 0x0:
         var_25 = arg7;

@@ -36,6 +36,7 @@ extern s32 func_002D7690(u32, void *, s32, void *, s32, s32);
 extern s32 func_002D7858(void *, s32);
 extern Pkt *func_002E4700(void *);
 extern s32 func_002E47A8(Pkt *);
+extern char _gp[];
 
 s32 func_002E4BE0(Cli *c, s32 rpc, s32 mode, void *sbuf, s32 ssize, void *rbuf, s32 rsize, void *endfunc, void *endpara) {
     Pkt *p;
@@ -60,7 +61,7 @@ s32 func_002E4BE0(Cli *c, s32 rpc, s32 mode, void *sbuf, s32 ssize, void *rbuf, 
     c->x4 = p->x18;
     c->pkt = p;
     c->endfunc = endfunc;
-    c->gp = (s32)(void *)0;
+    c->gp = (s32)_gp;
     p->rpc = rpc;
     p->self = p;
     p->ssize = ssize;
@@ -69,13 +70,13 @@ s32 func_002E4BE0(Cli *c, s32 rpc, s32 mode, void *sbuf, s32 ssize, void *rbuf, 
     p->cli = c;
     p->x34 = c->x24;
     if (sbuf == rbuf) {
-        func_002D7858(sbuf, ssize < rsize ? ssize : rsize);
+        func_002D7858(sbuf, ssize < rsize ? rsize : ssize);
     } else {
         if (ssize > 0) func_002D7858(sbuf, ssize);
         if (rsize > 0) func_002D7858(rbuf, rsize);
     }
     if (mode & 1) {
-        p->flag = endfunc ? 1 : 0;
+        if (endfunc == 0) p->flag = 0; else p->flag = 1;
         c->sema = -1;
         if (func_002D7690(0x8000001A, p, 0x40, sbuf, c->dest, ssize) == 0) {
             func_002E47A8(p);

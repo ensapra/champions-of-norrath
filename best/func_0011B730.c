@@ -1,0 +1,1 @@
+void *func_001441B8(s32); void func_00194498(void*,void*); void *func_0011B730(void*a){void*d=func_001441B8(0x3D0);if(!d)return 0;func_00194498(d,a);func_00194498(d+4,a+4);func_00194498(d+8,a+8);*(s32*)(d+0xC)=*(s32*)(a+0xC);func_00194498(d+0x10,a+0x10);return d;}

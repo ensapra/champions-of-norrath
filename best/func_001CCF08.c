@@ -62,9 +62,9 @@ extern f32 D_00486634;
 extern f32 D_00486638;
 extern s32 D_00486640;
 extern s32 D_00486644;
-extern M2C_UNK func_001D0B88;
-extern M2C_UNK func_001D0C50;
-extern M2C_UNK func_001D0D80;
+extern void func_001D0B88(void);
+extern void func_001D0C50(void);
+extern void func_001D0D80(void);
 
 void func_001CCF08(void) {
     s32 *temp_11;

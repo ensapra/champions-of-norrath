@@ -1,0 +1,7 @@
+extern char D_00470FA8[],D_00470FB8[],D_00470FC8[],D_00470FD8[]; void *D_00483ACC;
+s64 func_0016C970(s32,s32); void func_00143830(void*); s32 func_00304168(void*,void*); void func_00194300(void*); void func_00194390(void*,void*,void*); void *func_001441B8(s32,s32); void func_00149068(); void func_001D5630(s32,void*); void func_00163830(void*,s32,s32,s32); void func_00303EB8(void*,void*,s32); s32 func_00143A80(void*,void*,s32); void func_001D3E88(void*); s32 func_00165DC0(void*,void*); void func_0024D308(void*,void*,f32);
+void func_00220BC0(void*p){s32 old=*(s32*)((char*)p+0x178),i; s64 bits=*(s64*)((char*)p+0x180),cur; void* temp=(char*)p+12; char b[32]; if(!old){bits|=1;*(s64*)((char*)p+0x180)=bits;*(s64*)((char*)p+0xc8)=func_0016C970(*(s32*)((char*)p+0x90),bits);} cur=func_0016C970(*(s32*)((char*)p+0x90),bits); if(old<*(s32*)((char*)p+0x120)-1){old++;*(s32*)((char*)p+0x178)=old;*(s32*)((char*)p+0x17c)=0;bits|=1<<old;*(s64*)((char*)p+0x180)=bits;}else if(*(s32*)((char*)p+0x11c)&128){old=0;*(s32*)((char*)p+0x178)=0;*(s32*)((char*)p+0x17c)=0;} cur=func_0016C970(*(s32*)((char*)p+0x90),bits);*(s64*)((char*)p+0xc8)=cur;
+ for(i=0;i<36;i++) if(cur&(1LL<<i)){void*x=func_001441B8(0x248,1); if(x)func_00149068(x,p,(char*)p+0x6d,(char*)p+0xd8,(char*)p+0xf8,1<<i,0x1020e,0,1.f,0);}
+ if(old!=*(s32*)((char*)p+0x30)){func_00143830(p);}
+ if(func_00304168((char*)p+0x4c,D_00470FC8)==0)func_0024D308((void*)func_00165DC0((char*)p+0x6d,D_00470FD8),p,1.f);
+}

@@ -1,0 +1,1 @@
+s32 func_00124398(void *p){volatile char pad[0x230];s32 k=*(s32*)(p+0x10)-1;switch(k){case 0:return 0;case 1:return 0;case 2:return 0;case 3:return 0;case 4:return 0;case 5:return 0;case 6:return 0;case 7:return 0;}return 0;}

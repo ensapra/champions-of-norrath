@@ -1,0 +1,50 @@
+typedef struct { s32 a, b, c; } T12;
+typedef struct { u8 b[0x40]; } B40;
+extern void *func_001441B8(s32);
+extern void func_00194498(void *, void *);
+extern void ovl_ntgui2_func_0013D230(void *);
+extern s32 D_0044D498[], D_0044D378[], D_00449E78[];
+void *func_00125D90(char *src) {
+    char *d = func_001441B8(0x1C4);
+    s32 i;
+    if (d == 0) return 0;
+    *(s32 **)(d + 0x48) = D_0044D498;
+    func_00194498(d, src);
+    func_00194498(d + 4, src + 4);
+    func_00194498(d + 8, src + 8);
+    *(s32 *)(d + 0xC) = *(s32 *)(src + 0xC);
+    *(T12 *)(d + 0x10) = *(T12 *)(src + 0x10);
+    *(f32 *)(d + 0x1C) = *(f32 *)(src + 0x1C);
+    *(s32 *)(d + 0x24) = *(s32 *)(src + 0x24);
+    *(f32 *)(d + 0x20) = *(f32 *)(src + 0x20);
+    *(u8 *)(d + 0x28) = *(u8 *)(src + 0x28);
+    *(s32 **)(d + 0x48) = D_0044D378;
+    *(u8 *)(d + 0x29) = *(u8 *)(src + 0x29);
+    *(f32 *)(d + 0x30) = *(f32 *)(src + 0x30);
+    *(f32 *)(d + 0x3C) = *(f32 *)(src + 0x3C);
+    *(s32 *)(d + 0x2C) = *(s32 *)(src + 0x2C);
+    *(s32 *)(d + 0x34) = *(s32 *)(src + 0x34);
+    *(u16 *)(d + 0x38) = *(u16 *)(src + 0x38);
+    *(f32 *)(d + 0x40) = *(f32 *)(src + 0x40);
+    *(s32 *)(d + 0x44) = *(s32 *)(src + 0x44);
+    func_00194498(d + 0x4C, src + 0x4C);
+    *(u8 *)(d + 0x50) = *(u8 *)(src + 0x50);
+    *(s32 **)(d + 0x48) = D_00449E78;
+    for (i = 0; i < 5; i++) {
+        char *dd = d + 0x54 + i * 0x18, *ss = src + 0x54 + i * 0x18;
+        *(s32 *)dd = *(s32 *)ss;
+        *(s32 *)(dd + 4) = *(s32 *)(ss + 4);
+        func_00194498(dd + 8, ss + 8);
+        *(T12 *)(dd + 0xC) = *(T12 *)(ss + 0xC);
+    }
+    for (i = 0xCC; i < 0xF8; i += 4) *(s32 *)(d + i) = *(s32 *)(src + i);
+    *(B40 *)(d + 0x100) = *(B40 *)(src + 0x100);
+    *(s32 *)(d + 0x120) = *(s32 *)(src + 0x120);
+    func_00194498(d + 0x124, src + 0x124);
+    *(s32 *)(d + 0x128) = *(s32 *)(src + 0x128);
+    *(u8 *)(d + 0x1B3) = *(u8 *)(src + 0x1B3);
+    *(s32 *)(d + 0x1B8) = *(s32 *)(src + 0x1B8);
+    *(s32 *)(d + 0x1BC) = *(s32 *)(src + 0x1BC);
+    *(s32 *)(d + 0x1C0) = *(s32 *)(src + 0x1C0);
+    return d;
+}

@@ -12,9 +12,9 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-f32 func_00159330(s8, s8, M2C_UNK, f32, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
+f32 func_00159330(s8, s8, s32, f32, f32, f32, f32, f32); /* extern */
 void *func_001671F8(M2C_UNK *);                     /* extern */
-M2C_UNK func_0016EC08(M2C_UNK, f32, M2C_UNK, f32, M2C_UNK, s32); /* extern */
+s32 func_0016EC08(s32, s32, s32, s32, s32, s32); /* extern */
 M2C_UNK func_00172728(M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, s32, M2C_UNK, M2C_UNK, s32); /* extern */
 M2C_UNK func_00172BC8(s32, M2C_UNK, s32, M2C_UNK);  /* extern */
 M2C_UNK func_00172DC0(s32, M2C_UNK, M2C_UNK);       /* extern */
@@ -27,24 +27,24 @@ M2C_UNK func_00283B00(M2C_UNK);                     /* extern */
 M2C_UNK func_00304640(M2C_UNK *, void *);           /* extern */
 u32 func_00304CFC(M2C_UNK *);                       /* extern */
 extern M2C_UNK D_004283E0;
-extern M2C_UNK D_00476D00;
-extern M2C_UNK D_00476D10;
-extern M2C_UNK D_00476D20;
+extern M2C_UNK D_00476D00[];
+extern M2C_UNK D_00476D10[];
+extern M2C_UNK D_00476D20[];
 extern s32 D_00483F70;
 extern s32 D_00483F74;
 extern s32 D_00484CA4;
 extern s32 D_00486030;
-extern M2C_UNK D_00486088;
+extern M2C_UNK D_00486088[];
 extern s8 D_00486D8C;
 extern s8 D_00486D8D;
 extern u32 D_00486D90;
 extern s32 D_00486D94;
 extern f32 D_00486D9C;
 extern s8 D_00486DA0;
-extern M2C_UNK D_008D60E0;
+extern M2C_UNK D_008D60E0[120];
 
 void func_00283768(void) {
-    M2C_UNK sp10;
+    M2C_UNK sp10[32];
     M2C_UNK *var_20;
     f32 temp_f0;
     f32 temp_f20;
@@ -68,7 +68,7 @@ void func_00283768(void) {
                     if (var_19 == D_00486D94) {
                         func_00172DC0((D_00486D90 << 0x18) | 0x202020, -1, 0);
                     }
-                    func_00304640(&sp10, var_21 + &D_008D60E0);
+                    func_00304640(sp10, var_21 + &D_008D60E0);
                     var_16 = NULL;
 loop_8:
                     if (func_00304CFC(&sp10) >= 2U) {
@@ -94,9 +94,11 @@ loop_8:
             }
             func_00172F88();
             temp_f21 = (f32) ((D_00486D8D * 0x15) + 0x7D);
-            temp_f20 = (f32) ((D_00486D8C * 0x15) + 0x7D) - temp_f21;
-            temp_f0 = func_00159330(D_00486D8D, D_00486D8C, 0x7D, D_00486D9C, 0, 0x3F800000, 0x3F000000, 0x3F000000);
-            func_0016EC08(0xC2, temp_f0, 0x1BE, temp_f0, 6, (((s32) (D_00486D90 + ((u32) D_00486D90 >> 0x1F)) >> 1) << 0x18) | 0x366876);
+            temp_f20 = (f32) ((D_00486D8C * 0x15) + 0x7D);
+            temp_f0 = func_00159330(D_00486D8D, D_00486D8C, 0x7D, D_00486D9C, 0.0f, 1.0f, 0.5f, temp_f20);
+            temp_f20 = (temp_f20 - temp_f21) * temp_f0;
+            temp_f21 += temp_f20;
+            func_0016EC08(0xC2, (s32)temp_f21, 0x1BE, (s32)(temp_f21 + 23.0f), 6, (((s32) (D_00486D90 + ((u32) D_00486D90 >> 0x1F)) >> 1) << 0x18) | 0x366876);
             if (D_00486D8C != D_00486D94) {
                 func_00190E20(&D_004283E0, func_001671F8(&D_00476D10), (f32) D_00483F70, (f32) D_00483F74, 0, 0, 0, 0, 0, 0);
             } else {

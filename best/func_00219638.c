@@ -1,0 +1,34 @@
+typedef struct {f32 x,y,z;} Vec3;
+extern char D_0044A0C0[];
+extern f32 D_00481600,D_00481604;
+extern s32 D_004844A4;
+void func_00153FD0(void*,Vec3,Vec3);
+void ovl_ntgui2_func_0013D230(void*,s32,s32,s32,s32,s32,s32);
+void func_00143830(void*);
+s32 func_001828D8(s32,s32,s32,s32,s32,s32,s32,f32);
+void func_00183DD0(s32,Vec3*);
+void func_0013EB28(void*);
+void func_00219638(void *o,Vec3 a,Vec3 b,s16 c,s32 d,s32 e) {
+ Vec3 q;
+ func_00153FD0(&q,a,b);
+ *(void**)((u8*)o+0x48)=D_0044A0C0;
+ *(u8*)((u8*)o+0x6d)=0;
+ *(s16*)((u8*)o+0x70)=0xac; *(s16*)((u8*)o+0x72)=0xfc;
+ *(s16*)((u8*)o+0x74)=0x1f4; *(s16*)((u8*)o+0x76)=-32;
+ *(s16*)((u8*)o+0x68)=0xac; *(s16*)((u8*)o+0x6a)=0xfc;
+ *(s16*)((u8*)o+0x6c)=0x1f4; *(s16*)((u8*)o+0x6e)=-32;
+ *(f32*)((u8*)o+0x7c)=240.0f; *(f32*)((u8*)o+0x80)=D_00481600;
+ *(f32*)((u8*)o+0x74)=240.0f; *(f32*)((u8*)o+0x78)=D_00481600;
+ *(f32*)((u8*)o+0x84)=0.0f;
+ ovl_ntgui2_func_0013D230((u8*)o+0x64,0,0,0,0,0,0);
+ *(f32*)((u8*)o+0x1c)=0.0f;
+ *(s16*)((u8*)o+0x38)=c;
+ *(Vec3*)((u8*)o+0x58)=b;
+ *(s32*)((u8*)o+0xa4)=d; *(s32*)((u8*)o+0xa8)=e;
+ *(s32*)((u8*)o+0xc)|=0x4001;
+ *(s32*)((u8*)o+0x54)= D_004844A4 + ((d==1)?0x3c:0x258);
+ func_00143830(o);
+ *(s32*)((u8*)o+0xac)=func_001828D8(4,750,4,107,0x64,0xea,0xab,D_00481604);
+ func_00183DD0(*(s32*)((u8*)o+0xac),(Vec3*)((u8*)o+0x10));
+ if(d==1 && e==0) func_0013EB28((u8*)o+0x64);
+}

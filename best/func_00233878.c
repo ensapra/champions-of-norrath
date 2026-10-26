@@ -1,0 +1,33 @@
+typedef struct {u8 p[8]; s32 unk8;} A1;
+extern void ovl_ntgui2_func_00108E58(void*,void*,s16,void*,s32,f32,s32);
+extern void func_001092F0(void*,s32,void*,s32,f32,f32,f32,f32,f32);
+extern void func_001128A8(void*,s32,s32,s32,s32,s32,f32,f32,f32,s32);
+extern void func_001438A0(void*); extern void func_001637A8(void*); extern void func_00163830(void*,s32,s32); extern void func_001091B0(void*);
+extern char D_0042D138[],D_0044F5B8[];
+extern f32 D_00481A18,D_00481A1C,D_00481A20,D_00481A24,D_00481A28,D_00481A2C,D_00481A30,D_00481A34; extern s32 D_004844A4;
+void func_00233878(void *o, void *v, s16 id, s32 n) {
+ f32 half=0.5f; f32 zero=0.0f;
+ ovl_ntgui2_func_00108E58(o,v,id,D_0042D138,n,10.0f,((A1*)v)->unk8);
+ ((u8*)o)[0x28]=100; ((u8*)o)[0x29]=50;
+ *(f32*)((u8*)o+0xa8)=D_00481A18; *(f32*)((u8*)o+0x1c)=45.0f;
+ *(s32*)((u8*)o+0xf8)=D_004844A4; *(f32*)((u8*)o+0xe0)=D_00481A1C;
+ *(s32*)((u8*)o+0x3c4)=1; *(void**)((u8*)o+0x48)=D_0044F5B8;
+ *(u64*)((u8*)o+0xa0)|=0x22004000;
+ *(f32*)((u8*)o+0x64)=half; *(f32*)((u8*)o+0x60)=half; *(f32*)((u8*)o+0x58)=half; *(f32*)((u8*)o+0x5c)=half; *(f32*)((u8*)o+0x68)=half;
+ *(s32*)((u8*)o+0x3c0)=0; *(s32*)((u8*)o+0x3c8)=0; *(s32*)((u8*)o+0xb0)=0; *(s32*)((u8*)o+0xc0)=0; *(s32*)((u8*)o+0xec)=0; *(s16*)((u8*)o+0x23c)=0; *(s32*)((u8*)o+0x100)=0; *(s32*)((u8*)o+0x3d4)=0; *(s32*)((u8*)o+0x3d8)=0;
+ func_001092F0(o,1,D_0044F5B8,1,34.0f,D_00481A20,2.0f,D_00481A24,10.5f);
+ func_001637A8((u8*)o+0x120);
+ func_00163830((u8*)o+0x120, *(s32*)((u8*)o+0x24+0x6c),1);
+ func_001438A0(o);
+ func_001128A8(o,4,1,0,0,0,D_00481A28,zero,zero,0);
+ func_001128A8(o,5,1,0,0,0,D_00481A28,zero,zero,0);
+ func_001128A8(o,6,1,0,0,0,D_00481A28,zero,zero,0);
+ func_001128A8(o,7,1,0,0,0,D_00481A28,zero,zero,0);
+ func_001128A8(o,3,1,0,0,0,D_00481A28,zero,zero,0);
+ func_001128A8(o,8,1,2,0,0,2.5f,zero,zero,0);
+ func_001128A8(o,0x10,1,0,0,0,D_00481A30,zero,zero,0);
+ func_001128A8(o,0xf,1,0,0,0,half,zero,zero,0);
+ func_001128A8(o,0x11,1,0x40,0x80,0,D_00481A34,D_00481A2C,D_00481A34,0);
+ func_001128A8(o,0x13,0x10,0x20,0,0,D_00481A2C,4.0f,zero,0);
+ func_001091B0(o);
+}

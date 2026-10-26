@@ -1,0 +1,2 @@
+extern s32 D_001D0480[]; extern s32 D_001D0484[]; extern u8 D_010EB640[]; extern u8 D_010EB6C0[]; extern u8 D_010ECC00[]; s32 PollSema(s32); s32 SignalSema(s32); s32 func_001B08B0(void*,s32,s32,void*,s32,void*,s32,void*,s32); extern s32 func_0017A088(void);
+s32 func_0017A098(s32 arg0){u8 *q=D_010EB640;u8 *buf; s32 r;if(*(s32*)(q+0x24)==0)return -100;if(PollSema(D_001D0484[0])<0)return -200;buf=D_010EB6C0;*(s32*)(buf+0x14)=arg0;r=func_001B08B0(q,0x14,1,buf,0x30,D_010ECC00,4,func_0017A088,0);if(r==0)D_001D0480[0]=0x14;else SignalSema(D_001D0484[0]);return r;}

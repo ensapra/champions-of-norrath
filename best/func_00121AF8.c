@@ -1,18 +1,1 @@
-extern u8 D_001C5B00[], D_004C9260[], D_004C9200[];
-void func_0011DA20(s32, s32);
-void func_0013DE28(void *, void *, s32);
-s32 func_001A4174(void *, void *);
-
-void func_00121AF8(void)
-{
-    u8 *p = D_001C5B00;
-    s8 *q;
-    if (func_001A4174(p, D_004C9260) == 0) {
-        p[0] = D_004C9200[0];
-    }
-    q = (s8*)(p - 0x600);
-    q[0x1311] = -1;
-    q[0x1312] = -1;
-    func_0013DE28(q, q, -1);
-    func_0011DA20(1, 0xC);
-}
+extern u8 D_001C5B00[],D_004C9260[],D_004C9200[]; void func_0011DA20(s32,s32); void func_0013DE28(void*,void*,s32); s32 func_001A4174(void*,void*); void func_00121AF8(void){u8*p=D_001C5B00; s32 r=func_001A4174(p,D_004C9260); s8*q=(s8*)(p-0x600); if(r==0)p[0]=D_004C9200[0];q[0x1311]=-1;q[0x1312]=-1;func_0013DE28(q,q,-1);func_0011DA20(1,0xC);}

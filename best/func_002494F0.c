@@ -1,0 +1,32 @@
+f32 func_0015A070(s32);
+f32 func_0015A100(s32);
+f32 func_00175FE0(s32,void*,f32);
+s32 D_004844A0;
+s32 func_002494F0(void *o) {
+ typedef struct {f32 x,y,z;} V;
+ V base=*(V*)((char*)o+0x10), t, d;
+ f32 scale=30.0f, dist=10.0f;
+ s32 result=0;
+ if(*(s8*)((char*)o+0x23a)) return 0;
+ d.x=func_0015A070(0)*scale;
+ d.y=func_0015A100(0)*scale;
+ d.z=0.0f;
+ t.x=base.x+d.x;t.y=base.y+d.y;t.z=base.z+d.z;
+ if(func_00175FE0(D_004844A0,&t,10.0f)<*(f32*)((char*)o+0x18)-100.0f) return 1;
+ d.x=func_0015A070(0x4000)*scale;
+ d.y=func_0015A100(0x4000)*scale;
+ d.z=0.0f;
+ t.x=base.x+d.x;t.y=base.y+d.y;t.z=base.z+d.z;
+ if(func_00175FE0(D_004844A0,&t,10.0f)<*(f32*)((char*)o+0x18)-100.0f) return 1;
+ d.x=func_0015A070(0x7fff)*scale;
+ d.y=func_0015A100(0x7fff)*scale;
+ d.z=0.0f;
+ t.x=base.x+d.x;t.y=base.y+d.y;t.z=base.z+d.z;
+ if(func_00175FE0(D_004844A0,&t,10.0f)<*(f32*)((char*)o+0x18)-100.0f) return 1;
+ d.x=func_0015A070(-0x4000)*scale;
+ d.y=func_0015A100(-0x4000)*scale;
+ d.z=0.0f;
+ t.x=base.x+d.x;t.y=base.y+d.y;t.z=base.z+d.z;
+ if(func_00175FE0(D_004844A0,&t,10.0f)<*(f32*)((char*)o+0x18)-100.0f) return 1;
+ return result;
+}

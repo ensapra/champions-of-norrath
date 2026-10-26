@@ -1,0 +1,4 @@
+extern s32 func_001129F0(void*);
+extern u32 func_00153FA8(void*);
+extern void func_00160128(void*,void*,s32,f32);
+void func_00211090(void *a, u32 code) { volatile u32 sp[28]; sp[0]=code; if(func_001129F0(a)) return; switch(sp[0]) { case 0: {u32 x=func_00153FA8(a)%60; *(s32*)((char*)a+0x100)=*(s32*)((char*)a+0x328)+x+120; func_00160128((char*)a+0x120,*(void**)((char*)*(void**)((char*)a+0x24)+0x54),3,0.5f); break;} case 1: func_00113460(a); func_0010D250((char*)a+0x10,a,300); __builtin_memcpy((char*)a+0x110,(char*)a+0x10,12); if(*(s16*)((char*)a+0x23c)==13) { *(u64*)((char*)a+0xa0)&=~0x100000ULL; func_00160128((char*)a+0x120,*(void**)((char*)*(void**)((char*)a+0x24)+0x7c),3,1.0f); } else func_00160128((char*)a+0x120,*(void**)((char*)*(void**)((char*)a+0x24)+0x7c),3,*(f32*)0x48150c); *(f32*)((char*)a+0xb0)=160.0f; break; } }

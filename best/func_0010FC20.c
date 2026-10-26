@@ -1,0 +1,1 @@
+typedef struct{unsigned char b[0x23a];unsigned char flag;}Obj;typedef struct{float x,y,z;}V3;void func_0010FC20(Obj*o,V3*p){volatile unsigned char frame[0x250];V3 q=*p;if(o->flag&8)return;frame[0]=q.x;}

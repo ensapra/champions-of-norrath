@@ -1,0 +1,1 @@
+typedef unsigned char u8; typedef int s32; typedef struct {u8 p[0x3c0];} Obj; void *func_001441B8(s32); s32 func_00194498(void*,void*); void *func_00113DD8(Obj *a){Obj*b=func_001441B8(0x3c0);if(!b)return 0; b->p[0]=a->p[0];b->p[0xC]=a->p[0xC];b->p[0x18]=a->p[0x18];func_00194498(b,a);return b;}

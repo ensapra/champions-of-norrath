@@ -13,8 +13,8 @@ decompdecomp's byte-for-byte comparison.
 - **Platform:** PlayStation 2
 - **Compiler:** EE-GCC 2.96
 <!-- decompdecomp:progress:start -->
-- **Progress:** 5554 matching function(s), 2725 best attempt(s)
-- **Completion:** 5,554 / 9,007 functions (61.7%). 481 set aside, excluded from completion.
+- **Progress:** 5601 matching function(s), 3464 best attempt(s)
+- **Completion:** 5,601 / 9,004 functions (62.2%). 485 set aside, excluded from completion.
 <!-- decompdecomp:progress:end -->
 
 ## Install decompdecomp

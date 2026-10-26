@@ -32,13 +32,12 @@ f32 func_002F4550(f32 fparg0) {
         if (M2C_BITWISE(s32, fparg0) <= 0) {
             return 3.1415925f;
         }
-        /* Duplicate return node #14. Try simplifying control flow for better match */
         return var_f0;
     }
     if (temp_3 > 0x3F800000) {
         temp_f0 = fparg0 - fparg0;
         var_f0 = temp_f0 / temp_f0;
-        goto block_13;
+        return var_f0;
     }
     if (temp_3 <= 0x3EFFFFFF) {
         var_f0 = 1.5707963f;
@@ -46,7 +45,6 @@ f32 func_002F4550(f32 fparg0) {
             temp_f21 = fparg0 * fparg0;
             return 1.5707963f - (fparg0 - (7.5497894e-8f - (fparg0 * ((temp_f21 * ((temp_f21 * ((temp_f21 * ((temp_f21 * ((temp_f21 * ((temp_f21 * 0.00003479331f) + 0.000791535f)) + -0.040055536f)) + 0.20121253f)) + -0.3255658f)) + 0.16666666f)) / ((temp_f21 * ((temp_f21 * ((temp_f21 * ((temp_f21 * 0.07703815f) + -0.6882839f)) + 2.0209455f)) + -2.4033947f)) + 1.0f)))));
         }
-        /* Duplicate return node #14. Try simplifying control flow for better match */
         return var_f0;
     }
     if (M2C_BITWISE(s32, fparg0) < 0) {
@@ -60,6 +58,5 @@ f32 func_002F4550(f32 fparg0) {
         temp_3_2 = M2C_BITWISE(s32, sp0) & ~0xFFF;
         var_f0 = 2.0f * (M2C_BITWISE(f32, temp_3_2) + ((((temp_f21_3 * ((temp_f21_3 * ((temp_f21_3 * ((temp_f21_3 * ((temp_f21_3 * ((temp_f21_3 * 0.00003479331f) + 0.000791535f)) + -0.040055536f)) + 0.20121253f)) + -0.3255658f)) + 0.16666666f)) / ((temp_f21_3 * ((temp_f21_3 * ((temp_f21_3 * ((temp_f21_3 * 0.07703815f) + -0.6882839f)) + 2.0209455f)) + -2.4033947f)) + 1.0f)) * temp_f0_3) + ((temp_f21_3 - (M2C_BITWISE(f32, temp_3_2) * M2C_BITWISE(f32, temp_3_2))) / (temp_f0_3 + M2C_BITWISE(f32, temp_3_2)))));
     }
-block_13:
     return var_f0;
 }

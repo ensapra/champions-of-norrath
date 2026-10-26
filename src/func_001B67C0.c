@@ -1,0 +1,2 @@
+/* identical to func_002DE180 (matched), with its names changed by decompdecomp */
+s32 func_001B5C80(void); s32 func_001B5CD8(void); s32 func_001B6560(s32); s32 func_001B68D0(s32); s32 func_001B6DC0(void); s32 func_001B67C0(void){s32 state=func_001B5C80();s32 f=*(volatile s32*)0x10001010;if(f&0x80){if(state)func_001B5CD8();return 1;}func_001B6560((f&0xfffff3ff)|0x80);{s32 v=func_001B6DC0();func_001B68D0(v);}if(state)func_001B5CD8();return 0;}

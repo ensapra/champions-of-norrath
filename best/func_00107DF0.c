@@ -1,0 +1,1 @@
+extern u8 func_001B9FD8[];void func_00107DF0(u8 *arg0){s32 row,col;for(row=0;row<0x22;row++){for(col=0;col<16;col+=4){func_001B9FD8[0x1708+row*16+col+0]=arg0[0xC0+row*16+col+0];func_001B9FD8[0x1708+row*16+col+1]=arg0[0xC0+row*16+col+1];func_001B9FD8[0x1708+row*16+col+2]=arg0[0xC0+row*16+col+2];func_001B9FD8[0x1708+row*16+col+3]=arg0[0xC0+row*16+col+3];}}}

@@ -1,11 +1,1 @@
-typedef struct { s32 a,b,c,d; } S_func_00176450_arg0;
-void func_00176450(S_func_00176450_arg0 *out, u32 flags, s32 a2, s32 a3) {
- u32 field=flags&0x3ff;
- s32 a=(flags>>8)&1, b=(flags>>4)&1, c=flags&7;
- s32 v0=0; u64 v2=0; s32 v1=0;
- s32 t=a?3:2;
- if(c<8) { if(c==0) { v2=t|0x410; v1=a2; v0=3; } }
- u64 value=((u64)(field|8|(b<<4))<<47)|0x8000000000000000ULL;
- value|=(u64)v1;
- out->a=(s32)value|0x8000; out->b=(s32)(value>>32)|(v0<<28); out->c=v2; out->d=a3;
-}
+typedef struct{s32 a,b,c,d;} O; void func_00176450(O*out,u32 flags,s32 a2,s32 a3){u32 a=(flags>>8)&1;u32 c=flags&7;u32 b=(flags>>4)&1;u32 n=flags&0x3ff;s32 t=2,u=3;s32 val=0,s32x=0;u64 extra=0;if(a)t=3;if(c<8){if(!c){extra=t|0x410;val=a2;s32x=3;}}u32 q=n|8;q|=b<<4;u64 z=((u64)q)<<47;z|=0x8000000000000000ULL;z|=(u64)val;out->a=((s32)z)|0x8000;out->b=((s32)(z>>32))|(s32x<<28);out->c=(s32)extra;out->d=a3;}

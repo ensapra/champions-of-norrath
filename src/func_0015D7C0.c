@@ -1,0 +1,1 @@
+void func_0015D7C0(void *arg0){ char *t = (char *)arg0 + 0x910; s32 v = (*(s32 *)((char *)arg0 + 0x618) * *(s32 *)(t + 0x424)) / 255; t += *(s32 *)((char *)arg0 + 0x4EC) * 0x1D0; *(s8 *)(t + 0x143) = v; }

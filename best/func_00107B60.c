@@ -1,59 +1,18 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-extern M2C_UNK func_01000000;
-
+extern s32 D_010C1E80[]; extern s32 D_010C1EA8[];
 s32 func_00107B60(void) {
-    s32 *var_3;
-    s32 var_11;
-    s32 var_12;
-    s32 var_6;
-    s32 var_9;
-    void *temp_2;
-    void *temp_2_2;
-    void *temp_7;
-    void *var_5;
-
-    temp_2 = &func_01000000 + 0xC1E80;
-    var_3 = temp_2 + 0xC;
-    var_12 = 0;
-    var_11 = 0;
-loop_1:
-    var_9 = 0;
-    if (*var_3 > 0) {
-        temp_2_2 = var_11 + temp_2;
-        var_6 = 0;
-        temp_7 = M2C_FIELD(temp_2_2, void **, 0);
-        var_5 = temp_7;
-loop_3:
-        var_6 += 0x1C;
-        if (M2C_FIELD(var_5, s32 *, 0) == M2C_FIELD(&func_01000000, s32 *, 0xC1EA8)) {
-            return M2C_FIELD(var_5, s32 *, 4) & 2;
-        }
-        var_9 += 1;
-        var_5 = temp_7 + var_6;
-        if (var_9 >= M2C_FIELD(temp_2_2, s32 *, 0xC)) {
-            goto block_6;
-        }
-        goto loop_3;
-    }
-block_6:
-    var_12 += 1;
-    var_11 += 0x14;
-    var_3 += 0x14;
-    if (var_12 >= 2) {
-        return 0;
-    }
-    goto loop_1;
+ s32 *root=D_010C1E80; s32 *p=root+3, k=0, off=0;
+ do {
+  s32 n=*p;
+  if(n>0) {
+   s32 *t=(s32*)((u8*)root+off); s32 key=*D_010C1EA8;
+   s32 *items=(s32*)t[0]; s32 count=t[3], j=0, step=0;
+   do {
+    s32 *q=(s32*)((u8*)items+step);
+    if(q[0]==key)return q[1]&2;
+    j++; step+=0x1c;
+   } while(j<count);
+  }
+  k++; off+=0x14; p+=5;
+ } while(k<2);
+ return 0;
 }

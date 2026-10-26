@@ -1,0 +1,1 @@
+typedef struct { u32 w[10]; } S40; extern S40 D_004488B8; s32 func_00302270(s32); void func_0030AF90(void); void func_003022F0(s32); s32 func_0030B028(void *dst,s32 x){ S40 t; func_00302270(x); func_0030AF90(); t=D_004488B8; func_003022F0(x); *(S40*)dst=t; return (s32)dst; }

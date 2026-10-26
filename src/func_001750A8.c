@@ -1,0 +1,1 @@
+typedef struct {s32 count; s32 vals[35]; void *ptrs[32];} Stk; extern Stk D_010EA840; void func_00171AE0(void*); s32 func_001750A8(void){Stk *s=&D_010EA840; s32 n;void *p;if(s->count==0)return -1;n=--s->count;p=s->ptrs[n];if(p){func_00171AE0(p);return s->vals[s->count];}return 0xFFFF;}

@@ -1,0 +1,1 @@
+s32 func_0025AEA0(void*); extern u8 D_0034B6B1[]; typedef struct{void * volatile a;s32 b,c,d;} E; void func_0017FF78(E*e){s32 base=func_0025AEA0(D_0034B6B1);if(e->a){do{s32 r=func_0025AEA0(e->a);if(r==-1)e->b=7;else {e->b=0;if(r!=base)e->b=6;}e++;}while(e->a);}}

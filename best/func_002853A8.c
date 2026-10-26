@@ -1,0 +1,4 @@
+void func_001092F0(s32,f32,f32,f32,f32,f32); s32 func_00153FA8(void*);
+f32 D_00482424; f32 D_00482428; f32 D_0048242C; f32 D_00482430; f32 D_00482434; f32 D_00482438; f32 D_00484CAC;
+extern void *D_0034B478[]; extern void *D_0034B4A4[]; extern void *D_0034B4A8[];
+void func_002853A8(void *p,s32 a) { s32 i; *(s8*)((char*)p+0x9c)=0; if(*(s8*)((char*)p+0x3c0)==1){func_001092F0(a^1,1.0f,D_00482424,1,1,1);*(s8*)((char*)p+0x9c)=6;}else func_001092F0(a^1,D_00482428,D_0048242C,1,1,1); for(i=3;i>=0;--i)*(s16*)((char*)p+0x444-i*8)=-1; s32 m=*(s32*)((char*)p+0xd0); if(m>0&&m<4){void*q=m==1?D_0034B4A8[0]:m==2?D_0034B478[0]:D_0034B4A4[0]; s16 id=*(s16*)((char*)q+0x60); s16*f=(s16*)((char*)p+0x42c); func_00153FA8(p); for(i=0;i<4;i++)if(f[i*4]==-1||f[i*4]==(m==1?0x17:m==2?0x16:0x26)){f[i*4]=m==1?0x17:m==2?0x16:0x26; f[i*4+3]=id; break;} *(s8*)((char*)p+0x9c)=m==1?4:m==2?3:7;}}

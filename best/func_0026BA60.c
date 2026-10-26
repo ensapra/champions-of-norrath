@@ -1,0 +1,1 @@
+void func_0026BA60(s32 unused,void *out,s32 mode){ volatile u8 tmp[0x800]; u8 *p=(u8*)out; s32 i,j; *(s32*)(p+8)=0; for(i=0;i<32;i++){s16 x=((s16*)p)[i+0x28];s16 y=((s16*)p)[i+8];for(j=0;j<16;j++){tmp[i+j*32]=(x>>(15-j))&1;tmp[0x200+i+j*32]=(y>>(15-j))&1;}((s16*)p)[i+8]=0;((s16*)p)[i+0x28]=0;} }

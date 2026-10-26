@@ -1,0 +1,2 @@
+void *func_0013C528(void*,void*,s32); extern s32 D_00483AB8; extern void *D_004FBF80[2];
+f32 func_0013D3C0(void *a, s8 *out){f32 xyz[3];void *items[32];s32 i;f32 d,best;xyz[0]=*(f32*)a;xyz[1]=*(f32*)((char*)a+4);xyz[2]=*(f32*)((char*)a+8);func_0013C528(xyz,items,32);best=0;for(i=0;i<32&&items[i];i++){f32 *p=(f32*)((char*)items[i]+0x30);d=(xyz[0]-p[0])*(xyz[0]-p[0])+(xyz[1]-p[1])*(xyz[1]-p[1])+(xyz[2]-p[2])*(xyz[2]-p[2]);if(d>best)best=d;}D_004FBF80[0]=items[0];D_00483AB8=1;out[0]=0;out[1]=0;out[2]=0;out[9]=0;out[10]=0;out[11]=24;return *(f32*)(D_004F4060+4)*127.0f;}

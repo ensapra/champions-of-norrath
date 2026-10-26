@@ -1,0 +1,1 @@
+typedef unsigned long long u64; typedef unsigned int u32; extern u32 GsGetIMR(void); extern void GsPutIMR(u32); extern void func_001AF710(void *); u32 func_0018EE68(u64 *a0, u64 *a1) { u32 *p=(u32*)0x10009000; if (p[0]&0x100) return -1; u32 m=GsGetIMR(); GsPutIMR(m|0x200); *(u64*)0x12001000=2; return 0; }

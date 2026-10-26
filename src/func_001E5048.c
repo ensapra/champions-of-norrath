@@ -1,0 +1,2 @@
+typedef struct __attribute__((packed,aligned(4))){u32 w[3];} C12;extern s32 D_0042AD00[];extern u8 D_0044AD20[];s16 func_00149068(void*,void*,s32,s32,s32,s64,s32,s32,f32);
+void func_001E5048(u8*a,C12*b,s32 a2,s32 v){C12 t=*b;func_00149068(a,&t,D_0042AD00[0],D_0042AD00[0x50/4],D_0042AD00[(v&2)?0x18:0x16],a2,0xA41,0,1.0f);*(volatile s32*)(a+0x248)=v;*(s32*)(a+0x48)=(s32)D_0044AD20;*(C12*)(a+0x250)=*(C12*)(a+0x10);*(s32*)(a+0x25C)=2;a[0x260]=0;}

@@ -1,0 +1,1 @@
+int func_00120898(void *p){int x=*(int*)((char*)p+16); if(x<1||x>6)return 0; switch(x){case 1: {volatile int z=0; return z;} case 2:return 0;case 3:return 0;case 4:return 0;case 5:return 0;case 6:return 0;}return 0;}

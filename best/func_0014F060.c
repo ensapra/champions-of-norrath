@@ -1,25 +1,2 @@
-extern double func_00171000(f32) __attribute__((const));
-extern double func_00171040(double, double) __attribute__((const));
-extern double func_001712C8(double, double) __attribute__((const));
-extern double func_0019CCD8(double);
-extern f32 func_001714D8(double) __attribute__((const));
-extern s32 D_0047FBCC;
-extern double D_004CB3E8;
-extern double D_004CB3F0;
-extern f32 D_010D4550[];
-void func_0014F060(void) {
-    s32 i;
-    f32 *p;
-    f32 x;
-    if (D_0047FBCC == 0) {
-        i = 0;
-        do {
-            x = (f32)i;
-            p = &D_010D4550[i];
-            i++;
-            *p = func_001714D8(func_0019CCD8(func_001712C8(
-                func_00171040(func_00171000(x), D_004CB3E8), D_004CB3F0)));
-        } while (i <= 0x4000);
-        D_0047FBCC = 1;
-    }
-}
+extern double func_00171000(f32) __attribute__((const)); extern double func_00171040(double,double) __attribute__((const)); extern double func_001712C8(double,double) __attribute__((const)); extern double func_0019CCD8(double); extern f32 func_001714D8(double) __attribute__((const)); extern s32 D_0047FBCC; extern f32 D_010D4550[];
+void func_0014F060(void){s32 i;f32 *p;f32 x;if(D_0047FBCC==0){i=0;do{x=(f32)i;p=&D_010D4550[i];i++;*p=func_001714D8(func_0019CCD8(func_001712C8(func_00171040(func_00171000(x),*(double*)0x004CB3E8),*(double*)0x004CB3F0)));}while(i<=0x4000);D_0047FBCC=1;}}

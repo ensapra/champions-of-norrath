@@ -1,2 +1,0 @@
-void func_0011A478(void*);
-void func_0011A920(void*a,s32 b,void*c){s32 n=*(s32*)((char*)c+12),end; s32 count; s32 *dst,*src; while(*(s32*)((char*)a+4)<*(s32*)((char*)a+12)+n)func_0011A478(a); end=*(s32*)((char*)a+12)+n; count=end-1; dst=(s32*)(*(u32*)a+count*4); while(count>=b+n){count--;dst[1]=dst[0];dst--;} if(n>0){src=*(s32**)c;dst=(s32*)(*(u32*)a+b*4);do{*dst++=*src++;}while(--n);} *(s32*)((char*)a+12)=*(s32*)((char*)a+12)+*(s32*)((char*)c+12);}

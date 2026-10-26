@@ -1,0 +1,1 @@
+typedef struct{u32*data;s32 cap,x,size;}Buf;typedef struct{u32*data,x,y,n;}Src;void func_0011A478(Buf*);void func_0011A920(Buf*a,s32 index,Src*c){s32 n=c->n;while(a->cap<a->size+n){func_0011A478(a);}s32 p=a->size+n-1;while(p>=index+n){a->data[p+1]=a->data[p];p--;}p=0;while(p<n){a->data[index+p]=c->data[p];p++;}a->size+=n;}

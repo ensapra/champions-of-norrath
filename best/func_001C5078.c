@@ -1,0 +1,2 @@
+s32 func_001353A8(s32,...);s32 func_001D38B0(void);s32 func_0025ACD8(void);s32 func_001915C0(s8*);extern s32 D_00483F1C,D_00483F14,D_00484F50;extern s8 D_00483F45,D_004842DC,D_00484B00;extern s8 D_0046A768[];
+void func_001C5078(s32 a0,s32 a1,s32 a2,s32 a3,s64 a4){volatile s8 pad[0x188];a3=(s8)a3;if(!func_001353A8(a0,a1,a2,a3,a4))return;if(D_00483F1C==0&&func_001D38B0()==0&&D_00484F50==1 && D_00483F14==0 && D_004842DC==0 && func_0025ACD8()==0 && func_001915C0(D_0046A768)==0){}pad[0]=a3;}

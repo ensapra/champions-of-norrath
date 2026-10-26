@@ -34,7 +34,7 @@ extern s32 D_004848F4;
 extern s32 D_00484F48;
 extern M2C_UNK D_007CC5C8;
 
-void func_001AD870(void) {
+void func_001AD870(void) { volatile char pad[0x100];
     f32 sp20;
     f32 sp24;
     f32 sp28;

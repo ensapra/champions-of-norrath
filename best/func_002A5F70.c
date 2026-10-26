@@ -1,0 +1,1 @@
+s32 D_00483E5C; s32 func_0015E948(void*); void ovl_ntgui2_func_0013D230(void*); void func_002A5F70(void*a,s8 b,void*c,void*d) { s32 seed=D_00483E5C; s32 i=0; D_00483E5C=seed*0x19660D+0x3C6EF35F; ovl_ntgui2_func_0013D230(a); while(i<6) { func_0015E948(a); ++i; } }

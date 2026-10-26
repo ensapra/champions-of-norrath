@@ -1,0 +1,1 @@
+typedef struct { long long v[11]; } P; void func_002EE0F0(P *a,s32 n,long long*b,long long*c){long long t[80]; int i; for(i=0;i<40;i++){long long x=a[i-5].v[0]; t[i]=x>>13;} func_002EDAE8(a,t,b,0,0,0,0,0); func_002EDEE8(t,c,&t[26],&t[27],n); for(i=0;i<12;i++) t[54+i]=func_002F81C0(0,t[i]); for(i=0;i<13;i++) a[i].v[0]=t[54+i];}

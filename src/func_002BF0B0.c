@@ -1,0 +1,2 @@
+extern void func_00180D78(void*,s32,s32,s32,s32,s32,s32,s32,f32,f32,f32,s32,s32,s32,s32,s32); extern f32 D_00482FF4; extern char D_008D8190[80],D_008D81E0[80];
+void func_002BF0B0(s32 a,s32 b){s32 again=a;if(b==0xffff){if(a==1)func_00180D78(D_008D8190,20,80,20,0,20,80,20,D_00482FF4,0.0f,0.0f,0xaf,a,2,4,0);if(again==1)func_00180D78(D_008D81E0,50,200,50,100,100,250,100,1.0f,10.0f,0.0f,0,again,again,7,0);}}

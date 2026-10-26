@@ -1,0 +1,1 @@
+typedef struct{char pad[0x18];int x,y;}Obj;typedef struct{float x,y,z;}V3;extern int D_004844A4;void func_002AB9D8(Obj*p,V3*v){volatile char frame[0x260];V3 q=*v;if(D_004844A4<p->x&&D_004844A4<p->y)frame[0]=q.x;}

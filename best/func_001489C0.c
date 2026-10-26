@@ -1,0 +1,1 @@
+typedef struct {unsigned char p[0x250];} Obj; void func_001476B8(void*,...); void func_001489C0(Obj*o,void*a,s32 b,s32 c,s32 d,s32 e,s32 f,s32 g,f32 t,void*sp){ func_001476B8(sp,c,d,e,f,g|4,*(s32*)((char*)a+8)); *(void**)((char*)o+0x48)=(void*)0x0044CE68; *(f32*)((char*)o+0x240)=t; *(s32*)((char*)o+0xc)|=0x4000; *(s32*)((char*)o+0xc)|=0x2000; }

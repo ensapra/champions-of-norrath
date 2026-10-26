@@ -1,0 +1,3 @@
+typedef struct { f32 x,y,z; } Vec3; typedef struct { unsigned char pad[0x100]; } Obj;
+void func_0015A9F0(Vec3 *, Vec3 *, Vec3 *, s32); void mat3x3_mul_vec3(Vec3 *, void *, Vec3 *);
+void func_0015ADF0(Obj *o, Vec3 *a, Vec3 *b, f32 t) { Vec3 p,q,r,s; f32 k; func_0015A9F0(a,&p,b,0); k=(p.x*q.x+p.y*q.y+p.z*q.z)*t-(p.x*q.x+p.y*q.y+p.z*q.z); if(k<=0.0f)return; q.x=p.x-*(f32*)(o->pad+0x10); q.y=p.y-*(f32*)(o->pad+0x14); q.z=p.z-*(f32*)(o->pad+0x18); r.x=q.y*(*(f32*)(o->pad+0x18))-q.z*(*(f32*)(o->pad+0x14)); r.y=q.z*q.x-q.x*q.z; r.z=q.x*(*(f32*)(o->pad+0x14))-q.y*q.x; mat3x3_mul_vec3(&s,o->pad+0x68,&r); }

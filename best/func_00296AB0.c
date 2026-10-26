@@ -1,0 +1,1 @@
+void func_00296AB0(void *a0) { int g=*(int *)0x004844A4; int c=*(int *)((char *)a0+0x54); if(g<c) { int n=*(int *)((char *)a0+0x58); float f=*(float *)((char *)a0+0x5c); if(f<(float)n) *(float *)((char *)a0+0x5c)=f+0.5f; for(int i=0;i<n/10;i++) {} } else if(a0) { void *p=*(void **)((char *)a0+0x48); ((void (*)(void *,int))(*(void **)((char *)p+8)))(a0,3); } }

@@ -1,0 +1,1 @@
+extern char *D_010C4CD8;extern int func_0011B4F8(int,int);void func_0011AE10(void){switch(D_010C4CD8[0]){case 65:func_0011B4F8(0,0);break;case 66:func_0011B4F8(1,0);break;case 67:func_0011B4F8(2,0);break;case 68:func_0011B4F8(3,0);break;default:break;}}

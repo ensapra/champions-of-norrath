@@ -1,0 +1,1 @@
+typedef struct{u8 b[0x420];}O;void*func_001441B8(s32);s32 func_00194498(void*,void*);void*func_0011C310(O*a){O*b=func_001441B8(0x420);if(!b)return 0;func_00194498(b,a);func_00194498((char*)b+4,(char*)a+4);func_00194498((char*)b+8,(char*)a+8);*(u32*)(b->b+0x48)=0;*b=*a;return b;}

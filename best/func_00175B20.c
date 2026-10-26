@@ -1,34 +1,3 @@
-void *func_00175850(s32 *arg0, s32 *arg1, s32 arg2, s32 arg3, s32 arg4) {
-    s32 d = 0x388 - arg3;
-    s32 *a = arg1 + 4;
-    s32 *b = arg1 + 8;
-    arg1[0] = 0x50000000;
-    arg1[1] = arg2;
-    arg1[2] = 0;
-    arg1[3] = 0;
-    a[3] = 0x6C340010;
-    a[0] = 0x30000034;
-    a[1] = arg4 & 0x7FFFFFFF;
-    a[2] = 0x01000101;
-    b[3] = (d / 2) | 0x02000000;
-    arg0[3] = (s32)arg1;
-    b[0] = 0x60000000;
-    b[2] = 0x03000078;
-    arg0[0] = (s32)arg1;
-    arg0[1] = arg2;
-    b[1] = 0;
-    return arg1 + 12;
-}
-
-s32 func_00175AD8(u32 x) {
-    switch (x) {
-    case 0: return 0;
-    case 1: return 2;
-    case 2: return 1;
-    default: return 0;
-    }
-}
-
 u32 func_00175B20(u32 a, u32 b, u32 c) {
     u32 d;
     switch (b) {
@@ -36,7 +5,48 @@ u32 func_00175B20(u32 a, u32 b, u32 c) {
     case 1: d = 2; break;
     case 2: d = 4; break;
     case 3: d = 8; break;
+    case 4: d = 0; break;
+    case 5: d = 0; break;
+    case 6: d = 0; break;
+    case 7: d = 0; break;
+    case 8: d = 0; break;
+    case 9: d = 0; break;
+    case 10: d = 0; break;
+    case 11: d = 0; break;
+    case 12: d = 0; break;
+    case 13: d = 0; break;
+    case 14: d = 0; break;
+    case 15: d = 0; break;
+    case 16: d = 0; break;
+    case 17: d = 0; break;
+    case 18: d = 0; break;
+    case 19: d = 0; break;
+    case 20: d = 0; break;
+    case 21: d = 0; break;
+    case 22: d = 0; break;
+    case 23: d = 0; break;
+    case 24: d = 0; break;
+    case 25: d = 0; break;
+    case 26: d = 0; break;
+    case 27: d = 0; break;
+    case 28: d = 0; break;
+    case 29: d = 0; break;
+    case 30: d = 0; break;
+    case 31: d = 0; break;
+    case 32: d = 0; break;
+    case 33: d = 0; break;
+    case 34: d = 0; break;
+    case 35: d = 0; break;
+    case 36: d = 0; break;
+    case 37: d = 0; break;
+    case 38: d = 0; break;
+    case 39: d = 0; break;
+    case 40: d = 0; break;
+    case 41: d = 0; break;
+    case 42: d = 0; break;
+    case 43: d = 0; break;
+    case 44: d = 0; break;
     default: d = 0; break;
     }
-    return ((a * c / d) + 31 >> 5) << 5;
+    return (((a * c) / d + 31) >> 5) << 5;
 }

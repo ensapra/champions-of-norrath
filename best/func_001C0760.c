@@ -55,6 +55,7 @@ extern M2C_UNK D_0046A128;
 
 void func_001C0760(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s64 arg6) {
     M2C_UNK sp20;
+    volatile char pad[0x60];
     M2C_UNK *var_5_2;
     s32 temp_17;
     s32 temp_17_2;

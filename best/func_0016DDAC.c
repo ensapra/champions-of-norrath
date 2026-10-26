@@ -1,23 +1,10 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-void func_0016DDAC(void *arg0) {
-    s32 temp_lo;
-    s32 temp_6;
-
-    temp_6 = M2C_FIELD(arg0, s32 *, 0x9C4);
-    temp_lo = (s32) ((((M2C_FIELD(arg0, s32 *, 0x5AC) - (M2C_FIELD(arg0, s32 *, 0x948) * 2)) - M2C_FIELD(arg0, s32 *, 0x950)) - M2C_FIELD(arg0, s32 *, 0x954)) - ((temp_6 - 1) * M2C_FIELD(arg0, s32 *, 0x9CC))) / temp_6;
-    M2C_FIELD(arg0, s32 *, 0x984) = temp_lo;
-    M2C_FIELD(arg0, s32 *, 0x988) = temp_lo;
+void func_0016DDAC(u8 *p) {
+ s32 n=*(s32*)(p+0x9C4), step=*(s32*)(p+0x9CC);
+ s32 v=*(s32*)(p+0x5AC);
+ v-=*(s32*)(p+0x948)*2;
+ v-=*(s32*)(p+0x950);
+ v-=*(s32*)(p+0x954);
+ v-=(n-1)*step;
+ v/=n;
+ *(s32*)(p+0x984)=v; *(s32*)(p+0x988)=v;
 }

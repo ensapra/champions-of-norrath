@@ -1,2 +1,15 @@
 s32 func_002E8E28(void*,s32,void*); extern char D_008EBDD8[];
-s32 func_002E71E0(s32 index){s32 r,status,one=1;char *b=D_008EBDD8;char *entry;if((*(s32*)(b+0x40)<index-1)||(index-1<0))return 0x80000004;entry=b+0x88+(index-1)*0x110;status=*(s32*)(entry+0x1c);if(status==4)r=one;else if(status<5){if(status<3){if(status<=0)r=0x80000000;else r=0x8000000f;}else r=0x80000000;}else if(status==6)r=0x80000006;else r=0x80000000;if(r!=1)return r;r=*(s32*)(entry+0x10);if(r!=0)return r;func_002E8E28(entry,1,entry);return 0;}
+s32 func_002E71E0(s32 index) {
+ s32 n=index-1,code,status; char *base=D_008EBDD8; char *p;
+ if(*(s32*)(base+0x40)<n || n<0)return 0x80000004;
+ p=base+0x88+n*0x110; status=*(s32*)(p+0x1c);
+ switch(status) {
+ case 4: code=1; break;
+ case 6: code=0x80000006; break;
+ case 1: case 2: code=0x8000000f; break;
+ default: code=0x80000000; break;
+ }
+ if(code!=1)return code;
+ code=*(s32*)(p+0x10); if(code)return code;
+ func_002E8E28(p,1,p); return 0;
+}

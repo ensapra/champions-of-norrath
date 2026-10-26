@@ -1,0 +1,1 @@
+s32 func_00160830(void *arg0, s32 arg1, void *arg2, u16 *arg3, f32 fparg0) { if(arg0){void*p=*(void**)arg0;if(p)*(volatile s32*)((char*)p+0x610)=0;*(volatile void**)arg0=0;}if(arg2){((f32*)arg2)[0]=0;((f32*)arg2)[1]=0;}if(arg3)*arg3=arg1;return *(s32*)((char*)arg0+0x58)+1;}

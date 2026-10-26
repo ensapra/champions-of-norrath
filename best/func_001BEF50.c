@@ -1,0 +1,6 @@
+extern u8 D_004281A8[],D_00469010[],D_00469028[],D_00408600[]; extern char D_00484AC0[]; s32 D_00484CA4; extern void func_00172BC8(s32,s32,s32,s32,s32,void *,s32,void *); extern void func_00172DC0(s32,s32,s32); extern void func_00172F88(void); extern s32 func_001671F8(s32,s32); extern void func_00174420(s32,s32,void *,s32); extern void func_00174548(s32,s32,s32,s32); extern void func_00303EB8(void *,void *,s32);
+typedef struct __attribute__((packed)){u64 a,b,c;} Block24; typedef struct __attribute__((packed)){u64 a,b,c,d,e,f;} Block48; typedef struct __attribute__((packed)){Block24 a;u8 pad[8];Block48 b;} CopySet;
+void func_001BEF50(s32 arg0){CopySet cs;u8 fmt[0x30],padding[0x10];u8 *obj=D_004281A8+arg0*0x74;u8 *row=(u8 *)&cs.b;s32 i=0,x,y,v;f32 f;cs.a=*(Block24 *)D_00469010;cs.b=*(Block48 *)D_00469028;
+func_00172BC8(D_00484CA4,6,0x80323C3C,-1,*(s32 *)(obj+0x34)*0x5DB0,D_00469028,0,&cs.a);func_00172DC0(0x80323C3C,-1,0);
+for(i=0;i<6;i++,row+=8){x=*(s32 *)obj+*(s32 *)row+0xED;y=*(s32 *)(obj+4)+*(s32 *)(row+4)+0xBC;if(i){f=*(f32 *)(D_00408600+0x5578+*(s32 *)(obj+0x34)+i*4);v=(s32)(f*100.0f+0.5f);func_00303EB8(fmt,D_00484AC0,v);func_00174420(x,y,fmt,0x2710);}else{v=func_001671F8(*(s32 *)&cs.a,*(s32 *)((u8 *)&cs.a+0x24));func_00174548(*(s32 *)row+arg0*0x140,*(s32 *)((u8 *)&cs.a+0x24),v,0xF4240);}}
+func_00172F88();}

@@ -1,5 +1,3 @@
-#include "context.h"
-
 void func_001552A0(void *arg0, s32 *arg1, s32 *arg2) {
     void *obj;
     s32 (*fn)(void *);
@@ -34,7 +32,7 @@ void func_001552A0(void *arg0, s32 *arg1, s32 *arg2) {
     t3 = t2 + t1;
     t4 = *(s32 *)((char *)arg0 + 0x888);
     t5 = *(s32 *)((char *)arg0 + 0x5D4);
-    t6 = t4 + t5;
+    t6 = t5 + t4;
     t3 = t3 + t6;
     t7 = *(s32 *)((char *)arg0 + 0x87C);
     t3 = t3 + t7;

@@ -1,20 +1,2 @@
 extern s32 D_008DEA18[];
-
-s32 func_002D7490(s32 index, s32 a, s32 b) {
-    s32 base;
-    s32 off;
-    if (index < 0) {
-        off = (index & 0x7FFFFFFF) * 12;
-        base = D_008DEA18[3];
-        *(s32 *)(off + base + 4) = b;
-        *(s32 *)(off + base) = a;
-        *(s32 *)(off + base + 8) = (s32)__builtin_frame_address(0);
-        return base;
-    }
-    off = index * 12;
-    base = D_008DEA18[5];
-    *(s32 *)(off + base + 4) = b;
-    *(s32 *)(off + base) = a;
-    *(s32 *)(off + base + 8) = (s32)__builtin_frame_address(0);
-    return base;
-}
+s32 func_002D7490(s32 i,s32 a,s32 b){s32 n; if(i<0){n=(i&0x7fffffff)*12; s32 *p=(s32*)((char*)D_008DEA18+12);p=(s32*)((char*)p+n);p[1]=b;p[0]=a;n+=D_008DEA18[3];}else{n=i*12;s32*p=(s32*)((char*)D_008DEA18+20);p=(s32*)((char*)p+n);p[1]=b;p[0]=a;n+=D_008DEA18[5];}return n+(s32)__builtin_frame_address(0);}

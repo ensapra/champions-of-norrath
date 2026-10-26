@@ -1,0 +1,1 @@
+s32 func_002DD640(void); s32 func_002DD698(void); s32 func_002DDF20(s32); s32 func_002DE290(s32); s32 func_002DE780(void); s32 func_002DE180(void){s32 state=func_002DD640();s32 f=*(volatile s32*)0x10001010;if(f&0x80){if(state)func_002DD698();return 1;}func_002DDF20((f&0xfffff3ff)|0x80);{s32 v=func_002DE780();func_002DE290(v);}if(state)func_002DD698();return 0;}

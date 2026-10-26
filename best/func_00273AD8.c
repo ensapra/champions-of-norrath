@@ -1,0 +1,1 @@
+typedef struct { char p[0x414]; s32 active; } O; void func_00271C90(void*,void*,void*,s32,f32,f32,f32); void func_00273AD8(O*o){if((o->active^1)&1){float v[3]={0.0f,0.0f,-10.0f*(*(float*)((char*)o+0x29c))};func_00271C90((void*)0x008D5798,v,0,0,0,0,0);}}

@@ -13,15 +13,15 @@ typedef s32 M2C_UNK32;
 #endif
 
 void func_001607BC(void *arg0) {
-    u8 sp0;
-    u8 sp1;
-    u8 sp2;
-    s8 sp3;
-    u8 sp4;
-    u8 sp5;
-    u8 sp6;
-    s8 sp7;
-    f32 temp_f1;
+    volatile u8 sp0;
+    volatile u8 sp1;
+    volatile u8 sp2;
+    volatile s8 sp3;
+    volatile u8 sp4;
+    volatile u8 sp5;
+    volatile u8 sp6;
+    volatile s8 sp7;
+    volatile f32 temp_f1;
     f32 temp_f3;
     f32 var_3;
     f32 var_3_2;
