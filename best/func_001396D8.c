@@ -1,1 +1,0 @@
-extern void func_001395E8(void*);struct Vec{u8*items;s32 cap,min,count,grow;};void func_001396D8(struct Vec*v,void*e){s32 n=v->count;if(n>=v->cap)func_001395E8(v);__builtin_memcpy(v->items+v->count*0x4b0,e,0x4b0);v->count=n+1;}

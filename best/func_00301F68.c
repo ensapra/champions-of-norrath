@@ -1,0 +1,1 @@
+s32 func_00301F68(const u8 *a,const u8 *b,u32 n){if(n>=16 && !(((u32)a|(u32)b)&15)){do{const u64 *x=(const u64*)a,*y=(const u64*)b;u64 z=(x[0]^y[0])|(x[1]^y[1]);if(z)break;a+=16;b+=16;n-=16;}while(n>=16);}for(;n;n--,a++,b++){if(*a!=*b)return *a-*b;}return 0;}

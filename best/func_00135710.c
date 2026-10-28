@@ -1,9 +1,10 @@
-extern s32 D_004F3600;
+typedef struct { s32 a, b, c; } S;
+extern S D_004F3600[];
 void func_00135710(s32 arg0, s32 arg1) {
-    s32 off = arg0 * 12;
-    volatile s32 *p = (volatile s32 *)((char *)&D_004F3600 + off);
-    s32 old = p[0];
-    p[2] = 1;
-    p[0] = arg1 >= old ? arg1 : old;
-    p[1] = -1;
+    s32 old = D_004F3600[arg0].a;
+    s32 neg = -1;
+    if (old <= arg1) old = arg1;
+    D_004F3600[arg0].c = 1;
+    D_004F3600[arg0].a = old;
+    D_004F3600[arg0].b = neg;
 }

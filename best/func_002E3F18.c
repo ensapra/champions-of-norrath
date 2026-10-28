@@ -1,27 +1,3 @@
-extern s32 D_004460AC[];
-extern u8 D_00447280[];
-extern s32 D_004476C0[];
-extern u8 D_00447C00[];
-extern s32 D_00447C28;
-extern s32 D_00447C2C;
-extern s32 D_00447C30;
-extern s32 func_002E2FE8(s32);
-extern void func_002D7858(void *, s32);
-extern s32 func_002D8270(void *, s32, s32, void *, s32, void *, s32, void *, void *);
-extern s32 SignalSema_2(s32);
-
-s32 func_002E3F18(s32 arg0) {
-    s32 r;
-    if (func_002E2FE8(0x22) == 0) {
-        return 0;
-    }
-    D_004476C0[0] = arg0;
-    func_002D7858(D_004476C0, 4);
-    if (func_002D8270(D_00447C00, D_00447C28, 0, D_004476C0, D_00447C2C, D_00447280, D_00447C30, 0, 0) < 0) {
-        SignalSema_2(D_004460AC[0]);
-        return 0;
-    }
-    r = *(s32 *)((u32)D_00447280 | 0x20000000);
-    SignalSema_2(D_004460AC[0]);
-    return r;
-}
+extern s32 D_004460AC[]; extern u8 D_00447280[]; extern s32 D_004476C0[]; extern u8 D_00447C00[]; extern s32 D_00447C28[],D_00447C2C[],D_00447C30[];
+extern s32 func_002E2FE8(s32); extern void func_002D7858(void*,s32); extern s32 func_002D8270(void*,s32,s32,void*,s32,void*,s32,void*,void*); extern s32 SignalSema_2(s32);
+s32 func_002E3F18(s32 a){s32 *buf=D_004476C0; s32 r; if(func_002E2FE8(0x22)==0)return 0; D_004476C0[0]=a; func_002D7858(buf,4); if(func_002D8270(D_00447C00,D_00447C28[0],0,buf,D_00447C2C[0],D_00447280,D_00447C30[0],0,0)<0){SignalSema_2(D_004460AC[0]);return 0;} r=*(s32*)((u32)D_00447280|0x20000000); SignalSema_2(D_004460AC[0]);return r;}

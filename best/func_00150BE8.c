@@ -12,21 +12,22 @@ typedef struct {
 } S150;
 void func_0014BA50(s32, s32, s32, s32, s32 *, s32 *, s32 *, s32 *);
 void func_00150BE8(S150 *s) {
-    s32 t7 = s->b;
-    s32 t10 = s->a0;
-    s32 t8 = s->a1;
-    s32 t5 = s->c0;
-    s32 t4 = s->c1;
-    s32 r2 = t5 + t7 + (s->a3 + t10);
-    s32 r3 = t4 + t7 + (s->a4 + t8);
-    s32 r0 = t5 + t10 + t7;
-    s32 r1 = t4 + t8 + t7;
-    s->r0 = r0;
-    s->r1 = r1;
-    s->r2 = r2;
-    s->r3 = r3;
+    s32 x2 = s->c0 + s->b;
+    s32 x3 = s->c1 + s->b;
+    s32 w2 = s->a3 + s->a0;
+    s32 x0 = s->c0 + s->a0;
+    s32 w3 = s->a4 + s->a1;
+    s32 x1 = s->c1 + s->a1;
+    s->r2 = x2 + w2;
+    s->r3 = x3 + w3;
+    s->r1 = x1 + s->b;
+    s->r0 = x0 + s->b;
     func_0014BA50(s->c2, s->c3, s->c4, s->c5, &s->r0, &s->r1, &s->r2, &s->r3);
-    if (s->r2 <= s->r0) { s->ok = 0; return; }
-    if (s->r3 <= s->r1) { s->ok = 0; return; }
-    s->ok = 1;
+    if (s->r2 <= s->r0) {
+        s->ok = 0;
+    } else if (s->r3 <= s->r1) {
+        s->ok = 0;
+    } else {
+        s->ok = 1;
+    }
 }

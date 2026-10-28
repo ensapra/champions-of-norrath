@@ -1,3 +1,38 @@
-typedef struct {u8 pad[0x40];s32 a,b,c,d;} Slot; typedef struct {Slot cells[33];u8 pad[0x844];s32 sentinel;void*next;void*prev;} Block;
-s32 D_00484130; Block *D_00484138; Block *D_004869B8; Block *D_004869BC; s32 func_003021B0(void*,s32,s32);
-void func_00178188(void){s32 i;func_003021B0(D_00484138,0,D_00484130*0x12b0);i=1;D_004869B8=D_00484138;((Block*)D_00484138)->next=(char*)D_00484138+0x12b0;if(D_00484130-1>1){Block*p=(Block*)((char*)D_00484138+0x12b0);s32 n=D_00484130-2;do{p->prev=(char*)p-0x12b0;p->next=(char*)p+0x12b0;p=(Block*)p->next;n--;}while(n);i=D_00484130-1;}{Block*last=(Block*)((char*)D_00484138+i*0x12b0);last->prev=(char*)last-0x12b0;D_004869BC=last;}{s32 n=D_00484130; s32 *p=(s32*)((char*)D_00484138+0x1294);while(n){n--;*p=-100000;p=(s32*)((char*)p+0x12b0);}}{s32 row;u8 *base=(u8*)D_00484138;for(row=0;row<D_00484130;row++){s32 col;for(col=0;col<33;col++){s32 *p=(s32*)(base+row*0x12b0+col*0x50+0x40);p[0]=col?0x14000038:0;p[1]=0;if(col==32){p[2]=p[3]=0;}else{s32 t=((col+1)%3)*0x12c;p[2]=t|0x04000000;p[3]=t|0x60000000|0x01200000;}}}}}
+typedef struct Blk { u8 pad[0x1294]; s32 sentinel; struct Blk *next; struct Blk *prev; u8 pad2[0x10]; } Blk;
+extern s32 D_00484130; extern Blk *D_00484138; extern Blk *D_004869B8; extern Blk *D_004869BC;
+s32 func_003021B0(void*,s32,s32);
+void func_00178188(void){
+    s32 row,col,i,n;
+    Blk *p;
+    s32 *q, *r;
+    void * volatile sink;
+    func_003021B0(D_00484138,0,D_00484130*0x12B0);
+    D_004869B8=D_00484138;
+    D_00484138->next=D_00484138+1;
+    p=D_00484138+1;
+    for(i=1;i<D_00484130-1;i++){
+        p->next=p+1;
+        p->prev=p-1;
+        p++;
+    }
+    p=D_00484138+i;
+    p->prev=p-1;
+    D_004869BC=p;
+    n=D_00484130;
+    r=(s32*)((char*)D_00484138+0x1294);
+    for(i=0;i<n;i++){ *r=-100000; r=(s32*)((char*)r+0x12B0); }
+    for(row=0;row<D_00484130;row++){
+        for(col=0;col<=32;){
+            char *c=(char*)D_00484138+row*0x12B0+col*0x50;
+            q=(s32*)(c+0x40);
+            *q = col?0x14000038:0;
+            q=(s32*)(c+0x44);
+            *q=0;
+            q++;
+            if(col==32){ q[1]=0; col++; *q=0; }
+            else { s32 t=((col+1)%3)*0x12c; col++; *q=t|0x04000000; q[1]=t|0x60000000|0x01200000; }
+            r=q+2;
+        }
+        sink=r;
+    }
+}

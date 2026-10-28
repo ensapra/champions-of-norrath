@@ -12,6 +12,8 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-s32 func_0012BBB4(void) {
-    return 0;
+/* Warning: missing "jr $ra" in last block of func_0012BBB4 (initial). */
+
+void func_0012BBB4(void) {
+
 }

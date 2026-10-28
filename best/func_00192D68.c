@@ -1,1 +1,33 @@
-extern void func_00192708();extern void func_00191E60();typedef struct{f32 x[5];s32 a;f32 b;s32 c;u8 p[4];f32 d;s32 e;}Obj;void func_00192D68(Obj*a,f32 A,f32 B,f32 C,f32 D,f32 E,f32 F,f32 G,f32 H,f32 I){f32 v0=-F;f32 v1=-G;f32 v2=I*H;f32 v3=-F+G;f32 v4=-G*H;v0=v0+G;v2=v2*v0;v4=v4*H;v1=v4+F*I;v3=-H+I;v2=v2/v3;v1=v1/v3;func_00192708();a->x[0]=A;a->x[5]=A;a->a=0;a->c=0;a->b=1.0f;a->d=1.0f;func_00192708((void*)a);func_00191E60(a,a,a,B,C,v2,D,E,v1);}
+void func_00192708(f32 *);
+void func_00191E60(f32 *, f32 *, f32 *);
+
+void func_00192D68(f32 *o, f32 a, f32 b, f32 c, f32 d, f32 e, f32 f, f32 g, f32 h, f32 i) {
+    f32 m[16];
+    f32 nf = -f;
+    f32 ng = -g;
+    f32 nh = -h;
+    f32 t = nf + g;
+    f32 z = i * h;
+    f32 w = ng * h;
+    f32 den;
+    z = z * t;
+    w = w + f * i;
+    den = nh + i;
+    z = z / den;
+    w = w / den;
+    func_00192708(o);
+    o[0] = a;
+    o[5] = a;
+    o[10] = 0;
+    o[15] = 0;
+    o[11] = 1.0f;
+    o[14] = 1.0f;
+    func_00192708(m);
+    m[0] = b;
+    m[5] = c;
+    m[10] = z;
+    m[12] = d;
+    m[13] = e;
+    m[14] = w;
+    func_00191E60(o, m, o);
+}

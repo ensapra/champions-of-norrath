@@ -21,8 +21,8 @@ s32 func_00174DA8(s32 arg0) {
         } else {
             D_010EA730.b[D_010EA730.n++] = 0;
         }
-        if ((u32)D_010EA730.n >= 2) return D_010EA730.a[D_010EA730.n - 2];
-        return -1;
+        if ((u32)D_010EA730.n < 2) return -1;
+        return D_010EA730.a[D_010EA730.n - 2];
     }
     return -1;
 }

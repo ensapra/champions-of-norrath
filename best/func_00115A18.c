@@ -1,21 +1,65 @@
-extern void *func_001441B8(s32);
-extern s32 func_00194498(void*,void*);
-extern u32 D_0044D498[],D_0044CA78[];
-struct __attribute__((packed,aligned(4))) C12 {u64 a;u32 b;};
-struct Obj {u32 f0,f4,f8,fC;struct C12 c; f32 f1C,f20;u32 f24;u8 b28,b29;u32 f2C;f32 f30;u32 f34;u16 h38;f32 f3C,f40;u32 f44,vt,f4C,f50,f54,f58,f5C;};
-struct Obj *func_00115A18(struct Obj *in){
-struct Obj *out=func_001441B8(0x60);struct Obj *result;
-if(out){out->vt=(u32)D_0044D498;
-func_00194498(&out->f0,&in->f0);
-func_00194498(&out->f4,&in->f4);
-func_00194498(&out->f8,&in->f8);
-out->fC=in->fC;{u64 a=in->c.a;u32 b=in->c.b;out->c.a=a;out->c.b=b;}{f32 f=in->f1C;u32 w=in->f24;out->f1C=f;out->f24=w;}out->f20=in->f20;
-out->b28=in->b28;out->b29=in->b29;out->vt=(u32)D_0044CA78;
-out->f34=in->f34;out->f30=in->f30;
-out->f4C=in->f4C;out->f3C=in->f3C;
-out->f50=in->f50;out->h38=in->h38;
-{u32 x=in->f54;u32 b=in->f2C;out->f2C=b;out->f40=in->f40;out->f44=in->f44;
-{u32 y=in->f5C;u32 z=in->f58;
-out->f54=x;out->f5C=y;out->f58=z;}}
-result=out;}else{result=0;}return result;
+extern "C" {
+void *func_001441B8(s32);
+void *func_00194498(void *, void *);
+}
+extern u8 D_0044D498[];
+extern u8 D_0044CA78[];
+
+inline void *operator new(unsigned int, void *p) throw() { return p; }
+
+struct Tri { s32 x, y, z; };
+
+struct Obj {
+    s32 a, b, c;
+    s32 d;
+    Tri e;
+    f32 g, h;
+    s32 i;
+    u8 j, k;
+    s32 l;
+    f32 m;
+    s32 n;
+    u16 o;
+    f32 p, q;
+    s32 r;
+    void *vt;
+    s32 s, t, u, v, w;
+    Obj(Obj &src) {
+        vt = D_0044D498;
+        func_00194498(&a, &src.a);
+        func_00194498(&b, &src.b);
+        func_00194498(&c, &src.c);
+        d = src.d;
+        e = src.e;
+        g = src.g;
+        h = src.h;
+        i = src.i;
+        j = src.j;
+        k = src.k;
+        vt = D_0044CA78;
+        n = src.n;
+        m = src.m;
+        s = src.s;
+        p = src.p;
+        s32 t1 = src.t;
+        u16 h1 = src.o;
+        t = t1;
+        s32 y = src.u;
+        s32 rr = src.r;
+        s32 x = src.l;
+        f32 f = src.q;
+        o = h1;
+        l = x;
+        q = f;
+        r = rr;
+        s32 zz = src.v;
+        s32 z = src.w;
+        u = y;
+        w = z;
+        v = zz;
+    }
+};
+
+extern "C" Obj *func_00115A18(Obj *src) {
+    return new (func_001441B8(0x60)) Obj(*src);
 }

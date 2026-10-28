@@ -57,16 +57,16 @@ inline static void Touch_1628(Tex_1628 *t)
 inline static void Ref_1628(Pkt_1628 *pk, void *addr, s32 size)
 {
   u64 *r = pk->p;
-  pk->p = r + 4;
   pk->q = r + 2;
+  pk->p = r + 4;
   r[1] = 0;
   r[0] = ((((u64) ((u32) addr)) << 32) | (((s64) (size + 31)) >> 4)) | 0x30000000;
 }
 
 inline static void Tag_1628(u64 *q, u64 a, u64 b)
 {
-  q[1] = b;
   q[0] = a;
+  q[1] = b;
 }
 
 inline s16 inline_fn(Tex_1628 *arg0)

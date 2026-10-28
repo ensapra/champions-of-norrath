@@ -21,46 +21,36 @@ void func_0015B210(Obj158694 *);
 void ovl_ntgui2_func_0015A7B8(Obj158694 *);
 
 s32 func_00158694(Obj158694 *o) {
-    s32 ret = 0;
+    s32 r = 0;
     s32 cur = o->cur;
-    s32 pos, cnt;
-    s32 n;
+    s32 pos, cnt, n;
     u32 c;
 
-    if (o != NULL) {
-        ret = func_001591D8(o);
-        if (ret == 0) {
-            if (cur < o->count) {
-                ret = func_0015AD38(o, cur);
-                pos = o->cur;
-                cnt = o->count;
-                if (ret != 0) {
-                    func_0015ACB0(&o->ents[pos], &o->ents[pos + 1], 0x24, cnt - pos - 1);
-                    o->count = o->count - 1;
-                } else {
-                    if (pos >= cnt - 1) {
-                        goto end;
-                    }
-                    c = o->ents[cur].code;
-                    if (c < 0xE0) {
-                        n = 2;
-                    } else if (c < 0xF0) {
-                        n = 3;
-                    } else {
-                        n = (c < 0xF8) * 4;
-                    }
-                    func_0015ACB0(&o->ents[pos], &o->ents[pos + n], 0x24, cnt - pos - n);
-                    o->count = o->count - n;
-                }
-                ovl_ntgui2_func_0015A7B8(o);
-                func_0015B210(o);
-                o->unk98 = 2;
-                ret = 1;
-            }
+    if (o == NULL) return r;
+    r = func_001591D8(o);
+    if (r != 0) return 1;
+    if (cur >= o->count) return r;
+    r = func_0015AD38(o, cur);
+    pos = o->cur;
+    cnt = o->count;
+    if (r != 0) {
+        func_0015ACB0(&o->ents[pos], &o->ents[pos + 1], 0x24, cnt - pos - 1);
+        o->count = o->count - 1;
+    } else {
+        if (pos >= cnt - 1) return r;
+        c = o->ents[cur].code;
+        if (c < 0xE0) {
+            n = 2;
+        } else if (c < 0xF0) {
+            n = 3;
         } else {
-            ret = 1;
+            n = (c < 0xF8) * 4;
         }
+        func_0015ACB0(&o->ents[pos], &o->ents[pos + n], 0x24, cnt - pos - n);
+        o->count = o->count - n;
     }
-end:
-    return ret;
+    ovl_ntgui2_func_0015A7B8(o);
+    func_0015B210(o);
+    o->unk98 = 2;
+    return 1;
 }

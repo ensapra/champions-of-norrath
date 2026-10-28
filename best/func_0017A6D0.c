@@ -14,20 +14,20 @@ s32 func_001B08B0(void *, s32, s32, void *, s32, void *, s32, void *, s32);
 s32 func_0017A6D0(s32 a, u8 *src, s32 size) {
     s32 r;
     u32 al, v;
-    s32 i;
+    u32 i;
     if (D_010EB640.f24 == 0) return -100;
     if (PollSema(D_001D0484[0]) < 0) return -200;
     D_010EB6C0.f0 = a;
     if (size <= 0x10) {
         D_010EB6C0.f14 = size;
-        D_010EB6C0.f18 = 0;
         D_010EB6C0.fC = 0;
+        D_010EB6C0.f18 = 0;
     } else {
         al = ((u32)src - 1) & ~0xF;
         v = al - ((u32)src - 0x10);
-        D_010EB6C0.f18 = (s32)src + v;
-        D_010EB6C0.fC = size - v;
         D_010EB6C0.f14 = v;
+        D_010EB6C0.fC = size - v;
+        D_010EB6C0.f18 = (s32)src + v;
     }
     if (D_010EB6C0.f14) {
         i = 0;

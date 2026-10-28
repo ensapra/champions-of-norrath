@@ -1,1 +1,27 @@
-extern s32 D_010C6E50[],D_010C5190[],D_010C5194[],D_010C5210[],D_010C5214[],D_010C5218[],D_010C6E38[]; extern volatile s8 D_004C90E8[]; extern s32 func_001107E8(s32,void *,s32,void *,void *); extern s32 func_0011BA18(s32); extern s32 func_0011CEF0(s32,s32,s32); extern void func_0011E420(s32,s32); s32 func_00120480(s32 a,s32 b,s32 c,void*d){s32 mode=D_010C6E50[0],val,k,x,y;s8*table;u8*dst;if(mode>=0){if(mode<7){val=func_001107E8(func_0011BA18(0x121),D_010C5194,3,D_010C5210,D_010C5214);D_010C6E38[0]=0;D_010C5190[0]=val;c=0;d=D_010C5218;table=(s8*)D_004C90E8;b=0;do{k=3;dst=(u8*)((b<<5)+(u32)d);do{x=table[0];y=table[1];dst[0]=x;k--;dst[1]=y;dst+=0x258;}while(k>=0);c++;b+=0x4B;}while(c<3);}}func_0011E420(D_010C5210[0],D_010C5214[0]);return func_0011CEF0(D_010C5190[0],D_010C6E50[0],0x12);}
+typedef struct { s8 a, b; } Pair;
+typedef struct { Pair p; char pad[30]; } Ent;
+extern s32 D_010C6E50[],D_010C5190[],D_010C5210[],D_010C5214[],D_010C6E38[];
+extern u8 D_010C5194[];
+extern Ent D_010C5218[];
+extern Pair jtbl_004C006C[];
+s32 func_001107E8(s32,void*,s32,void*,void*);
+s32 func_0011BA18(s32);void func_0011E420(s32,s32);void func_0011CEF0(s32,s32,s32);
+void func_00120480(void){
+    s32 x=D_010C6E50[0];
+    s32 i, j, k, r;
+    Pair *dst;
+    if(x>=0){if(x<7){
+        r=func_001107E8(func_0011BA18(0x121),D_010C5194,3,D_010C5210,D_010C5214);
+        D_010C6E38[0]=0;
+        D_010C5190[0]=r;
+        for (i = 0, j = 0; i < 3; i++, j += 75) {
+            dst = &D_010C5218[j].p;
+            for (k = 3; k >= 0; k--) {
+                *dst = jtbl_004C006C[0x907C / 2];
+                dst = (Pair *)((u8 *)dst + 600);
+            }
+        }
+    }}
+    func_0011E420(D_010C5210[0],D_010C5214[0]);
+    func_0011CEF0(D_010C5190[0],D_010C6E50[0],0x12);
+}

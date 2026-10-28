@@ -9,10 +9,12 @@ s32 func_00195560(void) {
     s8 *q;
     s32 *x;
     if (n > 0) {
+        s32 m = n;
+        s32 *y;
         q = (s8 *)D_007CB770;
+        y = (s32 *)D_00408600;
         q += 0x50;
-        x = (s32 *)D_00408600;
-        x = (s32 *)((u8 *)x + 0x54);
+        x = (s32 *)((u8 *)y + 0x54);
         do {
             s32 want;
             s32 b;
@@ -22,13 +24,13 @@ s32 func_00195560(void) {
                 return 0;
             b = q[6];
             want = 0;
-            if (n >= 2 || D_00486678 != 0)
+            if (m >= 2 || D_00486678 != 0)
                 want = 1;
             if (b != want)
                 return 0;
             i++;
             q += 0x58;
-        } while (i < n);
+        } while (i < m);
     }
     return 1;
 }

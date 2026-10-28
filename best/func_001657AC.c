@@ -38,6 +38,7 @@ void func_001657AC(S *a)
   T t[64];
   s32 n;
   int new_var;
+  int k45 = 0x45;
   s32 v48 = a->fA48;
   s32 v4c = a->fA4C;
   s32 v58 = a->fA58;
@@ -104,7 +105,7 @@ void func_001657AC(S *a)
   t[n].k = 0x44;
   t[n].v = 0;
   n++;
-  t[n].k = 0x45;
+  t[n].k = k45;
   t[n].v = 0;
   n++;
   t[n].k = 0x46;

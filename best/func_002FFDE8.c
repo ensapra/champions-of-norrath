@@ -1,77 +1,63 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern s32 D_00448480[];
 
-M2C_UNK func_003001A8(void *);                      /* extern */
-s32 func_00301088(void *, s32 (*)(void *));         /* extern */
-extern void *D_00448480;
+void func_003001A8(void *);
+s32 func_00301088(s32, void *);
 
-s32 func_002FFDE8(void *arg0) {
-    s16 temp_3;
-    s32 temp_2;
-    s32 temp_2_2;
-    s32 temp_3_2;
-    s32 var_16;
-    s32 var_18;
-    s32 var_2;
-    s32 var_4;
-    void *var_3;
+typedef struct S {
+    s32 f00;
+    s32 pad04;
+    s32 f08;
+    s16 f0C;
+    s16 pad0E;
+    s32 f10;
+    s32 f14;
+    s32 pad18;
+    s32 f1C;
+    s32 pad20;
+    s32 (*f24)(s32, s32, s32);
+    s32 pad28[4];
+    s32 f38;
+    s32 pad3C[6];
+    struct S *f54;
+} S;
 
-    if (arg0 == NULL) {
-        return func_00301088(D_00448480, func_002FFDE8);
+s32 func_002FFDE8(S *a) {
+    S *d;
+    s32 sz, old, n, r;
+    s16 fl;
+
+    if (a == 0)
+        return func_00301088(D_00448480[0], func_002FFDE8);
+
+    d = a->f54;
+    if (d == 0) {
+        d = (S *)D_00448480[0];
+        a->f54 = d;
     }
-    var_3 = M2C_FIELD(arg0, void **, 0x54);
-    if (var_3 != NULL) {
-        var_2 = M2C_FIELD(var_3, s32 *, 0x38);
-    } else {
-        var_3 = D_00448480;
-        M2C_FIELD(arg0, void **, 0x54) = var_3;
-        var_2 = M2C_FIELD(var_3, s32 *, 0x38);
-    }
-    if (var_2 == 0) {
-        func_003001A8(var_3);
-    }
-    temp_3 = M2C_FIELD(arg0, s16 *, 0xC);
-    if (temp_3 & 8) {
-        var_18 = M2C_FIELD(arg0, s32 *, 0x10);
-        var_4 = 0;
-        if (var_18 != 0) {
-            temp_2 = M2C_FIELD(arg0, s32 *, 0);
-            M2C_FIELD(arg0, s32 *, 0) = var_18;
-            var_16 = temp_2 - var_18;
-            if (!(temp_3 & 3)) {
-                var_4 = M2C_FIELD(arg0, s32 *, 0x14);
-            }
-            M2C_FIELD(arg0, s32 *, 8) = var_4;
-            if (var_16 > 0) {
-loop_16:
-                temp_2_2 = M2C_FIELD(arg0, s32 (**)(s32, s32, s32), 0x24)(M2C_FIELD(arg0, s32 *, 0x1C), var_18, var_16);
-                temp_3_2 = temp_2_2;
-                var_16 -= temp_3_2;
-                if (temp_3_2 > 0) {
-                    var_18 += temp_3_2;
-                    if (var_16 <= 0) {
-                        goto block_18;
-                    }
-                    goto loop_16;
-                }
-                M2C_FIELD(arg0, s16 *, 0xC) = (s16) ((u16) M2C_FIELD(arg0, s16 *, 0xC) | 0x40);
-                return -1;
-            }
-block_18:
-            /* Duplicate return node #19. Try simplifying control flow for better match */
-            return 0;
+    if (d->f38 == 0)
+        func_003001A8(d);
+
+    fl = a->f0C;
+    if (!(fl & 8))
+        return 0;
+    sz = a->f10;
+    r = 0;
+    if (sz == 0)
+        return 0;
+    old = a->f00;
+    a->f00 = sz;
+    n = old - sz;
+    if (!(fl & 3))
+        r = a->f14;
+    a->f08 = r;
+    while (n > 0) {
+        r = a->f24(a->f1C, sz, n);
+        if (r <= 0) {
+            a->f0C |= 0x40;
+            return -1;
         }
+        n -= r;
+        sz += r;
     }
     return 0;
 }

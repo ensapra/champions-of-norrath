@@ -1,14 +1,1 @@
-typedef struct {f32 x,y,z;} V3;
-extern void func_001590C0(V3*,s32,s32);extern void func_00159AE0(void*,V3*,void*);extern void func_00159B98(void*,V3*,void*);extern f32 func_0015A070(s32);extern f32 func_0015A100(s32);extern void func_001627A0(s32,s32,V3*,s32);
-void func_00168A38(char *obj,void *a1,s16 angle,s32 use,s32 index,V3 *out,void *out2,f32 scale){
- V3 v; s32 key=*(s32*)((char*)a1+8); char *m=obj+((u8)obj[0x22]*16);
- if(use)func_001627A0(use,*(s32*)(m+index*0x34),&v,key);
- else func_001590C0(&v,(s32)angle<<16,key);
- m+=index*0x34;
- if(out)func_00159AE0(out,&v,m+0x28);
- if(out2)func_00159B98(out2,&v,m+0x10);
- {s32 a=(s32)angle-0x4000;f32 c=func_0015A070(a);f32 s=func_0015A100(a);
-  if(out){f32 x=-out->x,y=out->y*scale,z=out->z*scale;out->z=z+v.z;out->y=x*s-y*c+v.y;out->x=x*c+y*s+v.x;}
-  if(out2){f32 x=-((f32*)out2)[0],y=((f32*)out2)[1];((f32*)out2)[1]=x*s-y*c;((f32*)out2)[0]=x*c+y*s;}
- }
-}
+typedef struct {f32 x,y,z;} V3;typedef struct {f32 x,y,z,w;f32 pad[8];} VB;extern void func_001590C0(V3*);extern void func_00159AE0(void*,V3*,void*);extern void func_00159B98(void*,V3*,void*);extern f32 func_0015A070(s32);extern f32 func_0015A100(s32);extern void func_001627A0(s32,s32,V3*);void func_00168A38(char *obj,V3 *trans,s16 angle,s32 use,s32 index,V3 *out,void *out2,f32 scale){V3 t=*trans;V3 *tp=&t;VB vb;char*m=obj+((u8)obj[0x22]*16);char*m2;if(use)func_001627A0(use,*(s32*)(m+index*0x34),(V3*)&vb);else func_001590C0((V3*)&vb);m2=m+index*0x34;if(out)func_00159AE0(out,(V3*)&vb,m2+0x28);if(out2)func_00159B98(out2,(V3*)&vb,m2+0x10);{s32 a=(s32)angle-0x4000;f32 c=func_0015A070(a);f32 s=func_0015A100(a);if(out){f32 x=out->x,y=out->y,z=out->z;f32 f1=x*scale;f32 f3=y*scale;f32 f2=z*scale;f32 f7=tp->z,f5=tp->x,f4=tp->y;f1=-f1;f32 f6=f3*c;f3=f3*s;f2=f2+f7;f32 f0=f1*s;f1=f1*c;out->z=f2;f0=f0-f6;f1=f1+f3;f4=f0+f4;f5=f1+f5;out->y=f4;out->x=f5;}if(out2){f32 x=-((f32*)out2)[0],y=((f32*)out2)[1];f32 a3=y*c,a2=y*s,a1=x*s,a0=x*c;a1=a1-a3;a0=a0+a2;((f32*)out2)[1]=a1;((f32*)out2)[0]=a0;}}}

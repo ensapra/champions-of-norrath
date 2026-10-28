@@ -1,13 +1,18 @@
-extern u8 jtbl_004C006C[];
-void func_0016EE00(u8 *p){
-s32 index=*(s32*)(p+0x4ec);
-s32 map[8]; s32 *mp=map; u32 i; u8 *dst;
-__builtin_memcpy(map,jtbl_004C006C+0xbba4,32);
-dst=p+0x9e0+index*384;
-for(i=0;i<8;i++){
-u8 *src=(u8*)((0x930+(*mp++)*4)+(u32)p);
-dst[0]=src[0]; dst[1]=src[1]; dst[2]=src[2];
-dst[3]=(*(s32*)(p+0x618)*src[3])/255;
-dst+=32;
-}
+typedef struct { u8 b[32]; } B32;
+extern B32 jtbl_004CBC10;
+
+void func_0016EE00(u8 *a) {
+    B32 tb;
+    u32 i;
+    u8 *dst;
+    tb = jtbl_004CBC10;
+    dst = a + *(s32 *)(a + 0x4EC) * 0x180 + 0x9E0;
+    for (i = 0; i < 8; i++) {
+        s32 t = ((s32 *)&tb)[i] * 4 + 0x930;
+        dst[0] = a[t];
+        dst[1] = a[t + 1];
+        dst[2] = a[t + 2];
+        dst[3] = *(s32 *)(a + 0x618) * a[t + 3] / 255;
+        dst += 0x20;
+    }
 }

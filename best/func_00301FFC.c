@@ -1,16 +1,23 @@
-s32 *func_00301FFC(s32 arg0, s32 arg1, u32 arg2) {
-    s32 *d = arg0;
-    s32 *s = arg1;
-    s32 var_6 = arg2;
-    s32 v1, v2;
-    if (var_6 >= 32) {
-        while (var_6 >= 32) {
-            v1 = *s; s++;
-            v2 = s[0]; s++;
-            d[0] = v1; d++;
-            d[1] = v2; d++;
-            var_6 -= 32;
+typedef int u128 __attribute__((mode(TI)));
+void *func_00301FFC(void *dst, void *src, u32 n) {
+    u8 *d = (u8 *)dst;
+    u8 *s = (u8 *)src;
+    if (n >= 32 && !(((u32)s | (u32)d) & 0xF)) {
+        while (n >= 32) {
+            *(u128 *)d = *(u128 *)s;
+            s += 16; d += 16;
+            *(u128 *)d = *(u128 *)s;
+            s += 16; d += 16;
+            n -= 32;
+        }
+        while (n >= 8) {
+            *(u64 *)d = *(u64 *)s;
+            s += 8; d += 8;
+            n -= 8;
         }
     }
-    return d;
+    while (n-- != 0) {
+        *d++ = *s++;
+    }
+    return dst;
 }

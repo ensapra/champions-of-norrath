@@ -18,20 +18,20 @@ s32 func_002DAE80(u8 *arg0, s32 arg1) {
     s32 i;
     s32 sema;
     s32 v;
+    u8 c;
     Req *d = D_008E04C0;
     func_002D8EF8(0xC);
     if (D_004449F4[0] == 0) {
         func_002D9028();
     }
-    d->str[0] = arg0[0];
+    c = d->str[0] = arg0[0];
     i = 0;
-    if (arg0[0] != 0) {
-        while (1) {
+    if (c != 0) {
+        do {
             i++;
             if (i >= 0x400) break;
-            d->str[i] = arg0[i];
-            if (arg0[i] == 0) break;
-        }
+            c = d->str[i] = arg0[i];
+        } while (c != 0);
     }
     if (i == 0x400) {
         d->str[0x3ff] = 0;
@@ -45,8 +45,7 @@ s32 func_002DAE80(u8 *arg0, s32 arg1) {
     d->res = &result;
     d->sema = sema;
     d->n = 4;
-    result = 0;
-    if (func_002D8270(D_008E1BC0, 0xC, 0, d, i + 0x11, D_008E1100, 4, 0, 0) < 0) {
+    if (func_002D8270(D_008E1BC0, 0xC, 0, D_008E04C0, i + 0x11, D_008E1100, 4, 0, 0) < 0) {
         DeleteSema_2(sema);
         func_002D8F28();
         return -0xB;

@@ -1,1 +1,0 @@
-extern u8 D_007D8A90[]; extern s32 func_00166F48(void*); extern s32 func_003044FC(s32,void*); extern s8 D_004844B4; void *func_0024A1F0(s32 id){u8*p=(u8*)func_00166F48(D_007D8A90);if(!p)return 0;s32 a=-1,b=-1,i=0;u8*q=p;while(*q){if(!func_003044FC(id,q)){s32 v=*(s16*)(q+0x4a);a=(v==0)?i:a;b=((v^D_004844B4)==0)?i:b;}q+=0x50;i++;}if(b<0)b=a;if(b<0)return 0;return p+b*0x50;}

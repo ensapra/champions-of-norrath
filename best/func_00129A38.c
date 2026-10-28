@@ -13,6 +13,6 @@ out->fC=in->fC;{u64 a=in->c.a;u32 b=in->c.b;out->c.a=a;out->c.b=b;}{f32 f=in->f1
 out->b28=in->b28;out->b29=in->b29;out->vt=(u32)D_00448D10;
 {u32 w=in->f44;u32 a=in->f2C;u32 b=in->f34;u16 h=in->h38;out->f30=in->f30;out->f3C=in->f3C;out->f2C=a;out->f34=b;out->h38=h;out->f40=in->f40;out->f44=w;}
 {u64 a=in->d.a;u32 b=in->d.b;out->d.a=a;out->d.b=b;}
-out->f58=in->f58;out->f5C=in->f5C;{u32 w=in->f64;out->f60=in->f60;out->f64=w;}out->f68=in->f68;
+{u32 x=in->f58;u32 y=in->f5C;u32 w=in->f64;f32 f=in->f60;out->f58=x;out->f5C=y;out->f64=w;out->f60=f;}out->f68=in->f68;
 result=out;}else{result=0;}return result;
 }

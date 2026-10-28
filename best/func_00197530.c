@@ -1,4 +1,5 @@
-extern char jtbl_004C006C[];
+extern char D_004CF040[];
+extern char D_004CF098[];
 typedef struct 
 {
   union 
@@ -32,19 +33,13 @@ void func_00197530(Widget *w, u64 in)
 {
   s32 mode;
   Dialog *d;
-  u16 new_var;
-  u16 x;
-  struct 
-  {
-    u8 active;
-    u8 modal;
-  } *new_var2;
   u16 flags;
   u16 btn;
   u16 extra;
+  u16 x;
   if (w == NULL)
   {
-    func_001A1568(jtbl_004C006C + 0xEFD4, 0x1CA, jtbl_004C006C + 0xF02C);
+    func_001A1568(D_004CF040, 0x1CA, D_004CF098);
   }
   mode = w->mode;
   if (((mode == 0) || (mode == 2)) || (mode == 3))
@@ -52,13 +47,11 @@ void func_00197530(Widget *w, u64 in)
     return;
   }
   d = D_00480488;
-  new_var = 32;
-  btn = (in >> new_var) & 0xFFFF;
+  btn = (in >> 32) & 0xFFFF;
   flags = (in >> 16) & 0xFFFF;
   x = in & 0xFFFF;
-  new_var = d->u.any;
   extra = in >> 48;
-  if (new_var == 0)
+  if (d->u.any == 0)
   {
     return;
   }
@@ -68,8 +61,7 @@ void func_00197530(Widget *w, u64 in)
     x &= 0xFFF;
     btn &= 0xFFF;
   }
-  new_var2 = &d->u.b;
-  if ((*new_var2).modal)
+  if (d->u.b.modal)
   {
     if (btn & 0x40)
     {

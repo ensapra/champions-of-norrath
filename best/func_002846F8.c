@@ -1,2 +1,0 @@
-extern s8 D_00486DA0; extern u8 D_008D60E0[]; void func_001D1108(void*); s32 func_003044FC(void*,void*); void func_00304640(void*,void*);
-void func_002846F8(void){u8 buf[0x40];s32 i=0;s8 count;func_001D1108(buf);count=D_00486DA0;if(count>0){u8*p=D_008D60E0;for(;;){if(func_003044FC(p,buf)==0)return;i++;p+=32;if(i>=D_00486DA0)break;}}D_00486DA0=count+1;func_00304640(D_008D60E0+(((s32)count<<24)>>19),buf);}

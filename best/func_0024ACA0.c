@@ -1,2 +1,29 @@
-extern u8 D_007DD290[],D_007DD7E0[],D_007DD840[],D_007DD880[]; typedef struct{s32 a,b,c;u16 d,e;} Extra; void func_002D8270(void*,s32,s32,void*,s32,void*,s32,s32,Extra);
-void func_0024ACA0(s32 index){u8*p=D_007DD290+index*0x1c4;s32 count=*(s32*)(p+0x1c0),i=0;if(count>0){u8*q=p+0x6c;do{s32 f=*(s32*)q;if(f&8){*(s32*)q=f&~8;break;}++i;q+=0x30;}while(i<count);}if(i==0){s32 v=*(s32*)(p+0x24);if(v){Extra e={index,v,*(s32*)(p+0x34),*(u16*)(p+0x38),1};func_002D8270(D_007DD7E0,64,0,D_007DD880,16,D_007DD840,64,0,e);*(s32*)(p+0x24)=0;}}}
+typedef struct { s32 a, b, c; u16 d, e; } Ex;
+extern u8 D_007DD290[], D_007DD7E0[], D_007DD840[];
+extern Ex D_007DD880;
+void func_002D8270(void *, s32, s32, void *, s32, void *, s32, s32, s32);
+
+void func_0024ACA0(s32 index) {
+    u8 *p = D_007DD290 + index * 0x1c4;
+    s32 count = *(s32 *)(p + 0x1c0), i = 0;
+    if (count > 0) {
+        u8 *q = p + 0x6c;
+        do {
+            s32 f = *(s32 *)q;
+            if (f & 8) { *(s32 *)q = f & ~8; break; }
+            i++;
+            q += 0x30;
+        } while (i < count);
+    }
+    if (i == 0) {
+        s32 v = *(s32 *)(p + 0x24);
+        if (v) {
+            Ex e;
+            e.a = index; e.b = v; e.c = *(s32 *)(p + 0x34);
+            e.d = *(u16 *)(p + 0x38); e.e = 1;
+            D_007DD880 = e;
+            func_002D8270(D_007DD7E0, 64, 0, &D_007DD880, 16, D_007DD840, 64, 0, 0);
+            *(s32 *)(p + 0x24) = 0;
+        }
+    }
+}

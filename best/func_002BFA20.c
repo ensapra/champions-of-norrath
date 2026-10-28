@@ -1,5 +1,5 @@
 extern int func_002702D8(void*,void*,int,int,int);
-extern int func_0017DB78(void*,void*,void*,float);
+extern void func_0017DB78(void*,void*,void*,float);
 extern void func_00270F28(void*,int);
 extern char D_00453328[];
 s32 D_004844A0;

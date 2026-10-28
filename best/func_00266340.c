@@ -1,21 +1,33 @@
-u32 D_00483E58;
-f32 func_00266340(void *p, void *q, s32 a2,s32 a3,s32 a4,s32 a5,s32 a6,f32 f) {
- s32 i,n; u32 x; f32 t; u8 *b=p;
- if(f<=0.0f) f=1.0f;
- i=*(s32*)(b+0xe00); n=i+1; *(s32*)(b+0xe00)=n;
- if(i<128) goto store;
- x=D_00483E58; x=x*0x19660d+0x3c6ef35f;
- t=(f32)n; t*=0.000030517578125f;
- if((s32)t>=128) { D_00483E58=x; return (f32)(x>>16)*0.000015258789f*(f32)n; }
- x=x*0x19660d+0x3c6ef35f; D_00483E58=x;
- t=(f32)(x>>16); t*=0.000030517578125f; t*=67.0f;
- *(f32*)(b+0xe0c)-=*(f32*)(b+0x75c);
- *(s32*)(b+0x760)=a2; *(s32*)(b+0x764)=a3; *(f32*)(b+0x768)=f;
- *(s32*)(b+0x770)=(s32)q; *(s32*)(b+0x774)=a4; *(s32*)(b+0x778)=a5; *(s32*)(b+0x77c)=a6;
- *(f32*)(b+0xe0c)+=f; return *(f32*)(b+0xe0c);
-store:
- *(s32*)(b+0x20+((i*7)<<2))=a2; *(s32*)(b+0x24+((i*7)<<2))=a3;
- *(f32*)(b+0x28+((i*7)<<2))=f; *(s32*)(b+0x30+((i*7)<<2))=(s32)q;
- *(s32*)(b+0x34+((i*7)<<2))=a4; *(s32*)(b+0x38+((i*7)<<2))=a5; *(s32*)(b+0x3c+((i*7)<<2))=a6;
- *(f32*)(b+0xe0c)+=f; return *(f32*)(b+0xe0c);
+typedef struct { s32 a, b, c, d, e; f32 f; s32 q; } Ent;
+typedef struct { Ent ent[128]; s32 cnt; s32 pad2[2]; f32 sum; } Buf;
+extern u32 D_00483E58;
+void func_00266340(Buf *p, s32 q, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6, f32 f) {
+    s32 i, n;
+    u32 x;
+    if (f <= 0.0f) f = 1.0f;
+    i = p->cnt;
+    n = i + 1;
+    p->cnt = n;
+    if (i >= 128) {
+        x = D_00483E58 * 0x19660D + 0x3C6EF35F;
+        if ((s32)((f32)(s32)(x >> 16) * (1.0f / 65536.0f) * (f32)n) >= 128)
+            goto skip;
+        {
+            u32 y = x * 0x19660D + 0x3C6EF35F;
+            D_00483E58 = y;
+            i = (s32)((f32)(s32)(y >> 16) * (1.0f / 65536.0f) * 128.0f);
+            p->sum -= p->ent[i].f;
+        }
+    }
+    p->ent[i].f = f;
+    p->ent[i].a = a2;
+    p->ent[i].b = a3;
+    p->sum += f;
+    p->ent[i].q = q;
+    p->ent[i].c = a4;
+    p->ent[i].d = a5;
+    p->ent[i].e = a6;
+    return;
+skip:
+    D_00483E58 = x;
 }

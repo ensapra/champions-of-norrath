@@ -10,19 +10,23 @@ O *func_00274C10(A *a, f32 *arg1) {
     f32 n[3];
     f32 t[3];
     f32 *tp = t;
+    f32 one = 1.0f;
     s32 i;
     n[0] = -a->n0;
     n[1] = -a->n1;
     n[2] = -a->n2;
-    t[0] = a->t0;
+    tp[0] = a->t0;
     t[1] = a->t1;
     t[2] = a->t2;
     for (i = 0; i < D_00485E40; i++) {
-        if (i != a->sel && !(a->r348 < D_00436FA8[i]->pl[0] * n[0] + D_00436FA8[i]->pl[1] * n[1] + D_00436FA8[i]->pl[2] * n[2])) {
-            f32 d = func_0015A1D0((u8 *)a + 0x10, n, (u8 *)D_00436FA8[i] + 0x10) - D_00436FA8[i]->r;
-            if (d > 0.0f) {
-                f32 m = (a->r348 * D_004821E8) <? 1.0f;
-                if (d < a->r * (m * D_004821EC + D_004821F0)) {
+        if (i != a->sel) {
+            O *o = D_00436FA8[i];
+            f32 *pl = o->pl;
+            if (!(a->r348 < pl[0] * n[0] + pl[1] * n[1] + pl[2] * n[2])) {
+                f32 d = func_0015A1D0((u8 *)a + 0x10, n, (u8 *)o + 0x10) - D_00436FA8[i]->r;
+                f32 m = one <? (a->r348 * D_004821E8);
+                f32 lim = a->r * (m * D_004821EC + D_004821F0);
+                if (d > 0.0f && d < lim) {
                     f32 x = func_0015A1D0((u8 *)a + 0x10, tp, (u8 *)D_00436FA8[i] + 0x10);
                     if (__builtin_fabsf(x) < (a->r + D_00436FA8[i]->r) * 0.75f) {
                         if (arg1) *arg1 = x;

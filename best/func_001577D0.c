@@ -1,59 +1,18 @@
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} FVECTOR;
-
-extern f32 D_0047FEE4;
-extern f32 D_0047FEE8;
-extern f32 D_0047FEEC;
-extern f32 D_0047FEF0;
-
-void func_001577D0(f32 *mtx, FVECTOR *v, s16 angle, f32 scale) {
+typedef struct { f32 x, y, z; } FVECTOR;
+extern f32 D_0047FEE4, D_0047FEE8, D_0047FEEC, D_0047FEF0;
+static inline f32 cs(s32 a, f32 scale) {
+    f32 sign = 1.0f, x, x2, x3, x5, x7, s;
+    s32 b = (s16)(a - 0x4000);
+    if ((b ^ (b << 1)) & 0x8000) { sign = -1.0f; b = (b << 17) >> 17; }
+    x = (f32)b * D_0047FEE4;
+    x2 = x * x; x3 = x * x2; x5 = x3 * x2; x7 = x5 * x2;
+    s = x - x3 * D_0047FEE8 + x5 * D_0047FEEC - x7 * D_0047FEF0;
+    return sign * (1.0f - 2.0f * s * s) * scale;
+}
+void func_001577D0(f32 *m, FVECTOR *v, s16 angle, f32 scale) {
     FVECTOR t = *v;
-    s32 a = angle;
-    s32 b = a - 0x4000;
-    s32 ta = a;
-    s32 tb = b;
-    f32 sign1 = 1.0f;
-    f32 sign2 = 1.0f;
-    f32 x;
-    f32 x2;
-    f32 x3;
-    f32 s;
-    f32 c;
-    f32 sn;
-
-    if ((a ^ (a << 1)) & 0x8000) {
-        sign1 = -1.0f;
-        ta = (a << 17) >> 17;
-    }
-    x = (f32)ta * D_0047FEE4;
-    x2 = x * x;
-    x3 = x * x2;
-    s = x - x3 * D_0047FEE8 + x3 * x2 * D_0047FEEC - x3 * x2 * x2 * D_0047FEF0;
-    c = sign1 * (1.0f - 2.0f * s * s) * scale;
-
-    if ((b ^ (b << 1)) & 0x8000) {
-        sign2 = -1.0f;
-        tb = (b << 17) >> 17;
-    }
-    x = (f32)tb * D_0047FEE4;
-    x2 = x * x;
-    x3 = x * x2;
-    s = x - x3 * D_0047FEE8 + x3 * x2 * D_0047FEEC - x3 * x2 * x2 * D_0047FEF0;
-    sn = sign2 * (1.0f - 2.0f * s * s) * scale;
-
-    mtx[0] = c;
-    mtx[4] = c;
-    mtx[8] = scale;
-    mtx[2] = 0.0f;
-    mtx[5] = 0.0f;
-    mtx[6] = 0.0f;
-    mtx[7] = 0.0f;
-    mtx[11] = t.z;
-    mtx[9] = t.x;
-    mtx[10] = t.y;
-    mtx[1] = sn;
-    mtx[3] = -sn;
+    f32 c = cs(angle + 0x4000, scale);
+    f32 sn = cs(angle, scale);
+    m[0] = c; m[4] = c; m[8] = scale; m[2] = 0; m[5] = 0; m[6] = 0; m[7] = 0;
+    m[11] = t.z; m[9] = t.x; m[10] = t.y; m[1] = sn; m[3] = -sn;
 }

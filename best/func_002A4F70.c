@@ -1,1 +1,0 @@
-extern s32 D_008D71D0[],D_008D7220[]; void func_00180D78(s32*,s32,s32,s32,s32,s32,s32,s32,f32,f32,f32,s32,s32,s32,s32,s32); void func_002A4F70(s32 a,s32 b){s32 again=a;if(b==0xffff){if(a==1){func_00180D78(D_008D71D0,0x96,0x96,0x96,0x96,0xff,0,0,24.0f,0,0,0,a,again,6,0);if(again==1)func_00180D78(D_008D7220,0xc8,0xc8,0xc8,0x32,0xff,0,0,36.0f,-1.0f,0,0,2,again,6,0);}}}

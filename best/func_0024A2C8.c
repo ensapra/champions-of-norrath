@@ -1,2 +1,0 @@
-s32 func_0024F688(s32); s8 *func_0024F6C8(void); s32 func_0024A660(s32,s32,s32,s32,s32,s32,s16,s32);
-void func_0024A2C8(s32 a,s32 b,s32 c){ s8*p=func_0024F6C8(); if(!p)return; if(b>=0){s32 i=0; s8*q=p; while(*q){if(i>=b)break;i++;q+=0x50;}} func_0024A660(a,func_0024F688(b),c,*(s32*)(p+b*0x50+0x40),*(s32*)(p+b*0x50+0x90)-*(s32*)(p+b*0x50+0x40),*(s32*)(p+b*0x50+0x4c),*(s16*)(p+b*0x50+0x48),*(s32*)(p+b*0x50+0x44));}

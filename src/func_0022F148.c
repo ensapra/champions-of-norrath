@@ -1,0 +1,8 @@
+extern s32 func_00111B90(void); extern void func_0022C250(void*,s32,s32);
+s32 func_0022F148(void *dst,void *src) {
+ char *p=(char*)src; char *base=(char*)src; s32 a,t; s32 n=func_00111B90();
+ p+=n; p+=4; a=*(s32*)(p-4); p+=4;
+ *(s32*)((u8*)dst+0x3cc)=a; *(s32*)((u8*)dst+0x3dc)=*(s32*)(p-4);
+ p+=4; t=*(s32*)(p-4); p+=4; *(s32*)((u8*)dst+0x3e0)=t; *(s32*)((u8*)dst+0xd0)=*(s32*)(p-4);
+ func_0022C250(dst,1,t); if(*(s16*)((u8*)dst+0x23c)==10)*(s32*)((u8*)dst+0x3e4)=0; return p-base;
+}

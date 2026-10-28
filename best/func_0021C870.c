@@ -1,33 +1,30 @@
-extern s32 func_00143A80(void *, void *, s32);
-extern void func_00140678(void *, void **, s32);
+class Obj {
+public:
+    char pad[0x48];
+    virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8();
+    virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12();
+    virtual void v13();
+    virtual void Fn(int a);
+};
+extern "C" {
 extern char D_004853C8[];
-
-void func_0021C870(void *arg0, s32 arg1) {
-    void *items[16];
-    void *d = D_004853C8;
-    void *handle;
-    void **iter;
-    void *item;
-    void *p;
-    s16 offset;
-    void (*fn)(void *, s32, void *);
-    
-    if (func_00143A80(arg0, d, 0) != 0) {
-        handle = func_00143A80(arg0, d, 0);
-        func_00140678(handle, items, 0x10);
-        iter = items;
-        item = *iter;
-        if (item != NULL) {
-            while (1) {
-                iter = (void **)((char *)iter + 4);
-                p = *(void **)((char *)item + 0x48);
-                p = (char *)p + 0x70;
-                offset = *(s16 *)p;
-                fn = *(void (**)(void *, s32, void *))((char *)p + 4);
-                fn((char *)item + offset, arg1, item);
-                item = *iter;
-                if (item == NULL) break;
-            }
+extern int func_00143A80(void *, void *, int);
+extern void func_00140678(int, Obj *volatile *, int);
+void func_0021C870(void *arg0, int arg1) {
+    Obj *volatile items[16];
+    Obj *volatile *it;
+    Obj *o;
+    if (func_00143A80(arg0, D_004853C8, 0) != 0) {
+        func_00140678(func_00143A80(arg0, D_004853C8, 0), items, 0x10);
+        it = items;
+        if (*it != 0) {
+            o = *it;
+            do {
+                it++;
+                o->Fn(arg1);
+            } while ((o = *it) != 0);
         }
     }
+}
 }

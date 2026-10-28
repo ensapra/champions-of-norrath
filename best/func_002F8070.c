@@ -1,45 +1,20 @@
-/* machine draft (m2c), tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+extern f32 func_002F8180(f32, f32);
 
-f32 func_002F8180(s32, f32, f32, f32);              /* extern */
-
-f32 func_002F8070(s32 arg0, f32 fparg0) {
-    f32 var_f0;
-    f32 var_f20;
-    s32 temp_5;
-    u32 temp_2;
-
-    temp_2 = M2C_BITWISE(s32, fparg0) & 0x7FFFFFFF;
-    var_f0 = fparg0;
-    temp_5 = (temp_2 >> 0x17) + arg0;
-    if (temp_2 > 0x7FFFFFU) {
-        if (temp_5 >= 0x100) {
-            var_f20 = 9.9999994e29f;
-            goto block_8;
+f32 func_002F8070(s32 n, f32 x) {
+    union { f32 f; s32 i; } u;
+    s32 hx, ix, k;
+    u.f = x;
+    hx = u.i;
+    ix = hx & 0x7fffffff;
+    k = (ix >> 23) + n;
+    if (ix > 0x7fffff) {
+        if (k > 0xff) return 1.0e30f * func_002F8180(1.0e30f, x);
+        if (k > 0) {
+            u.i = (hx & 0x807fffff) | (k << 23);
+            return u.f;
         }
-        if (temp_5 > 0) {
-            return M2C_BITWISE(f32, ((M2C_BITWISE(s32, fparg0) & 0x807FFFFF) | (temp_5 << 0x17)));
-        }
-        if (arg0 > 0xC350) {
-            var_f20 = 9.9999994e29f;
-        } else {
-            var_f20 = 9.999999e-31f;
-        }
-block_8:
-        var_f0 = func_002F8180(temp_5, fparg0, var_f20, fparg0) * var_f20;
-        /* Duplicate return node #9. Try simplifying control flow for better match */
-        return var_f0;
+        if (n > 50000) return 1.0e30f * func_002F8180(1.0e30f, x);
+        return 1.0e-30f * func_002F8180(1.0e-30f, x);
     }
-    return var_f0;
+    return x;
 }

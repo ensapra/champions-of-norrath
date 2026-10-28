@@ -1,3 +1,57 @@
-typedef struct { unsigned char b[0x120]; } O; typedef struct {unsigned char b[12];} A;
-extern void func_001411F0(void*,s32,s32,s32); extern void func_00143630(void*,s32,s32,s32,s32);extern void func_00147A48(void*,s32);extern void func_0016C820(s32,s64,s32*,s32*,s32*,s32*,s32*,s32*);extern char D_0044D018[];
-void func_001478B0(O*o,A*a,s32 x,s32 y,s64 z,s32 flags){s32 p,q,r,s,t,u;u32 n;o->b[0]=o->b[0];func_001411F0(&p,0,0,*(s32*)(a->b+8));*(void**)(o->b+0x48)=D_0044D018;*(f32*)(o->b+0x30)=0;*(f32*)(o->b+0x100)=0;n=(*(u32*)(o->b+0x44)*0x19660d)+0x3c6ef35f;*(f32*)(o->b+0xfc)=0;*(u32*)(o->b+0x44)=n;*(u16*)(o->b+0x38)=n>>16;*(s32*)(o->b+0x50)=y;*(s32*)(o->b+0x4c)=x;*(s64*)(o->b+0xe8)=z;*(u16*)(o->b+0x10c)=0;func_0016C820(x,z,&p,&q,&r,&s,&t,&u);s32 k=flags&4; s32 m=(r+u)>>1; s32 v=(p+s)>>1; s32 w=(q+t)>>1;*(f32*)(o->b+0xf8)=m;*(f32*)(o->b+0xf0)=v;*(f32*)(o->b+0xf4)=w;*(f32*)(o->b+0x108)=m-r;if(k){*(f32*)(o->b+0x10)=*(f32*)(o->b+0x10)+v;*(f32*)(o->b+0x14)=*(f32*)(o->b+0x14)+w;*(f32*)(o->b+0x18)=*(f32*)(o->b+0x18)+m;func_00143630(o,v,t,s,k);}func_00147A48(o,flags);}
+typedef struct { s32 a, b, c; } S3;
+typedef struct {
+    char pad0[0x10];
+    f32 f10, f14, f18;
+    char pad1[0x14];
+    f32 f30;
+    char pad2[4];
+    u16 h38;
+    char pad3[0xA];
+    s32 s44;
+    void *vt;
+    s32 s4c;
+    s32 s50;
+    char pad4[0x94];
+    s64 e8;
+    f32 f_f0, f_f4, f_f8, f_fc, f_100;
+    char pad6[4];
+    f32 f_108;
+    u16 h10c;
+} O;
+extern char D_0044D018[];
+void func_001411F0(O *o, S3 s, s32 a, s32 b);
+void func_00143630(O *o, s32 a, s32 b, s32 c);
+void func_00147A48(O *o, s32 f);
+void func_0016C820(s32 x, s64 z, s32 *a, s32 *b, s32 *c, s32 *d, s32 *e, s32 *f);
+
+void func_001478B0(O *o, S3 s, s32 x, s32 y, s64 z, s32 flags) {
+    s32 p, q, r, ss, t, u;
+    s32 v, w, m;
+    f32 zero = 0;
+    func_001411F0(o, s, 0, 0);
+    o->vt = D_0044D018;
+    o->s44 = o->s44 * 0x19660D + 0x3C6EF35F;
+    o->h38 = (u32)o->s44 >> 16;
+    o->s50 = y;
+    o->s4c = x;
+    o->e8 = z;
+    o->h10c = 0;
+    o->f_100 = zero;
+    o->f_fc = zero;
+    o->f30 = zero;
+    func_0016C820(x, z, &p, &q, &r, &ss, &t, &u);
+    v = (p + ss) >> 1;
+    w = (q + t) >> 1;
+    m = (r + u) >> 1;
+    o->f_f8 = m;
+    o->f_f0 = v;
+    o->f_f4 = w;
+    o->f_108 = (f32)m - (f32)r;
+    if (flags & 4) {
+        o->f10 += v;
+        o->f14 += w;
+        o->f18 += m;
+        func_00143630(o, v, t, ss);
+    }
+    func_00147A48(o, flags);
+}

@@ -1,16 +1,19 @@
-extern s32 D_010CD830[];
-extern s32 D_010CD848[];
-extern s32 D_001BB6C4[];
-extern u8 D_001BB710[];
-extern u8 func_001C4B18[];
-void func_0010B378(s32, void *);
-void func_0013BBD0(void);
+/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
 
-void func_00132334(s32 a, s64 c) {
-    s32 b = c;
-    D_001BB6C4[0] = D_010CD848[b];
-    func_0013BBD0();
-    if (b != *(s32 *)(func_001C4B18 + 0x3BC)) {
-        func_0010B378(D_010CD830[b], D_001BB710);
-    }
+/* Warning: missing "jr $ra" in last block of func_00132334 (initial). */
+
+void func_00132334(void) {
+
 }

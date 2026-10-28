@@ -18,7 +18,7 @@ typedef struct {
 
 f32 func_0015A070(s32);
 f32 func_0015A100(s32);
-s32 func_00160830(void *, void *, f32 *, s16 *, s32, f32);
+s32 func_00160830(void *, void *, f32 *, s16 *, f32);
 extern f32 D_0047FC64;
 extern f32 D_0047FC68;
 
@@ -27,15 +27,15 @@ extern f32 D_0047FC68;
 s32 func_00111830(S00111830 *p, f32 t) {
     f32 *v = p->vel;
     s32 ret = 0;
-    f32 s, c, x, y, k, sc;
+    f32 s, c, x, y, k, sc, K;
 
     if (p->active != 0) {
         void *q = (p->flags & 0x2000000) ? NULL : p->f10;
         s32 tm = p->timer;
         if (IN_FADE(p->timer)) {
-            ret = func_00160830(p->f120, q, v, &p->fBC, tm, t * (f32)(60 - tm) * D_0047FC64);
+            ret = func_00160830(p->f120, q, v, &p->fBC, t * (f32)(60 - tm) * D_0047FC64);
         } else {
-            ret = func_00160830(p->f120, q, v, &p->fBC, tm, t);
+            ret = func_00160830(p->f120, q, v, &p->fBC, t);
         }
     }
     sc = p->scale;
@@ -45,13 +45,14 @@ s32 func_00111830(S00111830 *p, f32 t) {
     c = func_0015A100(p->angle - 0x4000);
     x = -v[0];
     y = p->vel[1];
+    K = D_0047FC68;
     v[0] = x * s + y * c;
     p->vel[1] = x * c - y * s;
     if (IN_FADE(p->timer)) {
-        k = (f32)(60 - p->timer) * D_0047FC68;
-        v[1] *= k;
+        k = (f32)(60 - p->timer) * K;
         v[0] *= k;
-        p->fBC = (f32)p->fBC * ((f32)(60 - p->timer) * D_0047FC68);
+        v[1] *= k;
+        p->fBC = (f32)p->fBC * ((f32)(60 - p->timer) * K);
     }
     return ret;
 }

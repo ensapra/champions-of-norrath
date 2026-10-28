@@ -12,7 +12,7 @@ extern s32 gp_save;
 
 s32 func_002D8270(SReq *r, s32 a1, s32 flags, s32 a3, s32 a4, s32 a5, s32 a6, s32 a7, s32 sp0) {
     SNode *n;
-    s32 sp[2];
+    s32 sp[6];
     s32 s;
     n = func_002D7AD0(D_008E0440);
     if (n == 0) return -1;
@@ -40,13 +40,11 @@ s32 func_002D8270(SReq *r, s32 a1, s32 flags, s32 a3, s32 a4, s32 a5, s32 a6, s3
         if (a7 == 0) n->f30 = 0;
         else n->f30 = 1;
         r->sema = -1;
-        if (func_002D7690(0x8000000A, n, 0x40, a3, r->f14, a4) == 0) {
-            func_002D7B78(n);
-            return -2;
-        }
-        return 0;
+        if (func_002D7690(0x8000000A, n, 0x40, a3, r->f14, a4) != 0) return 0;
+        func_002D7B78(n);
+        return -2;
     }
-    sp[0] = 0;
+    sp[2] = 0;
     sp[1] = 1;
     s = CreateSema_2(sp);
     r->sema = s;

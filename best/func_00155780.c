@@ -20,8 +20,8 @@ void func_00155780(W *w) {
             while (1) {
                 if (*q == 10) {
                     func_001558B0(w, w->line, p, q - p);
-                    p = q + 1;
                     w->line = w->line + 1;
+                    p = q + 1;
                     q = q + 1;
                 } else q = q + 1;
                 if (*q == 0) break;

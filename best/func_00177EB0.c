@@ -1,13 +1,1 @@
-extern s32 func_00179280(s32,s32);
-s32 func_00177EB0(void *arg0, void *arg1) {
- s32 i=0,count,n=0,total=0,x,j,result=6; char *table=*(char **)((char *)arg1+0x20),*cur=table+0x10,*start;
- count=*(s32 *)(table+0xC);
- if(count>0){x=*(s32 *)((char *)arg0+0x28);n=*(s32 *)(cur+0xC);if(x!=0)do{i++;cur+=(*(s32 *)(cur+4))*4+0x10;if(i<count){n=*(s32 *)(cur+0xC);if(i!=x)continue;}break;}while(1);}
- if(i==count)return 6;
- start=cur+0x10;cur=start;
- if(n>0){j=n;x=*(s32 *)(cur+4);do{total+=x;cur+=0x30;if(total>0){s32 k=total;do{k--;cur+=(*(s32 *)(cur+4))*4+0x10;}while(k!=0);}j--;if(j)x=*(s32 *)(cur+4);}while(j);}
- total*=4;*(s32 *)((char *)arg0+0x50)=func_00179280(0x10,total);*(s32 *)((char *)arg0+0x54)=func_00179280(0x10,total);
- if(*(s32 *)((char *)arg0+0x50)==0||*(s32 *)((char *)arg0+0x54)==0)return 1;
- cur=start;x=0;if(n>0){j=n;do{s32 c=*(s32 *)(cur+4);cur+=0x30;if(c>0){s32 k=c;do{*(s32 *)(*(s32 *)((char *)arg0+0x50)+x*4)=(s32)(cur+0x10);*(s32 *)(*(s32 *)((char *)arg0+0x54)+x*4)=(s32)(cur+(*(s32 *)(cur+0xC))*16+0x10);cur+=(*(s32 *)(cur+4))*4+0x10;x++;k--;}while(k);}j--;}while(j);}
- return 0;
-}
+extern s32 func_00179280(s32,s32);s32 func_00177EB0(void*a0,void*a1){s32 i=0,count,n=0,total=0,x,j,result=6;char*table=*(char**)((char*)a1+0x20),*cur=table+0x10,*start;count=*(s32*)(table+0xc);if(count>0){x=*(s32*)((char*)a0+0x28);n=*(s32*)(cur+0xc);if(x!=0)do{i++;cur+=(*(s32*)(cur+4))*4+0x10;if(i<count){n=*(s32*)(cur+0xc);if(i!=x)continue;}break;}while(1);}if(i==count)return 6;start=cur+0x10;cur=start;if(n>0){j=n;x=*(s32*)(cur+4);do{total+=x;cur+=0x30;if(total>0){s32 k=total;do{k--;cur+=(*(s32*)(cur+4))*4+0x10;}while(k!=0);}j--;if(j)x=*(s32*)(cur+4);}while(j);}total*=4;*(s32*)((char*)a0+0x50)=func_00179280(0x10,total);*(s32*)((char*)a0+0x54)=func_00179280(0x10,total);if(*(s32*)((char*)a0+0x54)==0||*(s32*)((char*)a0+0x50)==0)return 1;cur=start;x=0;if(n>0){j=n;do{s32 c=*(s32*)(cur+4);cur+=0x30;if(c>0){s32 k=c;do{*(s32*)(*(s32*)((char*)a0+0x50)+x*4)=(s32)(cur+0x10);*(s32*)(*(s32*)((char*)a0+0x54)+x*4)=(s32)(cur+(*(s32*)(cur+0xc))*16+0x10);cur+=(*(s32*)(cur+4))*4+0x10;x++;k--;}while(k);}j--;}while(j);}return 0;}

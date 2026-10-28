@@ -28,7 +28,7 @@ void func_001AC2C0(s32, s32, s32);
 void func_001BE0B0(s32 id, s32 player) {
     PlayerData *p;
     Slot *s;
-    Slot *q;
+    u8 *q;
     s32 i;
     s32 idx;
     s32 r;
@@ -44,9 +44,9 @@ void func_001BE0B0(s32 id, s32 player) {
             break;
         }
     }
-    q = p->slots;
-    for (i = 0; i < 15; i++, q++) {
-        if (q->id == id)
+    q = (u8 *)p + 0x55F0;
+    for (i = 0; i < 15; i++, q += 0x68) {
+        if (*(s16 *)(q + 8) == id)
             idx = -1;
     }
     if (idx == -1)

@@ -1,1 +1,18 @@
-typedef struct{u8 x[8];s16 y;} Item; void func_002E7A38(Item*a,s32 lo,s32 hi){if(lo>=hi)return;s32 mid=(lo+hi)/2;Item tmp=a[lo];a[lo]=a[mid];a[mid]=tmp;s32 p=lo,i=lo+1,j=i;if(hi>=i){do{j++;if(a[j-1].x[1]<a[lo].x[1]){Item q=a[i];a[i]=a[j-1];a[j-1]=q;}i++;}while(hi>=i);}Item q=a[lo];a[lo]=a[p];a[p]=q;func_002E7A38(a,p-1,hi);func_002E7A38(a,i,hi);}
+typedef struct { u8 x[8]; s16 y; } Item;
+static inline void swap(Item *p, Item *q) { Item t = *p; *p = *q; *q = t; }
+void func_002E7A38(Item *a, s32 lo, s32 hi) {
+    s32 i, last;
+    if (lo < hi) {
+        swap(&a[lo], &a[(lo + hi) / 2]);
+        last = lo;
+        for (i = lo + 1; i <= hi; i++) {
+            if (a[i].x[1] < a[lo].x[1]) {
+                last++;
+                swap(&a[last], &a[i]);
+            }
+        }
+        swap(&a[lo], &a[last]);
+        func_002E7A38(a, lo, last - 1);
+        func_002E7A38(a, last + 1, hi);
+    }
+}

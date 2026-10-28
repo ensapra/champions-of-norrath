@@ -1,1 +1,18 @@
-typedef struct {u8 pad[0xC];s32 flags;u8 pad2[0x38];void* obj;s32 count;f32 value;s16 time;s8 frame;} Obj; typedef struct {u8 pad[8];s32 v;} Info; extern u8 D_0044A780[]; void func_001411F0(void*,void*,s32,s32); void func_00143830(void*,s16); u32 func_00153FA8(void*); void func_001E65B8(Obj*a,Info*b,f32 x){u8 tmp[12];__builtin_memcpy(tmp,b,12);func_001411F0(a,tmp,0,0);a->obj=D_0044A780;a->flags|=0x420C;a->value=0;a->count=0;if(x>0.0f)a->value=(s32)(x*60.0f);u32 n=func_00153FA8(a);a->frame=n%60;n=func_00153FA8(a);a->time=(n%6000)+0x1F40;func_00143830(a,a->time);}
+typedef struct { s32 x, y, z; } V;
+typedef struct { char p0[0xC]; s32 flags; char p1[0x38]; s32 vt; s32 q; s32 n; u16 time; u8 frame; } O;
+extern char D_0044A780[];
+void func_001411F0(void*,void*,s32,s32); void func_00143830(void*); u32 func_00153FA8(void*);
+void func_001E65B8(O *p, V *b, f32 x)
+{
+  V a = *b;
+  func_001411F0(p, &a, 0, 0);
+  p->vt = (s32)D_0044A780;
+  p->flags |= 0x420C;
+  p->n = 0;
+  p->q = 0;
+  if (x > 0.0f)
+    p->n = (s32)(x * 60.0f);
+  p->frame = func_00153FA8(p) % 60;
+  p->time = func_00153FA8(p) % 6000 + 0x1F40;
+  func_00143830(p);
+}

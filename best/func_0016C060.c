@@ -1,1 +1,59 @@
-typedef struct{s64 data;s64 zero;}Node;typedef struct{s32 head;s32 tail;}Q;typedef struct{char x[16];u16 flags;s8 a12;s8 count;char pad[18];s8 max;char pad2;s32 vals[16];}Obj;s32 D_00484084;s32 D_00484088;s32 D_004844C8;extern void func_00169528(void*,void*,s32,s32);extern void func_00168410(void*,void*,s32,s32,s32);extern void func_0015EB80(s64*,s32,s32,s32,s32,s64);void func_0016C060(Obj*a0,s32 a1,s32 a2,s32 a3,s32 a4,s32 a5,s32 a6,s32 a7){Q q;s64*old=(s64*)(long)D_004844C8;s32 start,i,cur,next;s8 k;if(!a0)return;func_00169528(&q,a0,a3,a6);if((a0->flags&32)&&D_00484088>0)func_00168410(&q,a0,1,D_00484084,D_00484088);k=a0->count;start=a0->max-1;if(start>a7)start=a7;if(a7<0)start=0;cur=*(s32*)((char*)a0+0x28+start*(k*4+4));for(i=0;i<=k;i++){if(!(a5&(1LL<<k))){next=*(s32*)((char*)a0+0x28+start*(k*4+4)+i*4);if(cur!=next){Node*n=(Node*)(long)q.head;q.head+=16;n->data=((s64)cur<<32)|(((next-cur)>>4)|0x30000000);n->zero=0;q.tail=(s32)(long)n;}cur=*(s32*)((char*)a0+0x2c+start*(k*4+4)+i*4);}a5>>=1;}s64 x=*(s64*)(long)q.tail; volatile s64 keep=x;if(((x>>28)&7)==1)x=(x&0x8fffffff)|0x60000000;else{q.head=(s32)(long)(old+2);*old=0x60000000;old[1]=0;}D_004844C8=q.head;func_0015EB80((s64*)(long)D_004844C8,a2,a1,a4,0,a5);}
+typedef struct { s32 head; s32 tail; } Q;
+typedef struct { u8 pad0[0x10]; u16 flags; s8 count; u8 pad13[0x13]; s8 max; u8 pad27; s32 vals[1]; } Obj;
+extern s32 D_00484084;
+extern s32 D_00484088;
+extern s32 D_004844C8;
+extern void func_00169528(void*, void*, s32, s32);
+extern void func_00168410(void*, void*, s32, s32, s32);
+extern void func_0015EB80(s32, s32, s32, s32, s32);
+void func_0016C060(Obj *o, s32 a1, s32 a2, s32 a3, s32 a4, s64 a5, s32 a6, s32 a7) {
+    Q q;
+    volatile Q *qp;
+    s32 start, i, k, cur, next, h;
+    s32 *p;
+    s64 mask;
+    s64 *node;
+    s64 x;
+    q.head = D_004844C8;
+    if (o == 0) return;
+    func_00169528((void*)&q, o, a3, a6);
+    if ((o->flags & 0x20) && D_00484088 > 0)
+        func_00168410((void*)&q, o, 1, D_00484084, D_00484088);
+    k = o->count;
+    start = a7 < 0 ? 0 : a7;
+    if (start > o->max - 1) start = o->max - 1;
+    p = (s32*)((u8*)o + 0x28 + start * (k * 4 + 4));
+    cur = *p;
+    mask = a5 & ~(1LL << k);
+    qp = &q;
+    i = 0;
+    while (k >= i) {
+        if (((s32)mask ^ 1) & 1) {
+            next = p[i];
+            if (cur != next) {
+                node = (s64*)qp->head;
+                qp->head = (s32)(node + 2);
+                node[0] = ((s64)cur << 32) | ((next - cur) >> 4) | 0x30000000;
+                node[1] = 0;
+                qp->tail = (s32)node;
+            }
+            cur = p[i + 1];
+        }
+        i++;
+        mask >>= 1;
+    }
+    node = (s64*)q.tail;
+    x = *node;
+    if (((x >> 28) & 7) == 1) {
+        *node = (x & (s32)0x8FFFFFFF) | 0x60000000;
+    } else {
+        node = (s64*)q.head;
+        q.tail = 0;
+        q.head = (s32)(node + 2);
+        node[0] = 0x60000000;
+        node[1] = 0;
+    }
+    h = D_004844C8;
+    D_004844C8 = q.head;
+    func_0015EB80(h, a2, a1, a4, 0);
+}

@@ -1,0 +1,2 @@
+static inline u8 *First(u8 *arg0,u8 *p) { p=*(u8 **)(arg0+0x84c); top: if(*(s32 *)p==0) { p=*(u8 **)(p+0xc); if(p!=arg0+0x840)goto top; return 0; } return p; }
+u8 *func_001515B8(u8 *arg0,u8 *p) { if(p==0) { p=*(u8 **)(arg0+0x84c); top2: if(*(s32 *)p==0) { p=*(u8 **)(p+0xc); if(p!=arg0+0x840)goto top2; return 0; } return p; } p=*(u8 **)(p+0xc); goto test; loop: if(p==arg0+0x840)return 0; if(*(s32 *)p!=0)return p; p=*(u8 **)(p+0xc); test: if(p!=0)goto loop; return 0; }

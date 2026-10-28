@@ -5,14 +5,15 @@ s32 func_001381C0(s32 *dst,char *src,s32 packed){
    dst[((u32)len)>>2]=0;
    func_00301FFC(dst,src,(u32)len);
    if(D_004839F8){
-     s32 t=len+3; if(len>=0)t=len;
-     s32 n=t>>2;
-     if(n>=0) do {
-       u8 *p=(u8 *)dst+(n<<2);
+     len=len/4;
+     for(;len>=0;len--){
+       u8 *p=(u8 *)dst+len*4;
        u8 a=p[0], d=p[3], c=p[2];
-       p[3]=a; u8 b=p[1];
-       p[0]=d; p[2]=b; p[1]=c; --n;
-     }while(n>=0);
+       p[3]=a;
+       p[0]=d;
+       p[2]=p[1];
+       p[1]=c;
+     }
    }
  } else {
    s32 i=0;

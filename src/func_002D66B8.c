@@ -1,0 +1,3 @@
+typedef struct Pool Pool; typedef struct {volatile s32 id;volatile s32 a,b,c;u8 *buf1,*buf2;Pool *r;} RpcState;
+extern RpcState D_008DE610; extern u8 D_008DE640[320],D_008DE780[320]; void FlushCache_2(s32); s32 func_002DF858(s32,void*,void*); Pool *func_002D6230(s32); void func_002D62D8(void);
+s32 func_002D66B8(void){u8 *q;FlushCache_2(0);D_008DE610.id=func_002DF858(0x210,&D_008DE610,func_002D62D8);if(D_008DE610.id<0)return 0;D_008DE610.c=0;D_008DE610.buf2=(u8*)((u32)D_008DE780|0x20000000);q=(u8*)((u32)D_008DE640|0x20000000);D_008DE610.a=0;D_008DE610.b=0;D_008DE610.buf2=(u8*)((u32)D_008DE780|0x20000000);D_008DE610.buf1=q;*(s16*)(q+4)=0x210;q[6]=0x45;q[7]=0x48;*(s16*)(q+2)=0;*(s32*)(q+8)=0;D_008DE610.r=func_002D6230(0x100);return 1;}

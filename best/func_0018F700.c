@@ -7,23 +7,24 @@ void func_0018F7E0(void *);
 s32 func_0018F700(s32 a0) {
     char buf[0x20];
     s32 i;
-    R **pp = D_00362D80;
-    s32 *flags = jtbl_004C006C + 0xEA4C / 4;
     s32 old = *(volatile s32 *)0x1000E000 & 1;
-    for (i = 9; i >= 0; i--, flags++) {
-        if (*flags != 0) {
+    s32 *flags = jtbl_004C006C + 0xEA4C / 4;
+    R **pp = D_00362D80;
+    for (i = 9; i >= 0; i--) {
+        if (*flags) {
             R *r = *pp;
-            r->f80 = 0;
             r->f0 = 0;
             r->f30 = 0;
             r->f10 = 0;
             r->f50 = 0;
             r->f40 = 0;
-            pp++;
+            r->f80 = 0;
         }
+        pp++;
+        flags++;
     }
     *(volatile s32 *)0x1000E010 = 0xFF1F;
-    *(volatile s32 *)0x1000E010 &= 0xFF1F0000;
+    *(s32 *)0x1000E010 = *(volatile s32 *)0x1000E010 & 0xFF1F0000;
     func_0018F6A0(buf, 0x14);
     func_0018F7E0(buf);
     if (a0 == 1) *(volatile s32 *)0x1000E000 |= 1;

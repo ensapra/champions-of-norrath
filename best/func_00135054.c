@@ -1,13 +1,19 @@
-extern u8 func_001C3BC0[];
-s32 func_0011C6C8(void);
-s32 func_0011C6F0(void);
-void func_001350B8(void);
-s32 func_00135054(void) {
-    s32 a = func_0011C6C8();
-    s32 *p = (s32*)(func_001C3BC0 + 0x2C);
-    if ((a & *p) && !(func_0011C6F0() & *p)) {
-        func_001350B8();
-        return 1;
-    }
-    return 0;
+/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
+
+/* Warning: missing "jr $ra" in last block of func_00135054 (initial). */
+
+void func_00135054(void) {
+
 }

@@ -1,5 +1,4 @@
 void func_00176520(u8 **, u8 **, u32, u32, s32, s32);
-
 void func_00176710(u8 **arg0, u8 **arg1, u32 n) {
     u8 *sp0;
     u8 *sp4;
@@ -30,5 +29,5 @@ void func_00176710(u8 **arg0, u8 **arg1, u32 n) {
     }
     func_00176520(&sp0, &sp4, cnt, rem, f, 0);
     *arg0 = sp0;
-    *arg1 = sp4 + cnt * 0x30;
+    *arg1 = (u8 *)(cnt * 0x30 + (u32)sp4);
 }

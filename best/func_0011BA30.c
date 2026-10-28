@@ -10,12 +10,12 @@ void func_0013E2E8(void);
 void func_0013E6E0(void);
 void func_0013F378(void);
 void func_0013EE48(void);
-
 void func_0011BA30(void) {
+    s32 *p = D_001C686C;
     D_001C6828[0] = 0;
     D_001C682C[0] = 0;
     D_001C6830[0] = 0;
-    D_001C686C[0] = -1;
+    *p = -1;
     func_0013CF20();
     func_0013D3E8();
     func_0013DE30();

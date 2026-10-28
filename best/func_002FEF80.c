@@ -17,21 +17,17 @@ typedef struct {
 } ObjStruct;
 
 void func_002FEF80(void *arg0, s32 arg1, s32 arg2) {
-    ObjStruct *obj;
+    ObjStruct *obj = (ObjStruct *)func_002FA4A8(0x30);
     void **list;
-    
-    obj = (ObjStruct *)func_002FA4A8(0x30);
-    
     obj->unkC = arg1;
     obj->unk10 = arg2;
     obj->unk28 = arg0;
+    obj->unk8 = arg0;
     obj->unk4 = 4;
     obj->unk6 = 1;
-    obj->unk8 = arg0;
-    obj->unk0 = (void *)&func_002FEF20;
+    obj->unk0 = (void *)func_002FEF20;
     obj->unk30 = 0;
     obj->unk14 = 0;
-    
     list = func_002FA108(1);
     obj->unk18 = *list;
     *list = obj;

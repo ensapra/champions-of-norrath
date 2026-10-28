@@ -1,23 +1,36 @@
-extern u8 D_007D8110[]; extern u8 D_007D8F20[];
-void func_0024CD38(void*,void*,void*,f32,f32); void func_0024CC10(s32,f32,f32);
-void func_0024D708(s32 id,f32 scale){
- f32 local[4]; s32 i; u8 *base; u8 *entry;
- if(id==-1)return;
- if(!(id&0x8000))return;
- id &= 0xff;
- base=D_007D8110+id*0x4c;
- *(f32*)(base+0x40)=scale;
- for(i=0;i<43;i++){
-  entry=D_007D8F20+i*0x14;
-  if((*(u16*)(entry+4)&4)&&*(s16*)(entry+6)==id){
-   f32 m=scale*(*(f32*)(entry+0x10));
-   *(u64*)local=*(u64*)(base+0x2c);
-   *(s32*)((u8*)local+8)=*(s32*)(base+0x34);
-   func_0024CD38(local,base,local+1,*(f32*)(base+0x44),*(f32*)(base+0x48));
-   local[0]*=m;local[1]*=m;
-   if(local[0]<0)local[0]=0;
-   if(local[1]<0)local[1]=0;
-   func_0024CC10(i,local[0],local[1]);
-  }
- }
+typedef struct { s32 x, y, z; } V3;
+typedef struct { char p0[4]; u16 flags; s16 id; char p1[8]; f32 m; } Rec;
+extern char D_007D8110[];
+extern Rec D_007D8F20[];
+void func_0024CD38(V3 *, f32 *, f32 *, f32, f32);
+void func_0024CC10(s32, f32, f32);
+void func_0024D708(s32 id, f32 scale) {
+    f32 out[2];
+    V3 loc;
+    s32 i;
+    f32 m;
+    s32 off, off2;
+    V3 *src;
+    f32 *pa, *pb;
+    if (id == -1) return;
+    if (!(id & 0x8000)) return;
+    id &= 0xFF;
+    off = id * 76;
+    off2 = off + 0x40;
+    *(f32 *)(D_007D8110 + off2) = scale;
+    src = (V3 *)(off + (D_007D8110 + 0x2c));
+    pb = (f32 *)(off2 + (D_007D8110 + 8));
+    pa = (f32 *)(off2 + (D_007D8110 + 4));
+    for (i = 0; i < 43; i++) {
+        if ((D_007D8F20[i].flags & 4) && D_007D8F20[i].id == id) {
+            m = scale * D_007D8F20[i].m;
+            loc = *src;
+            func_0024CD38(&loc, &out[0], &out[1], *pa, *pb);
+            out[0] *= m;
+            out[1] *= m;
+            if (out[0] < 0) out[0] = 0;
+            if (out[1] < 0) out[1] = 0;
+            func_0024CC10(i, out[0], out[1]);
+        }
+    }
 }

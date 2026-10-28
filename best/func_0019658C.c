@@ -1,6 +1,6 @@
 typedef struct { s32 a; u32 flags; s32 cur; } G;
 extern G D_00364290;
-extern char jtbl_004C006C[];
+extern char D_004CECB8[], D_004CED70[];
 typedef struct { char pad[0x48]; s32 id; s32 f; } O;
 s32 func_001966E8(void *, s32);
 void func_001A1568(void *, s32, void *);
@@ -8,7 +8,7 @@ void func_001A1568(void *, s32, void *);
 void func_0019658C(O *o, s32 arg1) {
     s32 r;
     if (o == NULL) {
-        func_001A1568(jtbl_004C006C + 0xEC4C, 0x6C6, jtbl_004C006C + 0xED04);
+        func_001A1568(D_004CECB8, 0x6C6, D_004CED70);
     }
     r = func_001966E8(o, arg1);
     if (r == -1) {

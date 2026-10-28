@@ -52,9 +52,9 @@ typedef struct Obj {
 typedef struct { char pad[0x20]; s8 b20; s8 b21; } S408;
 extern char D_0042D480[];
 extern char D_0044F798[];
-f32 D_00481BDC, D_00481BE0, D_00481BE4, D_00481BE8, D_00481BEC;
-f32 D_00481BF0, D_00481BF4, D_00481BF8, D_00481BFC, D_00481C00;
-s32 D_004844A4;
+extern const f32 D_00481BDC, D_00481BE0, D_00481BE4, D_00481BE8, D_00481BEC;
+extern const f32 D_00481BF0, D_00481BF4, D_00481BF8, D_00481BFC, D_00481C00;
+extern s32 D_004844A4;
 void ovl_ntgui2_func_00108E58(Obj *, V3, s16, char *, s32, f32);
 void func_001092F0(Obj *, s32, s64, f32, f32, f32, f32, f32);
 void func_001128A8(Obj *, s32, s32, s32, s32, s32, f32, f32, f32, f32);

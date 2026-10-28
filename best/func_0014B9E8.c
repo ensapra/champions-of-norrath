@@ -39,13 +39,18 @@ void func_00157668(void *m, V3_14B9E8 *v, s16 r);
 static inline void Slot_init(Slot_14B9E8 *p) { p->id = -1; }
 
 static inline void Sub_init(Sub_14B9E8 *s) {
-    s32 i;
+    s32 i, k;
+    u8 *b1, *b2;
     for (i = 3; i >= 0; i--) Slot_init(&s->slot[i]);
     s->c20 = -1;
     s->c21 = -1;
-    for (i = 0; i < 4; i++) {
-        s->a[i] = 0;
-        s->b[i] = 0;
+    b1 = (u8*)s;
+    b2 = b1 + 8;
+    k = 0x10;
+    for (i = 3; i >= 0; i--) {
+        *(s16*)(b1 + k) = 0;
+        *(s16*)(b2 + k) = 0;
+        k += 2;
     }
 }
 

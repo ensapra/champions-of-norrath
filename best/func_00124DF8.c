@@ -1,1 +1,20 @@
-extern char D_0044D498[],D_0044D378[],D_0044A300[]; typedef struct T{char pad0[0xC];s32 fC;char pad10[8];s32 f18;f32 f1C,f20;s32 f24;u8 f28,f29;char pad2A[2];s32 f2C;f32 f30;s32 f34;u16 f38;char pad3A[2];f32 f3C,f40;s32 f44;void* v48;char pad4C[4];u8 f50;char pad51[3];char p54[8];s32 f5C,f60,f64;f32 f68;u16 f6C,f6E;s32 f70;} T; void*func_001441B8(s32);void func_00194498(void*,void*,s32,s32);void*func_00124DF8(T*a){T*b;b=func_001441B8(0x74);if(!b)return 0;b->v48=(void*)D_0044D498;func_00194498(b,a,0,0);func_00194498((char*)b+4,(char*)a+4,0,0);func_00194498((char*)b+8,(char*)a+8,0,0);b->fC=a->fC;b->f18=a->f18;b->f1C=a->f1C;b->f24=a->f24;b->f20=a->f20;b->f28=a->f28;b->v48=(void*)D_0044D378;b->f29=a->f29;b->f30=a->f30;b->f34=a->f34;b->f3C=a->f3C;b->f38=a->f38;b->f40=a->f40;b->f44=a->f44;b->f2C=a->f2C;func_00194498((char*)b+0x4C,(char*)a+0x4C,b->f34,b->f2C);b->f50=a->f50;b->v48=(void*)D_0044A300;b->f5C=a->f5C;b->f60=a->f60;b->f6C=a->f6C;b->f64=a->f64;b->f68=a->f68;b->f6E=a->f6E;b->f70=a->f70;return b;}
+extern void *func_001441B8(s32); extern void func_00194498(void*,void*); extern u32 D_0044D498[],D_0044D378[],D_0044A300[];
+struct __attribute__((packed,aligned(4))) C12 {u64 a;u32 b;};
+struct Obj {u32 f0,f4,f8,fC;struct C12 c;f32 f1C,f20;u32 f24;u8 b28,b29;u32 f2C;f32 f30;u32 f34;u16 h38;f32 f3C,f40;u32 f44,vt,f4C;u8 b50,q51[3];struct C12 c54;u32 f60,f64;f32 f68;u16 h6C,h6E;u32 f70;};
+struct Obj *func_00124DF8(struct Obj *in) {
+ struct Obj *out=func_001441B8(0x74),*result;
+ if(out) {
+  out->vt=(u32)D_0044D498; func_00194498(&out->f0,&in->f0);func_00194498(&out->f4,&in->f4);func_00194498(&out->f8,&in->f8);
+  out->fC=in->fC;{u64 a=in->c.a;u32 b=in->c.b;out->c.a=a;out->c.b=b;}
+  {f32 f=in->f1C;u32 w=in->f24;out->f1C=f;out->f24=w;}
+  out->f20=in->f20;out->b28=in->b28;out->b29=in->b29;out->vt=(u32)D_0044D378;
+  {u32 a=in->f34,w=in->f44,b=in->f2C;u16 h=in->h38;
+   out->f30=in->f30;out->f3C=in->f3C;out->f34=a;out->f40=in->f40;out->f44=w;out->f2C=b;out->h38=h;}
+  func_00194498(&out->f4C,&in->f4C);
+  out->b50=in->b50;out->vt=(u32)D_0044A300;
+  out->c54=in->c54;
+  out->f60=in->f60;out->h6C=in->h6C;out->f64=in->f64;out->f68=in->f68;out->h6E=in->h6E;out->f70=in->f70;
+  result=out;
+ }else result=0;
+ return result;
+}

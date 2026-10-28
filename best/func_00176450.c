@@ -1,1 +1,32 @@
-typedef struct{s32 a,b,c,d;} O; void func_00176450(O*out,u32 flags,s32 a2,s32 a3){u32 a=(flags>>8)&1;u32 c=flags&7;u32 b=(flags>>4)&1;u32 n=flags&0x3ff;s32 t=2,u=3;s32 val=0,s32x=0;u64 extra=0;if(a)t=3;if(c<8){if(!c){extra=t|0x410;val=a2;s32x=3;}}u32 q=n|8;q|=b<<4;u64 z=((u64)q)<<47;z|=0x8000000000000000ULL;z|=(u64)val;out->a=((s32)z)|0x8000;out->b=((s32)(z>>32))|(s32x<<28);out->c=(s32)extra;out->d=a3;}
+typedef union { u64 d[2]; u32 w[4]; } GifQ_176450;
+void func_00176450(u32 *out, u32 flags, s32 a2)
+{
+    GifQ_176450 t;
+    s32 r = 2;
+    u32 mode = flags & 7;
+    u32 fge = (flags >> 4) & 1;
+    u32 prim = flags & 0x3FF;
+    s32 nreg = 0;
+    s32 nloop = 0;
+    if ((flags >> 8) & 1) r = 3;
+    switch (mode) {
+    case 1:
+    case 3:
+    case 5:
+        t.d[1] = r | 0x410;
+        nloop = a2;
+        nreg = 3;
+        break;
+    case 0:
+    case 2:
+    case 4:
+    case 7:
+        nreg = 0;
+        break;
+    }
+    t.d[0] = ((u64)(prim | 8 | (fge << 4)) << 47) | ((u64)1 << 46);
+    out[0] = t.w[0] | nloop | 0x8000;
+    out[1] = t.w[1] | (nreg << 28);
+    out[2] = t.w[2];
+    out[3] = t.w[3];
+}

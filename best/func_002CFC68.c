@@ -15,7 +15,6 @@ s8 D_004844AC;
 s32 D_0048667C;
 s64 func_002CFC68(s32 (*callback)(void)) {
     s32 done = 0;
-    s32 n;
     D_004844A4 = 0;
     func_001911F8(2);
     D_004844AC = 1;
@@ -24,13 +23,12 @@ s64 func_002CFC68(s32 (*callback)(void)) {
         func_00167E68();
         if (callback) done = callback();
         func_00165238();
-        n = D_00483F1C;
-        if (n > 0 &&
+        if (D_00483F1C > 0 &&
             !(D_0034BEB8.f8 & 0xFF0FFFFF) &&
             !(D_0034BEB8.f60 & 0xFF0FFFFF))
-            D_00483F1C = n - 1;
+            D_00483F1C = D_00483F1C - 1;
         D_004844A4++;
-        func_00190A48(0, n, &D_0034BEB8);
+        func_00190A48(0, D_00483F1C, &D_0034BEB8);
         func_0024B7F8();
     } while (done == 0);
     func_001CB5F8(1);

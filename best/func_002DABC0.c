@@ -1,7 +1,7 @@
 typedef struct { s32 count, max_count, init_count, wait_threads, attr, option; } SemaParam;
 typedef struct { s32 sema; s32 *res; s32 n; s32 a; } Req;
 typedef struct { s32 a; s32 b; } Hdr;
-extern s32 D_004449F4[];
+extern s32 D_004449F4;
 extern Req D_008E04C0[];
 extern u8 D_008E1100[];
 extern u8 D_008E1BC0[];
@@ -13,18 +13,19 @@ s32 func_002DABC0(void){
   SemaParam sp;
   s32 res[4];
   s32 id, r;
+  Req *q = D_008E04C0;
   func_002D8EF8(10);
-  if (!D_004449F4[0]) { func_002D8F28(); return -1; }
+  if (D_004449F4 == 0) { func_002D8F28(); return -1; }
   if (!t || !t->b) { func_002D8F28(); return -9; }
+  q->a = t->a;
   sp.max_count = 1;
-  D_008E04C0[0].a = t->a;
   sp.init_count = 0;
   sp.option = 0;
   id = CreateSema_2(&sp);
-  D_008E04C0[0].sema = id;
-  D_008E04C0[0].res = res;
-  D_008E04C0[0].n = 4;
-  if (func_002D8270(D_008E1BC0, 10, 0, D_008E04C0, 20, D_008E1100, 4, 0, 0) < 0) {
+  q->sema = id;
+  q->res = res;
+  q->n = 4;
+  if (func_002D8270(D_008E1BC0, 10, 0, q, 20, D_008E1100, 4, 0, 0) < 0) {
     DeleteSema_2(id); func_002D8F28(); return -11;
   }
   t->b = 0;
@@ -33,5 +34,5 @@ s32 func_002DABC0(void){
   if (!r) { DeleteSema_2(id); return -11; }
   WaitSema_2(id);
   DeleteSema_2(id);
-  return res[0] < 0 ? res[0] : 0;
+  return res[0] > -1 ? 0 : res[0];
 }

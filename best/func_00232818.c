@@ -23,20 +23,20 @@ void func_001128A8(Obj *, s32, s32, s32, f32, f32, f32, s32, f32, s32);
 void func_001091B0(Obj *);
 extern char D_0042D048[];
 extern char D_0044F3D8[];
-extern f32 D_004819D8;
-extern f32 D_004819DC;
+extern const f32 D_004819D8;
+extern const f32 D_004819DC;
 extern s32 D_004844A4;
 
 void func_00232818(Obj *o, Vec3 pos, s16 a2, s32 a3)
 {
     ovl_ntgui2_func_00108E58(o, pos, a2, D_0042D048, a3, 10.0f);
     o->f48 = D_0044F3D8;
-    o->fC |= 0x1000000;
-    o->fA0 |= 0x400040000LL;
-    o->fF8 = D_004844A4;
+    o->f318 = -1;
     o->fA8 = D_004819D8;
     o->f1C = 20.0f;
-    o->f318 = -1;
+    o->fF8 = D_004844A4;
+    o->fC |= 0x1000000;
+    o->fA0 |= 0x400040000LL;
     o->f3C0 = 0;
     o->fB0 = 0;
     o->fC0 = 0;

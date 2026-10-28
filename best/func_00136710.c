@@ -20,9 +20,10 @@ void func_00136710(void) {
     R4 r;
     Q q;
     u8 buf[0x10];
-    s32 *qa = &q.a;
+    s32 *qa;
     s32 i = 0, j = 0, y = 0x40;
     D_010CE388[0] = func_00110720(func_0011BA18(0x8E), buf);
+    qa = &q.a;
     do {
         r.a = 0x90;
         r.b = y;

@@ -13,6 +13,7 @@ s32 func_00204FF8(Obj *a, Obj *b) {
     if (b != 0) {
         s32 i;
         Ent **p = D_0042BD18;
+        f32 *pa = &a->x, *pb = &b->x;
         for (i = 0; i < D_004852A8; i++, p++) {
             Obj *o;
             f32 da, dob, ea, eb;
@@ -21,9 +22,9 @@ s32 func_00204FF8(Obj *a, Obj *b) {
             if (o == a) { found = 1; continue; }
             if (o->link == 0) continue;
             if (o->link->owner != b) continue;
-            ea = a->x - b->x; eb = a->y - b->y;
+            ea = pa[0] - pb[0]; eb = pa[1] - pb[1];
             da = sqrtf(ea * ea + eb * eb);
-            ea = o->x - b->x; eb = o->y - b->y;
+            ea = o->x - pb[0]; eb = o->y - pb[1];
             dob = sqrtf(ea * ea + eb * eb);
             if (da * 3.0f < dob || (da < dob && found == 1)) {
                 func_00194300(&o->link, D_004852A8);

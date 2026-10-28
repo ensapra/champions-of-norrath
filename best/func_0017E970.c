@@ -1,1 +1,27 @@
-typedef struct{u8 pad[4];s32 ptr;u8 pad2[0x8C];s32 state,id,zero;} R;extern s32 D_001D2108;extern u8 D_010EE080[],D_010EE120[],D_010EE180[],D_010EE1C0[];extern u8 jtbl_004C006C[];void func_0017EBF8(void);s32 WaitSema(s32,s32,u32);s32 func_001B08B0(void*,s32,s32,void*,s32,void*,s32,void*,s32);s32 func_001AF710(void*,s32);s32 func_0017E970(s32 idx,s32 arg,s32 count){s32 r;R *p;if(D_001D2108==-1)return -1;if(idx>=*(s32*)D_010EE080)return -11;if(count>=3)return -12;p=(R*)D_010EE080;((s32*)((u8*)p->ptr+idx*0x38))[0]=count;D_010EE180[idx]=idx;D_010EE180[idx+1]=count;WaitSema(D_001D2108,((s32*)((u8*)p->ptr+idx*0x38))[0],count);r=func_001B08B0(D_010EE120,5,1,D_010EE180,16,D_010EE1C0,16,func_0017EBF8,0);if(r){func_001AF710(jtbl_004C006C+0xC7F4,r);return -2;}p=(R*)((u8*)p->ptr+idx*0x38);p->state=5;p->id=idx;p->zero=0;return 0;}
+typedef struct { u8 pad[0x488]; s32 sema; } Sem;
+typedef struct { u8 pad[0x90]; s32 state,id,zero; } Rec;
+extern Sem func_001D1C80;
+extern s32 D_010EE080[];
+extern u8 D_010EE120[], D_010EE180[], D_010EE1C0[], jtbl_004C006C[];
+void func_0017EBF8(void);
+s32 WaitSema(s32,s32,s32);
+s32 func_001B08B0(void*,s32,s32,void*,s32,void*,s32,void*,s32);
+s32 func_001AF710(void*,s32);
+s32 func_0017E970(s32 idx,s32 arg,s32 count) {
+ s32 *base=D_010EE080; Rec *r; s32 result;
+ s32 sem=func_001D1C80.sema;
+ if (sem==-1) return -1;
+ if (idx < base[0]) {
+  if ((u32)count < 3) {
+   r=(Rec*)(base[1]+idx*0x38);
+   *(s32*)r=count;
+   D_010EE180[0]=idx; D_010EE180[1]=count;
+   WaitSema(sem,arg,count);
+   result=func_001B08B0(D_010EE120,5,1,D_010EE180,16,D_010EE1C0,16,func_0017EBF8,0);
+   if(result){func_001AF710(jtbl_004C006C+0xC7F4,result);return -2;}
+   r->id=idx; r->state=5; r->zero=0; return 0;
+  }
+  return -12;
+ }
+ return -11;
+}

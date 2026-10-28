@@ -1,1 +1,36 @@
-extern s8 D_0042DDB8[]; s32 D_00486BC0; s32 D_00486BC8; extern u8 D_007D8110[]; extern u8 D_007D8F20[]; extern u8 D_007D8F24[]; void func_0024CF80(s32 x){s32 id,type,i;u8*rec,*e;s8*q;u32 mask,*a,*b;if(x==-1)return;id=x&255;if(x&0x8000){type=(x>>8)&127;rec=D_007D8110+((id*5-id)*4);if(*(u16*)(rec+0x38)==type)rec[4]=0;for(i=0;i<43;i++){e=D_007D8F20+i*20;if((*(u16*)(e+4)&4)&&*(s16*)(e+6)==id&&*(s16*)(e+8)==type)func_0024CF80(i);}}else{q=D_0042DDB8+x*2;a=(u32*)&D_00486BC0+q[0];b=(u32*)&D_00486BC8+q[0];mask=1u<<q[1];*(u16*)(D_007D8F24+x*20)=0;*b|=mask;*a&=~mask;}}
+typedef struct { u8 pad0[4]; u8 c4; u8 pad1[0x33]; u16 type; u8 pad2[0x12]; } R;
+typedef struct { s32 pad0; u16 flags; s16 id; s16 type; s16 pad1[5]; } E;
+typedef struct { u16 flags; u8 pad[18]; } F;
+extern R D_007D8110[];
+extern E D_007D8F20[];
+extern F D_007D8F24[];
+extern s8 D_0042DDB8[][2];
+s32 D_00486BC0[2];
+s32 D_00486BC8[2];
+
+void func_0024CF80(s32 x)
+{
+    s32 id, type, i;
+    s32 mask, va, vb;
+    if (x == -1) return;
+    if (x & 0x8000) {
+        id = x & 0xFF;
+        type = (x >> 8) & 0x7F;
+        if (D_007D8110[id].type == type) D_007D8110[id].c4 = 0;
+        for (i = 0; i < 43; i++) {
+            if ((D_007D8F20[i].flags & 4) && D_007D8F20[i].id == id && D_007D8F20[i].type == type)
+                func_0024CF80(i);
+        }
+    } else {
+        s32 q0 = D_0042DDB8[x][0];
+        s32 q1 = D_0042DDB8[x][1];
+        mask = 1 << q1;
+        va = D_00486BC0[q0];
+        vb = D_00486BC8[q0];
+        va &= ~mask;
+        D_007D8F24[x].flags = 0;
+        vb |= mask;
+        D_00486BC8[q0] = vb;
+        D_00486BC0[q0] = va;
+    }
+}

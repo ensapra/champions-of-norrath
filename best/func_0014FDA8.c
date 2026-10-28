@@ -7,52 +7,34 @@ typedef struct LNode {
 
 void func_001529D8(LNode *, LNode *);
 
-void func_0014FD08(u8 *o, s32 key) {
-    LNode *head = (LNode *)(o + 0x840);
-    LNode *p = head;
-    LNode *n;
-    while ((n = p->next) != head) {
-        p = n;
-        if (key == n->key) {
-            func_001529D8(head, n);
-            break;
-        }
-    }
-}
-
-void func_0014FCD4(u8 *o, s32 *a, s32 *b) {
-    s32 t;
-    *a = *(s32 *)(o + 0x810) + *(s32 *)(o + 0x5A0) + *(s32 *)(o + 0x5D4);
-    t = *(s32 *)(o + 0x814) + *(s32 *)(o + 0x5A4);
-    *b = t + *(s32 *)(o + 0x5D4);
-}
-
 void func_0014FDA8(u8 *o, s32 k1, s32 k2) {
     LNode *head;
     LNode *p;
     LNode *n;
     LNode *found = 0;
-    if (k1 != k2) {
-        head = (LNode *)(o + 0x840);
-        p = head;
-        while ((n = p->next) != head) {
-            p = n;
-            if (k1 == n->key) {
-                found = n;
-                break;
-            }
-        }
-        if (found != 0) {
-            p = head;
-            while ((n = p->next) != head) {
-                p = n;
-                if (k2 == n->key) {
-                    if (n->next != found) {
-                        func_001529D8(n->next, found);
-                    }
-                    break;
-                }
-            }
-        }
-    }
+    if (k1 == k2)
+        return;
+    p = (LNode *)(o + 0x840);
+    head = p;
+loop1:
+    n = p->next;
+    if (n == head)
+        goto end1;
+    p = n;
+    if (k1 != n->key)
+        goto loop1;
+    found = n;
+end1:
+    if (found == 0)
+        return;
+    p = head;
+loop2:
+    n = p->next;
+    if (n == head)
+        return;
+    p = n;
+    if (k2 != n->key)
+        goto loop2;
+    if (n->next != found)
+        func_001529D8(n->next, found);
 }

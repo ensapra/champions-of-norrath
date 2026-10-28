@@ -9,7 +9,7 @@ void func_002DD530(s32);
 void func_002E3E60(s32);
 void func_002E3FE8(s32);
 void func_002E63A8(s32);
-void func_002F1628(s32, ...);
+void func_002F1628(void);
 void func_002F9E18(void);
 void func_002FEE10(void *);
 void func_002FFF48(s32);
@@ -34,7 +34,7 @@ void func_002CFD78(void) {
     func_002E3FE8(0);
     func_002E63A8(0);
     func_002E63A8(0);
-    func_002F1628(0);
+    func_002F1628();
     func_002D16A0(0);
     func_002F9E18();
     func_002FFF48(0);

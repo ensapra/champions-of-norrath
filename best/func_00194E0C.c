@@ -1,27 +1,2 @@
-typedef struct { char p[0xE4]; s32 (*f0)(s32); s32 (*f1)(s32); } Tbl;
-extern Tbl *D_00480488;
-typedef struct { s32 x, y, z, w; } Pt;
-typedef struct {
-    char pad[0x5C]; u32 count; char pad2[0xC]; Pt *pts; char pad3[0x14]; s32 px; s32 py;
-} Obj;
-extern char jtbl_004C006C[];
-void func_00194E0C(Obj *o, s32 a, s32 b) {
-    Pt *p = o->pts;
-    if (o == NULL)
-        func_001A1568(jtbl_004C006C + 0xEC4C, 0x25E, jtbl_004C006C + 0xED04);
-    a = D_00480488->f1(a);
-    b = D_00480488->f0(b);
-    if (a != o->px || b != o->py) {
-        u32 n;
-        s32 dx = a - o->px;
-        s32 dy = b - o->py;
-        Pt *q = p;
-        for (n = 0; n < o->count; n++) {
-            q->x += dx;
-            q->y += dy;
-            q++;
-        }
-        o->py = b;
-        o->px = a;
-    }
-}
+typedef struct{char p[0xe4];s32(*f0)(s32);s32(*f1)(s32);}Tbl;extern Tbl*D_00480488;typedef struct{s32 x,y,z,w;}Pt;typedef struct{char pad[0x5c];u32 count;char pad2[0xc];Pt*pts;char pad3[0x14];s32 px,py;}Obj;extern char D_004CECB8[],D_004CED70[];void func_001A1568(char*,s32,char*);
+void func_00194E0C(Obj*o,s32 x,s32 y){Pt*pts=o->pts;if(o==0)func_001A1568(D_004CECB8,0x25e,D_004CED70);x=D_00480488->f1(x);y=D_00480488->f0(y);if(x!=o->px||y!=o->py){s32 dx=x-o->px,dy=y-o->py;u32 i;for(i=0;i<o->count;i++){pts[i].x+=dx;pts[i].y+=dy;}o->px=x;o->py=y;}}

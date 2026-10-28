@@ -1,7 +1,7 @@
 typedef struct Ent { void **head; void **tail; s32 a; s32 b; } Ent;
 typedef struct Blk { Ent e[4][4]; char pad0[0x30]; s32 id; char pad[4]; } Blk;
 extern Blk D_006F5AD0[];
-void **D_004869F0;
+extern void **D_004869F0;
 
 void func_00180468(s32 id) {
     Blk *b;
@@ -9,8 +9,8 @@ void func_00180468(s32 id) {
     s32 i, j;
     s32 id2 = id;
     if (id2 == 0) return;
-    fl = D_004869F0;
     if (D_006F5AD0[id2 & 0xFF].id != id2) return;
+    fl = D_004869F0;
     b = &D_006F5AD0[id2 & 0xFF];
     for (i = 0; i < 4; i++) {
         for (j = 3; j >= 0; j--) {

@@ -1,6 +1,47 @@
-s32 func_00153FA8(void*,s32,void*); void func_001CE218(void*,void*,s32,s32,s32,s32,void*,s32,f32,f32,s32,s32);
-typedef struct{char p[76];void*x;char q[24];s32 n,b;}A; typedef struct{char p[12];s32 f;char q[0x304];s16 st;}B;
-void func_0022ED40(A*a,B*b){char t[0x28];s32 f,r;B*c=(B*)a->x;if(a->b)return;
-if(c){if(b){f=b->f;if(f&32){B*d=(B*)*(void**)((char*)c+12);if(d->f&64){if(!(f&64)&&!b->st){if(d->st)return;}}else if(f&64){if(d->st){if(!(f&64)&&b->st)return;}}}}}
-if(!b)goto init;f=b->f;if(!c&&!(f&32))a->b=1;if(f&64){if(func_00153FA8(a,f,t)<0)return;}else if((f&32)&&(*(u64*)((char*)b+160)&512))return;
-init: for(r=0;r<4;r++)*(s16*)(t+60-r*8)=-1;t[33]=t[32]=-1;for(r=0;r<4;r++){*(s16*)(t+16+r*2)=0;*(s16*)(t+24+r*2)=0;}func_001CE218(b,a,100000,0,0,0,t,0,(f32)a->n,(f32)a->n,0,0);a->b=1;}
+typedef struct B B;
+struct B { char p[12]; s32 f; char q[0x94]; u64 a0; char r[0x310 - 0xA8]; s16 st; };
+typedef struct A { char p[0x4C]; B *c; char q[0x68 - 0x50]; s32 n; s32 done; } A;
+s32 func_00153FA8(void *);
+void func_001CE218(B *, A *, s32, s32, s32, s32, void *, s32, f32, f32, s32, s32);
+
+void func_0022ED40(A *a, B *b) {
+    char t[0x40];
+    B *c, *d;
+    s32 f, i;
+    if (a->done) return;
+    c = a->c;
+    if (c && b && ((f = b->f) & 0x20)) {
+        d = *(B **)((char *)c + 0xC);
+        if (d->f & 0x40) {
+            if (f & 0x40) return;
+            if (b->st) return;
+            if (!d->st) goto next;
+        } else {
+            if (!(f & 0x40)) return;
+            if (!d->st) goto next;
+        }
+        if (f & 0x40) return;
+        if (b->st) return;
+    }
+    if (b) {
+        f = b->f;
+        if (!(f & 0x20)) a->done = 1;
+    }
+next:
+    if (b) {
+        if (f & 0x40) {
+            if (func_00153FA8(a) < 0) return;
+        } else if (f & 0x20) {
+            if (b->a0 & 0x200) return;
+        }
+    }
+    for (i = 3; i >= 0; i--) *(s16 *)(t + 0x24 + i * 8) = -1;
+    t[0x21] = -1;
+    t[0x20] = -1;
+    for (i = 0; i < 4; i++) {
+        *(s16 *)(t + 0x10 + i * 2) = 0;
+        *(s16 *)(t + 0x18 + i * 2) = 0;
+    }
+    func_001CE218(b, a, 100000, 0, 0, 0, t, 0, (f32)a->n, (f32)a->n, 0, 0);
+    a->done = 1;
+}

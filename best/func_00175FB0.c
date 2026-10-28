@@ -1,2 +1,22 @@
-typedef struct {s32 count;u32 *output;u8 *data;} Input; typedef struct{u32 x[4];} Rec;
-void *func_00175FB0(Input *a, Rec *p){s32 i=0;u8 *d;u32 *q=(u32*)p; if(!a)return p; a->output=(u32*)p; if(a->count<=0)goto done;d=a->data; do {q[0]=0x10000000;q[1]=q[2]=0;q[3]=0x11000000;q[4]=0x30000005;q[5]=((u32)(d+16))&0x7fffffff;q[6]=0;q[7]=0x50000005;q[8]=0x30000001;q[9]=((u32)(d+0xb0))&0x7fffffff;q[10]=0;q[11]=0x50000001;q[12]=(u32)(d+0xdc)|0x30000000;q[13]=((u32*)(d+0xd0))[0]&0x7fffffff;q[14]=0;q[15]=(u32)(d+0xdc)|0x50000000;q+=16;if(*(u32*)(d+0xec)){q[0]=0x30000005;q[1]=(u32)(d+0x60)&0x7fffffff;q[2]=0;q[3]=0x50000005;q[4]=0x30000001;q[5]=(u32)(d+0xc0)&0x7fffffff;q[6]=0;q[7]=0x50000001;q[8]=(u32)(d+0xec)|0x30000000;q[9]=((u32*)(d+0xe0))[0]&0x7fffffff;q[10]=0;q[11]=(u32)(d+0xec)|0x50000000;q+=12;}q[0]=0x30000002;q[1]=0x1d02a0&0x7fffffff;q[2]=0;q[3]=0x50000002;q+=4;d+=0xf0;i++;}while(i<a->count); done:q[0]=0x60000000;q[1]=q[2]=q[3]=0;return q+4;}
+typedef struct {s32 count; u8 *data; void *saved;} Input;
+void *func_00175FB0(Input *a, u32 *p){
+ s32 i=0; u8 *d; u32 *q=p;
+ if(!a) return p;
+ a->saved=p;
+ if(a->count<=0) goto done;
+ d=a->data;
+ do{
+ q[0]=0x10000000;q[1]=0;q[2]=0;q[3]=0x11000000;
+ q[4]=0x30000005;q[5]=((u32)(d+0x10))&0x7fffffff;q[6]=0;q[7]=0x50000005;
+ q[8]=0x30000001;q[9]=((u32)(d+0xb0))&0x7fffffff;q[10]=0;q[11]=0x50000001;
+ q[12]=((u32)(d+0xdc))|0x30000000;q[13]=(*(u32*)(d+0xd0))&0x7fffffff;q[14]=0;q[15]=((u32)(d+0xdc))|0x50000000;q+=16;
+ if(*(u32*)(d+0xec)){
+ q[0]=0x30000005;q[1]=((u32)(d+0x60))&0x7fffffff;q[2]=0;q[3]=0x50000005;
+ q[4]=0x30000001;q[5]=((u32)(d+0xc0))&0x7fffffff;q[6]=0;q[7]=0x50000001;
+ q[8]=((u32)(d+0xec))|0x30000000;q[9]=(*(u32*)(d+0xe0))&0x7fffffff;q[10]=0;q[11]=((u32)(d+0xec))|0x50000000;q+=12;
+ }
+ q[0]=0x30000002;q[1]=0x1d02a0&0x7fffffff;q[2]=0;q[3]=0x50000002;q+=4;
+ d+=0xf0;i++;
+ }while(i<a->count);
+ done:q[0]=0x60000000;q[1]=q[2]=q[3]=0;return q+4;
+}

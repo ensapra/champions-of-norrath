@@ -1,23 +1,2 @@
-typedef struct E { s32 a, b; } E;
-typedef struct Buf {
-    E *data;
-    s32 cap;
-    s32 unk8;
-    s32 count;
-} Buf;
-void func_00193768(Buf *);
-
-void func_00193D68(Buf *arg0, s32 arg1, Buf *arg2) {
-    s32 n = arg2->count;
-    s32 i;
-    while (arg0->cap < arg0->count + n) {
-        func_00193768(arg0);
-    }
-    for (i = arg0->count + n - 1; i >= arg1 + n; i--) {
-        arg0->data[i + 1] = arg0->data[i];
-    }
-    for (i = 0; i < n; i++) {
-        arg0->data[arg1 + i] = arg2->data[i];
-    }
-    arg0->count += n;
-}
+typedef struct E{s32 a,b;}E;typedef struct Buf{E*data;s32 cap,unk8,count;}Buf;void func_00193768(Buf*);
+void func_00193D68(Buf*d,Buf*s,s32 pos){s32 n=s->count; s32 end; goto grow_test; grow: func_00193768(d); grow_test: if(d->count+n>d->cap)goto grow; end=d->count+n; for(s32 i=end-1;i>=pos+n;i--)d->data[i+1]=d->data[i];for(s32 i=0;i<n;i++)d->data[pos+i]=s->data[i];d->count+=n;}

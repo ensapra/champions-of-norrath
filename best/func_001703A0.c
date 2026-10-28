@@ -17,10 +17,11 @@ void func_00303EB8(void *, char *, char *);
 void func_001703A0(void) {
     char buf[0x70];
     u8 tbl[256];
+    u8 *t = tbl;
+    u8 *q;
     s32 i, j;
     s32 id, size, n;
     s32 *mem, *p;
-    u8 *q;
     i = 0;
     if (D_00486984 > 0) do {
         id = D_006E9390[i].id;
@@ -32,7 +33,7 @@ void func_001703A0(void) {
         (D_00355C70 + 9)[i] = mem;
         func_00303EB8(buf, D_00484100, D_0037F988);
         func_00165120(buf, mem, size, D_004844A0->tab[id - D_004844A0->base].a);
-        q = tbl + 255;
+        q = t + 255;
         j = 255;
         do {
             *q-- = j;

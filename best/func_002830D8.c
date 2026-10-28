@@ -1,4 +1,3 @@
-extern "C" {
 struct Vec { f32 x, y, z; };
 struct Pos { char p[0x10]; Vec pos; };
 struct Ent { char p[0x5570]; Pos *pos; char q[0x5DB0 - 0x5574]; };
@@ -22,7 +21,8 @@ void func_002846F8(void);
 void ovl_ntgui2_func_00191830(s32, s32);
 s32 func_002830D8(Obj *o, s32 a, s32 idx) {
     s32 i;
-    if (o->f4F == 0) {
+    if (o->f4F) return 0;
+    {
         if (func_001915C0(D_00476B90)) return 0;
         if (func_00143A80(o, D_00486068, 0)) {
             s32 r = func_001D3E88(func_00143A80(o, D_00486068, 0));
@@ -55,5 +55,4 @@ s32 func_002830D8(Obj *o, s32 a, s32 idx) {
         }
     }
     return 0;
-}
 }

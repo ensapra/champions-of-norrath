@@ -20,7 +20,7 @@ s32 func_0017E7B8(s32 id, s32 arg) {
         return -2;
     }
     D_010EE080.arg = arg;
-    D_010EE080.st = 3;
     D_010EE080.id = id;
+    D_010EE080.st = 3;
     return 0;
 }

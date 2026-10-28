@@ -1,0 +1,2 @@
+extern s32 D_001BD868[]; extern s32 D_001C2F70[]; extern s32 D_001C3470[]; s32 func_001A3EB8(s32,s32);
+s32 func_0011B840(s32 a0,s32 i,s32 j){s32 mode=D_001BD868[0];if(mode==1)return func_001A3EB8(a0,D_001C2F70[i*5+j]);return func_001A3EB8(a0,D_001C3470[i*5+j]);}

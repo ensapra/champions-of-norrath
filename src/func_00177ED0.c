@@ -1,0 +1,2 @@
+typedef struct { f32 a,b,c,d; } Plane; extern s8 D_006EC790[]; extern Plane D_0037EEA0[6];
+s32 func_00177ED0(f32 *box,s32 mask) { s8 *base=D_006EC790; s32 i,off=(mask&0)+2; s8 *ix=base+off; Plane *pl=D_0037EEA0; for(i=0;i<6;i++,ix+=3,pl++){ if(!((mask>>i)&1)){ f32 d=pl->d+pl->a*box[ix[-2]],e=pl->d+pl->a*box[(s8)(ix[-2]^1)]; d+=pl->b*box[ix[-1]+2];e+=pl->b*box[(s8)(ix[-1]^1)+2];d+=pl->c*box[ix[0]+4];e+=pl->c*box[(s8)(ix[0]^1)+4];if(d<0)return 0;if(e>=0)mask|=1<<i;}} return mask;}

@@ -1,3 +1,0 @@
-typedef struct {char pad[0x60]; void *vt;} H; typedef struct {s16 off; s16 pad; s32 (*fn)(void*,s32,s32);} V;
-extern char D_004783E0[]; s32 func_001671F8(void*); void func_00190E20(s32,s32,f32,f32,f32,f32,f32,f32,f32,f32);
-void func_002A1C78(H*h,s32 arg1,s32 arg2){V*v=(V*)((u8*)h->vt+0x78);s32 x=v->fn((u8*)h+v->off,arg2,20);v=(V*)((u8*)h->vt+0x58);s32 y=v->fn((u8*)h+v->off,0,x);v=(V*)((u8*)h->vt+0x58);s32 z=v->fn((u8*)h+v->off,2,x);s32 r=func_001671F8(D_004783E0);func_00190E20(arg1,r,(f32)z,(f32)y,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f);}

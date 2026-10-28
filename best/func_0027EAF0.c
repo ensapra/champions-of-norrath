@@ -1,1 +1,30 @@
-s32 func_00165DC0(s32,void*); s32 func_00303EB8(void*,char*,s32,s32,s32,s32); char D_00437038[]; s8 D_00437050[]; char D_004765F8[]; char D_00476608[]; s32 D_00486D84; s8 D_008D5B68[16]; void *D_008D5D40[4]; s32 func_0027EAF0(s32 idx,s32 delta,s32 arg2,s32 arg3){s32 flag=0,row,tablev,version; s8 *count=&D_008D5B68[idx]; char *entry;void *o; if(delta==0){*count=0;row=idx*4;}else{row=idx*4;if(delta>0){entry=D_00437038+idx*0x27c; if(*count < *(s8*)(D_00437050+idx*0x27c)-1){*count=(u8)*count+delta;flag=1;row=idx*4;}}if(delta<0&&*count>0){*count=(u8)*count+delta;flag=1;row=idx*4;} }o=D_008D5D40[idx];tablev=*(s32*)(D_00437038+(((row+idx)*32-idx)*4));func_00303EB8((void*)__builtin_alloca(0x420),D_004765F8,tablev,(s32)count,delta,arg2);o=(void*)D_008D5D40[idx];*(s32*)((u8*)o+0x420)=func_00165DC0(D_00486D84,(void*)__builtin_alloca(0x420));func_00303EB8((void*)__builtin_alloca(0x420),D_00476608,tablev,*count+1,0,0);*(s32*)((u8*)o+0x424)=func_00165DC0(D_00486D84,(void*)__builtin_alloca(0x420));return flag;}
+typedef struct { s32 name; u8 pad[0x14]; s8 max; u8 pad2[0x27C - 0x19]; } Ent;
+extern Ent D_00437038[];
+extern s8 D_008D5B68[];
+extern u8 *D_008D5D40[];
+extern s32 D_00486D84;
+extern char D_004765F8[];
+extern char D_00476608[];
+s32 func_00165DC0(s32, void *);
+s32 func_00303EB8(char *, char *, ...);
+
+s32 func_0027EAF0(s32 idx, s32 delta) {
+    char buf[64];
+    s32 ret = 0;
+    if (delta == 0) {
+        D_008D5B68[idx] = 0;
+    } else {
+        if (delta > 0 && D_008D5B68[idx] < D_00437038[idx].max - 1) {
+            D_008D5B68[idx] += delta;
+            ret = 1;
+        } else if (delta < 0 && D_008D5B68[idx] > 0) {
+            D_008D5B68[idx] += delta;
+            ret = 1;
+        }
+    }
+    func_00303EB8(buf, D_004765F8, D_00437038[idx].name);
+    *(s32 *)(D_008D5D40[idx] + 0x420) = func_00165DC0(D_00486D84, buf);
+    func_00303EB8(buf, D_00476608, D_00437038[idx].name, D_008D5B68[idx] + 1);
+    *(s32 *)(D_008D5D40[idx] + 0x424) = func_00165DC0(D_00486D84, buf);
+    return ret;
+}

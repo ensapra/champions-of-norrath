@@ -1,1 +1,29 @@
-extern u8 D_0034B660[]; extern u8 D_0037F988[]; extern u8 D_0042A3F8[]; extern u8 D_004349A8[]; extern char D_0046C9B0[]; extern u8 D_00483AC8; extern s32 D_00483F18; extern u8 D_00483F54; extern u8 D_004844E0; extern u8 D_00484AF8; extern u8 D_00484EB8[]; extern f32 D_00484F24; extern s32 D_00484F30; extern u8 D_00484F99; extern s32 D_00486694; void func_0025AC68(s32,void*,s32,u8,s32); void func_002CB388(void); void func_003021B0(void*,void*,s32); void func_002CD168(void); void func_001C1B50(void); void func_0019E3E0(void); void func_001D4048(void); void func_001D3F10(void); void func_001D3AB0(void*,s32); void func_001CD1E0(void){D_0042A3F8[0]=D_00484EB8[0];D_00483AC8=1;D_0037F988[0]=0;D_0034B660[0xF2]=0;D_00484F24=1.0f;D_004844E0=1;D_00484F30=2;D_00486694=0;D_00483F54=0;D_00483F18=0;D_00484AF8=0;D_0034B660[0x51]=0;D_00484F99=0;func_0025AC68(0,D_0037F988,2,D_00484EB8[0],1);func_002CB388();func_003021B0(D_004349A8,0,0x1000);func_002CD168();func_001C1B50();func_0019E3E0();func_001D4048();func_001D3F10();func_001D3AB0(D_0046C9B0,1);}
+extern u8 D_0034B660[]; extern u8 D_0037F988[]; extern u8 D_0042A3F8[]; extern u8 D_004349A8[]; extern char D_0046C9B0[];
+extern u8 D_00483AC8; extern s32 D_00483F18; extern u8 D_00483F54; extern u8 D_004844E0; extern u8 D_00484AF8; extern u8 D_00484EB8[];
+extern f32 D_00484F24; extern s32 D_00484F30; extern u8 D_00484F99; extern s32 D_00486694;
+void func_0025AC68(s32); void func_002CB388(void); void func_003021B0(void*,s32,s32); void func_002CD168(void); void func_001C1B50(void); void func_0019E3E0(void); void func_001D4048(void); void func_001D3F10(void); void func_001D3AB0(void*,s32);
+void func_001CD1E0(void)
+{
+  D_0042A3F8[0] = D_00484EB8[0];
+  D_00483AC8 = 1;
+  D_0037F988[0] = 0;
+  D_0034B660[0xF2] = 0;
+  D_00484F24 = 1.0f;
+  D_004844E0 = 1;
+  D_00484F30 = 2;
+  D_00486694 = 0;
+  D_00483F54 = 0;
+  D_00483F18 = 0;
+  D_00484AF8 = 0;
+  D_0034B660[0x51] = 0;
+  D_00484F99 = 0;
+  func_0025AC68(0);
+  func_002CB388();
+  func_003021B0(D_004349A8, 0, 0x1000);
+  func_002CD168();
+  func_001C1B50();
+  func_0019E3E0();
+  func_001D4048();
+  func_001D3F10();
+  func_001D3AB0(D_0046C9B0, 1);
+}

@@ -1,0 +1,1 @@
+s8 *func_0024F6C8(void); s8 *func_0024EC38(s32 n){s8 *b,*p; s32 i; b=func_0024F6C8(); if(b!=0)goto have; return 0; have: i=0; if(n<0)goto indexed;;p=b; do{if(*p==0)return 0;p+=0x50;i++;}while(n>=i); indexed:return b+n*0x50;}

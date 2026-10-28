@@ -1,20 +1,19 @@
-void *func_001441B8(s32); void func_00194498(void *,void *); extern char D_0044D498[]; extern char D_0044C8C0[];
-typedef struct { s32 pad[3]; s32 fC; s32 f10; s32 f14; s32 f18; f32 f1C; f32 f20; s32 f24; u8 f28; u8 f29; u8 pad2[2]; s32 f2C; f32 f30; s32 f34; u16 f38; u16 pad3a; f32 f3C; f32 f40; s32 f44; void *vt; u8 more[0x24]; } Obj;
-void *func_00115D80(Obj *s) {
- Obj *d=func_001441B8(0x70); s32 ret=0;
- if(d) {
-  d->vt=(void*)D_0044D498;
-  func_00194498(d,s); func_00194498((char*)d+4,(char*)s+4); func_00194498((char*)d+8,(char*)s+8);
-  d->fC=s->fC;
-  __builtin_memcpy((char*)d+0x10,(char*)s+0x10,8);
-  d->f18=s->f18; d->f1C=s->f1C; d->f24=s->f24; d->f20=s->f20;
-  d->f28=s->f28; d->f29=s->f29; d->vt=(void*)D_0044C8C0;
-  d->f30=s->f30; d->f34=s->f34; d->f38=s->f38; d->f3C=s->f3C;
-  d->f44=s->f44; d->f2C=s->f2C; d->f40=s->f40;
-  __builtin_memcpy((char*)d+0x4c,(char*)s+0x4c,16);
-  d->more[0x10]=s->more[0x10]; d->more[0x14]=s->more[0x14]; d->more[0x18]=s->more[0x18];d->more[0x19]=s->more[0x19];
-  *(s32*)((char*)d+0x64)=*(s32*)((char*)s+0x64); *(s32*)((char*)d+0x6c)=*(s32*)((char*)s+0x6c); *(s32*)((char*)d+0x68)=*(s32*)((char*)s+0x68);
-  ret=(s32)d;
- }
- return (void*)ret;
+extern void *func_001441B8(s32);
+extern s32 func_00194498(void*,void*);
+extern u32 D_0044D498[],D_0044C8C0[];
+struct __attribute__((packed,aligned(4))) C12 {u64 a;u32 b;};
+struct __attribute__((packed,aligned(4))) C8 {u64 a;};
+struct Obj {u32 f0,f4,f8,fC;struct C12 c; f32 f1C,f20;u32 f24;u8 b28,b29;u32 f2C;f32 f30;u32 f34;u16 h38;f32 f3C,f40;u32 f44,vt;struct C8 d;struct C8 e;u32 f5C;u8 b60,b61;u32 f64,f68,f6C;};
+struct Obj *func_00115D80(struct Obj *in){
+struct Obj *out=func_001441B8(0x70);struct Obj *result;
+if(out){out->vt=(u32)D_0044D498;
+func_00194498(&out->f0,&in->f0);
+func_00194498(&out->f4,&in->f4);
+func_00194498(&out->f8,&in->f8);
+out->fC=in->fC;{u64 a=in->c.a;u32 b=in->c.b;out->c.a=a;out->c.b=b;}{f32 f=in->f1C;u32 w=in->f24;out->f1C=f;out->f24=w;}out->f20=in->f20;
+out->b28=in->b28;out->b29=in->b29;out->vt=(u32)D_0044C8C0;
+{u32 b=in->f34;u16 h=in->h38;u32 w=in->f44;u32 a=in->f2C;out->f30=in->f30;out->f3C=in->f3C;out->f34=b;out->h38=h;out->f44=w;out->f2C=a;out->f40=in->f40;}
+{u64 a=in->d.a;out->d.a=a;}{u64 a=in->e.a;out->e.a=a;}
+out->f5C=in->f5C;out->b60=in->b60;out->b61=in->b61;{u32 w=in->f64;u32 x=in->f6C;out->f64=w;out->f6C=x;}out->f68=in->f68;
+result=out;}else{result=0;}return result;
 }

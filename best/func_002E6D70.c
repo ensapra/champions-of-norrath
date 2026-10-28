@@ -1,73 +1,46 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
-
-M2C_UNK DeleteSema_2(s32);                          /* extern */
-M2C_UNK DeleteThread_2(s32);                        /* extern */
-M2C_UNK SignalSema_2(s32);                          /* extern */
-M2C_UNK SuspendThread_2(s32);                       /* extern */
-M2C_UNK TerminateThread_2(s32);                     /* extern */
-M2C_UNK func_002E73F8(s32);                         /* extern */
-M2C_UNK func_002E7770(s32);                         /* extern */
-M2C_UNK func_003021B0(void *, M2C_UNK, M2C_UNK);    /* extern */
-extern M2C_UNK D_008EBDD8;
+typedef struct { u8 p0[0x14]; s32 h; s32 pad; s32 state; u8 p1[0x110 - 0x20]; } A;
+typedef struct { u8 p0[0x14]; s32 h; s32 pad; s32 state; u8 p1[0x68 - 0x20]; } B;
+typedef struct {
+    u8 pad0[0x28];
+    s32 sema1, sema2, thread, f34, f38, f3c, na, nb;
+    u8 pad1[0x88 - 0x48];
+    A a[4];
+    B b[4];
+} G;
+extern G D_008EBDD8[];
+s32 SuspendThread_2(s32); s32 SignalSema_2(s32); s32 TerminateThread_2(s32); s32 DeleteThread_2(s32); s32 DeleteSema_2(s32);
+void func_002E73F8(s32); void func_002E7770(s32); void func_003021B0(void *, s32, s32);
 
 s32 func_002E6D70(void) {
-    s32 var_17;
-    s32 var_17_2;
-    void *var_16;
-    void *var_16_2;
-
-    var_17 = 0;
-    if (M2C_FIELD(&D_008EBDD8, s32 *, 0x40) > 0) {
-        var_16 = &D_008EBDD8 + 0x88;
-        do {
-            if (M2C_FIELD(var_16, s32 *, 0x1C) == 4) {
-                func_002E73F8(M2C_FIELD(var_16, s32 *, 0x14));
-            }
-            var_17 += 1;
-            var_16 += 0x110;
-        } while (var_17 < M2C_FIELD(&D_008EBDD8, s32 *, 0x40));
+    s32 i;
+    A *a;
+    B *b;
+    G *g = D_008EBDD8;
+    for (i = 0, a = g->a; i < g->na; i++, a++) {
+        if (a->state == 4) func_002E73F8(a->h);
     }
-    var_17_2 = 0;
-    if (M2C_FIELD(&D_008EBDD8, s32 *, 0x44) > 0) {
-        var_16_2 = &D_008EBDD8 + 0x4C8;
-        do {
-            if (M2C_FIELD(var_16_2, s32 *, 0x1C) == 4) {
-                func_002E7770(M2C_FIELD(var_16_2, s32 *, 0x14));
-            }
-            var_17_2 += 1;
-            var_16_2 += 0x68;
-        } while (var_17_2 < M2C_FIELD(&D_008EBDD8, s32 *, 0x44));
+    for (i = 0, b = g->b; i < D_008EBDD8[0].nb; i++, b++) {
+        if (b->state == 4) func_002E7770(b->h);
     }
-    M2C_FIELD(&D_008EBDD8, s32 *, 0x38) = 1;
-    if (M2C_FIELD(&D_008EBDD8, s32 *, 0x30) != 0) {
-        SuspendThread_2(M2C_FIELD(&D_008EBDD8, s32 *, 0x30));
-        SignalSema_2(M2C_FIELD(&D_008EBDD8, s32 *, 0x28));
-        TerminateThread_2(M2C_FIELD(&D_008EBDD8, s32 *, 0x30));
-        DeleteThread_2(M2C_FIELD(&D_008EBDD8, s32 *, 0x30));
-        M2C_FIELD(&D_008EBDD8, s32 *, 0x30) = 0;
+    g = D_008EBDD8;
+    g->f38 = 1;
+    if (g->thread) {
+        SuspendThread_2(g->thread);
+        SignalSema_2(g->sema1);
+        TerminateThread_2(g->thread);
+        DeleteThread_2(g->thread);
+        g->thread = 0;
     }
-    if (M2C_FIELD(&D_008EBDD8, s32 *, 0x2C) != 0) {
-        DeleteSema_2(M2C_FIELD(&D_008EBDD8, s32 *, 0x2C));
-        M2C_FIELD(&D_008EBDD8, s32 *, 0x2C) = 0;
+    if (g->sema2) {
+        DeleteSema_2(g->sema2);
+        g->sema2 = 0;
     }
-    if (M2C_FIELD(&D_008EBDD8, s32 *, 0x28) != 0) {
-        DeleteSema_2(M2C_FIELD(&D_008EBDD8, s32 *, 0x28));
-        M2C_FIELD(&D_008EBDD8, s32 *, 0x28) = 0;
+    if (g->sema1) {
+        DeleteSema_2(g->sema1);
+        g->sema1 = 0;
     }
-    func_003021B0(&D_008EBDD8 + 0x88, 0, 0x440);
-    func_003021B0(&D_008EBDD8 + 0x4C8, 0, 0x1A0);
-    M2C_FIELD(&D_008EBDD8, s32 *, 0x34) = 0;
+    func_003021B0(g->a, 0, 0x440);
+    func_003021B0(g->b, 0, 0x1A0);
+    g->f34 = 0;
     return 0;
 }

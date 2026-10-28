@@ -1,13 +1,17 @@
 typedef struct { char pad[0x94C]; int state; } Obj;
-extern void func_001640C0(void *);
-extern void func_00164538(void *);
+extern void func_001640C0(Obj *);
+extern void func_00164538(Obj *);
 void func_00164064(Obj *p) {
- int state=p->state;
- if (state == 0) return;
- if (state == 1) { func_001640C0(p); return; }
- if (state < 2) {
-   if (state == 0) return;
-   func_00164538(p); return;
- }
- func_00164538(p);
+    if (p->state == 0) return;
+    switch (p->state) {
+    case 0:
+        return;
+    case 1:
+        func_001640C0(p);
+        return;
+    case 2:
+    default:
+        func_00164538(p);
+        return;
+    }
 }

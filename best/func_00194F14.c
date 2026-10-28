@@ -1,2 +1,0 @@
-s32 func_00194FDC(s32,u16,u16,u16); s32 func_00195308(s32,u16); s32 func_001A1568(void*,s32,void*); extern char jtbl_004C006C[]; u16 D_00480474; u16 D_00480476; u16 D_00480478; u16 D_0048047A;
-void func_00194F14(s32 p,u16 a,u16 b,u16 c,u16 d){if(!p)func_001A1568(jtbl_004C006C+0xEC4C,0x29B,jtbl_004C006C+0xED04);if(a!=D_00480474||b!=D_00480476||c!=D_00480478||d!=D_0048047A){func_00194FDC(p,a,c,d);func_00195308(p,b);D_00480476=b;D_00480474=a;D_00480478=c;D_0048047A=d;}}

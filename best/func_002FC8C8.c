@@ -16,6 +16,8 @@ extern void func_002FC760(Node *);
 void *func_002FC8C8(u32 arg0) {
     Node *n;
     void *r;
+    s32 *p;
+    s32 f;
     WaitSema_2(D_00444A34[0]);
     for (n = D_008EAB18[0]; n != 0; n = n->next) {
         if (n->lo == 0) func_002FC760(n);
@@ -25,40 +27,41 @@ void *func_002FC8C8(u32 arg0) {
         SignalSema_2(D_00444A34[0]);
         return 0;
     }
-    if (n->arr == 0 || (s32)n->arr == n->f8) {
+    p = n->arr;
+    f = n->f8;
+    if (p == 0 || (s32)p == f) {
         func_002FC760(n);
+        p = n->arr;
+        f = n->f8;
     }
-    if (n->arr != 0) {
-        if ((s32)n->arr != n->f8) {
-            u32 lo, hi;
-            Ent *e;
-            SignalSema_2(D_00444A34[0]);
-            hi = n->count;
-            lo = 0;
-            if (hi == 0) return 0;
-            do {
-                u32 mid = (lo + hi) >> 1;
-                e = (Ent *)n->arr[mid];
-                if (arg0 < e->start) {
-                    hi = mid;
-                } else {
-                    lo = mid + 1;
-                    if (arg0 < e->start + e->size) return e;
-                }
-            } while (lo < hi);
-            return 0;
-        } else {
-            s32 *pp = n->arr;
-            s32 a = *pp;
-            do {
-                r = func_002FC708(a, arg0);
-                pp++;
-                if (r != 0) break;
-                a = *pp;
-            } while (a != 0);
+    if (p != 0 && (s32)p != f) {
+        u32 lo, hi;
+        Ent *e;
+        SignalSema_2(D_00444A34[0]);
+        hi = n->count;
+        lo = 0;
+        if (hi == 0) return 0;
+        do {
+            u32 mid = (lo + hi) >> 1;
+            e = (Ent *)n->arr[mid];
+            if (arg0 < e->start) {
+                hi = mid;
+            } else {
+                lo = mid + 1;
+                if (arg0 < e->start + e->size) return e;
+            }
+        } while (lo < hi);
+        return 0;
+    }
+    if (p != 0) {
+        s32 *pp = n->arr;
+        while (1) {
+            r = func_002FC708(*pp, arg0);
+            pp++;
+            if (r != 0 || *pp == 0) break;
         }
     } else {
-        r = func_002FC708(n->f8, arg0);
+        r = func_002FC708(f, arg0);
     }
     SignalSema_2(D_00444A34[0]);
     return r;

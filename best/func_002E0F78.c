@@ -3,11 +3,11 @@ s32 SignalSema_2(s32);
 s32 PollSema_2(s32);
 void func_00305118(char *, char *, s32);
 s32 func_002D8270(void *, s32, s32, void *, s32, void *, s32, void *, void *);
-extern s32 D_00446070;
-extern s32 D_00446074;
-extern s32 D_008E6B40[10];
+extern s32 D_00446070[];
+extern s32 D_00446074[];
+extern s32 D_008E6B40[];
 extern char D_008E6C04[];
-extern u8 D_008E8100[64];
+extern u8 D_008E8100[];
 void func_002E0DE0(void);
 
 s32 func_002E0F78(s32 arg0, s32 arg1, char *name, s32 arg3) {
@@ -17,11 +17,11 @@ s32 func_002E0F78(s32 arg0, s32 arg1, char *name, s32 arg3) {
     if (D_008E6B40[9] == 0) {
         return -100;
     }
-    if (PollSema_2(D_00446074) < 0) {
+    if (PollSema_2(D_00446074[0]) < 0) {
         return -200;
     }
     if (name == 0 || *name == 0) {
-        SignalSema_2(D_00446074);
+        SignalSema_2(D_00446074[0]);
         return -210;
     }
     func_00305118(D_008E6C04, name, 0x3FF);
@@ -32,9 +32,9 @@ s32 func_002E0F78(s32 arg0, s32 arg1, char *name, s32 arg3) {
     r->term = 0;
     ret = func_002D8270(D_008E6B40, 2, 1, r, 0x414, D_008E8100, 4, func_002E0DE0, 0);
     if (ret == 0) {
-        D_00446070 = 2;
+        D_00446070[0] = 2;
     } else {
-        SignalSema_2(D_00446074);
+        SignalSema_2(D_00446074[0]);
     }
     return ret;
 }

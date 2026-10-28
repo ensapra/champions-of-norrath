@@ -1,11 +1,12 @@
 struct Vec3 { f32 x, y, z; Vec3() {} };
 extern char D_0044A150[];
-f32 D_00481628 = 0.05f;
-s32 D_004844A4;
+extern const f32 D_00481628;
+extern s32 D_004844A4;
 void func_00153FD0(void *, Vec3, s32, s32);
 s32 func_00153FA8(void *);
 void func_00143830(void *);
 
+struct Sub { u8 b8, b9; };
 struct Obj {
     char pad0[0xC]; u32 fC;
     f32 x, y, z;
@@ -15,7 +16,8 @@ struct Obj {
     char pad3[0x54 - 0x4C]; s32 f54; s32 f58;
     char pad4[0x68 - 0x5C]; f32 f68, f6C, f70;
     u8 f74;
-    char pad5[0x80 - 0x75]; u8 f80, f81;
+    char pad5[0x78 - 0x75];
+    char sub[0x8]; u8 s8, s9;
 };
 struct Other {
     char pad0[0xFC]; s32 fFC;
@@ -25,10 +27,12 @@ struct Other {
 };
 
 void func_0021A420(Obj *o, Vec3 pos, s32 unused, Other *t) {
+    Sub *s;
     func_00153FD0(o, pos, 0, 0);
     o->f48 = D_0044A150;
-    o->f81 = 0;
-    o->f80 = 0;
+    s = (Sub *)((char *)o + 0x78 + 8);
+    s->b9 = 0;
+    s->b8 = 0;
     o->f1C = 0;
     o->f38 = func_00153FA8(o);
     o->fC |= 0x4000;

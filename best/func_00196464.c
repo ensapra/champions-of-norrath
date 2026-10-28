@@ -4,16 +4,18 @@ typedef struct { u8 pad[0x68]; u32 count; Rect *rects; u8 pad2[0x78 - 0x70]; u8 
 
 u32 func_00196464(Obj *o, Rect *q)
 {
+    Rect *r = q;
+    Obj *ob = o;
     u32 i = 0;
     s32 off;
-    s32 x = q->x + (q->w >> 1);
-    s32 y = q->y + (q->h >> 1);
-    u32 n = o->count;
+    s32 x = r->x + (r->w >> 1);
+    s32 y = r->y + (r->h >> 1);
+    u32 n = ob->count;
     if (n != 0) {
         off = 0;
         do {
-            Ent *e = (Ent *)(o->ents + off);
-            Rect *r = &o->rects[e->idx];
+            Ent *e = (Ent *)(ob->ents + off);
+            r = &ob->rects[e->idx];
             off += 0x198;
             if (!(x < r->x || y < r->y || x >= r->x + r->w || y >= r->y + r->h)) {
                 if ((e->flags & 0x34) == 0)

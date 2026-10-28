@@ -1,14 +1,13 @@
-struct Vec3 { f32 x, y, z; };
-struct HRef { void *p; HRef() { p = 0; } };
-struct Cfg { char pad[0x60]; virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual s32 Get(s32 a, s32 b); };
-struct Node { Node *next; s32 pad; s32 pad2; struct Ent *ent; };
-struct Ent { char pad[0xC]; u32 flags; char pad2[0x36C - 0x10]; f32 life; };
-struct Tgt { char pad[0x10]; Vec3 pos; char pad2[0x38 - 0x1C]; s16 id; };
-struct Lst { s32 head; };
-struct Obj {
+typedef struct Vec3 { f32 x, y, z; } Vec3;
+typedef struct HRef { void *p; } HRef;
+typedef struct Cfg { char pad[0x60]; void *vt; } Cfg;
+typedef struct Node { struct Node *next; s32 pad; s32 pad2; struct Ent *ent; } Node;
+typedef struct Ent { char pad[0xC]; u32 flags; char pad2[0x36C - 0x10]; f32 life; } Ent;
+typedef struct Tgt { char pad[0x10]; Vec3 pos; char pad2[0x38 - 0x1C]; s16 id; } Tgt;
+typedef struct Lst { s32 head; } Lst;
+typedef struct Obj {
     s8 kind; s32 f4; Cfg *cfg; Tgt *tgt; s32 f10; void *f14; Lst lst; s32 f1C; s32 arr[20]; s16 f70; s32 f74;
-};
-extern "C" {
+} Obj;
 extern char D_0044E670[], D_00450F20[], D_00477E08[], D_004861C0[];
 f32 D_004827E4;
 u32 D_00483E5C;
@@ -21,7 +20,7 @@ void func_00194300(HRef *);
 void func_00194390(void *, void *, void *);
 void func_0024D308(s32, Tgt *, f32);
 void func_00298360(Obj *o, s32 k, Tgt *t, Cfg *c) {
-    HRef h;
+    volatile HRef h = {0};
     Vec3 v;
     s32 n, i;
     s32 *out;
@@ -38,12 +37,12 @@ void func_00298360(Obj *o, s32 k, Tgt *t, Cfg *c) {
     l->head = 0;
     o->f10 = D_00483E5C >> 16;
     o->f1C = D_004844A4;
-    n = c->Get(0, *(s8 *)o);
+    { char *e=(char *)c->vt+0x58; n=(*(s32 (**)(void *,s32,s32))(e+4))((char *)c+*(s16 *)e,0,*(s8 *)o); }
     o->f70 = 0;
     o->f74 = 0;
     func_0024D308(func_00165DC0(D_004861C0, D_00477E08), o->tgt, 1.0f);
     v = o->tgt->pos;
-    func_001535D0(&v, o->tgt->id, &h, 0, D_004827E4, 139.0f);
+    func_001535D0(&v, o->tgt->id, (HRef *)&h, 0, D_004827E4, 139.0f);
     node = (Node *)h.p;
     if (node && n > 0) {
         out = &o->arr[0];
@@ -57,6 +56,5 @@ void func_00298360(Obj *o, s32 k, Tgt *t, Cfg *c) {
             node = node->next;
         } while (node && i < n);
     }
-    func_00194300(&h);
-}
+    func_00194300((HRef *)&h);
 }

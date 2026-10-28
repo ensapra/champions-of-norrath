@@ -1,5 +1,34 @@
-extern void *D_0048690C; extern void *D_00486910;
-#define F(p,t,o) (*(t*)((char*)(p)+(o)))
-void *func_00161450(void){void *v6=D_00486910,*v2=F(v6,void*,0x14),*v4=v6,*v5,*v7,*t;
-if(v2&& (F(v2,u16,0x1c)&0x4800)){v5=D_0048690C;v7=v6;loop: t=F(v4,void*,0x10);if(t){void *v3=F(v4,void*,0xc);if(!v3)v7=t;else F(v3,void*,0x10)=t;v6=v7;F(F(v4,void*,0x10),void*,0xc)=v3;F(v4,void*,0xc)=v5;F(v5,void*,0x10)=v4;v5=v4;F(v5,void*,0x10)=0;}v2=F(v6,void*,0x14);v4=v6;if(v2&&(F(v2,u16,0x1c)&0x4800))goto loop;D_0048690C=v5;D_00486910=v7;}
-t=F(v6,void*,0x10);v2=F(v6,void*,0x14);D_00486910=t;F(t,s32,0xc)=0;if(v2)F(v2,s32,4)=0;F(v6,void*,0xc)=D_0048690C;F(D_0048690C,void*,0x10)=v6;D_0048690C=v6;F(v6,s32,8)=1000000;F(v6,void*,0x10)=0;F(v6,s32,0x20)=0;F(v6,s32,0x24)=0;F(v6,void*,0x14)=0;return v6;}
+typedef struct Nd { s32 _0; s32 _4; s32 time; struct Nd *prev; struct Nd *next; struct Nd *child; s32 _18; u16 flags; u16 _1E; s32 _20; s32 _24; } Nd;
+extern Nd *D_0048690C; extern Nd *D_00486910;
+Nd *func_00161450(void) {
+  Nd *n = D_00486910;
+  Nd *cur = n, *tail, *h, *p;
+  Nd *c;
+  if (n->child && (n->child->flags & 0x4800)) {
+    tail = D_0048690C; h = n;
+    do {
+      if (cur->next) {
+        if (cur->prev) cur->prev->next = cur->next; else h = cur->next;
+        n = h;
+        cur->next->prev = cur->prev;
+        cur->prev = tail; tail->next = cur; tail = cur; cur->next = 0;
+      }
+      cur = n;
+    } while (n->child && (n->child->flags & 0x4800));
+    D_0048690C = tail; D_00486910 = h;
+  }
+  p = n;
+  D_00486910 = p->next;
+  c = p->child;
+  p->next->prev = 0;
+  if (c) c->_4 = 0;
+  p->prev = D_0048690C;
+  D_0048690C->next = p;
+  D_0048690C = p;
+  p->time = 1000000;
+  p->next = 0;
+  p->_20 = 0;
+  p->_24 = 0;
+  p->child = 0;
+  return p;
+}

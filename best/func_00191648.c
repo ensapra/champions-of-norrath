@@ -1,2 +1,22 @@
-extern s32 D_00484478;extern s32 D_0048447C;extern u8 D_00793E60[];extern void func_00191738(s32,s32,s32,s32);
-void func_00191648(s32 id){s32 n=D_00484478,i=0;if(n>0&&*(s32*)D_00793E60!=id){u8*p=D_00793E60;i=1;while(i<n){p+=16;if(*(s32*)p==id)break;i++;}}if(i==n)return;s32 j=D_0048447C;if(j<i)j=n-1;else D_0048447C=j-1;s32 end=n-1;if(i<j){u8*p=D_00793E60+i*16;s32 k=j-i;do{u64 a=*(u64*)(p+16),b=*(u64*)(p+24);*(u64*)p=a;*(u64*)(p+8)=b;p+=16;}while(--k);}D_00484478=end;func_00191738(id,i,end,n);}
+typedef struct __attribute__((packed, aligned(4))) { s32 id; s32 a, b, c; } Ent;
+extern s32 D_00484478;
+extern s32 D_0048447C;
+extern Ent D_00793E60[];
+void func_00191738();
+void func_00191648(s32 id) {
+    s32 n = D_00484478;
+    s32 i, j, end;
+    for (i = 0; i < n; i++) {
+        if (D_00793E60[i].id == id) break;
+    }
+    if (i == n) return;
+    j = D_0048447C;
+    end = n - 1;
+    if (j >= i) D_0048447C = j - 1;
+    {
+        s32 k;
+        for (k = i; k < end; k++) D_00793E60[k] = D_00793E60[k + 1];
+    }
+    D_00484478 = end;
+    func_00191738(id, i, end, n);
+}

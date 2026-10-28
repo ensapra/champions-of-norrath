@@ -2,10 +2,6 @@ extern u8 D_004488F0[];
 extern u8 D_0044B440[];
 extern u8 D_0044D498[];
 
-void *func_001441B8(s32);
-void func_00163010(void *, void *, s32, f32 *, s32, s32);
-void func_00194498(void *, void *);
-
 typedef struct __attribute__((packed)) { s64 v; } P8;
 
 void *func_0011E730(void *arg0) {

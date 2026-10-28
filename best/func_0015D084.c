@@ -13,6 +13,7 @@ typedef s32 M2C_UNK32;
 #endif
 
 void func_0015D084(void *arg0) {
+    volatile s32 keep;
     s32 temp_10;
     s32 temp_15;
     s32 temp_24;
@@ -26,6 +27,7 @@ void func_0015D084(void *arg0) {
     s32 var_13;
     s32 var_14;
 
+    keep = 0;
     var_14 = M2C_FIELD(arg0, s32 *, 0xCE0);
     var_13 = M2C_FIELD(arg0, s32 *, 0xCE4);
     var_12 = M2C_FIELD(arg0, s32 *, 0xCE8);

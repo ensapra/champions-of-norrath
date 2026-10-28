@@ -1,12 +1,13 @@
-typedef struct V { f32 x, y, z; } V;
+struct V { f32 x, y, z; V() {} };
 typedef struct S7 { char c[7]; } S7;
+extern "C" {
 void func_00113618(void);
-void func_00168A38(s32, V *, s16, void *, s32, V *, V *, V *, f32);
+void func_00168A38(s32, V, s16, void *, s32, V *, V *, f32);
 void func_001D5630(s32, V *);
 s64 func_0016C970(s32, s32);
 extern S7 D_0034B988[];
 extern S7 D_00485320[];
-f32 D_00483F48;
+extern f32 D_00483F48;
 
 void func_0020CD60(char *o) {
     s32 i;
@@ -14,12 +15,11 @@ void func_0020CD60(char *o) {
         func_00113618();
         for (i = 2; i < 8; i++) {
             if (*(f32 *)(o + 0x230) <= (f32)(0xB4 - (i * 4 + i) * 4) && *(s32 *)(o + i * 4 + 0x404) == 0) {
-                V a, b, c;
+                V a, b;
                 s32 w = *(s32 *)(o + 0x328) + 0x14;
                 s32 own = *(s32 *)(o + 0x24);
                 *(s32 *)(o + i * 4 + 0x404) = w;
-                c = *(V *)(o + 0x10);
-                func_00168A38(*(s32 *)(own + 0xC), &c, *(s16 *)(o + 0x38), o + 0x120, i, &a, &b, &c, *(f32 *)(o + 0xE0));
+                func_00168A38(*(s32 *)(own + 0xC), *(V *)(o + 0x10), *(s16 *)(o + 0x38), o + 0x120, i, &a, &b, *(f32 *)(o + 0xE0));
                 func_001D5630(3, &a);
                 switch (i) {
                 case 2: *(s32 *)(o + 0xF4) |= 0x08021041; break;
@@ -35,4 +35,5 @@ void func_0020CD60(char *o) {
         *D_0034B988 = *D_00485320;
         *(s32 *)&D_00483F48 = (s32)*(f32 *)(o + 0x230);
     }
+}
 }

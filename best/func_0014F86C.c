@@ -5,30 +5,22 @@ void func_0014B8E0(Item *, u8 *);
 
 void func_0014F86C(u8 *arg0) {
     DNode *head = (DNode *)(arg0 + 0x9B4);
-    DNode *p = head->next;
-    DNode *nx;
-    DNode *cur;
-    Item *it;
-    if (p != head) {
-        do {
-            it = p->item;
-            nx = p->next;
-            if (it->f_ac != 0 && it->f_b4 == 0) {
-                cur = p;
-                if (it->f_b0 != 0) {
-                    nx->prev = p->prev;
-                    p->prev->next = p->next;
-                    p = nx;
-                    func_0011B9E0(cur, nx);
-                    func_0014B8E0(it, arg0);
-                } else {
-                    it->f_b0 = 1;
-                    goto next;
-                }
-            } else {
-next:
+    DNode *p;
+    for (p = head->next; p != head; ) {
+        Item *it = p->item;
+        DNode *nx = p->next;
+        if (it->f_ac != 0 && it->f_b4 == 0) {
+            if (it->f_b0 != 0) {
+                DNode *cur = p;
+                nx->prev = p->prev;
+                p->prev->next = p->next;
+                func_0011B9E0(cur, nx);
                 p = nx;
+                func_0014B8E0(it, arg0);
+                continue;
             }
-        } while (p != head);
+            it->f_b0 = 1;
+        }
+        p = nx;
     }
 }

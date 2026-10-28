@@ -10,9 +10,12 @@ s32 func_001671F8(char *);
 void ovl_ntgui2_func_00191830(s32, s32);
 
 static inline void vsub(V3 *o, V3 *a, V3 *b) {
-    o->x = a->x - b->x;
-    o->y = a->y - b->y;
-    o->z = a->z - b->z;
+    f32 x = a->x - b->x;
+    f32 y = a->y - b->y;
+    f32 z = a->z - b->z;
+    o->x = x;
+    o->y = y;
+    o->z = z;
 }
 
 s32 func_00215CD8(Obj *o, s32 a1, s32 idx) {
@@ -24,11 +27,14 @@ s32 func_00215CD8(Obj *o, s32 a1, s32 idx) {
     s = func_0015A070(o->ang - 0x4000);
     n.y = func_0015A100(o->ang - 0x4000);
     np->x = s;
-    n.z = 0.0f;
-    vsub(&d, &t, &o->pos);
-    if ((d.x * np->x + d.y * n.y + d.z * n.z) * (f32)o->dir > 0.0f)
-        ovl_ntgui2_func_00191830(a1, func_001671F8(D_004707E0));
-    else
-        ovl_ntgui2_func_00191830(a1, func_001671F8(D_004707F0));
+    {
+        V3 *dp = &d;
+        vsub(dp, &t, &o->pos);
+        n.z = 0.0f;
+        if ((dp->x * np->x + dp->y * n.y + dp->z * n.z) * (f32)o->dir > 0.0f)
+            ovl_ntgui2_func_00191830(a1, func_001671F8(D_004707E0));
+        else
+            ovl_ntgui2_func_00191830(a1, func_001671F8(D_004707F0));
+    }
     return 1;
 }

@@ -1,0 +1,2 @@
+typedef struct { s32 key,flags,pad[4],f18; } E; typedef struct { E*items;s32 b,c,count,e;} Q; extern Q D_010C1E80[]; extern s32 D_010C1EA8[]; extern s32 func_00107BF0(void);
+s32 func_00107A68(void){ s32 idx=func_00107BF0(); Q*q=&D_010C1E80[idx]; s32 i=0; if(q->count>0){ E*base=q->items; s32 off=0; do { E*e=(E*)((u8*)base+off); s32 k=e->key; if(k==D_010C1EA8[0]) return k; off+=28; i++; }while(i<q->count); } return 0; }

@@ -2,7 +2,7 @@ extern s32 func_00304CFC();
 extern s32 D_006D8FA0[];
 void func_00166F98(s8 *str) {
     s32 len, i, hash, idx;
-    s8 *p;
+    s16 *p;
     while (*str != 0) {
         len = func_00304CFC(str);
         i = 0; hash = 0;
@@ -20,8 +20,9 @@ void func_00166F98(s8 *str) {
         while (D_006D8FA0[idx] != (s32)str)
             idx = (idx + 1) & 0x1fff;
         D_006D8FA0[idx] = 0;
-        p = (s8 *)(((s32)(str + len + 2)) & ~1);
-        while (*(s16 *)p != 0) p += 2;
-        str = p + 2;
+        str = (s8 *)(((s32)(str + len + 2)) & ~1);
+        p = (s16 *)str;
+        while (*p != 0) p++;
+        str = (s8 *)(p + 1);
     }
 }

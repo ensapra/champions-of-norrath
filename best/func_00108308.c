@@ -1,4 +1,4 @@
-extern void func_0016CBE8();
+extern s32 func_0016CBE8();
 f32 D_0047FB4C;
 f32 D_0047FB50;
 typedef struct {
@@ -11,9 +11,10 @@ typedef struct {
 } Unk16;
 extern Unk16 D_0031F530;
 
-void func_00108308(void *arg0, f32 fparg0) {
+s64 func_00108308(void *arg0, f32 fparg0) {
     s32 v;
     f32 f4;
+    s32 a, b;
     v = (*(u64 *)((u8 *)arg0 + 8) & (0x8000ULL << 18)) ? 7 : 0;
     if (v <= 0) {
         func_0016CBE8(&D_0031F530, 0);
@@ -23,7 +24,9 @@ void func_00108308(void *arg0, f32 fparg0) {
     if (f4 > 1.0f) f4 = 1.0f;
     D_0031F530.f04 = fparg0 * 200.0f;
     D_0031F530.f0C = fparg0 * 100.0f;
-    D_0031F530.f03 = (s32)(f4 * 64.0f);
-    D_0031F530.f0B = (s32)(f4 * 72.0f);
-    func_0016CBE8(&D_0031F530, 2, (s32)(f4 * 72.0f));
+    a = (s32)(f4 * 72.0f);
+    D_0031F530.f0B = a;
+    b = (s32)(f4 * 64.0f);
+    D_0031F530.f03 = b;
+    return func_0016CBE8(&D_0031F530, 2, a);
 }

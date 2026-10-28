@@ -1,0 +1,1 @@
+void func_0015A460(f32*m,f32*q){f32 x=q[0],y=q[1],z=q[2],w=q[3];f32 s=2.0f/(x*x+y*y+z*z+w*w);f32 xs=x*s,ys=y*s,zs=z*s;f32 wx=w*xs,wy=w*ys,wz=w*zs;f32 xx=x*xs,xy=x*ys,xz=x*zs;f32 yy=y*ys,yz=y*zs,zz=z*zs;m[0]=1.f-(yy+zz);m[4]=xy+wz;m[8]=xz-wy;m[3]=0;m[1]=xy-wz;m[5]=1.f-(xx+zz);m[9]=yz+wx;m[7]=0;m[2]=xz+wy;m[6]=yz-wx;m[10]=1.f-(xx+yy);m[11]=0;}

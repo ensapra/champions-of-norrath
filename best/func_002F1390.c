@@ -1,1 +1,27 @@
-f32 func_002F1390(f32 x) { union{f32 f;s32 i;}u;u.f=x;u32 b=(u32)u.i&0x7fffffff;s32 e=(b>>23)-127,m,t;if(e<23){if(e<0){if(x+9.9999994e29f>0.0f){if(u.i>=0)u.i=0;else if(b>0x7fffff)u.i=(s32)0xbf800000;}return u.f;}m=0x7fffff>>e;if(u.i&m){if(x+9.9999994e29f>0.0f){t=~m;if(u.i<0){u.i+=0x800000>>e;t=~m;}u.i&=t;}return u.f;}return x;}return x;}
+float func_002F1390(float x) {
+    int i0, j0;
+    unsigned i, ix;
+    union { float f; int i; } c;
+    i0 = *(int *)&x;
+    ix = i0 & 0x7fffffff;
+    j0 = (ix >> 23) - 0x7f;
+    if (j0 < 23) {
+        if (j0 < 0) {
+            c.i = 0x7149f2c9;
+            if (c.f + x > 0.0f) {
+                if (i0 >= 0) i0 = 0;
+                else if (ix > 0x7fffff) i0 = 0xbf800000;
+            }
+        } else {
+            i = 0x007fffff >> j0;
+            if ((i0 & i) == 0) return x;
+            c.i = 0x7149f2c9;
+            if (c.f + x > 0.0f) {
+                if (i0 < 0) i0 += 0x00800000 >> j0;
+                i0 &= ~i;
+            }
+        }
+        *(int *)&x = i0;
+    }
+    return x;
+}

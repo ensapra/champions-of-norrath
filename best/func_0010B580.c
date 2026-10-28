@@ -15,7 +15,7 @@ s32 func_0010B580(char *str, char *out)
     s32 i = 0;
     u32 *p = parts;
     s32 len;
-    s32 end;
+    char *ep;
     u32 v;
 
     do {
@@ -28,13 +28,13 @@ s32 func_0010B580(char *str, char *out)
         *p++ = v;
         if (v == 0)
             zeros++;
-        end = pos + len;
-        pos = end + 1;
+        ep = str + (pos + len);
+        pos = pos + len + 1;
         if (v >= 0x100)
             return 2;
-        if (str[end] == '.')
+        if (*ep == '.')
             dots++;
-        if (str[end] == 0)
+        if (*ep == 0)
             break;
         i++;
     } while (i < 4);

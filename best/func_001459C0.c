@@ -1,2 +1,0 @@
-extern s32 func_0014D270(s32); extern s32 D_010D44B0[4]; extern s32 D_010D44C0[4]; extern u8 D_010D44D0[]; extern u8 D_010D44D4[]; extern u8 D_010D44A8[]; extern u8 D_010D44A4[];
-s32 func_001459C0(void){s32 i=0;do{s32 x=D_010D44B0[i];if(x)func_0014D270(x);x=D_010D44C0[i];if(x)func_0014D270(x);i++;}while(i<4);s32 x=*(s32*)D_010D44D0;if(x)func_0014D270(x);x=*(s32*)D_010D44D4;if(x)func_0014D270(x);x=*(s32*)D_010D44A8;if(x)func_0014D270(x);x=*(s32*)D_010D44A4;if(x)return func_0014D270(x);return 0;}

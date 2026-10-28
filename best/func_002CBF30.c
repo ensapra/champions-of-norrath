@@ -6,8 +6,10 @@ extern u8 D_008D8D48[];
 s32 func_002CBF30(K *p) {
     D_004865F0 = 0;
     func_00302560(D_0047A1A0);
-    p->b = -1;
-    p->ptr = D_008D8D48;
+    u8 *tmp = D_008D8D48;
+    s32 neg = -1;
+    p->b = neg;
+    p->ptr = tmp;
     p->c = 0;
     p->a = 0;
     p->d = 0;

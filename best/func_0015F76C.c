@@ -1,15 +1,11 @@
-typedef struct { u8 pad[0x92c]; } Obj;
-extern void func_0014CE60(s32,s32,s32);
-void func_0015F76C(Obj *p) {
- s32 off=*(s32*)(p->pad+0x5d4), x=*(s32*)(p->pad+0x5a0), y=*(s32*)(p->pad+0x5a4), h=*(s32*)(p->pad+0x914);
- func_0014CE60(*(s32*)(p->pad+0x894),x+off-h,y+off-h);
- s32 a=*(s32*)(p->pad+0x92c)*3;
- s32 adj=(a<0?a+3:a)>>2;
- func_0014CE60(*(s32*)(p->pad+0x898),x+adj+off-h,y+adj+off-h);
- func_0014CE60(*(s32*)(p->pad+0x89c),x+off-h,y+off-h);
- s32 t=*(s32*)(p->pad+0x888);
- func_0014CE60(*(s32*)(p->pad+0x890),x+off,y+off+t-*(s32*)(p->pad+0x910));
- func_0014CE60(*(s32*)(p->pad+0x8a0),x+off+t+0x10,y+off);
- func_0014CE60(*(s32*)(p->pad+0x8a4),x+off+0x10,y+off+0x10);
- func_0014CE60(*(s32*)(p->pad+0x8a8),x+off+*(s32*)(p->pad+0x5ac)-t-0x10,y+off+0x10);
+typedef struct { char p0[0x5A0]; s32 x, y, p5a8, w; char p1[0x5D4-0x5B0]; s32 off; char p2[0x888-0x5D8]; s32 b88, p8c, b90, b94, b98, b9c, ba0, ba4, ba8; char p3[0x910-0x8AC]; s32 h10, h14; char p4[0x92C-0x918]; s32 q; } O;
+s32 func_0014CE60(s32, s32, s32);
+void func_0015F76C(O *p) {
+    func_0014CE60(p->b94, p->x + p->off - p->h14, p->y + p->off - p->h14);
+    func_0014CE60(p->b98, p->q * 3 / 4 + p->x + p->off - p->h14, p->q * 3 / 4 + p->y + p->off - p->h14);
+    func_0014CE60(p->b9c, p->x + p->off - p->h14, p->y + p->off - p->h14);
+    func_0014CE60(p->b90, p->x + p->off, p->y + p->off + p->b88 - p->h10);
+    func_0014CE60(p->ba0, p->x + p->off + p->b88 + 0x10, p->y + p->off);
+    func_0014CE60(p->ba4, p->x + p->off + 0x10, p->y + p->off + 0x10);
+    func_0014CE60(p->ba8, p->x + p->off + p->w - p->b88 - 0x10, p->y + p->off + 0x10);
 }

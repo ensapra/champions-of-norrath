@@ -7,11 +7,9 @@ s32 func_001A9750(F *fp)
 {
     s32 fl, n, t;
     char *p;
-    R *rp;
     if (fp == 0) return func_001AA470(*(R **)(jtbl_004C006C + 0x3A14), func_001A9750);
-    rp = fp->data;
-    if (rp == 0) { rp = *(R **)(jtbl_004C006C + 0x3A14); fp->data = rp; }
-    if (rp->init == 0) { func_001A9A78(rp); }
+    if (!fp->data) fp->data = *(R **)(jtbl_004C006C + 0x3A14);
+    if (!fp->data->init) func_001A9A78(fp->data);
     fl = fp->flags;
     if (!(fl & 8)) return 0;
     p = fp->base;

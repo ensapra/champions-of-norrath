@@ -1,2 +1,0 @@
-extern s32 func_0011B9A8(s32);extern void func_001A1568(void*,s32,void*);extern u8 jtbl_004C006C[];extern u8 D_00508021[];
-void func_001706A8(s32*out,u8*data,s32 n){s32 size=func_0011B9A8(((((u32)n*2)+15)>>4)<<4);*out=size;if(size==0)func_001A1568(jtbl_004C006C+0xBCC4,0x503,D_00508021+0x3FF);u16 pos=2;u8*p=data+pos;u8 ch=*p;if(ch!=0xFF){s32 valid=ch<n;do{if(!valid)func_001A1568(jtbl_004C006C+0xBCC4,0x507,jtbl_004C006C+0xBCD4);*(u16*)(size+ch*2)=pos;pos=(u16)(pos+data[pos+1]*3+2);p=data+pos;ch=*p;valid=ch<n;}while(ch!=0xFF);}}

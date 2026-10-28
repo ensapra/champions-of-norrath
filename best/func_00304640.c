@@ -1,0 +1,1 @@
+char *func_00304640(char *dst,const char *src){char *out=dst; unsigned long long x; if(!(((unsigned long)dst|(unsigned long)src)&7)){x=*(const unsigned long long*)src;while(!((x-0x0101010101010101ULL)&~x&0x8080808080808080ULL)){*(unsigned long long*)dst=x;src+=8;dst+=8;x=*(const unsigned long long*)src;}}while((*dst++=*src++));return out;}

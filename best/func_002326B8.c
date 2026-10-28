@@ -15,10 +15,10 @@ extern char D_00472128[];
 extern char D_00472138[];
 extern char D_00485828[];
 extern char D_00485838[];
-extern f32 D_004819D0;
-extern f32 D_004819D4;
+extern const f32 D_004819D0;
+extern const f32 D_004819D4;
 void func_0010D250(Vec3 *, void *, s32);
-s32 func_001129F0(void *);
+s32 func_001129F0(void *, void *);
 s32 func_00152CC8(void *, char *);
 void func_00160128(void *, s32, s32, f32);
 void func_001639E8(void *);
@@ -26,7 +26,7 @@ s32 func_00165DC0(void *, char *);
 s32 func_00304168(void *, char *);
 
 void func_002326B8(Obj2326B8 *o, s32 arg1) {
-    if (func_001129F0(&arg1) == 0) {
+    if (func_001129F0(o, &arg1) == 0) {
         s32 m = arg1;
         if (m == 1) goto one;
         if (m < 2) {

@@ -1,0 +1,2 @@
+typedef union __attribute__((packed,aligned(4))){struct __attribute__((packed)){u64 a;s32 b;}v;s16 h[6];}P;s32 func_001441B8(s32);void func_002B1460(s32,s32,s32,void*,void*,s32);
+s32 func_002B2D50(s32 a,s32 b,void*c,P*d,s16 e){volatile P tmp=*d;s16*p=c;p[74]=255;p[75]=200;p[70]=255;p[71]=200;p[76]=135;p[77]=64;p[72]=135;p[73]=64;{s32 r=func_001441B8(128);if(r)func_002B1460(r,e,b,(void*)&tmp,c,a);}return 0;}

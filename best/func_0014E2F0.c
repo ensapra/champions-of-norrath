@@ -2,12 +2,14 @@ typedef struct Vtx14E { s16 x, y; u8 pad[0xC]; } Vtx14E;
 void func_0014E2F0(u8 *o) {
     s32 x0 = *(s32 *)(o + 0x4DC) + *(s32 *)(o + 0x5A0);
     s32 c = *(s32 *)(o + 0x5D4);
-    s32 c2 = c * 2;
     s32 xc = x0 + c;
-    Vtx14E *v = (Vtx14E *)(o + (*(s32 *)(o + 0x4EC) << 9) + 0x150);
+    s32 idx = *(s32 *)(o + 0x4EC);
     s32 y0 = *(s32 *)(o + 0x4E0) + *(s32 *)(o + 0x4D4);
-    s32 x1 = x0 + (*(s32 *)(o + 0x5AC) + c2);
-    s32 y1 = y0 + (*(s32 *)(o + 0x4D8) + c2);
+    s32 x1 = x0 + (*(s32 *)(o + 0x5AC) + c * 2);
+    s32 y1 = y0 + (*(s32 *)(o + 0x4D8) + c * 2);
+    Vtx14E *v;
+    o += idx << 9;
+    v = (Vtx14E *)(o + 0x150);
     v[0].x = x0;
     v[0].y = y1;
     v[1].x = xc;

@@ -1,1 +1,0 @@
-s32 func_002FA920(u32 x,u32*p){s32 best=-1;u32 n=0;u32*q=p;if(!p)return 0;if(*p==-1)return -1;while(q[0]!=-1){u32 l=q[0],h=q[1];if(x>=l&&x<h){if(best==-1||p[best*3+1]<h&&l>=p[best*3])best=n;else q+=3;}else if(best<0||x>=q[0])q+=3;n++;}if(best!=-1)return p[best*3+2];return 0;}

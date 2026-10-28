@@ -61,9 +61,9 @@ void func_00276FC8(Obj *o, char *name, s32 a2, Obj3 *owner, s32 a4, f32 f)
     o->f1C = 24.0f;
     func_0016C820(o->h4C, o->d160, &x0, &y0, &x1, &y1, &x2, &y2);
     t = (f32)((y2 - x1) / 2) * D_00482228;
-    o->i184 = a2;
-    o->i180 = a4;
     o->f174 = f;
+    o->i180 = a4;
+    o->i184 = a2;
     o->f178 = t;
     o->f17C = t * D_0048222C * 2.0f;
 }

@@ -15,21 +15,21 @@ extern int D_001BB6C4[];
 extern int D_010CB060[];
 
 int func_0012A490(void) {
-    int v;
     if (func_001404D0() != 0) return 0;
     if (D_001C6840[0] < 3) {
         if (D_001C6840[0] <= 0) goto end;
         goto B;
     }
     if (D_001C6840[0] == 3) {
-        v = 0;
-        if (D_010CB060[0] != 0 && !(D_001BAC80[0] & 1)) {
-            D_010CB060[0] = 0;
+        int *p = D_010CB060;
+        int v = 0;
+        if (p[0] != 0 && !(D_001BAC80[0] & 1)) {
+            p[0] = 0;
             goto act;
         }
-        if (D_010CB060[1] != 0) {
+        if (p[1] != 0) {
             if (!(D_001BAC80[0] & 2)) {
-                D_010CB060[1] = 0;
+                p[1] = 0;
 act:
                 func_0012A230();
                 func_00129EC8();

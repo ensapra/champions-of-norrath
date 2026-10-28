@@ -1,3 +1,20 @@
 s32 AddIntcHandler_3(s32, void *, s32); s32 func_002D5C28(s32); s32 GetThreadId_2(void); s32 ChangeThreadPriority_2(s32,s32); s32 func_0015F928(void); void *func_00165DC0(char *,char *,s32); s32 func_002D3040(s32,s32,u16); s32 func_0018F7D0(void); s32 func_0018F118(void); s64 func_00167538(void);
 extern char ovl_ntgui2_func_0018E4A0[]; extern char D_00464238[]; extern char D_00464248[]; s32 D_004843EC; s32 D_004844D4; s32 D_00486A3C;
-s64 func_001901E0(void) { void *p; u32 val; D_004843EC=AddIntcHandler_3(2,ovl_ntgui2_func_0018E4A0,0); func_002D5C28(2); ChangeThreadPriority_2(GetThreadId_2(),10); func_0015F928(); *(vu32*)0x10000010=0x82; *(vu32*)0x10000000=0; *(vu32*)0x10000810=0x9f; p=func_00165DC0(D_00464238,D_00464248,0x9f); val=*(u32*)((char*)p+16); *(vu16*)(0x20000000 | val)=D_004844D4>>8; func_002D3040(D_00486A3C,val,*(u16*)((char*)p+6)); func_0018F7D0(); func_0018F118(); return func_00167538(); }
+s64 func_001901E0(void) {
+    char *p; u32 val;
+    D_004843EC = AddIntcHandler_3(2, ovl_ntgui2_func_0018E4A0, 0);
+    func_002D5C28(2);
+    ChangeThreadPriority_2(GetThreadId_2(), 10);
+    func_0015F928();
+    *(vu32 *)0x10000010 = 0x82;
+    *(vu32 *)0x10000000 = 0;
+    *(vu32 *)0x10000810 = 0x9f;
+    p = func_00165DC0(D_00464238, D_00464248, 0x9f);
+    val = *(u32 *)(p + 16);
+    *(vu16 *)((0x20000000 | val) + 0x14) = D_004844D4 >> 8;
+    func_002D3040(D_00486A3C, val, *(u16 *)(p + 6));
+    func_0018F7D0();
+    func_0018F118();
+    func_00167538();
+    return 0;
+}

@@ -1,1 +1,39 @@
-s32 D_00485E1C; extern s32 D_00435B68[]; s32 *func_00268798(void){s32 n=D_00485E1C; D_00435B68[n]=0; ++D_00485E1C; n=D_00485E1C; s32 *p=D_00435B68+(n-2); while((u32)p>=(u32)D_00435B68){if(!*p)break;--p;} s32 *r=p+1; s32 i=0,j=0,change=0; for(;i<n;i++){p=r+j;j++;if(!*p&&!D_00435B68[i]&&p!=D_00435B68+i){change=1;p=D_00435B68+i-1;if((u32)p>=(u32)D_00435B68){if(!*p)r=p+1;else{for(--p;(u32)p>=(u32)D_00435B68&&*p;--p);r=p+1;}}else r=p+1;break;}if(*p!=D_00435B68[i])j=0;}if(change){p=r;while(*p){n--;p++;D_00485E1C=n;}D_00485E1C=n-1;}return r;}
+s32 D_00485E1C;
+extern s32 D_00435B68[];
+s32 *func_00268798(void) {
+    s32 n, i, j, found;
+    s32 *p, *q, *c, *start;
+    D_00435B68[D_00485E1C++] = 0;
+    n = D_00485E1C;
+    for (p = D_00435B68 + n - 2; p >= D_00435B68; p--) {
+        if (*p == 0) break;
+    }
+    start = p + 1;
+    i = 0;
+    j = 0;
+    found = 0;
+    while (i < n) {
+        q = start + j;
+        j++;
+        if (*q == 0 && D_00435B68[i] == 0 && q != &D_00435B68[i]) {
+            found = 1;
+            for (p = &D_00435B68[i] - 1; p >= D_00435B68; p--) {
+                if (*p == 0) break;
+            }
+            start = p + 1;
+            break;
+        }
+        if (*q != D_00435B68[i]) j = 0;
+        i++;
+    }
+    if (found) {
+        p = start;
+        while (*p) {
+            n--;
+            p++;
+            D_00485E1C = n;
+        }
+        D_00485E1C = n - 1;
+    }
+    return start;
+}

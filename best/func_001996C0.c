@@ -1,1 +1,25 @@
-s32 func_0019ACEC(s32,void*); s32 func_0018A2A8(void*,s32,u8*); s32 func_001996C0(void *base,s32 off,s32 idx){ volatile u64 pad[2]; u8 buf[4]; u16 v; char *p=(char*)base+(idx*4); v=*(u16*)(p+0x120)+off; if(func_0019ACEC(v,p)) buf[0]=0; else if(v<255){buf[0]=(u8)v;buf[1]=0;}else{buf[1]=(u8)v;buf[2]=0;buf[0]=((u8*)&v)[1];} s32 c=func_0018A2A8(buf,4,buf); u32 z=c&~255; z|=buf[0]; z&=0xffff00ff; z|=(u32)buf[1]<<8; z&=0xff00ffff; z|=(u32)buf[2]<<16; z&=0x00ffffff; z|=(u32)buf[3]<<24; return z;}
+typedef struct { u8 c[4]; } S4;
+s32 func_0019ACEC(s32);
+s32 func_0018A2A8(void*,s32,u8*);
+S4 func_001996C0(u8 *base, s32 off, s32 idx) {
+    S4 out;
+    u8 txt[4];
+    u8 raw[2];
+    s32 t = *(u16*)(base + idx * 4 + 0x120) + off;
+    *(u16*)raw = t;
+    if (func_0019ACEC(t & 0xffff)) {
+        txt[0] = 0;
+    } else {
+        u8 lo = raw[0];
+        if (*(u16*)raw < 255) {
+            txt[0] = lo;
+            txt[1] = 0;
+        } else {
+            txt[1] = lo;
+            txt[2] = 0;
+            txt[0] = raw[1];
+        }
+    }
+    func_0018A2A8(&out, 4, txt);
+    return out;
+}

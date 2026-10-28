@@ -1,18 +1,11 @@
-extern f32 D_0048265C;
-extern f32 D_00482660;
-extern char D_008D63C0[];
-extern char D_008D6410[];
-extern char D_008D6460[];
-void func_00180D78(void *, s32, s32, s32, s32, s32, s32, s32, f32, f32, f32, s32, s32, s32, s32, s32);
-
-void func_0028F348(s32 a, s32 b) {
-    s32 i;
-    if (b != 0xFFFF) return;
-    for (i = 1; i == a; i++) {
-        if (i == 1) {
-            func_00180D78(D_008D63C0, 0x12C, 0xC8, 0x30, 0x58, 0xF4, 0x38, 4, 26.0f, 11.0f, D_0048265C, 0x1A, a, a, 0, 0);
-        }
-        func_00180D78(D_008D6410, 0x88, 0x83, 0x5C, 0x88, 0x187, 0x2E, 0x43, 25.0f, 5.0f, 0.5f, 0, a, a, 9, 0);
-        break;
-    }
+extern s32 func_00180D78(void *,s32,s32,s32,s32,s32,s32,s32,f32,f32,f32,s32,s32,s32,s32,s32);
+extern u8 D_008D63C0[],D_008D6410[],D_008D6460[];
+extern f32 D_0048265C,D_00482660;
+void func_0028F348(s32 a0,s32 a1) {
+ s32 m=a0,n=a0;
+ if(a1==0xFFFF) {
+ if(a0==1) func_00180D78(D_008D63C0,0x12c,0xc8,0x30,0x58,0xf4,0x38,4,26.0f,11.0f,2.3f,26,a0,a0,0,0);
+ if(m==1) func_00180D78(D_008D6410,0x88,0x83,0x5c,0x88,0x187,0x2e,0x43,25.0f,5.0f,0.5f,0,m,m,9,0);
+ if(n==1) func_00180D78(D_008D6460,0x177,0x10b,0x5c,0x80,0x37,0x37,4,5.0f,8.0f,D_00482660,0,2,2,0,0);
+ }
 }

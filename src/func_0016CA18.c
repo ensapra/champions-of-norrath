@@ -1,0 +1,15 @@
+typedef struct { s32 v; u8 m[48]; } E34;
+void func_001627A0(s32, s32, void *);
+void func_001590C0(void *);
+void func_001564B8(void *, void *, void *);
+void mat3x3_scale(void *, f32);
+void func_0016CA18(u8 *a, s32 b, s32 c, void *d, f32 f) {
+    u8 m[48], q[48];
+    E34 *e = (E34 *)(a + a[0x22] * 16);
+    if (b) { E34 *x = e + c; func_001627A0(b, x->v, m); }
+    else func_001590C0(m);
+    func_001564B8(d, e[c].m, m);
+    func_001590C0(q);
+    mat3x3_scale(q, f);
+    func_001564B8(d, d, q);
+}

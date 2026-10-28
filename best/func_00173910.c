@@ -50,12 +50,12 @@ void func_00173910(S173910 *p, s32 a1, s16 a2, s16 a3, s16 a4, s16 a5, s16 a6) {
     p->unk20 = (u64)(a1 & 0x1FF) | ((u64)(((a3 + 0x3F) >> 6) & 0x3F) << 16) | ((u64)(a2 & 0xF) << 24);
     p->tag.q = 0;
     p->unk30 = (u64)(u32)(a1 + t * 2) | ((u64)(a6 & 0xF) << 24) | ((u64)1 << 32);
-    p->unk0 = 0x60000009;
-    p->unk90 = 0x20000;
     p->tag.t.NLOOP = 8;
     p->tag.t.EOP = 1;
     p->tag.t.NREG = 1;
     p->tag.t.REGS0 = 0xE;
+    p->unk0 = 0x60000009;
+    p->unk90 = 0x20000;
     p->unkC = 0x50000009;
     p->unk8 = 0x11000000;
     p->unk4 = 0;

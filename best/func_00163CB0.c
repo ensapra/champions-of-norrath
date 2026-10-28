@@ -19,7 +19,8 @@ f32 func_00163CB0(s32 arg0, s32 arg1) {
     if (idx >= 0x80) {
         idx = 0x7F;
     }
-    f = D_006CB078[idx] * D_0034BA08[arg0];
+    f = D_006CB078[idx];
+    f *= D_0034BA08[arg0];
     if (f < 0.0f) {
         f = 0.0f;
     }
@@ -27,27 +28,4 @@ f32 func_00163CB0(s32 arg0, s32 arg1) {
         f = 1.0f;
     }
     return f;
-}
-
-void *func_00163D58(u8 *arg0, s32 arg1) {
-    s32 n;
-    s32 i;
-    u8 *p;
-    if (arg0 == 0) {
-        return 0;
-    }
-    n = arg0[4];
-    if (arg1 == 0) {
-        return 0;
-    }
-    i = 0;
-    p = arg0 + 8;
-    while (i < n) {
-        if (*(s32 *)p == arg1) {
-            return arg0 + 8 + i * 0x20;
-        }
-        p += 0x20;
-        i++;
-    }
-    return 0;
 }

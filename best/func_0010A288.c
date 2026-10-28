@@ -26,8 +26,8 @@ int func_0010A288(void) {
             if (func_0011C738() == 0) {
                 func_00114948(1, 0x1F4, 0xFA, func_0011BA18(0x11), func_0010A140, D_001BB6C4[0]);
             } else {
-                int b;
-                if (func_0011C728() != 0) b = 0x10; else b = 0xF;
+                int b = 0xF;
+                if (func_0011C728() != 0) b = 0x10;
                 func_00114948(1, 0x1F4, 0xFA, func_0011BA18(b), func_0010A1A0, D_001BB6C4[0]);
             }
         }

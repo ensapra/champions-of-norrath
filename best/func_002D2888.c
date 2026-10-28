@@ -1,3 +1,4 @@
+/* func_002D2888: GifTagHi dispatch */
 typedef struct {
     unsigned long NLOOP : 15;
     unsigned long EOP : 1;
@@ -11,23 +12,23 @@ typedef struct {
 } GifTagHi;
 
 extern char D_0047B340[];
-void func_002D70D0(const char *, ...);
+extern void func_002D70D0(const char *, ...);
 
 s32 func_002D2888(GifTagHi *giftag) {
-    u32 count = 0;
+    s32 count = 0;
 
-    while (*(volatile u32 *)0x1000A000 & 0x100) {
+    while (*(volatile s32 *)0x1000A000 & 0x100) {
         if (count++ > 0x1000000) {
             func_002D70D0(D_0047B340);
             return -1;
         }
     }
-    *(volatile u32 *)0x1000A020 = giftag->NLOOP + 1;
-    if (((u32)giftag & 0x70000000) == 0x70000000) {
-        *(volatile u32 *)0x1000A010 = ((u32)giftag & 0x0FFFFFFF) | 0x80000000;
+    *(volatile s32 *)0x1000A020 = giftag->NLOOP + 1;
+    if (((s32)giftag & 0x70000000) == 0x70000000) {
+        *(volatile s32 *)0x1000A010 = ((s32)giftag & 0x0FFFFFFF) | 0x80000000;
     } else {
-        *(volatile u32 *)0x1000A010 = (u32)giftag & 0x0FFFFFFF;
+        *(volatile s32 *)0x1000A010 = (s32)giftag & 0x0FFFFFFF;
     }
-    *(volatile u32 *)0x1000A000 = 0x101;
+    *(volatile s32 *)0x1000A000 = 0x101;
     return 0;
 }

@@ -1,59 +1,38 @@
-/* machine draft (m2c) for ee-gcc-2.9-991111 -O2 -G0, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+typedef struct { s32 id; s32 arg; char pad[8]; void *buf; char text[0x400]; } Req;
+typedef struct { char pad[0x24]; s32 ready; } Dev;
+extern Dev D_010EB640;
+extern char D_010EBC00[];
+extern char D_010ECC00[];
+extern Req D_010EB6F0;
+extern s32 D_001D0480[];
+extern s32 D_001D0484[];
+extern void func_0017ACA8(void);
+extern s32 PollSema(s32);
+extern s32 SignalSema(s32);
+extern void func_001A4738(char *, char *, s32);
+extern void func_001AFE98(void *, s32);
+extern s32 func_001B08B0(void *, s32, s32, void *, s32, void *, s32, void *, s32);
 
-s32 PollSema(s32);                                  /* extern */
-M2C_UNK SignalSema(s32);                            /* extern */
-M2C_UNK func_001A4738(void *, s8 *, M2C_UNK);       /* extern */
-M2C_UNK func_001AFE98(void *, M2C_UNK);             /* extern */
-s32 func_001B08B0(void *, M2C_UNK, M2C_UNK, void *, M2C_UNK, void *, M2C_UNK, M2C_UNK *, s32); /* extern */
-extern M2C_UNK func_0017ACA8;
-extern M2C_UNK func_001CE218;
-extern M2C_UNK func_01000000;
-
-s32 func_0017AD38(s32 arg0, s32 arg1, s8 *arg2, s32 arg3) {
-    s32 temp_2_3;
-    s32 var_2;
-    void *temp_16;
-    void *temp_2;
-    void *temp_2_2;
-
-    temp_2 = &func_01000000 + 0xEB640;
-    if (M2C_FIELD(temp_2, s32 *, 0x24) == 0) {
-        return -0x64;
+s32 func_0017AD38(s32 a0, s32 a1, char *str, s32 a3) {
+    s32 r;
+    Dev *dev = &D_010EB640;
+    if (dev->ready == 0) return -100;
+    if (PollSema(D_001D0484[0]) < 0) return -200;
+    if (str == 0 || *str == 0) {
+        SignalSema(D_001D0484[0]);
+        return -210;
     }
-    var_2 = -0xC8;
-    if (PollSema(M2C_FIELD(&func_001CE218, s32 *, 0x226C)) >= 0) {
-        if ((arg2 == NULL) || (temp_2_2 = &func_01000000 + 0xEB6F0, (*arg2 == 0))) {
-            SignalSema(M2C_FIELD(&func_001CE218, s32 *, 0x226C));
-            return -0xD2;
-        }
-        temp_16 = &func_01000000 + 0xEBC00;
-        M2C_FIELD(&func_01000000, s32 *, 0xEB6F0) = arg0;
-        M2C_FIELD(temp_2_2, void **, 0x10) = temp_16;
-        M2C_FIELD(temp_2_2, s32 *, 4) = arg1;
-        func_001A4738(temp_2_2 + 0x14, arg2, 0x3FF);
-        M2C_FIELD(temp_2_2, s8 *, 0x413) = 0;
-        func_001AFE98(temp_16, 0x400);
-        temp_2_3 = func_001B08B0(temp_2, 0xC, 1, temp_2_2, 0x414, &func_01000000 + 0xECC00, 4, &func_0017ACA8, arg3);
-        if (temp_2_3 == 0) {
-            M2C_FIELD(&func_001CE218, s32 *, 0x2268) = 0xC;
-        } else {
-            SignalSema(M2C_FIELD(&func_001CE218, s32 *, 0x226C));
-        }
-        var_2 = temp_2_3;
-        /* Duplicate return node #10. Try simplifying control flow for better match */
-        return var_2;
+    D_010EB6F0.id = a0;
+    D_010EB6F0.buf = D_010EBC00;
+    D_010EB6F0.arg = a1;
+    func_001A4738(D_010EB6F0.text, str, 0x3FF);
+    ((char *)&D_010EB6F0)[0x413] = 0;
+    func_001AFE98(D_010EBC00, 0x400);
+    r = func_001B08B0(dev, 0xC, 1, &D_010EB6F0, 0x414, D_010ECC00, 4, func_0017ACA8, a3);
+    if (r == 0) {
+        D_001D0480[0] = 0xC;
+    } else {
+        SignalSema(D_001D0484[0]);
     }
-    return var_2;
+    return r;
 }

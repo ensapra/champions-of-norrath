@@ -1,2 +1,0 @@
-typedef struct{s32 a,b,c,d;} S; extern s32 func_00154620(void*,void*,void*,...); extern s32 func_0014B460(s32); extern char jtbl_004C006C[];
-s32 func_0010F6B0(void*arg0,S*arg1,s64 arg2){char buf[0x370];s32 v=func_00154620(arg0,jtbl_004C006C+0x74EC,buf,0xA,0xD,0xF,0xD4,0xCD,8,(s64)arg1->a,0xA,(s64)arg1->b,0xD,(s64)arg1->c,0xF,(s64)arg1->d,0xD4,1,0xCD,0,0xCE,1,0xC6,arg2,0xC7,*(f32*)0x001BB8F0,0xC8,(s64)0x001BB740);func_0014B460(v);return v;}
