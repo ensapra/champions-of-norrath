@@ -1,1 +1,0 @@
-void func_001B1538(void); s32 func_001B1668(void); s32 func_001B1870(void); s32 func_001B1038(void); void func_001B1568(void); void ovl_ntgui2_func_001B1938(void *a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, s32 h, s32 i, s32 j, s32 k) { func_001B1538(); if (!func_001B1870()) { func_001B1038(); } }

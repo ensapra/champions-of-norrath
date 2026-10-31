@@ -1,6 +1,36 @@
-typedef struct{u8 p[0xc88];s32 C88;u8 q[0x94];s32 D20;} Obj;typedef struct{s32 type,res,val;} Msg;
-void func_0015A764(Obj*);void func_001517DC(s32,Obj*,Msg*);
-s32 ovl_ntgui2_func_0015A7B8(Obj*o){Msg m;if(o->C88)return 0;if(!o->D20)return 1;func_0015A764(o);m.type=0x12;m.res=1;m.val=0;o->C88=1;func_001517DC(o->D20,o,&m);o->C88=0;return 1;}extern void (*D_010CE5B4[])(void);extern s32 (*D_010CE5B0[])(void);extern void (*D_010CE5AC[])(void);
-void func_0013B948(void){if(D_010CE5B4[0])D_010CE5B4[0]();}
-s32 func_0013B918(void){if(D_010CE5B0[0])return D_010CE5B0[0]();return 0;}
-void func_0013B8F0(void){if(D_010CE5AC[0])D_010CE5AC[0]();}
+/* identical to func_0010CC90 (matched), with its names changed by decompdecomp */
+extern u8 D_010CE574[];
+extern u8 xmlListPopFront[];
+extern u8 runStats__Fii[];
+s32 func_001167E0(void);
+void func_0010CBC8(s32, s32, s32, s32);
+void func_0013C2E8(void *, s32, void *, void *);
+
+void func_0013B948(void) {
+    void (*fp)(void);
+    fp = *(void (**)(void))(D_010CE574 + 0x40);
+    if (fp != NULL) {
+        fp();
+    }
+}
+
+void func_0010CC58(s32 arg0) {
+    *(s32 *)(D_010CE574 + 0x40) = arg0;
+}
+
+void func_0010CC08(void) {
+    if (func_001167E0() == 2) {
+        func_0010CBC8(*(s32 *)(xmlListPopFront + 0x24), *(s32 *)(xmlListPopFront + 0x18), *(s32 *)(xmlListPopFront + 0x1C), *(s32 *)(xmlListPopFront + 0x20));
+    }
+}
+
+void func_0010CF70(void) {
+    u8 *p68 = D_010CE574 + 0x68;
+    u8 *p60 = D_010CE574 + 0x60;
+    s32 i;
+    for (i = 0; i < 2; i++) {
+        *(s32 *)(p68 + i * 4) = 0;
+        *(s32 *)(p60 + i * 4) = 0;
+    }
+    func_0013C2E8(runStats__Fii + 0xD90, i, p60, p68);
+}

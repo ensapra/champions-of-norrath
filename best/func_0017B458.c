@@ -12,33 +12,34 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-s32 PollSema(s32);                                  /* extern */
-M2C_UNK SignalSema(s32);                            /* extern */
+M2C_UNK func_001AD740(s32);                         /* extern */
+s32 func_001AD770(s32);                             /* extern */
 s32 func_001B08B0(void *, M2C_UNK, M2C_UNK, void *, M2C_UNK, void *, M2C_UNK, M2C_UNK *, s32); /* extern */
 extern M2C_UNK func_0017A088;
-extern M2C_UNK func_001CE218;
-extern M2C_UNK func_01000000;
+extern M2C_UNK gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb;
+extern M2C_UNK xmlParseConditionalSections;
+extern M2C_UNK xmlParseReference;
 
 s32 func_0017B458(s32 arg0, s32 arg1) {
     s32 temp_2;
     void *temp_2_2;
     void *temp_7;
 
-    temp_2_2 = &func_01000000 + 0xEB640;
+    temp_2_2 = &xmlParseConditionalSections + 0x380;
     if (M2C_FIELD(temp_2_2, s32 *, 0x24) == 0) {
         return -0x64;
     }
-    temp_7 = &func_01000000 + 0xEB6C0;
-    if (PollSema(M2C_FIELD(&func_001CE218, s32 *, 0x226C)) < 0) {
+    temp_7 = &xmlParseConditionalSections + 0x400;
+    if (func_001AD770(M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x226C)) < 0) {
         return -0xC8;
     }
     M2C_FIELD(temp_7, s32 *, 4) = arg0;
     M2C_FIELD(temp_7, s32 *, 8) = arg1;
-    temp_2 = func_001B08B0(temp_2_2, 0x11, 1, temp_7, 0x30, &func_01000000 + 0xECC00, 4, &func_0017A088, 0);
+    temp_2 = func_001B08B0(temp_2_2, 0x11, 1, temp_7, 0x30, &xmlParseReference + 0x5C8, 4, &func_0017A088, 0);
     if (temp_2 == 0) {
-        M2C_FIELD(&func_001CE218, s32 *, 0x2268) = 0x11;
+        M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x2268) = 0x11;
     } else {
-        SignalSema(M2C_FIELD(&func_001CE218, s32 *, 0x226C));
+        func_001AD740(M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x226C));
     }
     return temp_2;
 }

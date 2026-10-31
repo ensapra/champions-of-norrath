@@ -1,4 +1,0 @@
-extern s32 D_010CE390[],D_010CE3D4[],D_001BAC84[],D_001BB8FC[],D_001C5434[],D_001C5438[];extern u8 D_004CAE68[];void func_001377E8(void);void func_00118140(void*,s32,s32,void*,s32);s32 func_00118160(void*);void func_00137328(s32,s32);void func_00137610(void);void func_0013B738(void*);s32 func_001460D8(void);void func_0014D240();
-void func_00137668(void){s32 buf[8];s32 r;func_00118140(buf,0,0,func_001377E8,0);r=func_00118160(buf);D_010CE3D4[0]=r;func_00137328(D_010CE390[0],0);
-if(func_001460D8()>=0 || !(D_001BAC84[0]&2)) D_001C5434[0]=1; else D_001C5434[0]=0;
-if((D_001BAC84[0]&6)==6)func_0013B738(D_004CAE68);D_001C5438[0]=0;if(D_001BB8FC[0])func_0014D240();func_00137610();}

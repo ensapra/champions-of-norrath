@@ -1,4 +1,4 @@
-/* machine draft (m2c), tried by autopilot */
+/* machine draft (m2c) for ee-gcc-2.96 -Os -G8 -mno-check-zero-division, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
 typedef s32 M2C_UNK;
@@ -12,9 +12,9 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_0013D230(void *, s32, M2C_UNK, M2C_UNK); /* extern */
 s32 func_00165DC0(M2C_UNK *, M2C_UNK *);            /* extern */
 M2C_UNK func_0024D4F8(s32, M2C_UNK *, void *, s32, M2C_UNK); /* extern */
+M2C_UNK ovl_ntgui2_func_0013D230(void *, s32, M2C_UNK, M2C_UNK); /* extern */
 extern M2C_UNK D_00408600;
 extern M2C_UNK D_0044E670;
 extern M2C_UNK D_00452090;
@@ -109,7 +109,7 @@ void func_002A9EB8(void *arg0, s8 arg1, void *arg2, void *arg3) {
     M2C_FIELD(temp_2, s16 *, 0x16) = 0;
     M2C_FIELD(temp_2, s16 *, 0x18) = 0;
     M2C_FIELD(temp_2, s8 *, 8) = 0;
-    func_0013D230(temp_2, temp_5, 0x80, 0xFF);
+    ovl_ntgui2_func_0013D230(temp_2, temp_5, 0x80, 0xFF);
     M2C_FIELD(arg0, s8 *, 0) = arg1;
     M2C_FIELD(arg0, void **, 0xC) = arg2;
     temp_3 = M2C_FIELD(arg3, void **, 0x60);

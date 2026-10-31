@@ -1,4 +1,4 @@
-/* machine draft (m2c), tried by autopilot */
+/* machine draft (m2c) for ee-gcc-2.96 -Os -G8 -mno-check-zero-division, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
 typedef s32 M2C_UNK;
@@ -12,7 +12,6 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_0013F708(void *, M2C_UNK *, s32, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, s32, M2C_UNK, M2C_UNK); /* extern */
 M2C_UNK func_00142310(void *, M2C_UNK);             /* extern */
 M2C_UNK func_001437E8(void *);                      /* extern */
 M2C_UNK func_00143878(void *);                      /* extern */
@@ -27,6 +26,7 @@ M2C_UNK func_001D98B8(f32 *, M2C_UNK);              /* extern */
 M2C_UNK func_001E5278(s32, M2C_UNK *, M2C_UNK, M2C_UNK, s32, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, f32, f32, f32, f32); /* extern */
 M2C_UNK func_0021F898(void *);                      /* extern */
 M2C_UNK func_0024D308(s32, void *, M2C_UNK);        /* extern */
+M2C_UNK ovl_ntgui2_func_0013F708(void *, M2C_UNK *, s32, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, s32, M2C_UNK, M2C_UNK); /* extern */
 extern M2C_UNK D_00470D48;
 extern f32 D_004816E4;
 extern f32 D_004816E8;
@@ -130,7 +130,7 @@ void func_0021F1A8(void *arg0) {
                 temp_11 = M2C_FIELD(temp_18, s32 *, 8);
                 M2C_ERROR(/* unknown instruction: sdl $a6, 0x7($v0) */);
                 M2C_FIELD(&sp80, s32 *, 8) = temp_11;
-                func_0013F708(arg0, &sp80, var_6, 0x40800, 0, 0, M2C_ERROR(/* unknown instruction: sdr $a6, ($v0) */), temp_11, 0x42200000, 0x43340000);
+                ovl_ntgui2_func_0013F708(arg0, &sp80, var_6, 0x40800, 0, 0, M2C_ERROR(/* unknown instruction: sdr $a6, ($v0) */), temp_11, 0x42200000, 0x43340000);
                 sp90 = M2C_FIELD(arg0, f32 *, 0x10);
                 sp94 = M2C_FIELD(arg0, f32 *, 0x14);
                 sp98 = M2C_FIELD(arg0, f32 *, 0x18) + 1.0f;

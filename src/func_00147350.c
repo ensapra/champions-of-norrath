@@ -1,42 +1,43 @@
-extern void func_0013FFF8(void);
-extern void func_00114948(s32, s32, s32, s32, void *, s32);
+/* identical to func_0012A648 (matched), with its names changed by decompdecomp */
+extern void func_00140010(void);
 extern s32 func_0011BA18(s32);
-extern void func_0010A0D0(s32);
-extern void func_0011D9E0(void);
-extern void func_0011DA20(s32, s32);
-extern s32 func_0013B698(void *);
-extern s32 D_001C688C[];
-extern s32 D_001C68A4[];
-extern s32 D_010D44F4[];
-extern s32 D_001BB6C4[];
-extern u8 D_004CB208[];
-extern u8 D_004CB220[];
+extern s32 func_001107E8(s32, void *, s32, void *, void *);
+extern void func_0013FFF8(void);
+extern s32 func_00106C78(s32, s32, s32);
+
+extern char D_010D4490[];
+extern char D_001C6630[];
+extern char Write__6VIFilePCvi[];
+
+void func_0012A800(void *arg0) {
+    func_00140010();
+    void (*fp)(void *) = *(void (**)(void *))((char *)arg0 + 8);
+    if (fp != NULL) {
+        fp(*(void **)(D_010D4490 + 0x60));
+    }
+}
+
+void func_0012A838(void) {
+    s32 r = func_0011BA18(0x109);
+    func_001107E8(r, (void *)(D_010D4490 + 0x70), 3,
+                  (void *)(D_010D4490 + 0x90),
+                  (void *)(D_010D4490 + 0x94));
+    *(s32 *)(D_010D4490 + 0x68) = r;
+}
 
 void func_00147350(void) {
-    D_001C68A4[0] = 0;
+    *(s32 *)(D_001C6630 + 0x274) = 0;
     func_0013FFF8();
-    D_010D44F4[0] = 3;
+    *(s32 *)(D_010D4490 + 0x64) = 3;
 }
 
-void func_00147290(s32 a) {
-    if (D_001C688C[0] == 0) {
-        func_0011D9E0();
-        return;
-    }
-    if (a < 0) return;
-    if (a < 2) {
-        if (func_0013B698(D_004CB208) == 0) {
-            func_0011DA20(3, 0);
-        } else if (func_0013B698(D_004CB220) == 0) {
-            func_0011DA20(3, 0);
-        } else {
-            func_0011DA20(3, 0);
-        }
-    } else if (a == 2) {
-        func_0010A0D0(0);
-    }
-}
-
-void func_00147250(void) {
-    func_00114948(1, 0x1F4, 0xFA, func_0011BA18(0x78), (void *)func_00147290, D_001BB6C4[0]);
+void func_0012A440(void) {
+    s32 *p = (s32 *)(Write__6VIFilePCvi + 0x18);
+    s32 n = 1;
+    do {
+        s32 v = *p;
+        p = p + 1;
+        n = n - 1;
+        func_00106C78(0, v, 0);
+    } while (n >= 0);
 }

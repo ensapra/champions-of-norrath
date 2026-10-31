@@ -1,2 +1,43 @@
-s32 func_00303EB8(char*,const char*,const char*); void func_00304640(char*,const char*); char *func_003052D8(char*,s32); s32 func_00165DC0(void*,char*); void *func_00165B30(void*); void *func_00166580(s32,char*); extern char D_0037F988[]; extern char D_00484370[]; extern char D_00484378[]; extern char D_00790F10[]; s32 D_00484364;
-s32 func_00187A58(void) { char frame[0x50], path[0x50], file[0x50]; s32 r; struct { char pad[8]; u32 size; } *info; func_00303EB8(frame,D_00484370,D_0037F988); func_00304640(path,D_00790F10); if(func_003052D8(path,46)) *func_003052D8(path,46)=0; func_00303EB8(file,D_00484378,path); r=func_00165DC0(frame,file); if(r) { info=func_00166580((s32)func_00165B30(frame),file); D_00484364=info->size/0x448; } else D_00484364=0; return r; }
+s32 func_00303EB8(char *, const char *, const char *);
+void func_00304640(char *, const char *);
+char *func_003052D8(char *, s32);
+s32 func_00165DC0(void *, char *);
+void *func_00165B30(void *);
+void *func_00166580(s32, char *);
+extern char D_0037F988[];
+extern char D_00484370[];
+extern char D_00484378[];
+extern char D_00790F10[];
+s32 D_00484364;
+s32 func_00187A58(void)
+{
+  char frame[0x50];
+  char *new_var;
+  char path[0x50];
+  char file[0x50];
+  s32 r;
+  struct 
+  {
+    char pad[8];
+    u32 size;
+  } *info;
+  func_00303EB8(frame, D_00484370, D_0037F988);
+  func_00304640(path, D_00790F10);
+  if (func_003052D8(path, 46))
+  {
+    *func_003052D8(path, 46) = 0;
+  }
+  new_var = path;
+  func_00303EB8(file, D_00484378, new_var);
+  r = func_00165DC0(frame, file);
+  if (r)
+  {
+    info = func_00166580((s32) func_00165B30(frame), file);
+    D_00484364 = info->size / 0x448;
+  }
+  else
+  {
+    D_00484364 = 0;
+  }
+  return r;
+}

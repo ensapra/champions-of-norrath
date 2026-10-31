@@ -1,9 +1,0 @@
-extern s32 func_0014B5E4(s32, s32, s32, s32, s32);
-extern s32 D_00480224;
-void func_00164928(s32 a, s32 b, s32 c, s32 d) {
-    s32 t = a;
-    a = b;
-    b = c;
-    c = d;
-    func_0014B5E4(D_00480224, t, a, b, c);
-}

@@ -1,14 +1,6 @@
-extern char D_010B4400[];
-extern void func_0017B760(void *, s32, s32);
-
-void func_001048B8(void) {
-    func_0017B760(D_010B4400, 0, 0x602390);
-}
-
-void func_001048E0(void) {
-    func_0017B760(D_010B4400, 0, 0x601E90);
-}
+extern u8 DuplicateEx__C22VIParticleDefinitionExP22VIParticleDefinitionEx[];
+void func_0017B760(void *a0, s32 a1, s32 a2);
 
 void func_00104908(void) {
-    func_0017B760(D_010B4400, 0, 0x605090);
+    func_0017B760(DuplicateEx__C22VIParticleDefinitionExP22VIParticleDefinitionEx + 0x598, 0, 0x605090);
 }

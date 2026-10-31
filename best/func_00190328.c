@@ -13,22 +13,22 @@ typedef s32 M2C_UNK32;
 #endif
 
 s32 func_001B08B0(void *, M2C_UNK, M2C_UNK, void *, M2C_UNK, void *, M2C_UNK, M2C_UNK, s32); /* extern */
-extern M2C_UNK func_01000000;
+extern M2C_UNK xmlParseTryOrFinish;
 
 s32 func_00190328(s32 arg0, s32 arg1) {
     s32 *temp_17;
     s32 var_2;
     void *temp_2;
 
-    temp_17 = (arg1 * 0x1C) + (arg0 * 0x70) + (&func_01000000 + 0xF4610 + 0x10);
+    temp_17 = (arg1 * 0x1C) + (arg0 * 0x70) + (&xmlParseTryOrFinish + 0xA38 + 0x10);
     var_2 = 0;
     if (*temp_17 != 0) {
-        temp_2 = &func_01000000 + 0xF4800;
-        M2C_FIELD(&func_01000000, s32 *, 0xF4800) = 0xE;
+        temp_2 = &xmlParseTryOrFinish + 0xC28;
+        M2C_FIELD(&xmlParseTryOrFinish, s32 *, 0xC28) = 0xE;
         M2C_FIELD(temp_2, s32 *, 4) = arg0;
         M2C_FIELD(temp_2, s32 *, 8) = arg1;
         M2C_FIELD(temp_2, s32 *, 0x10) = 1;
-        if (func_001B08B0(&func_01000000 + 0xF45C0, 1, 0, temp_2, 0x80, temp_2, 0x80, 0, 0) >= 0) {
+        if (func_001B08B0(&xmlParseTryOrFinish + 0x9E8, 1, 0, temp_2, 0x80, temp_2, 0x80, 0, 0) >= 0) {
             *temp_17 = 0;
             var_2 = M2C_FIELD(temp_2, s32 *, 0xC);
             /* Duplicate return node #6. Try simplifying control flow for better match */

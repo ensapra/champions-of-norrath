@@ -1,4 +1,4 @@
-/* machine draft (m2c), tried by autopilot */
+/* machine draft (m2c) for ee-gcc-2.96 -Os -G8 -mno-check-zero-division, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
 typedef s32 M2C_UNK;
@@ -12,9 +12,9 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_0013D230(void *, s32, void *);         /* extern */
 void *func_001441B8(M2C_UNK);                       /* extern */
 M2C_UNK func_00194498(void *, void *);              /* extern */
+M2C_UNK ovl_ntgui2_func_0013D230(void *, s32, void *); /* extern */
 extern M2C_UNK D_00449310;
 extern M2C_UNK D_0044D498;
 
@@ -106,7 +106,7 @@ void *func_00128978(void *arg0) {
         if ((M2C_FIELD(temp_2, s32 *, 0x80) != 0) || (var_4 = temp_2 + 0xBC, (M2C_FIELD(temp_6, s32 *, 4) != 0))) {
             M2C_FIELD(temp_2, s32 *, 0x80) = 0;
             M2C_FIELD(temp_6, s32 *, 4) = 0;
-            func_0013D230(temp_6, temp_5, temp_6);
+            ovl_ntgui2_func_0013D230(temp_6, temp_5, temp_6);
             var_4 = temp_2 + 0xBC;
         }
         var_5 = 0x3E7;

@@ -1,27 +1,35 @@
-extern void func_001B6328(s32);
-void func_001001C8(void) {
-    func_001B6328(0);
-}
-extern s32 D_010C1EB8[];
-extern s32 D_010C1EBC[];
-extern s32 D_010C1EC0[];
-extern s32 D_010C1EC4[];
-void func_0010CBC8(s32, s32, s32, s32);
+extern u8 xmlListWalk[];
+extern u8 xmlListPopFront[];
+extern u8 runStats__Fii[];
 s32 func_001167E0(void);
-void func_0010CC08(void) {
-    if (func_001167E0() == 2) {
-        func_0010CBC8(D_010C1EC4[0], D_010C1EB8[0], D_010C1EBC[0], D_010C1EC0[0]);
+void func_0010CBC8(s32, s32, s32, s32);
+void func_0013C2E8(void *, s32, void *, void *);
+
+void func_0010CC90(void) {
+    void (*fp)(void);
+    fp = *(void (**)(void))(xmlListWalk + 0x40);
+    if (fp != NULL) {
+        fp();
     }
 }
-extern s32 D_010C21D0[];
-void func_0010CC58(s32 a0) {
-    D_010C21D0[0] = a0;
+
+void func_0010CC58(s32 arg0) {
+    *(s32 *)(xmlListWalk + 0x40) = arg0;
 }
-extern s32 D_001BD868[];
-extern s32 D_001BD86C[];
-void func_0010CC90(s32);
-void func_0010CC68(void) {
-    D_001BD868[0] = 0;
-    D_001BD86C[0] = 0;
-    func_0010CC90(0);
+
+void func_0010CC08(void) {
+    if (func_001167E0() == 2) {
+        func_0010CBC8(*(s32 *)(xmlListPopFront + 0x24), *(s32 *)(xmlListPopFront + 0x18), *(s32 *)(xmlListPopFront + 0x1C), *(s32 *)(xmlListPopFront + 0x20));
+    }
+}
+
+void func_0010CF70(void) {
+    u8 *p68 = xmlListWalk + 0x68;
+    u8 *p60 = xmlListWalk + 0x60;
+    s32 i;
+    for (i = 0; i < 2; i++) {
+        *(s32 *)(p68 + i * 4) = 0;
+        *(s32 *)(p60 + i * 4) = 0;
+    }
+    func_0013C2E8(runStats__Fii + 0xD90, i, p60, p68);
 }

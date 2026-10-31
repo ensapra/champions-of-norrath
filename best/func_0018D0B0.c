@@ -1,2 +1,0 @@
-extern char D_00362D08[]; void func_0018D320(void*,s64,s64,s64,s64); typedef void (*Cb)(void*, void*); struct B{u64 x[18];};
-void func_0018D0B0(void*a,s32 b,s32 c,void*d){struct B t; struct B*p=(struct B*)((char*)a+0x2c0); t=*p; func_0018D320(a,p->x[16],p->x[17],p->x[14],p->x[15]); *(s32*)((char*)a+0x390)=b;*(s32*)((char*)a+0x38c)=b;*(s32*)((char*)a+0x2c4)=0;*(s32*)((char*)a+0x2c0)=1; ((Cb)*(u32*)((char*)a+0x394))(a,D_00362D08);if(c)__builtin_memcpy(d,(char*)a+0x330,16);if(d)__builtin_memcpy(d,(char*)a+0x340,16);*p=t;}

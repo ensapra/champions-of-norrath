@@ -1,2 +1,55 @@
-extern u8 D_010EB640[]; extern u8 D_010EB6F0[]; extern u8 D_010ECC00[]; extern s32 D_001D0484; extern s32 D_001D0480; extern u8 func_0017A088[]; s32 PollSema(s32); s32 SignalSema(s32); s32 func_001A4738(void*,s8*,s32); s32 func_001B08B0(void*,s32,s32,void*,s32,void*,s32,void*,s32);
-s32 func_0017B528(s32 a,s32 b,s8 *s) { u8 *p=D_010EB640; s32 r; if (!*(s32*)(p+0x24)) return -100; if(PollSema(D_001D0484)<0)return -200; if(!s||!*s){SignalSema(D_001D0484);return -210;} *(s32*)D_010EB6F0=a; *(s32*)(D_010EB6F0+4)=b; func_001A4738(D_010EB6F0+0x14,s,0x3ff); D_010EB6F0[0x413]=0; r=func_001B08B0(p,0x12,1,D_010EB6F0,0x414,D_010ECC00,4,func_0017A088,0); if(!r)D_001D0480=0x12; else SignalSema(D_001D0484); return r;}
+/* machine draft (m2c) for ee-gcc-2.9-991111 -O2 -G0, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
+
+M2C_UNK func_001A4738(void *, s8 *, M2C_UNK);       /* extern */
+M2C_UNK func_001AD740(s32);                         /* extern */
+s32 func_001AD770(s32);                             /* extern */
+s32 func_001B08B0(void *, M2C_UNK, M2C_UNK, void *, M2C_UNK, void *, M2C_UNK, M2C_UNK *, s32); /* extern */
+extern M2C_UNK func_0017A088;
+extern M2C_UNK gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb;
+extern M2C_UNK xmlParseConditionalSections;
+extern M2C_UNK xmlParseReference;
+
+s32 func_0017B528(s32 arg0, s32 arg1, s8 *arg2) {
+    s32 temp_2_3;
+    s32 var_2;
+    void *temp_2;
+    void *temp_2_2;
+
+    temp_2 = &xmlParseConditionalSections + 0x380;
+    if (M2C_FIELD(temp_2, s32 *, 0x24) == 0) {
+        return -0x64;
+    }
+    var_2 = -0xC8;
+    if (func_001AD770(M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x226C)) >= 0) {
+        if ((arg2 == NULL) || (temp_2_2 = &xmlParseConditionalSections + 0x430, (*arg2 == 0))) {
+            func_001AD740(M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x226C));
+            return -0xD2;
+        }
+        M2C_FIELD(&xmlParseConditionalSections, s32 *, 0x430) = arg0;
+        M2C_FIELD(temp_2_2, s32 *, 4) = arg1;
+        func_001A4738(temp_2_2 + 0x14, arg2, 0x3FF);
+        M2C_FIELD(temp_2_2, s8 *, 0x413) = 0;
+        temp_2_3 = func_001B08B0(temp_2, 0x12, 1, temp_2_2, 0x414, &xmlParseReference + 0x5C8, 4, &func_0017A088, 0);
+        if (temp_2_3 == 0) {
+            M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x2268) = 0x12;
+        } else {
+            func_001AD740(M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x226C));
+        }
+        var_2 = temp_2_3;
+        /* Duplicate return node #10. Try simplifying control flow for better match */
+        return var_2;
+    }
+    return var_2;
+}

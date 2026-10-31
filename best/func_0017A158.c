@@ -1,27 +1,43 @@
-extern s32 D_001D0484;
-extern u8 D_010EB640[];
-extern u8 D_010EB6C0[];
-extern u8 D_010ECC00[];
+/* machine draft (m2c) for ee-gcc-2.96 -Os -G8 -mno-check-zero-division, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
 
-s32 PollSema(s32);
-s32 SignalSema(s32);
-s32 func_001B08B0(void *, s32, s32, void *, s32, void *, s32, s32, s32);
+M2C_UNK func_001AD740(s32);                         /* extern */
+s32 func_001AD770(s32);                             /* extern */
+s32 func_001B08B0(void *, M2C_UNK, M2C_UNK, void *, M2C_UNK, void *, M2C_UNK, M2C_UNK, s32); /* extern */
+extern M2C_UNK gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb;
+extern M2C_UNK xmlParseConditionalSections;
+extern M2C_UNK xmlParseReference;
 
 s32 func_0017A158(s32 arg0) {
-    u8 *v = D_010EB640;
-    if (*(s32 *)(v + 0x24) == 0) {
+    s32 temp_2;
+    void *temp_3;
+    void *temp_7;
+
+    temp_3 = &xmlParseConditionalSections + 0x380;
+    if (M2C_FIELD(temp_3, s32 *, 0x24) == 0) {
         return -0x64;
     }
-    if (PollSema(D_001D0484) < 0) {
+    temp_7 = &xmlParseConditionalSections + 0x400;
+    if (func_001AD770(M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x226C)) < 0) {
         return -0xC8;
     }
-    u8 *w = D_010EB6C0;
-    *(s32 *)(w + 4) = arg0;
-    s32 r = func_001B08B0(v, 0x15, 0, w, 0x30, D_010ECC00, 4, 0, 0);
-    if (r != 0) {
-        SignalSema(D_001D0484);
-        return r;
+    M2C_FIELD(temp_7, s32 *, 4) = arg0;
+    temp_2 = func_001B08B0(temp_3, 0x15, 0, temp_7, 0x30, &xmlParseReference + 0x5C8, 4, 0, 0);
+    if (temp_2 != 0) {
+        func_001AD740(M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x226C));
+        return temp_2;
     }
-    SignalSema(D_001D0484);
-    return *(s32 *)D_010ECC00;
+    func_001AD740(M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x226C));
+    return M2C_FIELD(&xmlParseReference, s32 *, 0x5C8);
 }

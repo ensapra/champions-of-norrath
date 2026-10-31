@@ -1,0 +1,26 @@
+/* machine draft (m2c) for ee-gcc-2.96 -Os -G8 -mno-check-zero-division, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
+
+s32 func_0013B698();                                /* extern */
+s32 func_001A1640(s32);                             /* extern */
+
+s32 func_0013B6F4(s32 arg1) {
+    s32 temp_2;
+
+    temp_2 = func_0013B698();
+    if (temp_2 != 0) {
+        return func_001A1640(temp_2);
+    }
+    return arg1;
+}

@@ -1,4 +1,4 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
+/* machine draft (m2c) for ee-gcc-2.96 -Os -G8 -mno-check-zero-division, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
 typedef s32 M2C_UNK;
@@ -12,13 +12,14 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-s32 PollSema(s32);                                  /* extern */
-M2C_UNK SignalSema(s32);                            /* extern */
+M2C_UNK func_001AD740(s32);                         /* extern */
+s32 func_001AD770(s32);                             /* extern */
 M2C_UNK func_001AFE98(void *, s32);                 /* extern */
 s32 func_001B08B0(void *, M2C_UNK, M2C_UNK, void *, M2C_UNK, void *, M2C_UNK, M2C_UNK *, void *); /* extern */
 extern M2C_UNK func_0017A520;
-extern M2C_UNK func_001CE218;
-extern M2C_UNK func_01000000;
+extern M2C_UNK gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb;
+extern M2C_UNK xmlParseConditionalSections;
+extern M2C_UNK xmlParseReference;
 
 s32 func_0017A5B8(s32 arg0, void *arg1, s32 arg2) {
     s32 temp_2;
@@ -26,26 +27,26 @@ s32 func_0017A5B8(s32 arg0, void *arg1, s32 arg2) {
     void *temp_2_2;
     void *temp_2_3;
 
-    temp_2_2 = &func_01000000 + 0xEB640;
+    temp_2_2 = &xmlParseConditionalSections + 0x380;
     if (M2C_FIELD(temp_2_2, s32 *, 0x24) == 0) {
         return -0x64;
     }
-    temp_2_3 = &func_01000000 + 0xEB6C0;
-    if (PollSema(M2C_FIELD(&func_001CE218, s32 *, 0x226C)) < 0) {
+    temp_2_3 = &xmlParseConditionalSections + 0x400;
+    if (func_001AD770(M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x226C)) < 0) {
         return -0xC8;
     }
-    temp_16 = &func_01000000 + 0xEBB40;
-    M2C_FIELD(&func_01000000, s32 *, 0xEB6C0) = arg0;
+    temp_16 = &xmlParseConditionalSections + 0x880;
+    M2C_FIELD(&xmlParseConditionalSections, s32 *, 0x400) = arg0;
     M2C_FIELD(temp_2_3, void **, 0x1C) = temp_16;
     M2C_FIELD(temp_2_3, void **, 0x18) = arg1;
     M2C_FIELD(temp_2_3, s32 *, 0xC) = arg2;
     func_001AFE98(arg1, arg2);
     func_001AFE98(temp_16, 0xC0);
-    temp_2 = func_001B08B0(temp_2_2, 5, 1, temp_2_3, 0x30, &func_01000000 + 0xECC00, 4, &func_0017A520, temp_16);
+    temp_2 = func_001B08B0(temp_2_2, 5, 1, temp_2_3, 0x30, &xmlParseReference + 0x5C8, 4, &func_0017A520, temp_16);
     if (temp_2 == 0) {
-        M2C_FIELD(&func_001CE218, s32 *, 0x2268) = 5;
+        M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x2268) = 5;
     } else {
-        SignalSema(M2C_FIELD(&func_001CE218, s32 *, 0x226C));
+        func_001AD740(M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x226C));
     }
     return temp_2;
 }

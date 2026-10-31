@@ -1,65 +1,43 @@
-s32 func_001B5C80(void);
-void func_001B5CD8(void);
+/* identical to func_0012A800 (matched), with its names changed by decompdecomp */
+extern void func_00140010(void);
+extern s32 func_0011BA18(s32);
+extern s32 func_001107E8(s32, void *, s32, void *, void *);
+extern void func_0013FFF8(void);
+extern s32 func_00106C78(s32, s32, s32);
 
-void func_001ADBB0(void) {
-    s32 r;
-    r = func_001B5C80();
-    *(vs32 *)0x1000F000 = 4;
-    if (r) {
-        func_001B5CD8();
-    }
-    while (!(*(vs32 *)0x1000F000 & 4)) {
-    }
-    r = func_001B5C80();
-    *(vs32 *)0x1000F000 = 4;
-    if (r) {
-        func_001B5CD8();
-    }
-}
-
-extern u8 func_01000000[];
-void func_00140010(void *);
+extern char D_010D1224[];
+extern char helpMessageFrame__Fv[];
+extern char Write__6VIFilePCvi[];
 
 void func_00140168(void *arg0) {
-    void (*fn)(s32);
-    func_00140010(arg0);
-    fn = *(void (**)(s32))((u8 *)arg0 + 8);
-    if (fn != NULL)
-        fn(*(s32 *)(func_01000000 + 0xD1284));
+    func_00140010();
+    void (*fp)(void *) = *(void (**)(void *))((char *)arg0 + 8);
+    if (fp != NULL) {
+        fp(*(void **)(D_010D1224 + 0x60));
+    }
 }
 
-s32 func_00140020(void *);
-s32 func_0017AE78(s32, s32);
-s32 func_00140088(void);
-
-s32 func_001400F8(void *arg0) {
-    s32 r;
-    s32 *cnt;
-    r = func_00140020(arg0);
-    if (r != 0)
-        return 0;
-    cnt = (s32 *)(func_01000000 + 0xD1280);
-    if (*cnt > 0) {
-        *cnt = *cnt - 1;
-        return r;
-    }
-    func_0017AE78(*(s32 *)(func_01000000 + 0xD1288), 0);
-    *(void **)((u8 *)arg0 + 0x18) = func_00140088;
-    return 0;
+void func_0012A838(void) {
+    s32 r = func_0011BA18(0x109);
+    func_001107E8(r, (void *)(D_010D1224 + 0x70), 3,
+                  (void *)(D_010D1224 + 0x90),
+                  (void *)(D_010D1224 + 0x94));
+    *(s32 *)(D_010D1224 + 0x68) = r;
 }
 
-s32 func_0017A848(s32, void *, s32 *);
+void func_0012A648(void) {
+    *(s32 *)(helpMessageFrame__Fv + 0x274) = 0;
+    func_0013FFF8();
+    *(s32 *)(D_010D1224 + 0x64) = 3;
+}
 
-s32 func_00140088(void) {
-    s32 *st = (s32 *)(func_01000000 + 0xD127C);
-    s32 r;
-    r = func_0017A848(1, func_01000000 + 0xD1278, st);
-    if (r == 0)
-        return r;
-    if (*st == 0) {
-        *(s32 *)(func_01000000 + 0xD1284) = 0;
-        return 1;
-    }
-    *(s32 *)(func_01000000 + 0xD1284) = 1;
-    return 1;
+void func_0012A440(void) {
+    s32 *p = (s32 *)(Write__6VIFilePCvi + 0x18);
+    s32 n = 1;
+    do {
+        s32 v = *p;
+        p = p + 1;
+        n = n - 1;
+        func_00106C78(0, v, 0);
+    } while (n >= 0);
 }

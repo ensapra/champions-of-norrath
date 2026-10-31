@@ -13,14 +13,14 @@ typedef s32 M2C_UNK32;
 #endif
 
 void *func_001903E0(s32, s32);                      /* extern */
-extern M2C_UNK func_01000000;
+extern M2C_UNK xmlParseTryOrFinish;
 
 u8 func_001905F8(s32 arg0, s32 arg1) {
     u8 var_2;
     void *temp_2;
 
     var_2 = 0x63;
-    if (M2C_FIELD((&func_01000000 + 0xF4610 + ((arg1 * 0x1C) + (arg0 * 0x70))), s32 *, 0x10) != 0) {
+    if (M2C_FIELD((&xmlParseTryOrFinish + 0xA38 + ((arg1 * 0x1C) + (arg0 * 0x70))), s32 *, 0x10) != 0) {
         temp_2 = func_001903E0(arg0, arg0);
         var_2 = M2C_FIELD(temp_2, u8 *, 0x70);
         if (var_2 == 6) {

@@ -1,29 +1,35 @@
-s32 SignalSema_2(s32);
-s32 PollSema_2(s32);
-s32 func_002D8270(void *, s32, s32, void *, s32, void *, s32, void *, s32);
-extern s32 D_00446070;
-extern s32 D_00446074;
-extern s32 D_008E6B40[];
-extern s32 D_008E6BC0[];
-extern s32 D_008E8100[];
-void func_002E0DE0();
+/* identical to func_0017AE78 (matched), with its names changed by decompdecomp */
+extern s32 PollSema_2(s32);
+extern void SignalSema_2(s32);
+extern s32 sceSifCallRpc(void *, s32, s32, void *, s32, void *, s32, void *, s32);
+extern void mceSifRpcEndFunc(void);
+
+extern char D_010EB640[];
+extern char D_010EB6C0[];
+extern char D_010ECC00[];
+extern s32 D_001D0480[];
+extern s32 D_001D0484[];
 
 s32 func_002E1BD0(s32 arg0, s32 arg1) {
-    s32 r;
-
-    if (D_008E6B40[9] == 0) {
-        return -100;
+    char *q = D_010EB640;
+    if (*(s32 *)(q + 0x24) == 0) {
+        return -0x64;
     }
-    if (PollSema_2(D_00446074) < 0) {
-        return -200;
+    if (PollSema_2(D_001D0484[0]) < 0) {
+        return -0xC8;
     }
-    D_008E6BC0[1] = arg0;
-    D_008E6BC0[2] = arg1;
-    r = func_002D8270(D_008E6B40, 0x10, 1, D_008E6BC0, 0x30, D_008E8100, 4, func_002E0DE0, 0);
-    if (r == 0) {
-        D_00446070 = 0x10;
-    } else {
-        SignalSema_2(D_00446074);
+    {
+        char *buf = D_010EB6C0;
+        *(s32 *)(buf + 4) = arg0;
+        *(s32 *)(buf + 8) = arg1;
+        {
+            s32 r = sceSifCallRpc(q, 0x10, 1, buf, 0x30, D_010ECC00, 4, (void *)mceSifRpcEndFunc, 0);
+            if (r == 0) {
+                D_001D0480[0] = 0x10;
+            } else {
+                SignalSema_2(D_001D0484[0]);
+            }
+            return r;
+        }
     }
-    return r;
 }

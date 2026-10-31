@@ -1,57 +1,43 @@
-extern s32 func_001404D0(void);
-extern s32 func_001404F0(void);
-extern void func_0011B968(s32);
-extern void func_001403B8(void);
-extern void func_00140690(s32, s32);
+/* identical to func_0012A800 (matched), with its names changed by decompdecomp */
 extern void func_00140010(void);
-extern s32 D_001C682C[];
-extern s32 D_001C6838[];
-extern s32 D_001C6830[];
-extern s32 D_001C683C[];
-extern s32 D_010D1248[];
-extern s32 D_010D1250[];
-s32 func_0013F8A8(u8 *o);
-s32 func_0013F900(u8 *o);
+extern s32 func_0011BA18(s32);
+extern s32 func_001107E8(s32, void *, s32, void *, void *);
+extern void func_0013FFF8(void);
+extern s32 func_00106C78(s32, s32, s32);
 
-s32 func_0013F830(u8 *o) {
-    s32 v;
-    if (func_001404D0() != 0) return 0;
-    v = func_001404F0();
-    D_010D1248[0] = v;
-    if (v < 0) {
-        func_0011B968(D_001C682C[0]);
-        D_001C682C[0] = 0;
-        D_001C6838[0] = 0;
-    }
-    *(void **)(o + 0x18) = func_0013F8A8;
-    return 0;
-}
-
-s32 func_0013F8A8(u8 *o) {
-    if (func_001404D0() != 0) return 0;
-    func_001403B8();
-    func_00140690(2, D_010D1250[0]);
-    *(void **)(o + 0x18) = func_0013F900;
-    return 0;
-}
-
-s32 func_0013FA10(void) {
-    s32 v;
-    if (func_001404D0() != 0) return 0;
-    v = func_001404F0();
-    D_010D1248[0] = v;
-    if (v < 0) {
-        func_0011B968(D_001C6830[0]);
-        D_001C6830[0] = 0;
-        D_001C683C[0] = 0;
-    }
-    return 1;
-}
+extern char D_010D11E8[];
+extern char helpMessageFrame__Fv[];
+extern char Write__6VIFilePCvi[];
 
 void func_0013FA70(void *arg0) {
-    void (*fn)(s32);
     func_00140010();
-    fn = (void (*)(s32))*(void **)((s8 *)arg0 + 8);
-    if (fn != NULL)
-        fn(D_010D1248[0]);
+    void (*fp)(void *) = *(void (**)(void *))((char *)arg0 + 8);
+    if (fp != NULL) {
+        fp(*(void **)(D_010D11E8 + 0x60));
+    }
+}
+
+void func_0012A838(void) {
+    s32 r = func_0011BA18(0x109);
+    func_001107E8(r, (void *)(D_010D11E8 + 0x70), 3,
+                  (void *)(D_010D11E8 + 0x90),
+                  (void *)(D_010D11E8 + 0x94));
+    *(s32 *)(D_010D11E8 + 0x68) = r;
+}
+
+void func_0012A648(void) {
+    *(s32 *)(helpMessageFrame__Fv + 0x274) = 0;
+    func_0013FFF8();
+    *(s32 *)(D_010D11E8 + 0x64) = 3;
+}
+
+void func_0012A440(void) {
+    s32 *p = (s32 *)(Write__6VIFilePCvi + 0x18);
+    s32 n = 1;
+    do {
+        s32 v = *p;
+        p = p + 1;
+        n = n - 1;
+        func_00106C78(0, v, 0);
+    } while (n >= 0);
 }

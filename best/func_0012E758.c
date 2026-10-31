@@ -1,4 +1,4 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
+/* machine draft (m2c) for ee-gcc-2.96 -Os -G8 -mno-check-zero-division, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
 typedef s32 M2C_UNK;
@@ -18,9 +18,9 @@ M2C_UNK func_001389A0(s32);                         /* extern */
 M2C_UNK func_0014B6F4(s32);                         /* extern */
 s32 func_001523D0(s32);                             /* extern */
 M2C_UNK func_00152520(s32);                         /* extern */
-extern M2C_UNK func_001B9FD8;
-extern M2C_UNK func_001BCB38;
-extern M2C_UNK func_01000000;
+extern M2C_UNK Slerp__7VIQuatDRC7VIQuatDT1d;
+extern M2C_UNK runStats__Fii;
+extern M2C_UNK shopItemSetAttributes__FiiPcPQ24item11description;
 
 s32 func_0012E758(void *arg0) {
     s32 temp_3;
@@ -65,89 +65,89 @@ s32 func_0012E758(void *arg0) {
             if (temp_3 != 1) {
                 return 0;
             }
-            if (M2C_FIELD(&func_01000000, s32 *, 0xCD428) != 0) {
-                temp_4 = M2C_FIELD(&func_01000000, s32 *, 0xCD428);
-                if (func_001523D0(M2C_FIELD(&func_001BCB38, s32 *, 0xD74)) == temp_4) {
+            if (M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x18) != 0) {
+                temp_4 = M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x18);
+                if (func_001523D0(M2C_FIELD(&runStats__Fii, s32 *, 0xD74)) == temp_4) {
                     func_00152520(temp_4);
                 }
                 func_0014B6F4(temp_4);
-                func_00104F30(M2C_FIELD(&func_01000000, s32 *, 0xCD428));
-                func_00106E30(0, M2C_FIELD(&func_01000000, s32 *, 0xCD428));
-                func_00106E30(1, M2C_FIELD(&func_01000000, s32 *, 0xCD428));
-                if (M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) == M2C_FIELD(&func_01000000, s32 *, 0xCD428)) {
-                    M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) = 0;
+                func_00104F30(M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x18));
+                func_00106E30(0, M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x18));
+                func_00106E30(1, M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x18));
+                if (M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) == M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x18)) {
+                    M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) = 0;
                 }
-                func_001389A0(M2C_FIELD(&func_01000000, s32 *, 0xCD428));
-                M2C_FIELD(&func_01000000, s32 *, 0xCD428) = 0;
+                func_001389A0(M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x18));
+                M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x18) = 0;
             }
-            if (M2C_FIELD(&func_01000000, s32 *, 0xCD448) != 0) {
-                temp_4_2 = M2C_FIELD(&func_01000000, s32 *, 0xCD448);
-                if (func_001523D0(M2C_FIELD(&func_001BCB38, s32 *, 0xD74)) == temp_4_2) {
+            if (M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x38) != 0) {
+                temp_4_2 = M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x38);
+                if (func_001523D0(M2C_FIELD(&runStats__Fii, s32 *, 0xD74)) == temp_4_2) {
                     func_00152520(temp_4_2);
                 }
                 func_0014B6F4(temp_4_2);
-                func_00104F30(M2C_FIELD(&func_01000000, s32 *, 0xCD448));
-                func_00106E30(0, M2C_FIELD(&func_01000000, s32 *, 0xCD448));
-                func_00106E30(1, M2C_FIELD(&func_01000000, s32 *, 0xCD448));
-                if (M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) == M2C_FIELD(&func_01000000, s32 *, 0xCD448)) {
-                    M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) = 0;
+                func_00104F30(M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x38));
+                func_00106E30(0, M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x38));
+                func_00106E30(1, M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x38));
+                if (M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) == M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x38)) {
+                    M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) = 0;
                 }
-                func_001389A0(M2C_FIELD(&func_01000000, s32 *, 0xCD448));
-                M2C_FIELD(&func_01000000, s32 *, 0xCD448) = 0;
+                func_001389A0(M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x38));
+                M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x38) = 0;
             }
-            if (M2C_FIELD(&func_01000000, s32 *, 0xCD458) != 0) {
-                temp_4_3 = M2C_FIELD(&func_01000000, s32 *, 0xCD458);
-                if (func_001523D0(M2C_FIELD(&func_001BCB38, s32 *, 0xD74)) == temp_4_3) {
+            if (M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x48) != 0) {
+                temp_4_3 = M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x48);
+                if (func_001523D0(M2C_FIELD(&runStats__Fii, s32 *, 0xD74)) == temp_4_3) {
                     func_00152520(temp_4_3);
                 }
                 func_0014B6F4(temp_4_3);
-                func_00104F30(M2C_FIELD(&func_01000000, s32 *, 0xCD458));
-                func_00106E30(0, M2C_FIELD(&func_01000000, s32 *, 0xCD458));
-                func_00106E30(1, M2C_FIELD(&func_01000000, s32 *, 0xCD458));
-                if (M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) == M2C_FIELD(&func_01000000, s32 *, 0xCD458)) {
-                    M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) = 0;
+                func_00104F30(M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x48));
+                func_00106E30(0, M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x48));
+                func_00106E30(1, M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x48));
+                if (M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) == M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x48)) {
+                    M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) = 0;
                 }
-                func_001389A0(M2C_FIELD(&func_01000000, s32 *, 0xCD458));
-                M2C_FIELD(&func_01000000, s32 *, 0xCD458) = 0;
+                func_001389A0(M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x48));
+                M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x48) = 0;
             }
-            if (M2C_FIELD(&func_01000000, s32 *, 0xCD438) != 0) {
-                temp_4_4 = M2C_FIELD(&func_01000000, s32 *, 0xCD438);
-                if (func_001523D0(M2C_FIELD(&func_001BCB38, s32 *, 0xD74)) == temp_4_4) {
+            if (M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x28) != 0) {
+                temp_4_4 = M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x28);
+                if (func_001523D0(M2C_FIELD(&runStats__Fii, s32 *, 0xD74)) == temp_4_4) {
                     func_00152520(temp_4_4);
                 }
                 func_0014B6F4(temp_4_4);
-                func_00104F30(M2C_FIELD(&func_01000000, s32 *, 0xCD438));
-                func_00106E30(0, M2C_FIELD(&func_01000000, s32 *, 0xCD438));
-                func_00106E30(1, M2C_FIELD(&func_01000000, s32 *, 0xCD438));
-                if (M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) == M2C_FIELD(&func_01000000, s32 *, 0xCD438)) {
-                    M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) = 0;
+                func_00104F30(M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x28));
+                func_00106E30(0, M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x28));
+                func_00106E30(1, M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x28));
+                if (M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) == M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x28)) {
+                    M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) = 0;
                 }
-                func_001389A0(M2C_FIELD(&func_01000000, s32 *, 0xCD438));
-                M2C_FIELD(&func_01000000, s32 *, 0xCD438) = 0;
+                func_001389A0(M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x28));
+                M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x28) = 0;
             }
-            if (M2C_FIELD(&func_01000000, s32 *, 0xCD468) != 0) {
-                temp_4_5 = M2C_FIELD(&func_01000000, s32 *, 0xCD468);
-                if (func_001523D0(M2C_FIELD(&func_001BCB38, s32 *, 0xD74)) == temp_4_5) {
+            if (M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x58) != 0) {
+                temp_4_5 = M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x58);
+                if (func_001523D0(M2C_FIELD(&runStats__Fii, s32 *, 0xD74)) == temp_4_5) {
                     func_00152520(temp_4_5);
                 }
                 func_0014B6F4(temp_4_5);
-                func_00104F30(M2C_FIELD(&func_01000000, s32 *, 0xCD468));
-                func_00106E30(0, M2C_FIELD(&func_01000000, s32 *, 0xCD468));
-                func_00106E30(1, M2C_FIELD(&func_01000000, s32 *, 0xCD468));
-                if (M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) == M2C_FIELD(&func_01000000, s32 *, 0xCD468)) {
-                    M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) = 0;
+                func_00104F30(M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x58));
+                func_00106E30(0, M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x58));
+                func_00106E30(1, M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x58));
+                if (M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) == M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x58)) {
+                    M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) = 0;
                 }
-                func_001389A0(M2C_FIELD(&func_01000000, s32 *, 0xCD468));
-                M2C_FIELD(&func_01000000, s32 *, 0xCD468) = 0;
+                func_001389A0(M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x58));
+                M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x58) = 0;
             }
             goto block_101;
         }
         switch (temp_3) {                           /* irregular */
         case 3:
-            temp_2 = &func_01000000 + 0xCD448;
+            temp_2 = &Slerp__7VIQuatDRC7VIQuatDT1d + 0x38;
             if (M2C_FIELD(temp_2, s32 *, 8) != 0) {
                 temp_4_6 = M2C_FIELD(temp_2, s32 *, 8);
-                if (func_001523D0(M2C_FIELD(&func_001BCB38, s32 *, 0xD74)) == temp_4_6) {
+                if (func_001523D0(M2C_FIELD(&runStats__Fii, s32 *, 0xD74)) == temp_4_6) {
                     func_00152520(temp_4_6);
                 }
                 func_0014B6F4(M2C_FIELD(temp_2, s32 *, 8));
@@ -155,16 +155,16 @@ s32 func_0012E758(void *arg0) {
                 func_00106E30(0, M2C_FIELD(temp_2, s32 *, 8));
                 func_00106E30(1, M2C_FIELD(temp_2, s32 *, 8));
                 temp_4_7 = M2C_FIELD(temp_2, s32 *, 8);
-                if (M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) == temp_4_7) {
-                    M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) = 0;
+                if (M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) == temp_4_7) {
+                    M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) = 0;
                 }
                 func_001389A0(temp_4_7);
                 M2C_FIELD(temp_2, s32 *, 8) = 0;
             }
-            temp_2_2 = &func_01000000 + 0xCD458;
+            temp_2_2 = &Slerp__7VIQuatDRC7VIQuatDT1d + 0x48;
             if (M2C_FIELD(temp_2_2, s32 *, 8) != 0) {
                 temp_4_8 = M2C_FIELD(temp_2_2, s32 *, 8);
-                if (func_001523D0(M2C_FIELD(&func_001BCB38, s32 *, 0xD74)) == temp_4_8) {
+                if (func_001523D0(M2C_FIELD(&runStats__Fii, s32 *, 0xD74)) == temp_4_8) {
                     func_00152520(temp_4_8);
                 }
                 func_0014B6F4(M2C_FIELD(temp_2_2, s32 *, 8));
@@ -172,16 +172,16 @@ s32 func_0012E758(void *arg0) {
                 func_00106E30(0, M2C_FIELD(temp_2_2, s32 *, 8));
                 func_00106E30(1, M2C_FIELD(temp_2_2, s32 *, 8));
                 temp_4_9 = M2C_FIELD(temp_2_2, s32 *, 8);
-                if (M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) == temp_4_9) {
-                    M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) = 0;
+                if (M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) == temp_4_9) {
+                    M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) = 0;
                 }
                 func_001389A0(temp_4_9);
                 M2C_FIELD(temp_2_2, s32 *, 8) = 0;
             }
-            temp_2_3 = &func_01000000 + 0xCD438;
+            temp_2_3 = &Slerp__7VIQuatDRC7VIQuatDT1d + 0x28;
             if (M2C_FIELD(temp_2_3, s32 *, 8) != 0) {
                 temp_4_10 = M2C_FIELD(temp_2_3, s32 *, 8);
-                if (func_001523D0(M2C_FIELD(&func_001BCB38, s32 *, 0xD74)) == temp_4_10) {
+                if (func_001523D0(M2C_FIELD(&runStats__Fii, s32 *, 0xD74)) == temp_4_10) {
                     func_00152520(temp_4_10);
                 }
                 func_0014B6F4(M2C_FIELD(temp_2_3, s32 *, 8));
@@ -189,16 +189,16 @@ s32 func_0012E758(void *arg0) {
                 func_00106E30(0, M2C_FIELD(temp_2_3, s32 *, 8));
                 func_00106E30(1, M2C_FIELD(temp_2_3, s32 *, 8));
                 temp_4_11 = M2C_FIELD(temp_2_3, s32 *, 8);
-                if (M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) == temp_4_11) {
-                    M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) = 0;
+                if (M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) == temp_4_11) {
+                    M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) = 0;
                 }
                 func_001389A0(temp_4_11);
                 M2C_FIELD(temp_2_3, s32 *, 8) = 0;
             }
-            temp_2_4 = &func_01000000 + 0xCD468;
+            temp_2_4 = &Slerp__7VIQuatDRC7VIQuatDT1d + 0x58;
             if (M2C_FIELD(temp_2_4, s32 *, 8) != 0) {
                 temp_4_12 = M2C_FIELD(temp_2_4, s32 *, 8);
-                if (func_001523D0(M2C_FIELD(&func_001BCB38, s32 *, 0xD74)) == temp_4_12) {
+                if (func_001523D0(M2C_FIELD(&runStats__Fii, s32 *, 0xD74)) == temp_4_12) {
                     func_00152520(temp_4_12);
                 }
                 func_0014B6F4(M2C_FIELD(temp_2_4, s32 *, 8));
@@ -206,8 +206,8 @@ s32 func_0012E758(void *arg0) {
                 func_00106E30(0, M2C_FIELD(temp_2_4, s32 *, 8));
                 func_00106E30(1, M2C_FIELD(temp_2_4, s32 *, 8));
                 temp_4_13 = M2C_FIELD(temp_2_4, s32 *, 8);
-                if (M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) == temp_4_13) {
-                    M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) = 0;
+                if (M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) == temp_4_13) {
+                    M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) = 0;
                 }
                 func_001389A0(temp_4_13);
                 M2C_FIELD(temp_2_4, s32 *, 8) = 0;
@@ -215,20 +215,20 @@ s32 func_0012E758(void *arg0) {
             goto block_101;
         case 5:
             var_2 = 1;
-            if (M2C_FIELD(&func_01000000, s32 *, 0xCD430) != 0) {
-                temp_4_14 = M2C_FIELD(&func_01000000, s32 *, 0xCD430);
-                if (func_001523D0(M2C_FIELD(&func_001BCB38, s32 *, 0xD74)) == temp_4_14) {
+            if (M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x20) != 0) {
+                temp_4_14 = M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x20);
+                if (func_001523D0(M2C_FIELD(&runStats__Fii, s32 *, 0xD74)) == temp_4_14) {
                     func_00152520(temp_4_14);
                 }
                 func_0014B6F4(temp_4_14);
-                func_00104F30(M2C_FIELD(&func_01000000, s32 *, 0xCD430));
-                func_00106E30(0, M2C_FIELD(&func_01000000, s32 *, 0xCD430));
-                func_00106E30(1, M2C_FIELD(&func_01000000, s32 *, 0xCD430));
-                if (M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) == M2C_FIELD(&func_01000000, s32 *, 0xCD430)) {
-                    M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) = 0;
+                func_00104F30(M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x20));
+                func_00106E30(0, M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x20));
+                func_00106E30(1, M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x20));
+                if (M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) == M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x20)) {
+                    M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) = 0;
                 }
-                func_001389A0(M2C_FIELD(&func_01000000, s32 *, 0xCD430));
-                M2C_FIELD(&func_01000000, s32 *, 0xCD430) = 0;
+                func_001389A0(M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x20));
+                M2C_FIELD(&Slerp__7VIQuatDRC7VIQuatDT1d, s32 *, 0x20) = 0;
                 return 1;
             }
             /* Duplicate return node #102. Try simplifying control flow for better match */
@@ -237,10 +237,10 @@ s32 func_0012E758(void *arg0) {
             return 0;
         }
     } else {
-        temp_2_5 = &func_01000000 + 0xCD428;
+        temp_2_5 = &Slerp__7VIQuatDRC7VIQuatDT1d + 0x18;
         if (M2C_FIELD(temp_2_5, s32 *, 4) != 0) {
             temp_4_15 = M2C_FIELD(temp_2_5, s32 *, 4);
-            if (func_001523D0(M2C_FIELD(&func_001BCB38, s32 *, 0xD74)) == temp_4_15) {
+            if (func_001523D0(M2C_FIELD(&runStats__Fii, s32 *, 0xD74)) == temp_4_15) {
                 func_00152520(temp_4_15);
             }
             func_0014B6F4(M2C_FIELD(temp_2_5, s32 *, 4));
@@ -248,16 +248,16 @@ s32 func_0012E758(void *arg0) {
             func_00106E30(0, M2C_FIELD(temp_2_5, s32 *, 4));
             func_00106E30(1, M2C_FIELD(temp_2_5, s32 *, 4));
             temp_4_16 = M2C_FIELD(temp_2_5, s32 *, 4);
-            if (M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) == temp_4_16) {
-                M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) = 0;
+            if (M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) == temp_4_16) {
+                M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) = 0;
             }
             func_001389A0(temp_4_16);
             M2C_FIELD(temp_2_5, s32 *, 4) = 0;
         }
-        temp_2_6 = &func_01000000 + 0xCD448;
+        temp_2_6 = &Slerp__7VIQuatDRC7VIQuatDT1d + 0x38;
         if (M2C_FIELD(temp_2_6, s32 *, 4) != 0) {
             temp_4_17 = M2C_FIELD(temp_2_6, s32 *, 4);
-            if (func_001523D0(M2C_FIELD(&func_001BCB38, s32 *, 0xD74)) == temp_4_17) {
+            if (func_001523D0(M2C_FIELD(&runStats__Fii, s32 *, 0xD74)) == temp_4_17) {
                 func_00152520(temp_4_17);
             }
             func_0014B6F4(M2C_FIELD(temp_2_6, s32 *, 4));
@@ -265,16 +265,16 @@ s32 func_0012E758(void *arg0) {
             func_00106E30(0, M2C_FIELD(temp_2_6, s32 *, 4));
             func_00106E30(1, M2C_FIELD(temp_2_6, s32 *, 4));
             temp_4_18 = M2C_FIELD(temp_2_6, s32 *, 4);
-            if (M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) == temp_4_18) {
-                M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) = 0;
+            if (M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) == temp_4_18) {
+                M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) = 0;
             }
             func_001389A0(temp_4_18);
             M2C_FIELD(temp_2_6, s32 *, 4) = 0;
         }
-        temp_2_7 = &func_01000000 + 0xCD458;
+        temp_2_7 = &Slerp__7VIQuatDRC7VIQuatDT1d + 0x48;
         if (M2C_FIELD(temp_2_7, s32 *, 4) != 0) {
             temp_4_19 = M2C_FIELD(temp_2_7, s32 *, 4);
-            if (func_001523D0(M2C_FIELD(&func_001BCB38, s32 *, 0xD74)) == temp_4_19) {
+            if (func_001523D0(M2C_FIELD(&runStats__Fii, s32 *, 0xD74)) == temp_4_19) {
                 func_00152520(temp_4_19);
             }
             func_0014B6F4(M2C_FIELD(temp_2_7, s32 *, 4));
@@ -282,16 +282,16 @@ s32 func_0012E758(void *arg0) {
             func_00106E30(0, M2C_FIELD(temp_2_7, s32 *, 4));
             func_00106E30(1, M2C_FIELD(temp_2_7, s32 *, 4));
             temp_4_20 = M2C_FIELD(temp_2_7, s32 *, 4);
-            if (M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) == temp_4_20) {
-                M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) = 0;
+            if (M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) == temp_4_20) {
+                M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) = 0;
             }
             func_001389A0(temp_4_20);
             M2C_FIELD(temp_2_7, s32 *, 4) = 0;
         }
-        temp_2_8 = &func_01000000 + 0xCD438;
+        temp_2_8 = &Slerp__7VIQuatDRC7VIQuatDT1d + 0x28;
         if (M2C_FIELD(temp_2_8, s32 *, 4) != 0) {
             temp_4_21 = M2C_FIELD(temp_2_8, s32 *, 4);
-            if (func_001523D0(M2C_FIELD(&func_001BCB38, s32 *, 0xD74)) == temp_4_21) {
+            if (func_001523D0(M2C_FIELD(&runStats__Fii, s32 *, 0xD74)) == temp_4_21) {
                 func_00152520(temp_4_21);
             }
             func_0014B6F4(M2C_FIELD(temp_2_8, s32 *, 4));
@@ -299,16 +299,16 @@ s32 func_0012E758(void *arg0) {
             func_00106E30(0, M2C_FIELD(temp_2_8, s32 *, 4));
             func_00106E30(1, M2C_FIELD(temp_2_8, s32 *, 4));
             temp_4_22 = M2C_FIELD(temp_2_8, s32 *, 4);
-            if (M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) == temp_4_22) {
-                M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) = 0;
+            if (M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) == temp_4_22) {
+                M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) = 0;
             }
             func_001389A0(temp_4_22);
             M2C_FIELD(temp_2_8, s32 *, 4) = 0;
         }
-        temp_2_9 = &func_01000000 + 0xCD468;
+        temp_2_9 = &Slerp__7VIQuatDRC7VIQuatDT1d + 0x58;
         if (M2C_FIELD(temp_2_9, s32 *, 4) != 0) {
             temp_4_23 = M2C_FIELD(temp_2_9, s32 *, 4);
-            if (func_001523D0(M2C_FIELD(&func_001BCB38, s32 *, 0xD74)) == temp_4_23) {
+            if (func_001523D0(M2C_FIELD(&runStats__Fii, s32 *, 0xD74)) == temp_4_23) {
                 func_00152520(temp_4_23);
             }
             func_0014B6F4(M2C_FIELD(temp_2_9, s32 *, 4));
@@ -316,8 +316,8 @@ s32 func_0012E758(void *arg0) {
             func_00106E30(0, M2C_FIELD(temp_2_9, s32 *, 4));
             func_00106E30(1, M2C_FIELD(temp_2_9, s32 *, 4));
             temp_4_24 = M2C_FIELD(temp_2_9, s32 *, 4);
-            if (M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) == temp_4_24) {
-                M2C_FIELD(&func_001B9FD8, s32 *, 0x16EC) = 0;
+            if (M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) == temp_4_24) {
+                M2C_FIELD(&shopItemSetAttributes__FiiPcPQ24item11description, s32 *, 0x16EC) = 0;
             }
             func_001389A0(temp_4_24);
             M2C_FIELD(temp_2_9, s32 *, 4) = 0;

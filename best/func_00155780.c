@@ -1,43 +1,73 @@
-typedef struct {
-    u8 pad0[0x4D0]; s32 f4D0;
-    u8 pad1[0x914 - 0x4D4];
-    s32 line; signed char *s1; signed char *s2; s32 pad2; s32 id1; s32 id2;
-} W;
-void func_001558B0(void *, s32, signed char *, s32);
-signed char *func_0016FA70(s32);
-void func_00155780(W *w) {
-    signed char *p, *q;
-    if (w->id1 == 0) w->s1 = 0; else w->s1 = func_0016FA70(w->id1);
-    w->id1 = 0;
-    if (w->id2 != 0) w->s2 = func_0016FA70(w->id2); else w->s2 = 0;
-    p = w->s1;
-    w->id2 = 0;
-    w->f4D0 = 0;
-    w->line = 0;
-    if (p != 0) {
-        q = p;
-        if (*q != 0) {
-            while (1) {
-                if (*q == 10) {
-                    func_001558B0(w, w->line, p, q - p);
-                    w->line = w->line + 1;
-                    p = q + 1;
-                    q = q + 1;
-                } else q = q + 1;
-                if (*q == 0) break;
-                if (!(w->line < 0x28)) break;
+/* machine draft (m2c) for ee-gcc-2.96 -Os -G8 -mno-check-zero-division, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
+
+M2C_UNK func_001558B0(void *, s32, s8 *, s32);      /* extern */
+s8 *func_0016FA70(s32);                             /* extern */
+
+void func_00155780(void *arg0) {
+    s32 temp_4;
+    s32 temp_4_2;
+    s32 temp_5;
+    s32 var_17_2;
+    s32 var_5;
+    s8 *var_17;
+    s8 *var_6;
+
+    temp_4 = M2C_FIELD(arg0, s32 *, 0x924);
+    if (temp_4 == 0) {
+        M2C_FIELD(arg0, s8 **, 0x918) = NULL;
+    } else {
+        M2C_FIELD(arg0, s8 **, 0x918) = func_0016FA70(temp_4);
+    }
+    temp_4_2 = M2C_FIELD(arg0, s32 *, 0x928);
+    M2C_FIELD(arg0, s32 *, 0x924) = 0;
+    if (temp_4_2 != 0) {
+        M2C_FIELD(arg0, s8 **, 0x91C) = func_0016FA70(temp_4_2);
+    } else {
+        M2C_FIELD(arg0, s8 **, 0x91C) = NULL;
+    }
+    var_6 = M2C_FIELD(arg0, s8 **, 0x918);
+    M2C_FIELD(arg0, s32 *, 0x928) = 0;
+    M2C_FIELD(arg0, s32 *, 0x4D0) = 0;
+    M2C_FIELD(arg0, s32 *, 0x914) = 0;
+    if (var_6 != NULL) {
+        var_17 = var_6;
+        if (*var_6 != 0) {
+loop_9:
+            if (*var_17 == 0xA) {
+                func_001558B0(arg0, M2C_FIELD(arg0, s32 *, 0x914), var_6, var_17 - var_6);
+                var_6 = var_17 + 1;
+                M2C_FIELD(arg0, s32 *, 0x914) = (s32) (M2C_FIELD(arg0, s32 *, 0x914) + 1);
+            }
+            var_17 += 1;
+            if ((*var_17 != 0) && (M2C_FIELD(arg0, s32 *, 0x914) < 0x28)) {
+                goto loop_9;
             }
         }
-        if (w->line < 0x28 && q != p) {
-            func_001558B0(w, w->line, p, q - p);
-            w->line = w->line + 1;
+        temp_5 = M2C_FIELD(arg0, s32 *, 0x914);
+        if ((temp_5 < 0x28) && (var_17 != var_6)) {
+            func_001558B0(arg0, temp_5, var_6, var_17 - var_6);
+            M2C_FIELD(arg0, s32 *, 0x914) = (s32) (M2C_FIELD(arg0, s32 *, 0x914) + 1);
         }
     }
-    {
-        s32 n = w->line;
-        while (n < 0x28) {
-            func_001558B0(w, n, 0, 0);
-            n++;
-        }
+    var_17_2 = M2C_FIELD(arg0, s32 *, 0x914);
+    if (var_17_2 < 0x28) {
+        var_5 = var_17_2;
+        do {
+            var_17_2 += 1;
+            func_001558B0(arg0, var_5, NULL, 0);
+            var_5 = var_17_2;
+        } while (var_17_2 < 0x28);
     }
 }

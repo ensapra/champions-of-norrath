@@ -1,46 +1,43 @@
-extern s32 D_010D1244[], D_010D1248[], D_010D124C[], D_010D1250[];
-extern s32 D_001C6828[], D_001C682C[], D_001C6830[], D_001C6834[], D_001C6838[], D_001C683C[];
-extern s32 D_010D1230[];
-extern void func_00140010(void *);
-extern s32 func_001404D0(void);
-extern s32 func_001404F0(void);
-extern s32 func_001B4C40(void);
-extern s32 func_001B4D40(void);
-extern s32 func_001B08B0(void *, s32, s32, void *, s32, void *, s32, s32, s32);
-typedef struct { s32 v; s32 pad; char str[0xFC]; } S1B52A8;
-extern S1B52A8 D_0110B1C0;
-extern u8 D_0110B3C0[];
+/* identical to func_0012A800 (matched), with its names changed by decompdecomp */
+extern void func_00140010(void);
+extern s32 func_0011BA18(s32);
+extern s32 func_001107E8(s32, void *, s32, void *, void *);
+extern void func_0013FFF8(void);
+extern s32 func_00106C78(s32, s32, s32);
 
-s32 func_001B5348(s32 arg0) {
-    if (func_001B4C40() < 0) return 0xFFFF0000;
-    if (func_001B4D40() != 0) return 0xFFFEFFFC;
-    D_0110B1C0.v = arg0;
-    if (func_001B08B0(D_0110B3C0, 10, 0, &D_0110B1C0, 4, &D_0110B1C0, 4, 0, 0) < 0) return 0xFFFEFFFF;
-    return D_0110B1C0.v;
-}
-
-void func_0013F378(void) {
-    D_010D1244[0] = 0;
-    D_010D1248[0] = 0;
-    D_010D124C[0] = 0;
-    D_010D1250[0] = 0;
-    D_001C6828[0] = 0;
-    D_001C682C[0] = 0;
-    D_001C6830[0] = 0;
-    D_001C6834[0] = 0;
-    D_001C6838[0] = 0;
-    D_001C683C[0] = 0;
-}
+extern char Volume__14VIQueryTriListRC6VIBBox[];
+extern char helpMessageFrame__Fv[];
+extern char Write__6VIFilePCvi[];
 
 void func_0013F340(void *arg0) {
-    void (*fn)(s32);
-    func_00140010(arg0);
-    fn = *(void (**)(s32))((u8 *)arg0 + 8);
-    if (fn != 0) fn(D_010D1230[0]);
+    func_00140010();
+    void (*fp)(void *) = *(void (**)(void *))((char *)arg0 + 8);
+    if (fp != NULL) {
+        fp(*(void **)(Volume__14VIQueryTriListRC6VIBBox + 0x60));
+    }
 }
 
-s32 func_0013F308(void) {
-    if (func_001404D0() != 0) return 0;
-    D_010D1230[0] = func_001404F0();
-    return 1;
+void func_0012A838(void) {
+    s32 r = func_0011BA18(0x109);
+    func_001107E8(r, (void *)(Volume__14VIQueryTriListRC6VIBBox + 0x70), 3,
+                  (void *)(Volume__14VIQueryTriListRC6VIBBox + 0x90),
+                  (void *)(Volume__14VIQueryTriListRC6VIBBox + 0x94));
+    *(s32 *)(Volume__14VIQueryTriListRC6VIBBox + 0x68) = r;
+}
+
+void func_0012A648(void) {
+    *(s32 *)(helpMessageFrame__Fv + 0x274) = 0;
+    func_0013FFF8();
+    *(s32 *)(Volume__14VIQueryTriListRC6VIBBox + 0x64) = 3;
+}
+
+void func_0012A440(void) {
+    s32 *p = (s32 *)(Write__6VIFilePCvi + 0x18);
+    s32 n = 1;
+    do {
+        s32 v = *p;
+        p = p + 1;
+        n = n - 1;
+        func_00106C78(0, v, 0);
+    } while (n >= 0);
 }

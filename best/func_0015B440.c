@@ -1,1 +1,78 @@
-typedef struct {f32 a,s[3];u8 p[12];f32 q[4];u8 p2[12];f32 v[3],r[9],m[9],w[3];}X;void func_00159F90(f32*);void func_00159CD8(f32*,f32*);void func_00159150(f32*,f32*,f32*);void mat3x3_mul_vec3(f32*,f32*,f32*);static inline void cv(f32*m,f32*q){f32 s,xs,ys,zs,xx,yy,zz,xy,xz,yz,wx,wy,wz;s=2.0f/(q[0]*q[0]+q[1]*q[1]+q[2]*q[2]+q[3]*q[3]);xs=q[0]*s;ys=q[1]*s;zs=q[2]*s;wx=q[3]*xs;wy=q[3]*ys;wz=q[3]*zs;xx=q[0]*xs;xy=q[0]*ys;xz=q[0]*zs;yy=q[1]*ys;yz=q[1]*zs;zz=q[2]*zs;m[0]=1.0f-(yy+zz);m[3]=xy+wz;m[6]=xz-wy;m[1]=xy-wz;m[4]=1.0f-(xx+zz);m[7]=yz+wx;m[2]=xz+wy;m[5]=yz-wx;m[8]=1.0f-(xx+yy);}void func_0015B440(X*o){f32 t[9],iv[9];func_00159F90(o->q);cv(o->r,o->q);t[0]=o->r[0]*o->s[0];t[3]=o->r[3]*o->s[0];t[6]=o->r[6]*o->s[0];t[1]=o->r[1]*o->s[1];t[4]=o->r[4]*o->s[1];t[7]=o->r[7]*o->s[1];t[2]=o->r[2]*o->s[2];t[5]=o->r[5]*o->s[2];t[8]=o->r[8]*o->s[2];func_00159CD8(iv,o->r);func_00159150(o->m,t,iv);mat3x3_mul_vec3(o->w,o->m,o->v);}
+typedef struct 
+{
+  f32 a;
+  f32 s[3];
+  u8 p[12];
+  f32 q[4];
+  u8 p2[12];
+  f32 v[3];
+  f32 r[9];
+  f32 m[9];
+  f32 w[3];
+} X;
+void func_00159F90(f32 *);
+unsigned long long func_00159CD8(f32 *, f32 *);
+void func_00159150(f32 *, f32 *, f32 *);
+void mat3x3_mul_vec3(f32 *, f32 *, f32 *);
+inline static void cv(f32 *m, f32 *q)
+{
+  f32 s;
+  f32 xs;
+  f32 ys;
+  f32 zs;
+  f32 xx;
+  f32 yy;
+  f32 zz;
+  f32 xy;
+  f32 xz;
+  f32 yz;
+  f32 wx;
+  f32 wy;
+  f32 wz;
+  s = 2.0f / ((((q[0] * q[0]) + (q[1] * q[1])) + (q[2] * q[2])) + (q[3] * q[3]));
+  xs = q[0] * s;
+  ys = q[1] * s;
+  zs = q[2] * s;
+  wx = q[3] * xs;
+  wy = q[3] * ys;
+  wz = q[3] * zs;
+  xx = q[0] * xs;
+  xy = q[0] * ys;
+  xz = q[0] * zs;
+  yy = q[1] * ys;
+  yz = q[1] * zs;
+  zz = q[2] * zs;
+  m[0] = 1.0f - (yy + zz);
+  m[3] = xy + wz;
+  m[6] = xz - wy;
+  m[1] = xy - wz;
+  m[4] = 1.0f - (xx + zz);
+  m[7] = yz + wx;
+  m[2] = xz + wy;
+  m[5] = yz - wx;
+  m[8] = 1.0f - (xx + yy);
+}
+
+void func_0015B440(X *o)
+{
+  f32 t[9];
+  f32 iv[9];
+  int new_var;
+  f32 *new_var2;
+  func_00159F90(o->q);
+  cv(o->r, o->q);
+  t[0] = o->r[0] * o->s[0];
+  t[3] = o->r[3] * o->s[0];
+  new_var2 = o->m;
+  new_var = 1;
+  t[6] = o->r[6] * o->s[0];
+  t[new_var] = o->r[new_var] * o->s[new_var];
+  t[4] = o->r[4] * o->s[1];
+  t[7] = o->r[7] * o->s[1];
+  t[2] = o->r[2] * o->s[2];
+  t[5] = o->r[5] * o->s[2];
+  t[8] = o->r[8] * o->s[2];
+  func_00159CD8(iv, o->r);
+  func_00159150(o->m, t, iv);
+  mat3x3_mul_vec3(o->w, new_var2, o->v);
+}

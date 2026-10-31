@@ -1,4 +1,4 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
+/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8 -mno-check-zero-division, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
 typedef s32 M2C_UNK;
@@ -12,8 +12,18 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-/* Warning: missing "jr $ra" in last block of func_00135054 (initial). */
+s32 func_0011C6C8();                                /* extern */
+s32 func_0011C6F0(s32);                             /* extern */
+M2C_UNK func_001350B8();                            /* extern */
+extern M2C_UNK HUDRunFrame__Fv;
 
-void func_00135054(void) {
-
+s32 func_00135054(void) {
+    if (!(func_0011C6C8() & M2C_FIELD(&HUDRunFrame__Fv, s32 *, 0x2C))) {
+        return 0;
+    }
+    if (func_0011C6F0(M2C_FIELD(&HUDRunFrame__Fv, s32 *, 0x2C)) & M2C_FIELD(&HUDRunFrame__Fv, s32 *, 0x2C)) {
+        return 0;
+    }
+    func_001350B8();
+    return 1;
 }

@@ -1,1 +1,0 @@
-extern s32 D_004C3EFC; s32 func_001AECF8(void); s32 func_001AEC28(s32,s32); s64 func_001ADD68(s32 a,s32 b,s32 c){if(a==0){if(D_004C3EFC==0){if(func_001AECF8()==0)goto err;D_004C3EFC=1;}return func_001AEC28(b,c);}err:return -1;}

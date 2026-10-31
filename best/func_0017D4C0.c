@@ -1,1 +1,0 @@
-extern s32 D_010ECF00[]; s32 sceSifSetDma(void*,s32); s32 sceSifDmaStat(s32); s32 func_0017D4C0(s32 a,s32 b,s32 c,s32 wait){s32 id,r=-1;if(wait!=0){D_010ECF00[0]=a;D_010ECF00[1]=b;D_010ECF00[2]=c;D_010ECF00[3]=0;id=sceSifSetDma(D_010ECF00,1);if(id!=0){r=0;if(wait==1)while(sceSifDmaStat(id)>=0);}}return r;}

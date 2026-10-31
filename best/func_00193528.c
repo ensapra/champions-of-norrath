@@ -1,2 +1,0 @@
-s32 func_001A1738(u8*,s32); s32 func_0019FDF8(s8*,void*,s32); s8 *func_001A3FE4(s8*,s32); extern char jtbl_004C006C[];
-s32 func_00193528(s8 *a,u8 *b,s32 n){s32 x=0,y=0,z=0;func_001A1738(b,n);if(a){if(!b)return -101; n--; if(func_0019FDF8(a,jtbl_004C006C+0xEC1C,7)==0){s8*p=a; do {p=func_001A3FE4(p,46); if(!p)break; x++;p++;}while(1);z=(x==5);} if(z){s8*p=func_001A3FE4(func_001A3FE4(a,46)+1,46)+1;if(n>0&&*p&&*p!=46){do{b[y]=*p;y++;p++;}while(y<n&&*p&&*p!=46);}}else if(n>0&&*a){do{b[y]=a[y];y++;}while(y<n&&a[y]);}b[y]=0;return 0;}return -101;}

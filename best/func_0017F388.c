@@ -1,1 +1,0 @@
-extern u8 D_010EE084[]; s32 func_0017F388(s32 i,u16 v){s32 stride=56;u8*e=*(u8**)D_010EE084+i*stride;u8*q=e+16;s32 n;if(*(s32*)(q+36)<4){n=*(s32*)(e+44);*(volatile u16*)(e+34+n*2)=v;*(volatile s32*)(e+44)=n+1;if(*(s32*)(q+28)>=4)*(s32*)(q+28)=0;*(s32*)(q+36)+=1;return 0;}return -1;}

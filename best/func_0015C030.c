@@ -1,9 +1,36 @@
-s32 func_0016FA70(s32);
-typedef struct { unsigned char pad0[0x4D0]; s32 x4D0; unsigned char pad4D4[0x43C]; s32 x910,x914; unsigned char pad918[0xC]; s32 x924,x928; } Obj;
-void func_0015C030(Obj *p) {
- if (p->x924) p->x910=func_0016FA70(p->x924); else p->x910=0;
- p->x924=0;
- if (p->x928) p->x914=func_0016FA70(p->x928); else p->x914=0;
- p->x928=0;
- p->x4D0=0;
+/* machine draft (m2c) for ee-gcc-2.96 -Os -G8 -mno-check-zero-division, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
+
+s32 func_0016FA70(s32);                             /* extern */
+
+void func_0015C030(void *arg0) {
+    s32 temp_2;
+    s32 temp_4;
+
+    temp_2 = M2C_FIELD(arg0, s32 *, 0x924);
+    if (temp_2 != 0) {
+        M2C_FIELD(arg0, s32 *, 0x910) = func_0016FA70(temp_2);
+    } else {
+        M2C_FIELD(arg0, s32 *, 0x910) = 0;
+    }
+    temp_4 = M2C_FIELD(arg0, s32 *, 0x928);
+    M2C_FIELD(arg0, s32 *, 0x924) = 0;
+    if (temp_4 != 0) {
+        M2C_FIELD(arg0, s32 *, 0x914) = func_0016FA70(temp_4);
+    } else {
+        M2C_FIELD(arg0, s32 *, 0x914) = 0;
+    }
+    M2C_FIELD(arg0, s32 *, 0x4D0) = 0;
+    M2C_FIELD(arg0, s32 *, 0x928) = 0;
 }

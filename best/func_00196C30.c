@@ -1,52 +1,36 @@
-typedef struct {
-    u8 pad0[4];
-    u16 v;
-    u8 pad6[0x2A];
-} Sub30;
+/* machine draft (m2c) for ee-gcc-2.96 -Os -G8 -mno-check-zero-division, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
 
-typedef struct {
-    Sub30 sub[8];
-    u8 pad[0x18C - 0x180];
-    u8 flags;
-    u8 pad2[0x198 - 0x18D];
-} Ent198;
+M2C_UNK func_001A1568(void *, M2C_UNK, void *);     /* extern */
+extern M2C_UNK jtbl_004C006C;
 
-typedef struct {
-    u8 pad0[0x52];
-    u8 idx;
-    u8 pad53[0x68 - 0x53];
-    u32 count;
-    u8 pad6C[0x78 - 0x6C];
-    Ent198 *ents;
-} Mgr;
+void func_00196C30(void *arg0) {
+    s32 var_4;
+    u32 var_5;
+    void *temp_2;
 
-extern char D_004CECB8[];
-extern char D_004CED70[];
-void func_001A1568(void *, s32, void *);
-
-void func_00196C30(Mgr *m)
-{
-    u32 i;
-
-    if (m == NULL) {
-        func_001A1568(D_004CECB8, 0x7DC, D_004CED70);
+    if (arg0 == NULL) {
+        func_001A1568(&jtbl_004C006C + 0xEC4C, 0x7DC, &jtbl_004C006C + 0xED04);
     }
-    for (i = 0; i < m->count; i++) {
-        m->ents[i].flags &= ~2;
-    }
-}
-
-void func_00196B88(Mgr *m)
-{
-    s32 idx = m->idx & 0x7F;
-    u32 i;
-
-    if (m == NULL) {
-        func_001A1568(D_004CECB8, 0x7C1, D_004CED70);
-    }
-    for (i = 0; i < m->count; i++) {
-        if (m->ents[i].sub[idx].v == 0 && !(m->ents[i].flags & 0x10)) {
-            m->ents[i].flags &= ~4;
-        }
+    var_5 = 0;
+    if (M2C_FIELD(arg0, u32 *, 0x68) != 0) {
+        var_4 = 0;
+        do {
+            var_5 += 1;
+            temp_2 = var_4 + M2C_FIELD(arg0, s32 *, 0x78);
+            M2C_FIELD(temp_2, u8 *, 0x18C) = (u8) (M2C_FIELD(temp_2, u8 *, 0x18C) & 0xFD);
+            var_4 += 0x198;
+        } while (var_5 < (u32) M2C_FIELD(arg0, u32 *, 0x68));
     }
 }

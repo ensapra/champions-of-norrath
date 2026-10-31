@@ -1,2 +1,0 @@
-s32 func_0014D240(s32); extern s32 D_010C51D0[],D_010C51D4[],D_010C51DC[],D_010C51E0[];
- s32 func_0011F280(void*p){s32 t=((s32*)p)[4],i,v; s32 *q; switch(t){case 2: if(D_010C51D0[0])func_0014D240(D_010C51D0[0]);q=D_010C51E0;for(i=0;i<4;i++){v=*q++;if(v)func_0014D240(v);}break;case 3: if(D_010C51D4[0])func_0014D240(D_010C51D4[0]);q=D_010C51E0+4;for(i=0;i<4;i++){v=*q++;if(v)func_0014D240(v);}break;case 4: if(D_010C51DC[0])func_0014D240(D_010C51DC[0]);q=D_010C51E0+8;for(i=3;i>=0;i--){v=*q++;if(v)func_0014D240(v);}return 1;}return 0;} /* iteration 1 */

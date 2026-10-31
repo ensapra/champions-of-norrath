@@ -1,4 +1,4 @@
-/* machine draft (m2c) for ee-gcc-2.96 -O2 -G8, tried by autopilot */
+/* machine draft (m2c) for ee-gcc-2.96 -Os -G8 -mno-check-zero-division, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
 typedef s32 M2C_UNK;
@@ -12,7 +12,7 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-extern u16 D_00362CE0;
+extern M2C_UNK huffmanTemp;
 
 u16 func_00189C90(void **arg0) {
     s32 temp_2;
@@ -48,7 +48,7 @@ u16 func_00189C90(void **arg0) {
                 var_8 = 1;
                 var_5 = (temp_3 >= 0xF4U) ? (temp_2 + 0x45) : (temp_2 + 7);
             }
-            var_2_2 = &D_00362CE0;
+            var_2_2 = &huffmanTemp + 0xCFE0;
             if (var_5 != 0) {
                 temp_3_2 = M2C_FIELD(temp_6, u8 *, 1);
                 temp_4 = temp_3_2 - 0x40;

@@ -1,1 +1,0 @@
-s32 func_001AEEE0(u64 v){s64 e;u64 m;e=((v<<1)>>53)-0x433;if(e < -0x35)return 0;if(e>=13)return 9999;m=((v<<12)>>12)|((u64)0x8000<<37);if(e<0){e=-e;m>>=(s32)(e-2);if((u32)(m&3)==3)m=(m>>2)+1;else m>>=2;}else m<<=(s32)e;return (s32)m;}

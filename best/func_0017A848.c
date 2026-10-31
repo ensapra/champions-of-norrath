@@ -1,21 +1,45 @@
-s32 PollSema(s32); s32 SignalSema(s32); s32 WaitSema(s32);
-extern s32 D_001D0480[], D_001D0484[], D_001D0488[];
-extern s32 D_010ECC00[];
-s32 func_0017A848(s32 a, s32 *b, s32 *c) {
-    s32 r;
-    if (D_001D0480[0] == 0) return -1;
-    r = 0;
-    if (PollSema(D_001D0488[0]) < 0) r = 1;
-    if (a == 0 && r) {
-        r = 0;
-        WaitSema(D_001D0488[0]);
+/* machine draft (m2c) for ee-gcc-2.96 -Os -G8 -mno-check-zero-division, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
+
+M2C_UNK func_001AD740(s32);                         /* extern */
+M2C_UNK func_001AD760(s32);                         /* extern */
+s32 func_001AD770(s32);                             /* extern */
+extern M2C_UNK gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb;
+extern M2C_UNK xmlParseReference;
+
+s32 func_0017A848(s32 arg0, s32 *arg1, s32 *arg2) {
+    s32 temp_16;
+    s32 var_16;
+
+    if (M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x2268) == 0) {
+        return -1;
     }
-    r = r == 0;
-    if (b) *b = D_001D0480[0];
-    if (r) {
-        D_001D0480[0] = 0;
-        if (c) *c = D_010ECC00[0];
-        SignalSema(D_001D0484[0]);
+    var_16 = func_001AD770(M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x2270)) < 0;
+    if ((arg0 == 0) && (var_16 != 0)) {
+        var_16 = 0;
+        func_001AD760(M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x2270));
     }
-    return r;
+    temp_16 = var_16 == 0;
+    if (arg1 != NULL) {
+        *arg1 = M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x2268);
+    }
+    if (temp_16 != 0) {
+        M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x2268) = 0;
+        if (arg2 != NULL) {
+            *arg2 = M2C_FIELD(&xmlParseReference, s32 *, 0x5C8);
+        }
+        func_001AD740(M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x226C));
+    }
+    return temp_16;
 }

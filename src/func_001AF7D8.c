@@ -1,30 +1,41 @@
-typedef struct { s32 size; s32 count; u8 *rd; u8 *wr; u8 data[1]; } Ring;
-void func_001AE898(Ring *r) {
-    r->count++;
-    r->wr++;
-    if (r->wr == r->data + r->size) r->wr = r->data;
-}
+/* identical to func_00112950 (matched), with its names changed by decompdecomp */
+extern char D_01107D58[];
 
-extern u8 D_01107D58[];
-void *func_001AF7D8(void) {
+char *func_001AF7D8(void) {
     return D_01107D58;
 }
 
-extern s32 func_001AE2D0(s32);
-extern s32 RemoveDmacHandler(s32, s32);
-extern s32 D_01107D54[];
-extern s32 D_004C3F10[];
-void func_001AFA68(void) {
-    func_001AE2D0(5);
-    RemoveDmacHandler(5, D_01107D54[0]);
-    D_004C3F10[0] = 0;
+void func_00112940(void *arg0) {
+    *(u8 *)((char *)arg0 + 0x4C) = 1;
 }
 
-extern s32 D_01107D58_w[];
-s32 func_001AFAA0(s32 a, s32 b) {
-    s32 *p = (s32 *)D_01107D58;
-    s32 old = p[5];
-    p[6] = b;
-    p[5] = a;
-    return old;
+void func_00112900(void *arg0, void *arg1, s32 arg2, s8 arg3, s8 arg4, s8 arg5, s8 arg6, f32 fparg0, f32 fparg1, f32 fparg2, f32 fparg3) {
+    void **base = (void **)((u8 *)arg1 + arg2 * 8);
+    void *ptr = base[1];
+    *(s8 *)((u8 *)ptr + 0x18) = arg3;
+    *(f32 *)((u8 *)ptr + 0x14) = fparg0;
+    *(s8 *)((u8 *)ptr + 0x20) = arg4;
+    *(f32 *)((u8 *)ptr + 0x1C) = fparg1;
+    *(s8 *)((u8 *)ptr + 0x28) = arg5;
+    *(f32 *)((u8 *)ptr + 0x24) = fparg2;
+    *(s8 *)((u8 *)ptr + 0x30) = arg6;
+    *(f32 *)((u8 *)ptr + 0x2C) = fparg3;
+}
+
+struct Struct_1128A8 {
+    u8 pad[0x24];
+    void *unk24;
+};
+
+void func_001128A8(struct Struct_1128A8 *arg0, s32 arg1, s8 arg2, s8 arg3, s8 arg4, s8 arg5, f32 fparg0, f32 fparg1, f32 fparg2, f32 fparg3) {
+    void **base = (void **)((u8 *)arg0->unk24 + arg1 * 8);
+    void *ptr = base[1];
+    *(s8 *)((u8 *)ptr + 0x18) = arg2;
+    *(f32 *)((u8 *)ptr + 0x14) = fparg0;
+    *(s8 *)((u8 *)ptr + 0x20) = arg3;
+    *(f32 *)((u8 *)ptr + 0x1C) = fparg1;
+    *(s8 *)((u8 *)ptr + 0x28) = arg4;
+    *(f32 *)((u8 *)ptr + 0x24) = fparg2;
+    *(s8 *)((u8 *)ptr + 0x30) = arg5;
+    *(f32 *)((u8 *)ptr + 0x2C) = fparg3;
 }

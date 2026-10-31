@@ -1,37 +1,68 @@
-typedef struct { u8 pad[0x24]; s32 f24; } G640;
-typedef struct { u8 pad[4]; s32 f4, f8, fC, f10, f14; s32 pad18; void *f1C; } G6C0;
-extern G640 D_010EB640;
-extern G6C0 D_010EB6C0;
-extern u8 D_010EBB40[], D_010ECC00[];
-extern s32 D_010EB668[], D_010EB66C[], D_010EB670[];
-extern s32 D_001D0480[], D_001D0484[];
-extern s32 PollSema(s32);
-extern void SignalSema(s32);
-extern void func_001AFE98(void *, s32);
-extern s32 func_001B08B0(void *, s32, s32, void *, s32, void *, s32, void *, void *);
-extern void func_0017A910(void);
+/* machine draft (m2c) for ee-gcc-2.96 -Os -G8 -mno-check-zero-division, tried by autopilot */
+#ifndef M2C_DEFINES
+#define M2C_DEFINES
+typedef s32 M2C_UNK;
+typedef s8 M2C_UNK8;
+typedef s16 M2C_UNK16;
+typedef s32 M2C_UNK32;
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
+#define M2C_BITWISE(type, expr) ((type)(expr))
+#define M2C_ERROR(desc) (0)
+#define M2C_CARRY 0
+#define M2C_OVERFLOW(a) (0)
+#endif
 
-s32 func_0017A968(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4) {
-    s32 r;
-    u8 pad[0x40];
-    if (D_010EB640.f24 == 0)
-        return -100;
-    if (PollSema(D_001D0484[0]) < 0)
-        return -200;
-    D_010EB6C0.f4 = a0;
-    D_010EB6C0.f8 = a1;
-    D_010EB6C0.f1C = D_010EBB40;
-    if (a2) D_010EB6C0.f14 = 1; else D_010EB6C0.f14 = 0;
-    if (a3) D_010EB6C0.f10 = 1; else D_010EB6C0.f10 = 0;
-    if (a4) D_010EB6C0.fC = 1; else D_010EB6C0.fC = 0;
-    D_010EB668[0] = a2;
-    D_010EB66C[0] = a3;
-    D_010EB670[0] = a4;
-    func_001AFE98(D_010EBB40, 0xC0);
-    r = func_001B08B0(&D_010EB640, 1, 1, &D_010EB6C0, 0x30, D_010ECC00, 4, func_0017A910, D_010EBB40);
-    if (r == 0)
-        D_001D0480[0] = 1;
-    else
-        SignalSema(D_001D0484[0]);
-    return r;
+M2C_UNK func_001AD740(s32);                         /* extern */
+s32 func_001AD770(s32);                             /* extern */
+M2C_UNK func_001AFE98(void *, M2C_UNK, void *);     /* extern */
+s32 func_001B08B0(void *, M2C_UNK, M2C_UNK, void *, M2C_UNK, void *, M2C_UNK, M2C_UNK *, void *); /* extern */
+extern M2C_UNK func_0017A910;
+extern M2C_UNK gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb;
+extern M2C_UNK xmlParseConditionalSections;
+extern M2C_UNK xmlParseReference;
+
+s32 func_0017A968(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 temp_2;
+    void *temp_17;
+    void *temp_22;
+    void *temp_4;
+
+    temp_22 = &xmlParseConditionalSections + 0x380;
+    if (M2C_FIELD(temp_22, s32 *, 0x24) == 0) {
+        return -0x64;
+    }
+    temp_17 = &xmlParseConditionalSections + 0x400;
+    if (func_001AD770(M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x226C)) < 0) {
+        return -0xC8;
+    }
+    temp_4 = &xmlParseConditionalSections + 0x880;
+    M2C_FIELD(temp_17, s32 *, 4) = arg0;
+    M2C_FIELD(temp_17, s32 *, 8) = arg1;
+    M2C_FIELD(temp_17, void **, 0x1C) = temp_4;
+    if (arg2 != 0) {
+        M2C_FIELD(temp_17, s32 *, 0x14) = 1;
+    } else {
+        M2C_FIELD(temp_17, s32 *, 0x14) = 0;
+    }
+    if (arg3 != 0) {
+        M2C_FIELD(temp_17, s32 *, 0x10) = 1;
+    } else {
+        M2C_FIELD(temp_17, s32 *, 0x10) = 0;
+    }
+    if (arg4 != 0) {
+        M2C_FIELD(temp_17, s32 *, 0xC) = 1;
+    } else {
+        M2C_FIELD(temp_17, s32 *, 0xC) = 0;
+    }
+    M2C_FIELD(&xmlParseConditionalSections, s32 *, 0x3A8) = arg2;
+    M2C_FIELD(&xmlParseConditionalSections, s32 *, 0x3AC) = arg3;
+    M2C_FIELD(&xmlParseConditionalSections, s32 *, 0x3B0) = arg4;
+    func_001AFE98(temp_4, 0xC0, &xmlParseConditionalSections + 0x3B0);
+    temp_2 = func_001B08B0(temp_22, 1, 1, temp_17, 0x30, &xmlParseReference + 0x5C8, 4, &func_0017A910, temp_4);
+    if (temp_2 == 0) {
+        M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x2268) = 1;
+    } else {
+        func_001AD740(M2C_FIELD(&gameAttackResolver__FP10GameObjectT0ffiiiiPQ24item11descriptionb, s32 *, 0x226C));
+    }
+    return temp_2;
 }

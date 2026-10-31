@@ -4,7 +4,6 @@ extern void func_0011C298(s32, void *);
 extern void func_0011C3B8(s32, s32, s32, s32);
 extern s32 func_00184198(void);
 extern s32 func_00185430(s32);
-extern void func_001047E8(s32,s32);
 extern s32 D_B08A40[];
 extern u8 jtbl_004C006C[];
 extern s32 D_00B08A40;
